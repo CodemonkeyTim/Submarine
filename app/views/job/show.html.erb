@@ -1,0 +1,9 @@
+<h2> <%= @job.name %> </h2>
+
+<h3> Subcontractors: </h3>
+
+<ul>
+	<% @partners.each do |i| %>
+		<li> <%= link_to i.name, partner_path(i.id) %> </li>
+	<% end %>
+</ul>

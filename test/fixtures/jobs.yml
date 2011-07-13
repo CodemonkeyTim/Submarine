@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  job_number: 1
+  PM_id: 1
+  location: MyString
+  value: 1
+
+two:
+  name: MyString
+  job_number: 1
+  PM_id: 1
+  location: MyString
+  value: 1

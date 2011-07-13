@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= title %> </title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	 	<div id="page" class="round">
+	 	
+		<div id="header" class="round">
+			<h1>Tapani Underground</h1>
+		</div>
+	
+		<div id="nav" class="round">
+			<h3><%= locate %> </h3>
+		</nav>
+	
+		<div id="contents" class="round">
+			<%= yield %>		
+		</div>
+
+		<div id="footer" class="round">
+			 <h3>Submarine - Copyright Silvertreksystems LLC</h3>
+		</footer>
+	</div>
+</body>
+</html>

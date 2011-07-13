@@ -1,0 +1,78 @@
+body {
+	background: #006633;
+	
+}
+
+#page {
+	width: 1000px;
+	margin:auto;
+	
+}
+
+#header {
+	padding-top: 5px;
+	
+	color:white;
+	
+	height: 50px;
+	background: red;
+	
+	
+}
+
+#nav {
+	background: pink;
+	height: 25px;
+}
+
+#contents {
+	padding: 5px;
+	
+	height: 550px;
+	background: grey;
+	
+}
+
+#footer {
+	padding-top: 2px;
+	padding-left: 10px;
+	
+	height: 25px;
+	background: #800AAF;
+	
+}
+
+.round {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	
+}
+
+h1 {
+	width: 400px;
+	margin: auto;
+	
+}
+
+h2 {
+	margin: 0px;
+	
+}
+
+h3 {
+	margin: 0px;
+	
+}
+
+h4 {
+	margin: 0px:
+}
+
+a:link {
+	color:white;
+}
+
+a:visited {
+	color:white	
+}
