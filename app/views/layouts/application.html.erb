@@ -7,22 +7,23 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-	 	<div id="page" class="round">
+	 	<div id="page">
 	 	
-		<div id="header" class="round">
+		<div id="header" class="roundTop">
 			<h1>Tapani Underground</h1>
 		</div>
 	
-		<div id="nav" class="round">
-			<h3><%= locate %> </h3>
+		<div id="nav">
+			<input type="button" value="Jobs" class="navInputs" onClick="window.location.href='http://localhost'">
+			<input type="button" value="Subcontractors" class="navInputs" onClick="window.location.href='http://localhost/partner'">
 		</nav>
 	
-		<div id="contents" class="round">
+		<div id="contents">
 			<%= yield %>		
 		</div>
 
-		<div id="footer" class="round">
-			 <h3>Submarine - Copyright Silvertreksystems LLC</h3>
+		<div id="footer" class="roundBottom">
+			 <h3 id="footerText">Submarine - Copyright Silvertreksystems LLC</h3>
 		</footer>
 	</div>
 </body>

@@ -1,6 +1,11 @@
-<h2>Uncompleted jobs</h2>
+<h2>Jobs</h2>
+
+<h3>Uncompleted</h3>
+
 <ul>
 	<% @jobs.each do |i| %>
-		<li> <%= link_to i.name, job_path(i.job_number) %> </li>
+		<li> <%= link_to "#{i.name}  - #{i.job_number}  - #{i.location} - #{i.value}", job_path(i.job_number) %> </li>
 	<% end %>
 </ul>
+
+<h3>Completed</h3>

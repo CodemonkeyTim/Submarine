@@ -1,16 +1,19 @@
 Submarine::Application.routes.draw do
-  get "partner/show"
+  get "supplier/show"
 
-  get "index/index"
+  get "supplier/index"
 
-  get "supplier/supplier"
+  get "subcontractor/show"
 
-  get "sub/sub"
+  get "subcontractor/index"
 
-  get "job/job"
+  get "job_partner/show"
+
+  get "job_partner/jobPartner"
 
   resources :job
-  resources :partner
+  resources :subcontractor
+  resources :supplier
   
   match '/index', :to => 'index#index'
   #match '/job', :to => 'index#job'
