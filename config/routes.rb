@@ -1,13 +1,15 @@
 Submarine::Application.routes.draw do
     
-  resources :listitem
+  get "contact_person/show"
+
+  get "contact_person/create"
+
+  resources :list_item
   resources :job
   resources :subcontractor
   resources :supplier
   
   match '/index', :to => 'index#index'
-  
-  #match ''
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

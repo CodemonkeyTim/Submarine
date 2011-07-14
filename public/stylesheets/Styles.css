@@ -93,17 +93,21 @@ h1 {
 h2 {
 	margin: 0px;
 	margin-bottom: 10px;
-	
+	float: left;
+	clear:left;
 }
 
 h3 {
 	margin: 0px;
 	margin-bottom: 8px;
-	
+	float: left;
+	clear:left;
 }
 
 h4 {
 	margin: 0px:
+	float: left;
+	clear:left;
 }
 
 a {

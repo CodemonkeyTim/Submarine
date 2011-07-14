@@ -13,24 +13,10 @@
 
 
 <%= form_tag({:controller => "job", :action => "create"}, :method =>"post") do %>
-	
-	<%= label_tag(:number, "Number")%>
-	<%= text_field_tag(:number) %><br />
-	
-	<%= label_tag(:name, "Name")%>
-	<%= text_field_tag(:name) %><br />
-	
-	<%= label_tag(:PM_id, "Project manage id")%>
-	<%= text_field_tag(:PM_id) %><br />
-		
-	
-	<%= label_tag(:location, "Location")%>
-	<%= text_field_tag(:location) %><br />
-	
-	<%= label_tag(:value, "Value")%>
-	<%= text_field_tag(:value) %><br />
-	
-
-		
-	<%= submit_tag("Create new job") %>
+	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>
+	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:location) %> </div>
+	<div class = "input_items"><div class="input_headers">Value: </div>  <%= text_field_tag(:value) %> </div>
+	<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Create new job") %> </div>		
 <% end %>
