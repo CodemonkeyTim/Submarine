@@ -11,18 +11,15 @@ body {
 
 #header {
 	padding: 10px;
-	color:black;
-	height: 50px;
+	color: black;
+	height: 100px;
 	background: #EEEEEE;
-	
-	border-bottom: 1px solid;
+
 }
 
 #nav {
 	background: #EEEEEE;
-	position: absolute;
-	right: 0em;
-	height: 30px;
+	height: 100px;
 	padding: 10px;
 	color: #000000;
 }
@@ -31,8 +28,13 @@ body {
 	list-style: none;
 }
 
+#nav li {
+	display: block;
+	float: left;
+}
+
 #nav li a {
-	background: #EEEEEE url(/public/images/n3.gif);
+	background: #EEEEEE;
 	border: 1px solid #999999;
 	border-bottom: none;
 	color: #666666;
@@ -41,11 +43,20 @@ body {
 	margin-left: 10px;
 }
 
+#nav li a:hover {
+	color: #888888;
+}
+
+#nav li a.active {
+	background: #EEEEEE url(/images/n3.gif);
+}
+
+
 #contents {
 	padding: 15px;
 	
 	height: 500px;
-	background: grey;
+	background: gray;
 	
 }
 
