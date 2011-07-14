@@ -1,5 +1,5 @@
 body {
-	background: #006633;
+	background: #EEEEEE;
 	
 }
 
@@ -10,18 +10,16 @@ body {
 }
 
 #header {
-	padding-top: 5px;
-	
-	color:white;
-	
+	padding: 10px;
+	color:black;
 	height: 50px;
-	background: red;
+	background: #EEEEEE;
 	
-	
+	border-bottom: 1px solid;
 }
 
 #nav {
-	background: #FFE920;
+	background: #EEEEEE;
 	height: 25px;
 }
 
