@@ -16,18 +16,20 @@
 
 <h3>Contact Person information:</h3>
 
-<form method="post" action="http://localhost/job" name="new_job_input_form">
-	<div class = "input_items"><div class="input_headers">Name: </div> <input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">Title: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">Phone: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">Email: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-</form> <br />
+<%= form_tag({:controller => "contactperson", :action => "create"}, :method =>"post") do %>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">Title: </div>  <%= text_field_tag(:title) %> </div>
+	<div class = "input_items"><div class="input_headers">Phone number: </div>  <%= text_field_tag(:phone_number) %> </div>
+	<div class = "input_items"><div class="input_headers">Email: </div>  <%= text_field_tag(:email) %> </div>		
+<% end %> <br />
 
 <h3>Address:</h3>
 
-<form method="post" action="http://localhost/job" name="new_job_input_form">
-	<div class = "input_items"><div class="input_headers">Street: </div> <input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">City: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">ZIP: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-	<div class = "input_items"><div class="input_headers">State: </div><input type="text" size="20" name = "vendor_name_tfield"> </div>
-</form>
+<%= form_tag({:controller => "job", :action => "create"}, :method =>"post") do %>
+	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>
+	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:location) %> </div>
+	<div class = "input_items"><div class="input_headers">Value: </div>  <%= text_field_tag(:value) %> </div>
+	<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Create new job") %> </div>		
+<% end %>
