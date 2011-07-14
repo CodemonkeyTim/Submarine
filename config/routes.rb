@@ -1,16 +1,8 @@
 Submarine::Application.routes.draw do
   get "supplier/show"
-
-  get "supplier/index"
-
+  
   get "subcontractor/show"
-
-  get "subcontractor/index"
-
-  get "job_partner/show"
-
-  get "job_partner/jobPartner"
-
+    
   resources :job
   resources :subcontractor
   resources :supplier

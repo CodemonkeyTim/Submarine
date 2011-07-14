@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_data: MyString
+  job_number: 1
+  partner_id: 1
+  is_done: false
+
+two:
+  item_data: MyString
+  job_number: 1
+  partner_id: 1
+  is_done: false

@@ -1,2 +1,7 @@
-<h1>Subcontractor#show</h1>
-<p>Find me in app/views/subcontractor/show.html.erb</p>
+<h2>Subcontractor: <%= @subcontractor.name %> </h2>
+
+<ul>
+	<% @suppliers.each do |i|  %>
+		<li><%= link_to i.name, supplier_path(i.id, @job.id) %></li>
+	<% end %>
+</ul>
