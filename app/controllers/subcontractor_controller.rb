@@ -15,5 +15,10 @@ class SubcontractorController < ApplicationController
   def index
     @subcontractors = Partner.find_all_by_partner_type(1)    
   end
+  
+  def new
+    
+    
+  end
 
 end

@@ -22,7 +22,7 @@ body {
 
 #nav {
 	background: #FFE920;
-	height: 25px;
+	height:25px;
 }
 
 #contents {
@@ -53,6 +53,14 @@ body {
 	
 }
 
+.news {
+	float:right;
+}
+
+.olds {
+	float:left;	
+}
+
 .roundTop {
 	-moz-border-radius-topright: 6px;
 	-moz-border-radius-topleft: 6px
@@ -61,6 +69,17 @@ body {
 .roundBottom {
 	-moz-border-radius-bottomright: 6px;
 	-moz-border-radius-bottomleft: 6px;
+}
+
+.input_items {
+	float: left;
+	clear: left;
+}
+
+.input_headers {
+	width: 150px;
+	
+	float: left;	
 }
 
 h1 {	
@@ -79,6 +98,7 @@ h2 {
 
 h3 {
 	margin: 0px;
+	margin-bottom: 8px;
 	
 }
 

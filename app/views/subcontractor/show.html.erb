@@ -2,6 +2,6 @@
 
 <ul>
 	<% @suppliers.each do |i|  %>
-		<li><%= link_to i.name, supplier_path(i.id, @job.id) %></li>
+		<li><%= link_to i.name, supplier_path(i.id, @job.job_number) %></li>
 	<% end %>
 </ul>
