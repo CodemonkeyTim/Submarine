@@ -20,7 +20,25 @@ body {
 
 #nav {
 	background: #EEEEEE;
-	height: 25px;
+	position: absolute;
+	right: 0em;
+	height: 30px;
+	padding: 10px;
+	color: #000000;
+}
+
+#nav ul {
+	list-style: none;
+}
+
+#nav li a {
+	background: #EEEEEE url(/public/images/n3.gif);
+	border: 1px solid #999999;
+	border-bottom: none;
+	color: #666666;
+	font-size: 14px;
+	padding: 4px 15px 4px;
+	margin-left: 10px;
 }
 
 #contents {
@@ -33,11 +51,11 @@ body {
 
 #footer {
 	padding-top: 2px;
-	
+
 	height: 25px;
 	
-	color: white;
-	background: red;
+	color: #000000;
+	background: #EEEEEE;
 	
 }
 
@@ -86,16 +104,15 @@ h4 {
 
 a {
 	font-family: Arial;
-	text-decoration: none;
-	color:white;
+	text-decoration: underline;
 }
 
 a:link {
-	
-	 
+	text-decoration: underline;
 }
-
+	 
 a:visited {
-	color:white;
+	color: blue;
+	text-decoration: underline;
 }
 
