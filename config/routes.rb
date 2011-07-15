@@ -1,9 +1,6 @@
 Submarine::Application.routes.draw do
-    
-  get "contact_person/show"
-
-  get "contact_person/create"
-
+  
+  resources :creator
   resources :list_item
   resources :job
   resources :subcontractor

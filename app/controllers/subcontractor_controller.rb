@@ -20,5 +20,19 @@ class SubcontractorController < ApplicationController
     
     
   end
+  
+  def create
+    
+  end
+  
+  def create_address
+    
+  end
+
+  def create_contact
+    
+  end
+
+
 
 end
