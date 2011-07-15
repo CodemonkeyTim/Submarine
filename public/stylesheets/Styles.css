@@ -1,5 +1,5 @@
 body {
-	background: #EEEEEE;
+	background: #f1f1f1;
 	
 }
 
@@ -10,12 +10,13 @@ body {
 }
 
 #header {
-	padding: 10px;
+	padding: 15px;
 	color: black;
-	width: 100%;
-	height: 100px;
-	background: #EEEEEE;
+	width: 1000px;
+	height: 80px;
 	position: relative;
+	background: #d1d1d1;
+	border-radius: 8px 8px 0px 0px;
 }
 
 #logo {
@@ -48,16 +49,18 @@ body {
 }
 
 #nav {
-	background: #EEEEEE;
-	height: 40px;
+	background: #d1d1d1;
+	height: 23px;
+	width: 1000px;
+	padding: 15px;
 	padding-bottom: 20px;
 	color: #000000;
+	border-bottom: 5px solid #0a7e07;
 }
 
 #nav ul {
 	list-style: none;
 	padding: 4px;
-	border-bottom: 5px solid #0a7e07;
 }
 
 #nav li {
@@ -100,7 +103,6 @@ body {
 	padding-top: 2px;
 	height: 25px;
 	color: #000000;
-	background: #EEEEEE;
 	
 }
 
