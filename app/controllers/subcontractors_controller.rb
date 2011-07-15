@@ -29,6 +29,9 @@ class SubcontractorsController < ApplicationController
     @suppliers  = Partner.find_all_by_id(@supplier_ids)
     @subcontractors = Partner.find_all_by_id(@subcontractor_ids)
     
+    @all_subcontractors = Partner.find_all_by_partner_type(1)
+    @all_suppliers = Partner.find_all_by_partner_type(2)
+    
     @subcontractor = Partner.find_by_id(@sub_id)
     
   end

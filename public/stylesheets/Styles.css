@@ -48,14 +48,6 @@ body {
 	width: 600px;
 }
 
-#new_item {
-	width: 350px;
-	height: 100%;
-	
-	float: right;
-	
-}
-
 .navInputs {
 	margin-left: 5px;
 	
@@ -89,6 +81,15 @@ body {
 	
 	float: left;	
 }
+
+.new_data_forms {
+	width: 350px;
+	height: 100%;
+	
+	float: right;
+	
+}
+
 
 h1 {	
 	
@@ -133,14 +134,16 @@ li {
 
 
 a {
+	float: left;
+	clear:left;
+	
 	font-family: Arial;
 	text-decoration: none;
 	color: white;
 }
 
 a:link {
-	
-	 
+		 
 }
 
 a:visited {

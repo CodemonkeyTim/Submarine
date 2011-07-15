@@ -1,5 +1,19 @@
 <h2> Job: <%= "#{@job.job_number} - #{@job.name}" %> </h2>
 
+<div class="new_data_forms"> 
+	<h3>Assign a Subcontractor to job</h3>
+	<%= form_tag({:controller => "list_items", :action => "create"}, :method =>"post") do %>
+		<div class = "input_items"><div class="input_headers">Name: </div>  <select>
+				<% @subcontractors.each do |i| %>
+					<option><%= i.name %></option>
+				<% end %>	
+			</select>
+		</div>
+		<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Assign Sub") %> </div>
+		<%= hidden_field_tag(:job_number, @job.job_number) %>
+	<% end %>
+</div>
+
 <h3 class="Subheaders"> Subcontractors: </h3>
 
 <ul>

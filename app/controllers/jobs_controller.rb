@@ -3,6 +3,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @partnerIds = JobPartner.find_all_by_job_number(@job.job_number)
     @subcontractors = Partner.find(@partnerIds)
+    
+    @subcontractors = Partner.find_all_by_partner_type(1)
   end
     
   def index
