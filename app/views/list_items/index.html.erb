@@ -1,8 +1,16 @@
 <h2>List items:</h2>
 
+<h3>Overdue Items</h3>
+
+<ul class="overdue_items">
+	<% @overdue_items.each do |i| %>
+		<li><%= i.item_data %></li>
+	<% end %>
+</ul>
+
 <h3>Open Items</h3>
 
-<ul>
+<ul class="open_items">
 	<% @open_items.each do |i| %>
 		<li><%= i.item_data %></li>
 	<% end %>
@@ -10,14 +18,14 @@
 
 <h3>Waiting Items</h3>
 
-<ul>
+<ul class="waiting_items">
 	<% @waiting_items.each do |i| %>
 		<li><%= i.item_data %></li>
 	<% end %>
 </ul>
 
 <h3>Closed Items</h3>
-<ul>
+<ul class="closed_items">
 	<% @closed_items.each do |i| %>
 		<li><%= i.item_data %></li>
 	<% end %>

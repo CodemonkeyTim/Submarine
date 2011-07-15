@@ -20,7 +20,7 @@
 
 <ul>
 	<% @uncompleted_jobs.each do |i| %>
-		<li> <%= link_to i.name, job_path(i.id) %> </li>
+		<li> <%= link_to i.name, job_path(i.job_number) %> </li>
 	<% end %>
 </ul>
 
@@ -28,6 +28,6 @@
 
 <ul>
 	<% @completed_jobs.each do |i| %>
-		<li> <%= link_to i.name, job_path(i.id) %> </li>
+		<li> <%= link_to i.name, job_path(i.job_number) %> </li>
 	<% end %>
 </ul>

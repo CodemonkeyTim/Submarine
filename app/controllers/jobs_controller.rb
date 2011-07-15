@@ -1,10 +1,22 @@
 class JobsController < ApplicationController
   def show
-    @job = Job.find(params[:id])
-    @partnerIds = JobPartner.find_all_by_job_number(@job.job_number)
-    @subcontractors = Partner.find(@partnerIds)
+    @job = Job.find_by_job_number(params[:id])
+    @partner_data = JobPartner.find_all_by_job_number(@job.job_number)
+    @partner_ids = []
     
-    @subcontractors = Partner.find_all_by_partner_type(1)
+    @partner_data.each do |i| 
+      @partner_ids.push(i.partner_id)
+    end
+    
+    @partner_amount = Partner.find(:all).length
+    
+    @subcontractors = []
+    
+    @partner_ids.each do |i|
+      @subcontractors.push(Partner.find(i))
+    end
+        
+    @all_subcontractors = Partner.find_all_by_partner_type(1)
   end
     
   def index

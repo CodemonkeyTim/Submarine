@@ -17,6 +17,8 @@ body {
 	height: 50px;
 	background: red;
 	
+	text-align: center;
+	
 	
 }
 
@@ -41,11 +43,15 @@ body {
 	color: white;
 	background: red;
 	
+	text-align: center;
+	
 }
 
 #footerText {
+	float: none;
+	
 	margin: auto;
-	width: 600px;
+	width: 55%;
 }
 
 .navInputs {
@@ -90,6 +96,26 @@ body {
 	
 }
 
+.closed_items {
+	color: green;
+	
+}
+
+.overdue_items {
+	color: red;
+	
+	
+}
+
+.open_items {
+	color: yellow;
+	
+}
+
+.waiting_items {
+	color: blue;
+	
+}
 
 h1 {	
 	

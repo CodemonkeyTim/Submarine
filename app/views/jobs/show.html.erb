@@ -4,7 +4,7 @@
 	<h3>Assign a Subcontractor to job</h3>
 	<%= form_tag({:controller => "list_items", :action => "create"}, :method =>"post") do %>
 		<div class = "input_items"><div class="input_headers">Name: </div>  <select>
-				<% @subcontractors.each do |i| %>
+				<% @all_subcontractors.each do |i| %>
 					<option><%= i.name %></option>
 				<% end %>	
 			</select>
