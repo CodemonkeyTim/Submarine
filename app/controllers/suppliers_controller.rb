@@ -1,4 +1,4 @@
-class SupplierController < ApplicationController
+class SuppliersController < ApplicationController
   def show
     
     @supplier = Partner.find(params[:id])

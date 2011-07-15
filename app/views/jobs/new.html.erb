@@ -2,7 +2,7 @@
 
 <h3>Job information:</h3>
 
-<%= form_tag({:controller => "job", :action => "create"}, :method =>"post") do %>
+<%= form_tag({:controller => "jobs", :action => "create"}, :method =>"post") do %>
 	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
 	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
 	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>

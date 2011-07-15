@@ -1,7 +1,17 @@
-<h2>Subcontractors:</h2>
+<h2>Vendors:</h2>
+
+<h3>Subcontractor:</h3>
 
 <ul>
 	<% @subcontractors.each do |i| %>
+		<li><%= i.name %></li>
+	<% end %>	
+</ul>
+
+<h3>Suppliers:</h3>
+
+<ul>
+	<% @suppliers.each do |i| %>
 		<li><%= i.name %></li>
 	<% end %>	
 </ul>
