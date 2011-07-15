@@ -1,4 +1,4 @@
-class ListItemController < ApplicationController
+class ListItemsController < ApplicationController
   def new
   end
 

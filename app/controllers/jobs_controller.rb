@@ -1,6 +1,6 @@
-class JobController < ApplicationController
+class JobsController < ApplicationController
   def show
-    @job = Job.find_by_job_number(params[:id])
+    @job = Job.find(params[:id])
     @partnerIds = JobPartner.find_all_by_job_number(@job.job_number)
     @subcontractors = Partner.find(@partnerIds)
   end
@@ -11,6 +11,8 @@ class JobController < ApplicationController
   end
   
   def index
+    @jobs = Job.find(:all)
+    
     
   end
   

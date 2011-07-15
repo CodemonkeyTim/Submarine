@@ -1,0 +1,9 @@
+<h2> Jobs </h2>
+
+<h3 class="Subheaders"> Uncompleted </h3>
+
+<ul>
+	<% @jobs.each do |i| %>
+		<li> <%= link_to i.name, job_path(i.id) %> </li>
+	<% end %>
+</ul>
