@@ -18,7 +18,6 @@ body {
 }
 
 #nav {
-<<<<<<< .merge_file_oC8Mev
 	background: #EEEEEE;
 	height: 100px;
 	padding: 10px;
@@ -42,10 +41,6 @@ body {
 	font-size: 14px;
 	padding: 4px 15px 4px;
 	margin-left: 10px;
-=======
-	background: #FFE920;
-	height:25px;
->>>>>>> .merge_file_MhkEnr
 }
 
 #nav li a:hover {
@@ -152,12 +147,8 @@ ul {
 
 a {
 	font-family: Arial;
-<<<<<<< .merge_file_oC8Mev
 	text-decoration: underline;
-=======
-	text-decoration: none;
-	color: white;
->>>>>>> .merge_file_MhkEnr
+
 }
 
 a:link {
