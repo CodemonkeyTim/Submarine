@@ -17,6 +17,23 @@ body {
 
 }
 
+#headerbuttons {
+	float: right;
+	height: 30px;
+}
+
+#header ul {
+	display: block;
+	list-style: none;
+}
+
+#header li a.button {
+	background: #EEEEEE url(/images/n1.gif);
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 4px 10px 4px;
+}
+
 #nav {
 	background: #EEEEEE;
 	height: 100px;
@@ -26,6 +43,8 @@ body {
 
 #nav ul {
 	list-style: none;
+	padding: 4px;
+	border-bottom: 5px solid #0a7e07;
 }
 
 #nav li {
@@ -39,8 +58,9 @@ body {
 	border-bottom: none;
 	color: #666666;
 	font-size: 14px;
-	padding: 4px 15px 4px;
+	padding: 8px 15px 8px;
 	margin-left: 10px;
+	text-decoration: none;
 }
 
 #nav li a:hover {
@@ -49,10 +69,6 @@ body {
 
 #nav li a.active {
 	background: #EEEEEE url(/images/n3.gif);
-}
-
-#nav li.navright {
-	margin-left: 100px;
 }
 
 #contents {
@@ -89,16 +105,6 @@ body {
 
 .olds {
 	float:left;	
-}
-
-.roundTop {
-	-moz-border-radius-topright: 6px;
-	-moz-border-radius-topleft: 6px
-}
-
-.roundBottom {
-	-moz-border-radius-bottomright: 6px;
-	-moz-border-radius-bottomleft: 6px;
 }
 
 .input_items {
