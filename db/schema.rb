@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110713201706) do
+ActiveRecord::Schema.define(:version => 20110714220729) do
+
+  create_table "addresses", :force => true do |t|
+    t.integer  "building_number"
+    t.string   "street"
+    t.string   "city"
+    t.integer  "zip_code"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_people", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.integer  "phone_number"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "job_partner_partners", :force => true do |t|
     t.integer  "job_number"
@@ -37,10 +56,19 @@ ActiveRecord::Schema.define(:version => 20110713201706) do
     t.datetime "updated_at"
   end
 
+  create_table "list_items", :force => true do |t|
+    t.string   "item_data"
+    t.integer  "job_number"
+    t.integer  "partner_id"
+    t.boolean  "is_done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "partners", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
-    t.integer  "partnerType"
+    t.integer  "partner_type"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"

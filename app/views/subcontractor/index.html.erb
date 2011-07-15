@@ -1,2 +1,7 @@
-<h1>Subcontractor#index</h1>
-<p>Find me in app/views/subcontractor/index.html.erb</p>
+<h2>Subcontractors:</h2>
+
+<ul>
+	<% @subcontractors.each do |i| %>
+		<li><%= i.name %></li>
+	<% end %>	
+</ul>

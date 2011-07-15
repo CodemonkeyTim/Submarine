@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  category_id: 1
-  partner_type: 1
-  description: MyString
+  title: MyString
+  phone_number: 1
+  email: MyString
 
 two:
   name: MyString
-  category_id: 1
-  partner_type: 1
-  description: MyString
+  title: MyString
+  phone_number: 1
+  email: MyString

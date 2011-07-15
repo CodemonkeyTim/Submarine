@@ -1,0 +1,30 @@
+<h2>New Vendor:</h2>
+
+<h3>General:</h3>
+
+<%= form_tag({:controller => "subcontractor", :action => "create"}, :method =>"post") do %>
+	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:title) %> </div>
+	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:phone_number) %> </div>
+	<div class = "input_items"><div class="input_headers">Type: </div> <%= select_tag("Type", "<option value = 1>Subcontractor</option><option value = 2>Supplier</option><option value = 3>Both/Either</option>") %></div>
+<% end %> <br />
+
+<h3>Contact Person information:</h3>
+
+<%= form_tag({:controller => "subcontractor", :action => "create"}, :method =>"post") do %>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">Title: </div>  <%= text_field_tag(:title) %> </div>
+	<div class = "input_items"><div class="input_headers">Phone number: </div>  <%= text_field_tag(:phone_number) %> </div>
+	<div class = "input_items"><div class="input_headers">Email: </div>  <%= text_field_tag(:email) %> </div>		
+<% end %> <br />
+
+<h3>Address:</h3>
+
+<%= form_tag({:controller => "subcontractor", :action => "create"}, :method =>"post") do %>
+	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
+	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>
+	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:location) %> </div>
+	<div class = "input_items"><div class="input_headers">Value: </div>  <%= text_field_tag(:value) %> </div>
+	<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Create new job") %> </div>		
+<% end %>

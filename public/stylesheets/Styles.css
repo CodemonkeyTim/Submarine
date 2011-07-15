@@ -18,6 +18,7 @@ body {
 }
 
 #nav {
+<<<<<<< .merge_file_oC8Mev
 	background: #EEEEEE;
 	height: 100px;
 	padding: 10px;
@@ -41,6 +42,10 @@ body {
 	font-size: 14px;
 	padding: 4px 15px 4px;
 	margin-left: 10px;
+=======
+	background: #FFE920;
+	height:25px;
+>>>>>>> .merge_file_MhkEnr
 }
 
 #nav li a:hover {
@@ -80,6 +85,14 @@ body {
 	
 }
 
+.news {
+	float:right;
+}
+
+.olds {
+	float:left;	
+}
+
 .roundTop {
 	-moz-border-radius-topright: 6px;
 	-moz-border-radius-topleft: 6px
@@ -88,6 +101,17 @@ body {
 .roundBottom {
 	-moz-border-radius-bottomright: 6px;
 	-moz-border-radius-bottomleft: 6px;
+}
+
+.input_items {
+	float: left;
+	clear: left;
+}
+
+.input_headers {
+	width: 150px;
+	
+	float: left;	
 }
 
 h1 {	
@@ -101,21 +125,39 @@ h1 {
 h2 {
 	margin: 0px;
 	margin-bottom: 10px;
-	
+	float: left;
+	clear:left;
 }
 
 h3 {
 	margin: 0px;
-	
+	margin-bottom: 8px;
+	float: left;
+	clear:left;
 }
 
 h4 {
 	margin: 0px:
+	float: left;
+	clear: left;
 }
+
+ul {
+	float: left;
+	
+	clear: left;
+	
+}
+
 
 a {
 	font-family: Arial;
+<<<<<<< .merge_file_oC8Mev
 	text-decoration: underline;
+=======
+	text-decoration: none;
+	color: white;
+>>>>>>> .merge_file_MhkEnr
 }
 
 a:link {

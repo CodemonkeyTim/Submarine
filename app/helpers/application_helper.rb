@@ -1,5 +1,8 @@
 module ApplicationHelper
   
+  $partners = Partner.find(:all)
+  $jobs = Job.find(:all)
+  
   def title 
     base_title = "Submarine"
     if @title.nil?
