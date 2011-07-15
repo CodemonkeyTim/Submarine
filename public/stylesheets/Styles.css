@@ -19,6 +19,12 @@ body {
 	border-radius: 8px 8px 0px 0px;
 }
 
+#header h1 {
+	float: left;
+	position: relative;
+	padding: 30px; 
+}
+
 #logo {
 	float: left;
 }
