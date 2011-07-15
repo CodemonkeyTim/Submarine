@@ -27,11 +27,11 @@ body {
 	height: 30px;
 }
 
-#header ul {
+#headerbuttons ul {
 	list-style: none;
 }
 
-#header li a.button {
+#headerbuttons li a.button {
 	background: #EEEEEE url(/images/n1.gif);
 	border-radius: 3px;
 	border: 1px solid;
@@ -39,6 +39,12 @@ body {
 	color:	#666666;
 	text-decoration: none;
 	display: block;
+	margin-bottom: 10px;
+	float: right;
+}
+
+#headerbuttons li a:hover {
+	color: #000000;
 }
 
 #nav {
