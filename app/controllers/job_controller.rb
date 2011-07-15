@@ -6,6 +6,12 @@ class JobController < ApplicationController
   end
   
   def job
+    
+    
+  end
+  
+  def index
+    
   end
   
   def new

@@ -1,6 +1,5 @@
 Submarine::Application.routes.draw do
   
-  resources :creator
   resources :list_item
   resources :job
   resources :subcontractor

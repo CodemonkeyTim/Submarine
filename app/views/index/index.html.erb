@@ -1,11 +1,14 @@
-<h2>Jobs</h2>
+<h2>Welcome to TUVendor systems!</h2>
 
-<h3>Uncompleted</h3>
+<h3>Functions:</h3>
 
 <ul>
-	<% @jobs.each do |i| %>
-		<li> <%= link_to "#{i.name}  - #{i.job_number}  - #{i.location} - #{i.value}", job_path(i.job_number) %> </li>
-	<% end %>
+	<li> <%= link_to "Joblist", job_path %> </li>
+	<li> <%= link_to "New Job", new_job_path() %> </li>
+	<li> <%= link_to "New Vendor", new_subcontractor_path %> </li>
+	<li> <%= link_to "New List", new_job_path() %> </li>
+	<li> <%= link_to "To do list", new_job_path() %> </li>
+	<li> <%= link_to "New Job", new_job_path() %> </li>
 </ul>
 
 <h3>Completed</h3>
