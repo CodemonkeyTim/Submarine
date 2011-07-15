@@ -117,6 +117,12 @@ ul {
 	
 }
 
+li {
+	list-style: none;
+	
+	
+}
+
 
 a {
 	font-family: Arial;

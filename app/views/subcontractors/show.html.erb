@@ -1,7 +1,18 @@
-<h2>Subcontractor: <%= @subcontractor.name %> </h2>
+<h2>Job: <%= @job.job_number %> - Subcontractor: <%= @subcontractor.name %> </h2>
+
+<h3>Suppliers:</h3>
 
 <ul>
 	<% @suppliers.each do |i|  %>
 		<li><%= link_to i.name, supplier_path(i.id, @job.job_number) %></li>
 	<% end %>
 </ul>
+
+<h3>Subcontractors:</h3>
+
+<ul>
+	<% @subcontractors.each do |i|  %>
+		<li><%= link_to i.name, subcontractor_path(i.id, @job.job_number) %></li>
+	<% end %>
+</ul>
+
