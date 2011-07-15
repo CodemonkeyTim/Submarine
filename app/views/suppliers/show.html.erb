@@ -1,9 +1,24 @@
-<h2>Job: <%= @job.job_number %> - Supplier: <%= @supplier.name %></h2>
+<h2>Job: <%= @job.job_number %> - Supplier: <%= @supplier.name %> - Items:</h2>
 
-<h3>Items list</h3>
+<h3>Open Items</h3>
 
 <ul>
-	<% @list_items.each do |i| %>
+	<% @open_items.each do |i| %>
+		<li><%= i.item_data %></li>
+	<% end %>
+</ul>
+
+<h3>Waiting Items</h3>
+
+<ul>
+	<% @waiting_items.each do |i| %>
+		<li><%= i.item_data %></li>
+	<% end %>
+</ul>
+
+<h3>Closed Items</h3>
+<ul>
+	<% @closed_items.each do |i| %>
 		<li><%= i.item_data %></li>
 	<% end %>
 </ul>

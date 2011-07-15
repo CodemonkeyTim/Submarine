@@ -4,16 +4,31 @@ class JobsController < ApplicationController
     @partnerIds = JobPartner.find_all_by_job_number(@job.job_number)
     @subcontractors = Partner.find(@partnerIds)
   end
-  
-  def job
     
-    
-  end
-  
   def index
     @jobs = Job.find(:all)
+    @job_items = []
+    @completed_jobs = []
+    @uncompleted_jobs = []    
     
-    
+    @jobs.each do |i|
+      
+      @completed = true
+      
+      @job_items = ListItem.find_all_by_job_number(i.job_number)
+      
+      @job_items.each do |i|
+        if i.state != 3
+          @completed = false
+        end
+      end
+      
+      if @completed 
+        @completed_jobs.push(i)
+      else
+        @uncompleted_jobs.push(i)    
+      end    
+    end  
   end
   
   def new

@@ -3,7 +3,15 @@
 <h3 class="Subheaders"> Uncompleted </h3>
 
 <ul>
-	<% @jobs.each do |i| %>
+	<% @uncompleted_jobs.each do |i| %>
+		<li> <%= link_to i.name, job_path(i.id) %> </li>
+	<% end %>
+</ul>
+
+<h3 class="Subheaders"> Completed </h3>
+
+<ul>
+	<% @completed_jobs.each do |i| %>
 		<li> <%= link_to i.name, job_path(i.id) %> </li>
 	<% end %>
 </ul>
