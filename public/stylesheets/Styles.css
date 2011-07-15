@@ -48,6 +48,14 @@ body {
 	width: 600px;
 }
 
+#new_item {
+	width: 350px;
+	height: 100%;
+	
+	float: right;
+	
+}
+
 .navInputs {
 	margin-left: 5px;
 	

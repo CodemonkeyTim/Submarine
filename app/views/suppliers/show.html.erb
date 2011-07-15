@@ -1,5 +1,28 @@
 <h2>Job: <%= @job.job_number %> - Supplier: <%= @supplier.name %> - Items:</h2>
 
+<div id="new_item"> 
+	<h3>Add an item</h3>
+	<%= form_tag({:controller => "list_items", :action => "create"}, :method =>"post") do %>
+		<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
+		<div class = "input_items"><div class="input_headers">Initial state: </div>  <%= text_field_tag(:state) %> </div>
+		<div class = "input_items"><div class="input_headers">Job #: </div>  <%= text_field_tag(:job_number) %> </div>
+		<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Add the Item") %> </div>
+		<%= hidden_field_tag("selector", "formData") %>
+	<% end %>
+	
+	<% if @created then %>
+		<div>Item successfully created!</div>
+	<% end %>
+</div>
+
+<h3>Overdue items</h3>
+
+<ul>
+	<% @yelling_items.each do |i| %>
+		<li><%= i.item_data %></li>
+	<% end %>
+</ul>
+
 <h3>Open Items</h3>
 
 <ul>
@@ -22,3 +45,5 @@
 		<li><%= i.item_data %></li>
 	<% end %>
 </ul>
+
+
