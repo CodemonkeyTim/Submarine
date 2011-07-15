@@ -88,7 +88,7 @@ body {
 }
 
 #allcontents {
-	width: 100%;
+	width: 1000px;
 }
 
 #contents {
@@ -110,9 +110,6 @@ body {
 	width: 240px;
 	height: 530px;
 	float: right;
-	border: 1px solid;
-	border-radius: 3px;
-	display: block;
 }
 
 #footerText {
