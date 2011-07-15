@@ -51,6 +51,9 @@ body {
 	background: #EEEEEE url(/images/n3.gif);
 }
 
+#nav li.navright {
+	margin-left: 100px;
+}
 
 #contents {
 	padding: 15px;
