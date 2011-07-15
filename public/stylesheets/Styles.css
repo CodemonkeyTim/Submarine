@@ -84,22 +84,33 @@ body {
 	background: #EEEEEE url(/images/n3.gif);
 }
 
+#allcontents {
+	width: 100%;
+}
+
 #contents {
 	padding: 15px;
 	border: 1px solid;
 	height: 500px;
-	width: 750px;
+	width: 720px;
 	border-radius: 3px;
 }
 
 #footer {
 	padding-top: 2px;
-
 	height: 25px;
-	
 	color: #000000;
 	background: #EEEEEE;
 	
+}
+
+#sidebar {
+	width: 240px;
+	height: 530px;
+	float: right;
+	border: 1px solid;
+	border-radius: 3px;
+	display: block;
 }
 
 #footerText {
