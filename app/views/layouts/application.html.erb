@@ -9,9 +9,23 @@
 <body>
 	 	<div id="page">
 	 	
-		<div id="header" class="roundTop">
+		<div id="header">
 			<div id="logo">
 				<img src="/images/tulogo.png" alt="Tapani Underground Logo" width="100" height="100">
+			</div>
+			<h1>Submarine</h1>
+			<div id="headerbuttons">
+				<ul>				
+					<li>
+						<a class="button" href='http://localhost/job/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
+					</li>
+					<li>
+						<a class="button" href='http://localhost/subcontractor/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
+					</li>
+					<li>
+						<a class="button" href='http://localhost/list_item/new'><img src="/images/plus.png" height="13" width="13">  New List Item</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	
@@ -22,33 +36,34 @@
 					<a class="active" href='http://localhost'>Home</a>
 				</li>				
 				<li>
-					<a href='http://localhost'>All Jobs</a>
+					<a href='http://localhost'>Jobs</a>
 				</li>
 				<li>
-					<a href='http://localhost/partners'>All Vendors</a>
+					<a href='http://localhost/partners'>Vendors</a>
 				</li>
 				<li>
 					<a href='http://localhost/todo'>To Do List</a>
 				</li>
+
+
 			</ul>
 		</nav>
 
-
-			<input type="button" value="New Job" class="navInputs news" onClick="window.location.href='http://localhost/job/new'">
-			<input type="button" value="New Vendor" class="navInputs news" onClick="window.location.href='http://localhost/subcontractor/new'">
-			<input type="button" value="New List Item" class="navInputs news" onClick="window.location.href='http://localhost/list_item/new'">
+		</div>
+		
+		<div id=allcontents>
+			<div id="sidebar">
+				<p>Just a holder</p>
+			</div>
+		
+			<div id="contents">
+				<%= yield %>		
+			</div>
 		</div>
 
-	
-		<div id="contents">
-			<%= yield %>		
-		</div>
-
-		<div id="footer" class="roundBottom">
-<<<<<<< .merge_file_wSyqUc
-			 <h3 id="footerText">Submarine - &copy; Silvertreksystems LLC</h3>
+		<div id="footer">
+			 <h3 id="footerText"><img src="/images/submarine.png">  &copy; Silvertrek Systems</h3>
 		</footer>
 
-	</div>
 </body>
 </html>

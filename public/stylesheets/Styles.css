@@ -1,31 +1,70 @@
 body {
-	background: #EEEEEE;
-	
+	background: #f1f1f1;	
 }
 
 #page {
 	width: 1000px;
 	margin:auto;
-	
-}
+	}
 
 #header {
-	padding: 10px;
+	padding: 15px;
 	color: black;
-	height: 100px;
-	background: #EEEEEE;
+	width: 1000px;
+	height: 80px;
+	position: relative;
+	background: #d1d1d1;
+	border-radius: 8px 8px 0px 0px;
+}
 
+#header h1 {
+	float: left;
+	position: relative;
+	padding: 30px; 
+}
+
+#logo {
+	float: left;
+}
+
+#headerbuttons {
+	float: right;
+	height: 30px;
+}
+
+#headerbuttons ul {
+	list-style: none;
+}
+
+#headerbuttons li a.button {
+	background: #EEEEEE url(/images/n1.gif);
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 4px 10px 4px;
+	color:	#666666;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+	float: right;
+}
+
+#headerbuttons li a:hover {
+	color: #000000;
 }
 
 #nav {
-	background: #EEEEEE;
-	height: 100px;
-	padding: 10px;
+	background: #d1d1d1;
+	height: 23px;
+	width: 1000px;
+	padding: 15px;
+	padding-bottom: 20px;
 	color: #000000;
+	border-bottom: 5px solid #0a7e07;
 }
 
 #nav ul {
 	list-style: none;
+	padding: 4px;
 }
 
 #nav li {
@@ -39,8 +78,9 @@ body {
 	border-bottom: none;
 	color: #666666;
 	font-size: 14px;
-	padding: 4px 15px 4px;
+	padding: 8px 15px 8px;
 	margin-left: 10px;
+	text-decoration: none;
 }
 
 #nav li a:hover {
@@ -51,23 +91,28 @@ body {
 	background: #EEEEEE url(/images/n3.gif);
 }
 
+#allcontents {
+	width: 1000px;
+}
 
 #contents {
 	padding: 15px;
-	
+	border: 1px solid;
 	height: 500px;
-	background: gray;
-	
+	width: 720px;
+	border-radius: 3px;
 }
 
 #footer {
 	padding-top: 2px;
-
 	height: 25px;
-	
 	color: #000000;
-	background: #EEEEEE;
-	
+	}
+
+#sidebar {
+	width: 240px;
+	height: 530px;
+	float: right;
 }
 
 #footerText {
@@ -77,8 +122,7 @@ body {
 
 .navInputs {
 	margin-left: 5px;
-	
-}
+	}
 
 .news {
 	float:right;
@@ -86,16 +130,6 @@ body {
 
 .olds {
 	float:left;	
-}
-
-.roundTop {
-	-moz-border-radius-topright: 6px;
-	-moz-border-radius-topleft: 6px
-}
-
-.roundBottom {
-	-moz-border-radius-bottomright: 6px;
-	-moz-border-radius-bottomleft: 6px;
 }
 
 .input_items {
@@ -110,11 +144,8 @@ body {
 }
 
 h1 {	
-	
-	
 	width: 40%;
 	margin: auto;
-			
 }
 
 h2 {
