@@ -8,7 +8,6 @@ body {
 	}
 
 #header {
-<<<<<<< .merge_file_sufbBJ
 	padding: 15px;
 	color: black;
 	width: 1000px;
@@ -51,7 +50,7 @@ body {
 
 #headerbuttons li a:hover {
 	color: #000000;
-=======
+/*
 	padding-top: 5px;
 	
 	color:white;
@@ -60,9 +59,8 @@ body {
 	background: red;
 	
 	text-align: center;
-	
-	
->>>>>>> .merge_file_x2kClH
+*/
+
 }
 
 #nav {
@@ -119,7 +117,6 @@ body {
 #footer {
 	padding-top: 2px;
 	height: 25px;
-<<<<<<< .merge_file_sufbBJ
 	color: #000000;
 	}
 
@@ -127,14 +124,14 @@ body {
 	width: 240px;
 	height: 530px;
 	float: right;
-=======
+/*
 	
 	color: white;
 	background: red;
 	
 	text-align: center;
 	
->>>>>>> .merge_file_x2kClH
+*/
 }
 
 #footerText {
@@ -250,11 +247,7 @@ a {
 }
 
 a:link {
-<<<<<<< .merge_file_sufbBJ
 	text-decoration: underline;
-=======
-		 
->>>>>>> .merge_file_x2kClH
 }
 	 
 a:visited {
