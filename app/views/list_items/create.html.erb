@@ -1,0 +1,2 @@
+<%= if @list_item.save then content_tag("h2", "List item created successfully!") else content_tag("h2", "Fail!") end %>
+<%= link_to "Back to supplier page", supplier_path(@data[1], @data[3])%>
