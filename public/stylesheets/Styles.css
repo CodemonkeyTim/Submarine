@@ -3,14 +3,14 @@ body {
 }
 
 #page {
-	width: 1000px;
+	width: 900px;
 	margin:auto;
 	}
 
 #header {
 	padding: 15px;
 	color: black;
-	width: 1000px;
+	width: 900px;
 	height: 80px;
 	position: relative;
 	background: #d1d1d1;
@@ -50,12 +50,23 @@ body {
 
 #headerbuttons li a:hover {
 	color: #000000;
+/*
+	padding-top: 5px;
+	
+	color:white;
+	
+	height: 50px;
+	background: red;
+	
+	text-align: center;
+*/
+
 }
 
 #nav {
 	background: #d1d1d1;
 	height: 23px;
-	width: 1000px;
+	width: 900px;
 	padding: 15px;
 	padding-bottom: 20px;
 	color: #000000;
@@ -99,7 +110,7 @@ body {
 	padding: 15px;
 	border: 1px solid;
 	height: 500px;
-	width: 720px;
+	width: 900px;
 	border-radius: 3px;
 }
 
@@ -107,17 +118,27 @@ body {
 	padding-top: 2px;
 	height: 25px;
 	color: #000000;
-	}
+}
 
-#sidebar {
+/*#sidebar {
 	width: 240px;
 	height: 530px;
 	float: right;
+/*
+	
+	color: white;
+	background: red;
+	
+	text-align: center;
+	
+*/
 }
 
 #footerText {
+	float: none;
+	
 	margin: auto;
-	width: 600px;
+	width: 73%;
 }
 
 .navInputs {
@@ -143,6 +164,40 @@ body {
 	float: left;	
 }
 
+.new_data_forms {
+	width: 350px;
+	height: 95%;
+	
+	float: right;
+	
+}
+
+.closed_items {
+	color: green;
+	
+}
+
+.overdue_items {
+	color: red;
+	
+	
+}
+
+.open_items {
+	color: orange;
+	
+}
+
+.waiting_items {
+	color: blue;
+	
+}
+
+select {
+	width: 185px;
+	
+}
+
 h1 {	
 	width: 40%;
 	margin: auto;
@@ -159,7 +214,7 @@ h3 {
 	margin: 0px;
 	margin-bottom: 8px;
 	float: left;
-	clear:left;
+	clear: left;
 }
 
 h4 {
@@ -175,8 +230,17 @@ ul {
 	
 }
 
+li {
+	list-style: none;
+	
+	
+}
+
 
 a {
+	float: left;
+	clear:left;
+	
 	font-family: Arial;
 	text-decoration: underline;
 

@@ -2,12 +2,14 @@
 
 one:
   item_data: MyString
-  job_number: 1
+  state: 1
+  job_num: 1
   partner_id: 1
-  is_done: false
+  touched_at: 2011-07-15
 
 two:
   item_data: MyString
-  job_number: 1
+  state: 1
+  job_num: 1
   partner_id: 1
-  is_done: false
+  touched_at: 2011-07-15

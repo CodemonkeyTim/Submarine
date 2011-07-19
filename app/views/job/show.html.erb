@@ -1,9 +1,0 @@
-<h2> <%= "#{@job.job_number} - #{@job.name}" %> </h2>
-
-<h3 class="Subheaders"> Subcontractors: </h3>
-
-<ul>
-	<% @subcontractors.each do |i| %>
-		<li> <%= link_to i.name, subcontractor_path(i.id, @job.job_number) %> </li>
-	<% end %>
-</ul>

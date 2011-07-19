@@ -17,13 +17,13 @@
 			<div id="headerbuttons">
 				<ul>				
 					<li>
-						<a class="button" href='http://localhost/job/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
+						<a class="button" href='http://localhost/jobs/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
 					</li>
 					<li>
-						<a class="button" href='http://localhost/subcontractor/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
+						<a class="button" href='http://localhost/subcontractors/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
 					</li>
 					<li>
-						<a class="button" href='http://localhost/list_item/new'><img src="/images/plus.png" height="13" width="13">  New List Item</a>
+						<a class="button" href='http://localhost/list_items/new'><img src="/images/plus.png" height="13" width="13">  New List Item</a>
 					</li>
 				</ul>
 			</div>
@@ -36,25 +36,34 @@
 					<a class="active" href='http://localhost'>Home</a>
 				</li>				
 				<li>
-					<a href='http://localhost'>Jobs</a>
+					<a href='http://localhost/jobs'>Jobs</a>
 				</li>
 				<li>
-					<a href='http://localhost/partners'>Vendors</a>
+					<a href='http://localhost/subcontractors'>Vendors</a>
 				</li>
 				<li>
-					<a href='http://localhost/todo'>To Do List</a>
+					<a href='http://localhost/list_items'>To Do List</a>
 				</li>
 
 
 			</ul>
 		</nav>
 
+<!-- Tims buttons
+			<input type="button" value="Index" class="navInputs olds" onClick="window.location.href='http://localhost'">
+			<input type="button" value="Jobs" class="navInputs olds" onClick="window.location.href='http://localhost/jobs'">
+			<input type="button" value="Vendors" class="navInputs olds" onClick="window.location.href='http://localhost/subcontractors'">
+			<input type="button" value="To Do" class="navInputs olds" onClick="window.location.href='http://localhost/list_items'">
+			<input type="button" value="New Job" class="navInputs news" onClick="window.location.href='http://localhost/jobs/new'">
+			<input type="button" value="New Vendor" class="navInputs news" onClick="window.location.href='http://localhost/subcontractors/new'">
+			<input type="button" value="New List Item" class="navInputs news" onClick="window.location.href='http://localhost/list_items/new'">
+-->
 		</div>
 		
 		<div id=allcontents>
-			<div id="sidebar">
+			<!--<div id="sidebar">
 				<p>Just a holder</p>
-			</div>
+			</div>/-->
 		
 			<div id="contents">
 				<%= yield %>		
