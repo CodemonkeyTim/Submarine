@@ -3,14 +3,14 @@ body {
 }
 
 #page {
-	width: 1000px;
+	width: 900px;
 	margin:auto;
 	}
 
 #header {
 	padding: 15px;
 	color: black;
-	width: 1000px;
+	width: 900px;
 	height: 80px;
 	position: relative;
 	background: #d1d1d1;
@@ -66,7 +66,7 @@ body {
 #nav {
 	background: #d1d1d1;
 	height: 23px;
-	width: 1000px;
+	width: 900px;
 	padding: 15px;
 	padding-bottom: 20px;
 	color: #000000;
@@ -110,7 +110,7 @@ body {
 	padding: 15px;
 	border: 1px solid;
 	height: 500px;
-	width: 720px;
+	width: 900px;
 	border-radius: 3px;
 }
 
@@ -118,9 +118,9 @@ body {
 	padding-top: 2px;
 	height: 25px;
 	color: #000000;
-	}
+}
 
-#sidebar {
+/*#sidebar {
 	width: 240px;
 	height: 530px;
 	float: right;
@@ -184,7 +184,7 @@ body {
 }
 
 .open_items {
-	color: yellow;
+	color: orange;
 	
 }
 
