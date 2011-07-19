@@ -1,13 +1,22 @@
 <h2>Welcome to TUVendor system!</h2>
 
-<h3>Functions:</h3>
+<fieldset>
+<legend>Recent jobs</legend>	
+	<ul>
+		<% @recent_jobs.each_with_index do |i, x| %>
+			<li><%= image_tag "overdue.png"%><%= link_to i.name, job_path(i.job_number)%>
+				<ol>
+					<% $jobs_subslists[x].each do |t| %>
+						<li><%= t.name %></li>
+					<% end %>
+				</ol>
+			</li>
+		<% end %>
+	</ul>
+</fieldset>
 
-<ul>
-	<li> <%= link_to "Jobs List", jobs_path %> </li>
-	<li> <%= link_to "To do List", list_items_path %> </li>
-	<li> <%= link_to "Vendor List", subcontractors_path %> </li>
-	<li> <%= link_to "New Job", new_job_path %> </li>
-	<li> <%= link_to "New Vendor", new_subcontractor_path %> </li>
-	<li> <%= link_to "New List-Item Template", new_list_item_path %> </li>
-	
-</ul>
+
+
+<!--Page's method calls -->
+
+<% $active_tab = 1 %>

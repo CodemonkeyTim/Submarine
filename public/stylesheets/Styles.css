@@ -3,23 +3,21 @@ body {
 }
 
 #page {
-	width: 900px;
-	margin:auto;
-	}
+	width: 1200px;
+}
 
 #header {
 	padding: 15px;
 	color: black;
-	width: 900px;
+	width: 1200px;
 	height: 80px;
-	position: relative;
 	background: #d1d1d1;
+	-moz-border-radius: 8px 8px 0px 0px;
 	border-radius: 8px 8px 0px 0px;
 }
 
 #header h1 {
 	float: left;
-	position: relative;
 	padding: 30px; 
 }
 
@@ -50,25 +48,15 @@ body {
 
 #headerbuttons li a:hover {
 	color: #000000;
-/*
-	padding-top: 5px;
-	
-	color:white;
-	
-	height: 50px;
-	background: red;
-	
-	text-align: center;
-*/
 
 }
 
 #nav {
 	background: #d1d1d1;
 	height: 23px;
-	width: 900px;
+	width: 1200px;
 	padding: 15px;
-	padding-bottom: 20px;
+	padding-bottom: 31px;
 	color: #000000;
 	border-bottom: 5px solid #0a7e07;
 }
@@ -98,47 +86,27 @@ body {
 	color: #888888;
 }
 
-#nav li a.active {
-	background: #EEEEEE url(/images/n3.gif);
-}
-
-#allcontents {
-	width: 1000px;
+#nav li a#active {
+	background: #EEEEEE url(/images/n3.png);
 }
 
 #contents {
 	padding: 15px;
-	border: 1px solid;
-	height: 500px;
-	width: 900px;
-	border-radius: 3px;
+	height: 525px;
+	width: 1200px;
+	border: 1px solid red;
 }
 
 #footer {
+	width: 1200px;
 	padding-top: 2px;
 	height: 25px;
 	color: #000000;
 }
 
-/*#sidebar {
-	width: 240px;
-	height: 530px;
-	float: right;
-/*
-	
-	color: white;
-	background: red;
-	
-	text-align: center;
-	
-*/
-}
-
 #footerText {
-	float: none;
-	
 	margin: auto;
-	width: 73%;
+	width: 500px;
 }
 
 .navInputs {
@@ -190,6 +158,14 @@ body {
 
 .waiting_items {
 	color: blue;
+	
+}
+
+fieldset {
+	float:left;
+	clear:left;
+	
+	width: 1172px;
 	
 }
 
@@ -255,3 +231,6 @@ a:visited {
 	text-decoration: underline;
 }
 
+img {
+	border: 0px;
+}
