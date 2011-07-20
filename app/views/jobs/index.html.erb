@@ -1,36 +1,20 @@
-<h2> Jobs </h2>
+<h3> Jobs </h3>
 
-<div class="new_data_forms">
-	<h3>Add a new Job</h3>
-	<%= form_tag({:controller => "jobs", :action => "create"}, :method =>"post") do %>
-	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
-	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
-	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>
-	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:location) %> </div>
-	<div class = "input_items"><div class="input_headers">Value: </div>  <%= text_field_tag(:value) %> </div>
-	<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Create new job") %> </div>		
-<% end %>
-
+<fieldset>
+	<legend>Open</legend>
 	
+	<% get_jobs[0].each do |i| %>
+		<div class="job_headers"><%= image_tag get_image_by_job(i.job_number)%> <%= link_to "#{i.job_number}: #{i.name}", job_path(i.job_number) %></div>
+	<% end %>
+</fieldset>
+
+<fieldset>
+	<legend>Closed</legend>
 	
-</div>
-
-
-<h3 class="Subheaders"> Uncompleted </h3>
-
-<ul>
-	<% @uncompleted_jobs.each do |i| %>
-		<li> <%= link_to i.name, job_path(i.job_number) %> </li>
-	<% end %>
-</ul>
-
-<h3 class="Subheaders"> Completed </h3>
-
-<ul>
-	<% @completed_jobs.each do |i| %>
-		<li> <%= link_to i.name, job_path(i.job_number) %> </li>
-	<% end %>
-</ul>
+	<% get_jobs[1].each do |i| %>
+		<div class="job_headers"><%= image_tag get_image_by_job(i.job_number)%> <%= link_to "#{i.job_number}: #{i.name}", job_path(i.job_number) %></div>
+	<% end %>	
+</fieldset>
 
 <!--Page's method calls -->
 

@@ -5,7 +5,7 @@
 	
 	<% @recent_jobs.each_with_index do |i, x| %>
 		
-		<div class="jobs"><div class="job_headers"><%= image_tag get_image_by_job(i.job_number)%> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number)%></div>
+		<div class="jobs"><div class="job_headers"><%= image_tag get_image_by_job(i.job_number)%> <%= link_to "#{i.job_number}: #{i.name}", job_path(i.job_number)%></div>
 			
 			<% $jobs_subslists[x].each_with_index do |t, y| %>
 				
