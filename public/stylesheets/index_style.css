@@ -1,37 +1,29 @@
-.index_list_items {
+.list_items {
 	color: white;
-	margin-left: 15px;
+	margin-left: 30px;
 	float: left;
 	clear: left;
 }
 
-.index_subs {
-	margin-left: 15px;
+.subs {
+	margin-left: 30px;
 	float: left;
 	clear: left;
 }
 
-.index_jobs {
-	margin-top: 10px;
+.jobs {
+	margin-top: 5px;
 	float: left;
 	clear: left;
+	margin-bottom: 20px;
 	
 }
 
-.index_job_headers {
+.job_headers {
 	float: left;
 	clear: none;
 }
 
-.index_job_headers a {
-	float:left;
-	clear: none;
-}
-
-.index_job_headers img {
-	clear: none;
-	float: left;
-}
 
 fieldset {
 	float:left;
@@ -39,4 +31,4 @@ fieldset {
 	
 	width: 1172px;
 	
-}s
+}

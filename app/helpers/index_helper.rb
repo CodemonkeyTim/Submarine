@@ -1,4 +1,5 @@
 module IndexHelper
+  
   def get_list_items partner_id, job_number 
     @partner_partner_data = JobPartnerPartner.find_all_by_partner_id_and_job_number(partner_id, job_number)
     
@@ -10,7 +11,7 @@ module IndexHelper
     end    
     
     @partner_ids.each do |i|
-      @items = ListItem.find_all_by_partner_id_and_job_number(i, job_number)
+      @items = ListItem.find_all_by_partner_id_and_job_number(i, job_number, :order => "TRIM(LOWER(state))")
       @items.each do |j|
         @list_items.push(j)  
       end
@@ -18,4 +19,12 @@ module IndexHelper
     
     return @list_items
   end
+  
+  def get_worst_overdues
+     @today = DateTime.now
+     
+     
+    
+  end  
+  
 end

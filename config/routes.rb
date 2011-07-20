@@ -1,5 +1,7 @@
 Submarine::Application.routes.draw do
   
+  match "/touch/:id" => "touch#touch"
+  
   resources :list_items
   resources :jobs
   resources :subcontractors

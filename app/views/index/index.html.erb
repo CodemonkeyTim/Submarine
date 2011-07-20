@@ -1,19 +1,39 @@
 <h3>Welcome to Submarine!</h3>
 
 <fieldset>
-<legend>Recent jobs</legend>	
+	<legend>Recent jobs</legend>	
 	
-<% @recent_jobs.each_with_index do |i, x| %>
-	<div class="index_jobs"><div class="index_job_headers"><%= image_tag "open.png"%> <%= link_to i.name, job_path(i.job_number)%></div>
-		<% $jobs_subslists[x].each_with_index do |t, y| %>
-			<div class="index_subs"><%= link_to t.name, subcontractor_path(t.id, i.job_number) %>
-				<% get_list_items(t.id, i.job_number).each do |j| %>
-					<div class="index_list_items"><%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></div>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-<% end %>	
+	<% @recent_jobs.each_with_index do |i, x| %>
+		
+		<div class="jobs"><div class="job_headers"><%= image_tag get_image_by_job(i.job_number)%> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number)%></div>
+			
+			<% $jobs_subslists[x].each_with_index do |t, y| %>
+				
+				<div class="subs">
+					<div class = "subs_headers"><%= image_tag get_image_by_job_and_sub(i.job_number, t.id)%> <%= link_to t.name, subcontractor_path(t.id, i.job_number) %></div>
+					
+					<% get_list_items(t.id, i.job_number).each do |j| %>
+					
+						<div class="list_items"><%= image_tag get_image(j.state)%> <%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></div>
+					
+					<% end %>
+				
+				</div>
+			
+			<% end %>
+		
+		</div>
+	
+	<% end %>	
+
+</fieldset>
+
+<fieldset>
+	<legend>Overdue items</legend>
+	
+	<% get_worst_overdues.each do |i| %>
+		<%= s %>
+	<% end %>
 </fieldset>
 
 

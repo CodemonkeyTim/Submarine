@@ -14,8 +14,8 @@
 <h3>Overdue items</h3>
 
 <ul class="overdue_items">
-	<% @yelling_items.each do |i| %>
-		<li><input type=checkbox /><%= i.item_data %></li>
+	<% @overdue_items.each do |i| %>
+		<li><input type=checkbox /><%= i.item_data %> <%= link_to "Touch", "/touch/#{i.id}" %></li>
 	<% end %>
 </ul>
 
@@ -23,7 +23,7 @@
 
 <ul class="open_items">
 	<% @open_items.each do |i| %>
-		<li><input type=checkbox /><%= i.item_data %></li>
+		<li><input type=checkbox /><%= i.item_data %><%= link_to "Touch", "/touch/#{i.id}" %></li>
 	<% end %>
 </ul>
 
@@ -31,14 +31,14 @@
 
 <ul class="waiting_items">
 	<% @waiting_items.each do |i| %>
-		<li><input type=checkbox /><%= i.item_data %></li>
+		<li><input type=checkbox /><%= i.item_data %><%= link_to "Touch", "/touch/#{i.id}" %></li>
 	<% end %>
 </ul>
 
 <h3>Closed Items</h3>
 <ul class="closed_items">
-	<% @closed_items.each do |i| %>
-		<li><input type=checkbox /><%= i.item_data %></li>
+	<% @completed_items.each do |i| %>
+		<li><input type=checkbox /><%= i.item_data %><%= link_to "Touch", "/touch/#{i.id}" %></li>
 	<% end %>
 </ul>
 
