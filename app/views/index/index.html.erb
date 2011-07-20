@@ -32,7 +32,7 @@
 	<legend>Overdue items</legend>
 	
 	<% get_worst_overdues.each do |i| %>
-		<%= s %>
+		<div class="overdue_items"><%= "#{i[0]}: #{i[1]} - #{i[2]} - #{i[3]}" %><span class="overdue_amounts"> <%= "#{i[4]} days"%> </span> </div>
 	<% end %>
 </fieldset>
 

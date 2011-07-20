@@ -24,6 +24,10 @@
 	clear: none;
 }
 
+.overdue_amounts {
+	color: red;
+}
+
 
 fieldset {
 	float:left;
