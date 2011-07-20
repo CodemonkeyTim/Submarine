@@ -1,6 +1,7 @@
 class IndexController < ApplicationController
   
   $jobs_subslists = []
+  $list_items_to_show = []
   
   def index
     @recent_jobs = $jobs
@@ -19,9 +20,7 @@ class IndexController < ApplicationController
         @partner = Partner.find(t)
         @subs_of_a_job.push(@partner)
       end
-      
-      #@subs_of_a_job = Partner.find_all_by_id(@subs_ids)            
-      
+            
       $jobs_subslists.push(@subs_of_a_job)  
     end
       

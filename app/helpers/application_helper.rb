@@ -4,6 +4,7 @@ module ApplicationHelper
   $jobs = Job.find(:all)
   $subcontractors = Partner.find_all_by_partner_type(1)
   $suppliers = Partner.find_all_by_partner_type(2)
+  $list_items = ListItem.find(:all)
   
   $active_tab = 2;
   

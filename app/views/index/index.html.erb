@@ -1,4 +1,5 @@
 <h3>Welcome to Submarine!</h3>
+
 <fieldset>
 <legend>Recent jobs</legend>	
 	<ul>
@@ -8,7 +9,9 @@
 					<% $jobs_subslists[x].each_with_index do |t, y| %>
 						<li><%= link_to t.name, subcontractor_path(t.id, i.job_number) %>
 							<ul>
-
+								<% get_list_items(t.id, i.job_number).each do |j| %>
+									<li><%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></li>
+								<% end %>
 							</ul>
 						</li>
 					<% end %>
@@ -20,6 +23,6 @@
 
 
 
-<!--Page's method calls -->
+<!--Page's method calls and global variable modifiers-->
 
 <% $active_tab = 1 %>
