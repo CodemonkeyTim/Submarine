@@ -24,6 +24,7 @@ class IndexController < ApplicationController
       
       $jobs_subslists.push(@subs_of_a_job)  
     end
+      
   end
 
 end

@@ -1,13 +1,16 @@
-<h2>Welcome to TUVendor system!</h2>
-
+<h3>Welcome to Submarine!</h3>
 <fieldset>
 <legend>Recent jobs</legend>	
 	<ul>
 		<% @recent_jobs.each_with_index do |i, x| %>
-			<li><%= image_tag "overdue.png"%><%= link_to i.name, job_path(i.job_number)%>
+			<li><%= image_tag "open.png"%> <%= link_to i.name, job_path(i.job_number)%>
 				<ol>
-					<% $jobs_subslists[x].each do |t| %>
-						<li><%= t.name %></li>
+					<% $jobs_subslists[x].each_with_index do |t, y| %>
+						<li><%= link_to t.name, subcontractor_path(t.id, i.job_number) %>
+							<ul>
+
+							</ul>
+						</li>
 					<% end %>
 				</ol>
 			</li>
