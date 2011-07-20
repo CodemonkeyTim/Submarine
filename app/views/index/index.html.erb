@@ -2,27 +2,22 @@
 
 <fieldset>
 <legend>Recent jobs</legend>	
-	<ul>
-		<% @recent_jobs.each_with_index do |i, x| %>
-			<li><%= image_tag "open.png"%> <%= link_to i.name, job_path(i.job_number)%>
-				<ol>
-					<% $jobs_subslists[x].each_with_index do |t, y| %>
-						<li><%= link_to t.name, subcontractor_path(t.id, i.job_number) %>
-							<ul>
-								<% get_list_items(t.id, i.job_number).each do |j| %>
-									<li><%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></li>
-								<% end %>
-							</ul>
-						</li>
-					<% end %>
-				</ol>
-			</li>
+	
+<% @recent_jobs.each_with_index do |i, x| %>
+	<div class="index_jobs"><div class="index_job_headers"><%= image_tag "open.png"%> <%= link_to i.name, job_path(i.job_number)%></div>
+		<% $jobs_subslists[x].each_with_index do |t, y| %>
+			<div class="index_subs"><%= link_to t.name, subcontractor_path(t.id, i.job_number) %>
+				<% get_list_items(t.id, i.job_number).each do |j| %>
+					<div class="index_list_items"><%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></div>
+				<% end %>
+			</div>
 		<% end %>
-	</ul>
+	</div>
+<% end %>	
 </fieldset>
 
 
 
-<!--Page's method calls and global variable modifiers-->
+<% #Page's method calls and global variable modifiers %>
 
 <% $active_tab = 1 %>

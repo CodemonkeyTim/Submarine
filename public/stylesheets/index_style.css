@@ -1,0 +1,42 @@
+.index_list_items {
+	color: white;
+	margin-left: 15px;
+	float: left;
+	clear: left;
+}
+
+.index_subs {
+	margin-left: 15px;
+	float: left;
+	clear: left;
+}
+
+.index_jobs {
+	margin-top: 10px;
+	float: left;
+	clear: left;
+	
+}
+
+.index_job_headers {
+	float: left;
+	clear: none;
+}
+
+.index_job_headers a {
+	float:left;
+	clear: none;
+}
+
+.index_job_headers img {
+	clear: none;
+	float: left;
+}
+
+fieldset {
+	float:left;
+	clear:left;
+	
+	width: 1172px;
+	
+}s

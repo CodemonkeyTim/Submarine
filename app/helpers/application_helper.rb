@@ -32,4 +32,24 @@ module ApplicationHelper
     end      
   end
   
+  def get_stylesheets
+    @sheets = ["layout_style.css"]
+    
+    if $active_tab == 1
+      @sheets.push("index_style.css")
+    end
+    if $active_tab == 2
+      @sheets.push("jobs_style.css")
+    end  
+    if $active_tab == 3
+      @sheets.push("vendors_style.css")
+    end  
+    if $active_tab == 4
+      @sheets.push("to_do_style.css")
+    end
+    
+    return @sheets
+  
+  end
+  
 end

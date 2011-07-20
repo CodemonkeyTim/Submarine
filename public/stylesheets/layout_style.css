@@ -1,0 +1,224 @@
+body {
+	background: #f1f1f1;	
+}
+
+#page {
+	width: 1200px;
+}
+
+#header {
+	padding: 15px;
+	color: black;
+	width: 1200px;
+	height: 80px;
+	background: #d1d1d1;
+	-moz-border-radius: 8px 8px 0px 0px;
+	border-radius: 8px 8px 0px 0px;
+}
+
+#header h1 {
+	float: left;
+	padding: 30px; 
+}
+
+#logo {
+	float: left;
+}
+
+#headerbuttons {
+	float: right;
+	height: 30px;
+}
+
+#headerbuttons ul {
+	list-style: none;
+}
+
+#headerbuttons li a.button {
+	background: #EEEEEE url(/images/n1.gif);
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 4px 10px 4px;
+	color:	#666666;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+	float: right;
+}
+
+#headerbuttons li a:hover {
+	color: #000000;
+
+}
+
+#nav {
+	background: #d1d1d1;
+	height: 23px;
+	width: 1200px;
+	padding: 15px;
+	padding-bottom: 31px;
+	color: #000000;
+	border-bottom: 5px solid #0a7e07;
+}
+
+#nav ul {
+	list-style: none;
+	padding: 4px;
+}
+
+#nav li {
+	display: block;
+	float: left;
+}
+
+#nav li a {
+	background: #EEEEEE;
+	border: 1px solid #999999;
+	border-bottom: none;
+	color: #666666;
+	font-size: 14px;
+	padding: 8px 15px 8px;
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+#nav li a:hover {
+	color: #888888;
+}
+
+#nav li a#active {
+	background: #EEEEEE url(/images/n3.png);
+}
+
+#contents {
+	padding: 15px;
+	height: 525px;
+	width: 1200px;
+}
+
+#footer {
+	width: 1200px;
+	padding-top: 2px;
+	height: 25px;
+	color: #000000;
+}
+
+#footerText {
+	margin: auto;
+	width: 500px;
+}
+
+/* These should find their place in some other file!! */
+.input_items {
+	float: left;
+	clear: left;
+}
+
+.input_headers {
+	width: 150px;
+	
+	float: left;	
+}
+
+.new_data_forms {
+	width: 350px;
+	height: 95%;
+	
+	float: right;
+	
+}
+
+.closed_items {
+	color: green;
+	
+}
+
+.overdue_items {
+	color: red;
+	
+	
+}
+
+.open_items {
+	color: orange;
+	
+}
+
+.waiting_items {
+	color: blue;
+	
+}
+
+fieldset {
+	float:left;
+	clear:left;
+	
+	width: 1172px;
+	
+}
+
+select {
+	width: 185px;
+	
+}
+
+h1 {	
+	width: 40%;
+	margin: auto;
+}
+
+h2 {
+	margin: 0px;
+	margin-bottom: 10px;
+	float: left;
+	clear:left;
+}
+
+h3 {
+	margin: 0px;
+	margin-bottom: 8px;
+	float: left;
+	clear: left;
+}
+
+h4 {
+	margin: 0px:
+	float: left;
+	clear: left;
+}
+
+ul {
+	float: left;
+	
+	clear: left;
+	
+}
+
+li {
+	list-style: none;
+	
+	
+}
+
+
+a {
+	float: left;
+	clear:left;
+	
+	font-family: Arial;
+	text-decoration: underline;
+
+}
+
+a:link {
+	text-decoration: underline;
+}
+	 
+a:visited {
+	color: blue;
+	text-decoration: underline;
+}
+
+img {
+	border: 0px;
+}
