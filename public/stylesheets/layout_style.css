@@ -114,24 +114,6 @@ body {
 }
 
 /* These should find their place in some other file!! */
-.input_items {
-	float: left;
-	clear: left;
-}
-
-.input_headers {
-	width: 150px;
-	
-	float: left;	
-}
-
-.new_data_forms {
-	width: 350px;
-	height: 95%;
-	
-	float: right;
-	
-}
 
 .closed_items {
 	color: green;

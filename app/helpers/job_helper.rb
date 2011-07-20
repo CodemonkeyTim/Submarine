@@ -22,6 +22,5 @@ module JobHelper
     return @jobs_as_list
         
   end
-  
-  
+   
 end

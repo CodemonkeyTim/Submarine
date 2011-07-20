@@ -1,5 +1,31 @@
+#job_details_box {
+	width: 200px;
+	height: 500px;
+	
+	float: right;
+	
+}
+
+#job_sub_and_item_details {
+	width: 940px;
+	height: 500px;
+	
+}
+
 .job_headers {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	
+}
+
+#contents h3 {
+	float: left;
+	clear: left;
+	width: 50%;
+}
+
+fieldset {
+	width: 1172px;
+	float: left;
+	clear: left;
 }

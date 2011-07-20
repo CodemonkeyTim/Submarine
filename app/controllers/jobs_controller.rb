@@ -1,22 +1,33 @@
 class JobsController < ApplicationController
   def show
+    #-----------------------------------------------------------#
+    # Collects important data to be used in show.html.erb       #
+    #-----------------------------------------------------------#
+    
+    #Current jobs data is needed so it's fetched from DB
     @job = Job.find_by_job_number(params[:id])
+    
+    #Partner data includes ids of all partners of this job. We want em.
     @partner_data = JobPartner.find_all_by_job_number(@job.job_number)
     @partner_ids = []
     
+    #Partner ids are pushed to a var
     @partner_data.each do |i| 
       @partner_ids.push(i.partner_id)
     end
     
-    @partner_amount = Partner.find(:all).length
-    
-    @subcontractors = []
-    
-    @partner_ids.each do |i|
-      @subcontractors.push(Partner.find(i))
-    end
+    #Subcontractors of this job are stored to this var
+    @subcontractors = Partner.find_all_by_id(@partner_ids)
         
+    #Consists of all subcontractors in DB
     @all_subcontractors = Partner.find_all_by_partner_type(1)
+    
+    #-----------------------------------------------------------#
+    
+    #these will be used to show job history
+    @items = ListItem.find_by_job_number(@job.job_number, :order => "touched_at")
+  
+  
   end
     
   def index

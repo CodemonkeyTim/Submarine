@@ -89,7 +89,12 @@ module ApplicationHelper
       
     @items = ListItem.find_all_by_job_number(t, :order => "TRIM(LOWER(state))")
     
-    @answer = get_image(@items[0].state)
+    if @items[0].nil?
+       @answer = "complete.png"
+    else
+      @answer = get_image(@items[0].state) 
+    end
+    
     
     return @answer
   end
@@ -112,6 +117,7 @@ module ApplicationHelper
     end
     
     @states.sort
+    
     
     @answer = get_image @states[0]
     

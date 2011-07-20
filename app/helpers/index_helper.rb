@@ -17,7 +17,11 @@ module IndexHelper
       end
     end
     
-    return @list_items
+    if @list_items.nil?
+      return []
+    else
+      return @list_items
+    end
   end
   
   def get_worst_overdues
