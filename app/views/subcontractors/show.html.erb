@@ -1,4 +1,21 @@
-<fieldset id="subs_detailed_info" class="">
+<fieldset id="job_details_box">
+	<legend>Job details</legend>
+	
+	<div class="job_detail_list_item"><%= "Job number: #{@job.job_number}" %></div>
+	<div class="job_detail_list_item"><%= "Job name: #{@job.name}" %></div>
+</fieldset>
+
+<fieldset id="vendor_details_box">
+	<legend>Vendor details</legend>
+	
+	<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
+	<div class="job_detail_list_item"><%= "Phone: #{@job.name}" %></div>
+	<div class="job_detail_list_item"><%= "E-mail: #{@job.name}" %></div>
+	
+</fieldset>
+
+
+<fieldset id="subs_details" class="">
   <legend>legend</legend>
   
   

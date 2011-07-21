@@ -34,6 +34,8 @@ class SubcontractorsController < ApplicationController
     
     @subcontractor = Partner.find_by_id(@sub_id)
     
+    @contact_person = ContactPerson.find(PartnerContactPerson.find_by_partner_id(@sub_id).contact_id)
+    
   end
 
   def index

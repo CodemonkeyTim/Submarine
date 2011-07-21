@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  partner_id: 1
+  contact_id: 1
+
+two:
+  partner_id: 1
+  contact_id: 1

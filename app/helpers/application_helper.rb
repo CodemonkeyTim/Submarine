@@ -53,6 +53,18 @@ module ApplicationHelper
     if $active_page == "job.new"
       @sheets.push("./job/new_style.css")
     end
+    if $active_page == "subcontractor.index"
+      @sheets.push("./subcontractor/index_style.css")
+    end
+    if $active_page == "subcontractor.show"
+      @sheets.push("./subcontractor/show_style.css")
+    end
+    if $active_page == "subcontractor.new"
+      @sheets.push("./subcontractor/new_style.css")
+    end
+    
+    
+    
     
     return @sheets
   

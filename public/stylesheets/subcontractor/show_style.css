@@ -1,0 +1,14 @@
+#job_details_box {
+	width: 300px;
+	
+	float: right;
+	
+}
+
+#vendor_details_box {
+	width: 300px;
+	
+	float: right;
+	clear: right;
+	
+}
