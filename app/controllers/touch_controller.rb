@@ -5,4 +5,12 @@ class TouchController < ApplicationController
     @item.touched_at = Time.now
     @item.save
   end
+  
+  def ajaxtouch 
+    
+    
+    
+  end
+  
+  
 end
