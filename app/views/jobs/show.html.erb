@@ -2,17 +2,29 @@
 	<legend>Job Details</legend>
 	
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
+	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
 </fieldset>
 
 <fieldset id="job_sub_and_item_details">
 	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
 	
-	<h3 class="headers">Subcontractors</h3>
+	<h4 class="headers">Subcontractors</h3>
 	
 	<% @subcontractors.each do |i| %>
 			<li> <%= link_to i.name, subcontractor_path(i.id, @job.job_number) %> </li>
 		<% end %>
 	</ul>
+</fieldset>
+
+<fieldset id="job_history_box">
+	<legend>Job history</legend>	
+	
+	<% @log.each do |i| %>
+		<div class="history_loggin"><%= i %></div>
+	<% end %>
+	
+	
+	
 </fieldset>
 
 

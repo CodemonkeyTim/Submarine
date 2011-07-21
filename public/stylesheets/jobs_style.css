@@ -8,8 +8,13 @@
 
 #job_sub_and_item_details {
 	width: 940px;
-	height: 500px;
+	height: 379px;
 	
+}
+
+#job_history_box {
+	width: 940px;
+	height: 100px;
 }
 
 .job_headers {

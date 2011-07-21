@@ -26,7 +26,16 @@ class JobsController < ApplicationController
     
     #these will be used to show job history
     @items = ListItem.find_by_job_number(@job.job_number, :order => "touched_at")
-  
+    
+    #Following block reads from log file and stores loggings into an array.
+    @log = []
+    
+    File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'r') do |i|
+      while line = i.gets
+        @log.push(line)
+      end
+    end
+    
   
   end
     
