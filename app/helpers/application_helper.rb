@@ -123,4 +123,12 @@ module ApplicationHelper
     
     return @answer
   end
+  
+  def get_image_by_job_and_sup (t, i)
+    
+    
+    
+  end
+  
+  
 end

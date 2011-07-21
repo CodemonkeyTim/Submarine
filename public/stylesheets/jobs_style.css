@@ -17,12 +17,6 @@
 	height: 100px;
 }
 
-.job_headers {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	
-}
-
 #contents h3 {
 	float: left;
 	clear: left;
@@ -53,6 +47,26 @@
 	color: #888888;
 }
 
+.job_headers {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	
+}
+
+.subs_names {
+	
+	float: left;
+	clear: left;
+	
+}
+
+.subs_items {
+	margin-left: 15px;
+	
+	float: left;
+	clear: left;
+	
+}
 
 fieldset {
 	width: 1172px;

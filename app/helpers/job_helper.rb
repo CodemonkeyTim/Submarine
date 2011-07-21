@@ -32,4 +32,8 @@ module JobHelper
         
   end
    
+  def get_items (i, t)
+    @items = ListItem.find_all_by_partner_id_and_job_number(i, t)
+    return @items    
+  end
 end
