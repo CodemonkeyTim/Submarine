@@ -30,13 +30,15 @@ module IndexHelper
     @items = ListItem.find_all_by_state(1)
     
     @items.each do |i| 
-      @job_name = Job.find_by_job_number(i.job_number).name
-      @data = [i.job_number] 
-      @data.push(@job_name)
-      @data.push(Partner.find(i.id).name)
-      @data.push(i.item_data)
-      @data.push(((Time.now.utc - 864000 - i.touched_at)/60/60/24).to_i)
-      @returnable.push(@data)
+      if !i.touched_at.nil?
+        @job_name = Job.find_by_job_number(i.job_number).name
+        @data = [i.job_number] 
+        @data.push(@job_name)
+        @data.push(Partner.find(i.partner_id).name)
+        @data.push(i.item_data)
+        @data.push(((Time.now.utc - 864000 - i.touched_at)/60/60/24).to_i)
+        @returnable.push(@data)
+      end
     end
        
     return @returnable

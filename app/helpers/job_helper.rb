@@ -1,23 +1,32 @@
 module JobHelper
   
   def get_jobs
-    @items = ListItem.find(:all)
-    
     @jobs_as_list = []
     
-    @open_job_ids = []
-    @closed_job_ids = []
+    @closed_job_numbers = []
+    @open_job_numbers = []
     
-    @items.each do |i|
-      if i.state != 4
-        @open_job_ids.push(i.partner_id)
+    @jobs = Job.find(:all)
+    
+    @jobs.each do |i|
+      @items = ListItem.find_all_by_job_number(i.job_number)
+      @im_done = true
+      @items.each do |t|
+        if t.state != 4
+          @im_done = false
+          break
+        end          
+      end
+      
+      if @im_done
+        @closed_job_numbers.push(i.job_number)
       else
-        @closed_job_ids.push(i.partner_id)
+        @open_job_numbers.push(i.job_number)
       end
     end
     
-    @jobs_as_list.push(Job.find_all_by_id(@open_job_ids))
-    @jobs_as_list.push(Job.find_all_by_id(@closed_job_ids))
+    @jobs_as_list.push(Job.find_all_by_job_number(@open_job_numbers))
+    @jobs_as_list.push(Job.find_all_by_job_number(@closed_job_numbers))
     
     return @jobs_as_list
         

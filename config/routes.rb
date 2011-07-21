@@ -1,7 +1,7 @@
 Submarine::Application.routes.draw do
   
   match "/touch/:id" => "touch#touch"
-  match "/touch/touch" => "touch#touch_all"
+  match "/touch_all/:id" => "touch#touch_all"
   
   resources :list_items
   resources :jobs

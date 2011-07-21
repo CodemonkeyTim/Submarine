@@ -80,4 +80,9 @@ class JobsController < ApplicationController
     @job = Job.new({:job_number => @data[0], :name => @data[1], :PM_id => @data[2], :location => @data[3], :value => @data[4]})
     @job.save
   end
+  
+  def touch_all
+    
+    
+  end
 end
