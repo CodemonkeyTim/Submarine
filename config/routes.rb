@@ -8,9 +8,10 @@ Submarine::Application.routes.draw do
   resources :subcontractors
   resources :suppliers
   
-  #Touching matches
-  match "/touch_this/:id" => "touch#touch_this"
-  match "/touch_all/:id" => "touch#touch_all"
+  #List item control's routing matches
+  match "/touch_this/:id" => "controls#touch_this"
+  match "/touch_all/:id" => "controls#touch_all"
+  match "/mark_done/:id" => "controls#mark_done"
   
   
   

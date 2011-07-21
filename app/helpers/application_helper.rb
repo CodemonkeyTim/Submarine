@@ -1,3 +1,4 @@
+# 
 module ApplicationHelper
   
   #Some global variables, which are hoped to turn down the amount of database-calls
