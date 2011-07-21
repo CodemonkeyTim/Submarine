@@ -62,7 +62,9 @@ module ApplicationHelper
     if $active_page == "subcontractor.new"
       @sheets.push("./subcontractor/new_style.css")
     end
-    
+    if $active_page == "supplier.show"
+      @sheets.push("./supplier/show_style.css")
+    end
     
     
     

@@ -33,8 +33,10 @@ class SubcontractorsController < ApplicationController
     @all_suppliers = Partner.find_all_by_partner_type(2)
     
     @subcontractor = Partner.find_by_id(@sub_id)
-    
+        
     @contact_person = ContactPerson.find(PartnerContactPerson.find_by_partner_id(@sub_id).contact_id)
+    
+    @items = ListItem.find_all_by_job_number_and_partner_id(@job.job_number, @sub_id)
     
   end
 

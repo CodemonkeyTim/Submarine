@@ -8,37 +8,55 @@
 <fieldset id="vendor_details_box">
 	<legend>Vendor details</legend>
 	
-	<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
-	<div class="job_detail_list_item"><%= "Phone: #{@job.name}" %></div>
-	<div class="job_detail_list_item"><%= "E-mail: #{@job.name}" %></div>
+	<div id="contact_details">
+		<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
+		<div class="job_detail_list_item"><%= "Phone: #{@contact_person.phone_number}" %></div>
+		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
+	</div>
 	
 </fieldset>
 
 
 <fieldset id="subs_details" class="">
-  <legend>legend</legend>
-  
-  
+  <legend><%= image_tag get_image_by_job_and_sub(@job.job_number, @subcontractor.id)%> <%= @subcontractor.name %></legend>
+  	
+  	<% unless @items.length == 0 then %>
+  		<h3 class="subheaders">Checklist:</h3>
+  		
+  		<div class="list_blocks">  
+ 	 		<% @items.each do |i|  %>
+				<div class="list_items"> <%= image_tag get_image(i.state)%> <%= i.item_data %></div>
+			<% end %>
+		</div>
+	<% end %>
+  	
+  	
+  	<% unless @suppliers.length == 0 then %>
+  		<h3 class="subheaders">Suppliers:</h3>
+  		
+  		<div class="list_blocks">
+	 	 		<% @suppliers.each do |i|  %>
+					<div class="list_items"><%= image_tag get_image_by_job_and_sup(@job.job_number, i.id)%> <%= link_to i.name, supplier_path(i.id, @job.job_number) %></div>
+				<% end %>
+			<% end %>
+		</div>  
+	<% unless @subcontractors.length == 0 then %>
+		<h3 class="subheaders">Subcontractors:</h3>
+		
+		<div class="list_blocks">	
+			<% @subcontractors.each do |i|  %>
+				<div class="list_items"><%= link_to i.name, subcontractor_path(i.id, @job.job_number) %>
+			<% end %>
+		</div>
+	<% end %>
+
 </fieldset>
 
-
-<h2>Job: <%= @job.job_number %> - Subcontractor: <%= @subcontractor.name %> </h2>
-
-<h3>Suppliers:</h3>
-
-<ul>
-	<% @suppliers.each do |i|  %>
-		<li><%= link_to i.name, supplier_path(i.id, @job.job_number) %></li>
-	<% end %>
-</ul>
-
-<h3>Subcontractors:</h3>
-
-<ul>
-	<% @subcontractors.each do |i|  %>
-		<li><%= link_to i.name, subcontractor_path(i.id, @job.job_number) %></li>
-	<% end %>
-</ul>
+<fieldset id="subs_history">
+	<legend>Subs History - <%= link_to "See full history", "somewhere"%></legend>
+	
+	
+</fieldset>
 
 <% #Page's method calls and global variable modifiers %>
 

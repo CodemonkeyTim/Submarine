@@ -28,12 +28,6 @@
 	
 }
 
-.subheaders {
-	float: left;
-	clear: left;
-	
-}
-
 .list_blocks {
 	margin-bottom: 10px;
 	
@@ -43,6 +37,17 @@
 }
 
 .list_items {
+	width: 820px;
 	
 	
+}
+
+.subheaders {
+	
+	
+}
+
+.controls {
+	
+	float: right;
 }

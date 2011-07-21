@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721203252) do
+ActiveRecord::Schema.define(:version => 20110721205544) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20110721203252) do
   create_table "contact_people", :force => true do |t|
     t.string   "name"
     t.string   "title"
-    t.integer  "phone_number"
+    t.string   "phone_number", :limit => 15
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

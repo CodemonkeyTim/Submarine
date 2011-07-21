@@ -1,8 +1,9 @@
 class TouchController < ApplicationController
-  def touch 
+  def touch_this 
     @t = params[:id]
     @item = ListItem.find(@t)
-    @item.touched_at = Time.now
+    @item.state = 2
+    @item.touched_at = Time.now.utc
     @item.save
   end
   
