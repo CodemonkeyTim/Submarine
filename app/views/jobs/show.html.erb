@@ -11,7 +11,7 @@
 	<h3 class="headers">Subcontractors</h3>
 	
 	<div id="receive_payments">
-		<%= link_to_remote "Payment received", {:controller => "touch_controller", :action => "touch_all", :id => @job.job_number}, :confirm => "Sure?" %>
+		<%= link_to "Payment received", {:controller => "touch_controller", :action => "touch_all", :id => @job.job_number}, :remote => true %>
 	</div>
 	
 	<% @subcontractors.each do |i| %>

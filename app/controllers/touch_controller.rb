@@ -6,7 +6,7 @@ class TouchController < ApplicationController
     @item.save
   end
   
-  def ajaxtouch 
+  def touch_all 
     
     
     
