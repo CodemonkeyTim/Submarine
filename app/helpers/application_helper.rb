@@ -125,9 +125,11 @@ module ApplicationHelper
   end
   
   def get_image_by_job_and_sup (t, i)
+    @items = ListItem.find_all_by_job_number_and_partner_id(t, i, :order => "state")
     
+    @answer = get_image @items[0].state
     
-    
+    return @answer
   end
   
   

@@ -85,4 +85,9 @@ class JobsController < ApplicationController
     
     
   end
+  
+  def history
+    
+    
+  end
 end

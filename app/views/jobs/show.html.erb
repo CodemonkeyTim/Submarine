@@ -15,25 +15,34 @@
 	</div>
 	
 	<% @subcontractors.each do |i| %>
-		<div class="subs_names"><%= link_to i.name, subcontractor_path(i.id, @job.job_number) %></div>
-		
-		<% get_items(i.id, @job.job_number).each do |t| %>
-			<div class="subs_items"><%= image_tag get_image(t.state) %><%= t.item_data %></div>
-		<% end %>
-		
-		<% get_subs(i.id, @job.job_number).each do |t| %>
-			<div class="sub_subs_names"><%= image_tag get_image_by_job_and_sub(@job.job_number, i.id ) %><%= t.item_data %></div>
-		<% end %>
-		
-		<% get_sups(i.id, @job.job_number).each do |t| %>
-			<div class="sups_items"><%= image_tag get_image_by_job_and_sup(@job.job_number, t.id) %><%= t.item_data %></div>
-		<% end %>
-		
+		<div class="subs_names">
+			<%= link_to i.name, subcontractor_path(i.id, @job.job_number) %>
+			
+			<div class="subs_details">
+				<div class="sub_headers">Checlist</div>
+				
+				<% get_items(i.id, @job.job_number).each do |t| %>
+					<div class="subs_items"><%= image_tag get_image(t.state) %><%= t.item_data %></div>
+				<% end %>
+				
+				<div class="sub_headers">Subtier Subcontractors</div>
+				
+				<% get_subs(@job.job_number, i.id).each do |t| %>
+					<div class="sub_subs_names"><%= image_tag get_image_by_job_and_sub(@job.job_number, i.id ) %><%= t.name %></div>
+				<% end %>
+				
+				<div class="sub_headers">Suppliers</div>
+				
+				<% get_sups(@job.job_number, i.id).each do |t| %>
+					<div class="sups_names"><%= image_tag get_image_by_job_and_sup(@job.job_number, t.id) %><%= t.name %></div>
+				<% end %>
+			</div>
+		</div>
 	<% end %>
 </fieldset>
 
 <fieldset id="job_history_box">
-	<legend>Job history</legend>	
+	<legend>Job history - <%= link_to "See full history", {:action => "history", :controller => "jobs"}%></legend>	
 	
 	<% @log.each do |i| %>
 		<div class="history_loggin"><%= i %></div>

@@ -60,11 +60,29 @@
 	
 }
 
+.sub_headers {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
 .subs_items {
-	margin-left: 15px;
 	
-	float: left;
-	clear: left;
+}
+
+.sub_subs_names {
+
+	
+	
+}
+
+.sups_names {
+	
+	
+	
+}
+
+.subs_details {
+	margin-left: 15px;
 	
 }
 
