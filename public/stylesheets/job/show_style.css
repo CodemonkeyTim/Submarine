@@ -1,0 +1,75 @@
+#job_sub_and_item_details {
+	width: 940px;
+	height: 379px;
+	
+}
+
+#job_details_box {
+	width: 200px;
+	height: 500px;
+	
+	float: right;
+	
+}
+
+#job_history_box {
+	width: 940px;
+	height: 100px;
+}
+
+#contents h3 {
+	float: left;
+	clear: left;
+	width: 50%;
+}
+
+
+#receive_payments {
+	float: right;
+	
+	padding: 5px;
+	
+	width: 155px;
+	height: 22px;
+	
+	text-align: center;
+	
+	border: 1px solid black;
+	-moz-border-radius: 5px;
+}
+
+#receive_payments a {
+	color: #666666;
+	
+	text-decoration: none;
+}
+
+#receive_payments a:hover {
+	color: #888888;
+}
+
+.subs_names {
+	
+	float: left;
+	clear: left;
+	
+}
+
+.sub_headers {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.subs_items {}
+
+.sub_subs_names {}
+
+.sups_names {}
+
+.subs_details {
+	margin-left: 15px;
+}
+
+.headers {}
+
+.detail_row {}

@@ -16,25 +16,25 @@
 	
 	<% @subcontractors.each do |i| %>
 		<div class="subs_names">
-			<%= link_to i.name, subcontractor_path(i.id, @job.job_number) %>
+			<%= image_tag get_image_by_job_and_sub(@job.job_number, i.id) %> <%= link_to i.name, subcontractor_path(i.id, @job.job_number) %>
 			
 			<div class="subs_details">
 				<div class="sub_headers">Checlist</div>
 				
 				<% get_items(i.id, @job.job_number).each do |t| %>
-					<div class="subs_items"><%= image_tag get_image(t.state) %><%= t.item_data %></div>
+					<div class="subs_items"><%= image_tag get_image(t.state) %><%= link_to t.item_data, supplier_path(t.partner_id, @job.job_number) %></div>
 				<% end %>
 				
 				<div class="sub_headers">Subtier Subcontractors</div>
 				
 				<% get_subs(@job.job_number, i.id).each do |t| %>
-					<div class="sub_subs_names"><%= image_tag get_image_by_job_and_sub(@job.job_number, i.id ) %><%= t.name %></div>
+					<div class="sub_subs_names"><%= image_tag get_image_by_job_and_sub(@job.job_number, i.id ) %><%= link_to t.name, subcontractor_path(t.id, @job.job_number) %></div>
 				<% end %>
 				
 				<div class="sub_headers">Suppliers</div>
 				
 				<% get_sups(@job.job_number, i.id).each do |t| %>
-					<div class="sups_names"><%= image_tag get_image_by_job_and_sup(@job.job_number, t.id) %><%= t.name %></div>
+					<div class="sups_names"><%= image_tag get_image_by_job_and_sup(@job.job_number, t.id) %><%= link_to t.name, supplier_path(t.id, @job.job_number) %></div>
 				<% end %>
 			</div>
 		</div>
@@ -49,7 +49,9 @@
 	<% end %>
 </fieldset>
 
+<% #Method calls and global variable modifiers of the page %>
 
+<% $active_page = "job.show"%>
 
 
 
