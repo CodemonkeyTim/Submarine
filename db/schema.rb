@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721205544) do
+ActiveRecord::Schema.define(:version => 20110722224236) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -27,21 +27,6 @@ ActiveRecord::Schema.define(:version => 20110721205544) do
     t.string   "title"
     t.string   "phone_number", :limit => 15
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "job_partner_partners", :force => true do |t|
-    t.integer  "job_number"
-    t.integer  "partner_id"
-    t.integer  "p_partner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "job_partners", :force => true do |t|
-    t.integer  "job_number"
-    t.integer  "partner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,28 +48,14 @@ ActiveRecord::Schema.define(:version => 20110721205544) do
     t.datetime "updated_at"
   end
 
-  create_table "list_items", :force => true do |t|
-    t.string   "item_data"
-    t.integer  "state"
-    t.integer  "job_number"
-    t.integer  "partner_id"
-    t.datetime "touched_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "partner_contact_people", :force => true do |t|
-    t.integer  "partner_id"
-    t.integer  "contact_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "partners", :force => true do |t|
+  create_table "subcontractors", :force => true do |t|
     t.string   "name"
-    t.integer  "category_id"
-    t.integer  "partner_type"
-    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
