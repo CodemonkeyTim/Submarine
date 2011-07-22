@@ -1,15 +1,14 @@
-<h3>Vendors</h3>
-
-<div id="sort_controls">
+<fieldset>
+	<legend>A-Z</legend>	
+	
+	<div id="sort_controls">
 		Sort by: 
 		<%= link_to "A-Z", {:action => "sort", :id => 2 }, :remote => true %> 
 		<%= link_to "Type", {:action => "sort", :id => 2}, :remote => true %> 
 		<%= link_to "Category", {:action => "sort", :id => 2}, :remote => true%>
 </div>
 
-<fieldset>
-	<legend>A-Z</legend>	
-	
+		
 	<% @partners.each do |i| %>
 		<div class="list_items"><%= link_to i.name, "partner/#{i.id}"%></div>
 	<% end %>	

@@ -1,7 +1,27 @@
-<h3>Welcome to Submarine!</h3>
-
 <fieldset>
 	<legend>Recent jobs</legend>	
+	
+	<%= @items_of_jobs_subs[0][0][0][0].item_data %>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<% @recent_jobs.each_with_index do |i, x| %>
 		
@@ -14,8 +34,11 @@
 					
 					<% get_list_items(t.id, i.job_number).each do |j| %>
 					
-						<div class="list_items"><%= image_tag get_image(j.state)%> <%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %></div>
-					
+						<div class="list_items">
+							<%= image_tag get_image(j.state)%> 
+							<input id="<%= j.id%>ChkBox" type="checkbox" onClick="$.ajax({type: 'GET', url: 'http://localhost/modify/<%= j.id %>/4' });" /> 
+							<%= link_to j.item_data, supplier_path(j.partner_id, j.job_number) %>
+						</div>
 					<% end %>
 				
 				</div>

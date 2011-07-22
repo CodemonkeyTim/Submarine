@@ -1,13 +1,13 @@
 class JobsController < ApplicationController
   def show
-    #-----------------------------------------------------------#
-    # Collects important data to be used in show.html.erb       #
-    #-----------------------------------------------------------#
+    #---------------------------------------------------------------------#
+    # Fetches from DB all the  important data to be used in show.html.erb #
+    #---------------------------------------------------------------------#
     
     #Current jobs data is needed so it's fetched from DB
     @job = Job.find_by_job_number(params[:id])
     
-    #Partner data includes ids of all partners of this job. We want em.
+    #Partner data includes ids of all partners of this job. We want 'em.
     @partner_data = JobPartner.find_all_by_job_number(@job.job_number)
     @partner_ids = []
     
@@ -22,7 +22,7 @@ class JobsController < ApplicationController
     #Consists of all subcontractors in DB
     @all_subcontractors = Partner.find_all_by_partner_type(1)
     
-    #-----------------------------------------------------------#
+    #--------------------------------------------------------------------#
     
     #these will be used to show job history
     @items = ListItem.find_by_job_number(@job.job_number, :order => "touched_at")

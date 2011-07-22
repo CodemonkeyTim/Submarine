@@ -16,6 +16,12 @@ class PartnerController < ApplicationController
     end
      
     @jobs = Job.find_all_by_job_number(@job_numbers)
+    
+    @jobs_items = []
+    
+    @jobs.each do |i|
+       @jobs_items.push(ListItem.find_all_by_job_number_and_partner_id(i.job_number, @partner.id))
+    end
      
   end
 end

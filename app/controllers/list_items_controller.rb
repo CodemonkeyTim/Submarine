@@ -21,7 +21,7 @@ class ListItemsController < ApplicationController
     @overdue_items = ListItem.find_all_by_state(1)
     @open_items = ListItem.find_all_by_state(2)
     @waiting_items = ListItem.find_all_by_state(3)
-    @closed_items = ListItem.find_all_by_state(4)
+    @completed_items = ListItem.find_all_by_state(4)
   end
 
 end

@@ -35,8 +35,8 @@ module ApplicationHelper
   
   #Returns stylesheets for a page
   
-  #Descr: Layouts_style is always applied and therefore it's always added as first item of the array
-  # Second stylesheet is added according to value of active_tab global variable.
+  #Descr: Layouts_style.css is always applied and therefore it's always added as first item of the array
+  # Second stylesheet is added according to value of active_page global variable.
   
   def get_stylesheets
     @sheets = ["layout_style.css"]
@@ -64,6 +64,9 @@ module ApplicationHelper
     end
     if $active_page == "supplier.show"
       @sheets.push("./supplier/show_style.css")
+    end
+    if $active_page == "partner.show"
+      @sheets.push("./partner/show_style.css")
     end
     
     

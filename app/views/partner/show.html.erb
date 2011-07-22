@@ -1,8 +1,28 @@
-<fieldset>
-	<legend><%= %></legend>
+<fieldset id="vendor_details_box">
+	<legend>Vendor details:</legend>
 	
 	
 </fieldset>
+
+<fieldset id="vendor_jobs_details">
+	<legend><%= @partner.name %></legend>
+	
+	<% @jobs.each_with_index do |i, x| %>
+		<div class="list_blocks">
+			<%= i.name %>
+			<% @jobs_items[x].each do |t| %>
+				<div class="list_items"><%= t.item_data %></div>
+			<% end %>
+		</div>
+	<% end %>
+			
+</fieldset>
+
+<fieldset id="vendor_history">
+	<legend>History</legend>
+	
+</fieldset>
+
 
 
 <% #Page's method calls and global variable modifiers %>
