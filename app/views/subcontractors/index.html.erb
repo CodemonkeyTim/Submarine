@@ -1,22 +1,22 @@
-<h2>Vendors:</h2>
+<h3>Vendors</h3>
 
-<h3>Subcontractors:</h3>
+<div id="sort_controls">
+		Sort by: 
+		<%= link_to "A-Z", {:action => "sort", :id => 2 }, :remote => true %> 
+		<%= link_to "Type", {:action => "sort", :id => 2}, :remote => true %> 
+		<%= link_to "Category", {:action => "sort", :id => 2}, :remote => true%>
+</div>
 
-<ul>
-	<% @subcontractors.each do |i| %>
-		<li><%= i.name %></li>
+<fieldset>
+	<legend>A-Z</legend>	
+	
+	<% @partners.each do |i| %>
+		<div class="list_items"><%= link_to i.name, "partner/#{i.id}"%></div>
 	<% end %>	
-</ul>
-
-<h3>Suppliers:</h3>
-
-<ul>
-	<% @suppliers.each do |i| %>
-		<li><%= i.name %></li>
-	<% end %>	
-</ul>
+</fieldset>
+	
 
 <% #Page's method calls and global variable modifiers %>
 
 <% $active_tab = 3 %>
-<% $active_page = "subcontrator.index" %>
+<% $active_page = "subcontractor.index" %>

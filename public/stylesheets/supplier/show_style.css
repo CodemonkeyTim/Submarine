@@ -40,6 +40,12 @@
 	
 }
 
+.list_items {
+	margin: 0px;
+	float: left;
+	clear: left;
+	
+}
 
 
 .subheaders {
@@ -50,4 +56,14 @@
 .controls {
 	
 	float: right;
+}
+
+input {
+	float: left;
+	margin-left: 0px;
+}
+
+img {
+	float: left; 
+	margin: left;
 }

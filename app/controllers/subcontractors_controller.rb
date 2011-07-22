@@ -41,8 +41,8 @@ class SubcontractorsController < ApplicationController
   end
 
   def index
-    @subcontractors = Partner.find_all_by_partner_type(1)
-    @suppliers = Partner.find_all_by_partner_type(2)    
+    @partners = Partner.find(:all)
+  
   end
   
   def new
@@ -59,6 +59,10 @@ class SubcontractorsController < ApplicationController
   end
 
   def create_contact
+    
+  end
+  
+  def sort
     
   end
 

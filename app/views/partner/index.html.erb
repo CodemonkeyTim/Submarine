@@ -1,12 +1,4 @@
-<h2>Jobs</h2>
+<% #Page's method calls and global variable modifiers %>
 
-<h3>Uncompleted</h3>
-
-<ul>
-	<% @jobs.each do |i| %>
-		<li> <%= link_to "#{i.name}  - #{i.job_number}  - #{i.location} - #{i.value}", job_path(i.job_number) %> </li>
-	<% end %>
-</ul>
-
-<h3>Completed</h3>
-
+<% $active_tab = 3 %>
+<% $active_page = "partner.index" %>
