@@ -2,12 +2,6 @@ module ApplicationHelper
   
   #Some global variables, which are hoped to turn down the amount of database-calls
   
-  $partners = Partner.find(:all)
-  $jobs = Job.find(:all)
-  $subcontractors = Partner.find_all_by_partner_type(1)
-  $suppliers = Partner.find_all_by_partner_type(2)
-  $list_items = ListItem.find(:all)
-  
   $active_tab = 2
   @active_page = "no.no"
   
