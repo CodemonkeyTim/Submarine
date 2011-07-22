@@ -19,10 +19,35 @@ class ControlsController < ApplicationController
     
   end
   
-  def mark_done
+  def modify
     @t = params[:id]
+    @i = params[:action_id]
+    
     @item = ListItem.find(@t)
+    
+    @former_state = 3
+    
     @item.state = 3
+    @items_state_with_words = "waiting"
+    
     @item.save
+    
+    @former_state_with_words = ""
+    
+    if @former_state == 1
+      @former_state_with_words = "overdue"
+    end
+    if @former_state == 2
+      @former_state_with_words = "open"
+    end
+    if @former_state == 3
+      @former_state_with_words = "waiting"
+    end
+    if @former_state == 4
+      @former_state_with_words = "completed"
+    end
+    
+    
+    
   end  
 end

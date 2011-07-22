@@ -23,33 +23,33 @@
   		<h3 class="subheaders">Checklist:</h3>
   		
   		<% unless @overdue_items.length == 0 then %>
-  			<div class="list_blocks">
+  			<div id="overdue">
  	 			<% @overdue_items.each do |i|  %>
-					<div class="list_items"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "controls", :locals => {:id => i} %></div>
+					<div id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "overdue_controls", :locals => {:id => i.id, :state => i.state} %></div>
 				<% end %>
 			</div>
 		<% end %>
 		
 		<% unless @open_items.length == 0 then %>
-  			<div class="list_blocks">
+  			<div id="open">
  	 			<% @open_items.each do |i|  %>
-					<div class="list_items"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "controls", :locals => {:id => i} %></div>
+					<div id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "open_controls", :locals => {:id => i.id, :state => i.state} %></div>
 				<% end %>
 			</div>
 		<% end %>
 			
 		<% unless @waiting_items.length == 0 then %>
-  			<div class="list_blocks">
+  			<div id="waiting">
  	 			<% @waiting_items.each do |i|  %>
-					<div class="list_items"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "controls", :locals => {:id => i} %></div>
+					<div id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "waiting_controls", :locals => {:id => i.id, :state => i.state} %></div>
 				<% end %>
 			</div>
 		<% end %>
 			
 		<% unless @completed_items.length == 0 then %>
-  			<div class="list_blocks">
+  			<div id="completed">
  	 			<% @completed_items.each do |i|  %>
-					<div class="list_items"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "controls", :locals => {:id => i} %></div>
+					<div id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <%= i.item_data %> <%= render :partial => "completed_controls", :locals => {:id => i.id, :state => i.state} %></div>
 				<% end %>
 			</div>
 		<% end %>

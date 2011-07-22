@@ -28,19 +28,19 @@
 	
 }
 
+#overdue, #open, #waiting, #completed
+
 .list_blocks {
 	margin-bottom: 10px;
 	
 	float: left;
 	clear: left;
 	
-}
-
-.list_items {
 	width: 820px;
 	
-	
 }
+
+
 
 .subheaders {
 	

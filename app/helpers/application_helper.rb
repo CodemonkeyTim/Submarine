@@ -1,4 +1,3 @@
-# 
 module ApplicationHelper
   
   #Some global variables, which are hoped to turn down the amount of database-calls
@@ -147,6 +146,4 @@ module ApplicationHelper
     
     return @answer
   end
-  
-  
 end
