@@ -2,9 +2,7 @@
 	<legend>Recent jobs</legend>	
 	
 	<% @recent_jobs.each do |i| %>
-		<%= i.name %>
-	
-	
+		<%= i.subcontractors.first.nil? %>
 	<% end %>	
 </fieldset>
 
