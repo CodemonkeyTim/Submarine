@@ -4,8 +4,10 @@ one:
   address_id: 1
   contact_person_id: 1
   name: MyString
+  supercontractor_id: 1
 
 two:
   address_id: 1
   contact_person_id: 1
   name: MyString
+  supercontractor_id: 1
