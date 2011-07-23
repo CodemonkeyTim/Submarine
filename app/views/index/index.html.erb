@@ -2,7 +2,39 @@
 	<legend>Recent jobs</legend>	
 	
 	<% @recent_jobs.each do |i| %>
-		<%= i.subcontractors.first.nil? %>
+		<% i.subcontractors.each do |t| %>
+			<div id="<%= "#{t.id}sub" %>">
+				<div class="sub_names"><%= link_to t.name, subcontractor_path(t.id) %></div>
+			<% unless t.checklist_items.first.nil? then t.checklist_items.each do |l|%>
+					<div class="list_items" id="<%= "#{l.id}cli" %>"> <%= image_tag get_image(l.state)%> <%= l.item_data %> </div>
+				<% end %>
+			<% end %>
+			
+			<div class="gaps"></div>
+			
+			<% unless t.suppliers.first.nil? then t.suppliers.each do |l|%>
+					<div id="<%= "#{l.id}cli" %>"></div>
+					
+					<% unless l.checklist_items.first.nil? then @last_item_state = l.checklist_items.first.state; l.checklist_items.each do |o|%>
+							<% if @last_item_state != o.state then %>
+								<div class="gaps"></div>
+							<% end %>
+							<div class="list_items" id="<%= "#{o.id}cli" %>"> <%= image_tag get_image(o.state)%> <%= o.item_data %>  </div>
+							<% @last_item_state = o.state %>
+						<% end %>
+					<% end %>
+				
+				<% end %>
+			<% end %>
+			
+			<div class="gaps"></div>
+
+			<% unless t.subtiersubcontractors.first.nil? then t.subtiersubcontractors.each do |l| %>
+			
+				<% end %>
+			<% end %>
+		</div>
+		<% end %>
 	<% end %>	
 </fieldset>
 
@@ -10,8 +42,6 @@
 	<legend>Overdue items</legend>
 
 </fieldset>
-
-
 
 <% #Page's method calls and global variable modifiers %>
 

@@ -95,7 +95,7 @@ module ApplicationHelper
   #Returns correct status image/icon filename for a job
   
   #Descr: Gets all items of a job from database in ascending order (overdue first, open second etc)
-  # Calls get_image method to get correct status icon for the item, which also is the status icon of the job
+  #Calls get_image method to get correct status icon for the item, which also is the status icon of the job
   
   def get_image_by_job (t)
       
