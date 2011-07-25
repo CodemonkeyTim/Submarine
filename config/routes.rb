@@ -2,6 +2,7 @@ Submarine::Application.routes.draw do
   
  
   match "/history/:id" => "jobs#history"
+  match "/fade/:id" => "jobs#fade"
   
   resources :list_items
   resources :jobs

@@ -90,4 +90,11 @@ class JobsController < ApplicationController
     
     
   end
+  
+  def fade
+    @id = params[:id]
+    
+    
+    
+  end
 end

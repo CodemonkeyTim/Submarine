@@ -1,0 +1,7 @@
+<% @last_item_state = l.checklist_items.first.state; l.checklist_items.each do |o|%>
+	<% if @last_item_state != o.state then %>
+		<div class="gaps"></div>
+	<% end %>
+	<div class="sup_list_items" id="<%= "#{o.id}cli" %>"> <%= image_tag get_image(o.state)%> <input type="checkbox" onclick="("#<%= l.id%>cli").fadeOut()" /> <%= o.item_data %>  </div>
+	<% @last_item_state = o.state %>
+<% end %>

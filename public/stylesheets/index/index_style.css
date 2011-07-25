@@ -1,14 +1,33 @@
-.list_items {
+.sub_list_items {
 	color: #405966;
 	margin-left: 30px;
 	float: left;
 	clear: left;
 }
 
-.subs {
-	margin-left: 30px;
+.sup_list_items {
+	color: #405966;
+	margin-left: 45px;
 	float: left;
 	clear: left;
+}
+
+.sup_names {
+	margin-bottom: 5px;
+	margin-left: 30px;
+	margin-top: 10px;
+	float: left;
+	clear: left;
+}
+
+
+.sub_names {
+	margin-bottom: 5px;
+	margin-left: 15px;
+	margin-top: 10px;
+	float: left;
+	clear: left;
+	
 }
 
 .jobs {
@@ -20,6 +39,8 @@
 }
 
 .job_headers {
+	
+	
 	float: left;
 	clear: none;
 }
@@ -35,11 +56,13 @@
 	
 }
 
-.sub_names {
+.overdue_list_items {
+	margin-left: 15px;
+	
+	color: #FD0000;
 	
 	float: left;
 	clear: left;
-	
 }
 
 fieldset {

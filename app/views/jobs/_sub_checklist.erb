@@ -1,0 +1,4 @@
+<% unless t.checklist_items.first.nil? then t.checklist_items.each do |l|%>
+		<div class="sub_list_items" id="<%= "#{l.id}cli" %>"> <%= image_tag get_image(l.state)%> <input type="checkbox" onclick="("#<%= l.id%>cli").fadeOut()" />  <%= l.item_data %> </div>
+	<% end %>
+<% end %>
