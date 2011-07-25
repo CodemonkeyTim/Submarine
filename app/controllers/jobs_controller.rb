@@ -41,28 +41,24 @@ class JobsController < ApplicationController
     
   def index
     @jobs = Job.find(:all)
-    @job_items = []
-    @completed_jobs = []
-    @uncompleted_jobs = []    
     
     @jobs.each do |i|
-      
-      @completed = true
-      
-      @job_items = ListItem.find_all_by_job_number(i.job_number)
-      
-      @job_items.each do |i|
-        if i.state != 3
-          @completed = false
-        end
+      i.subcontractors.each do |t|
+        t.find_all_by_state_and_listable_type(4, "Job").collect {|item| item.id}
+        
       end
+      @rest_of_the_items = ChecklistItem.find_all_by_state_and_listable_type([1, 2, 3], "Job").collect {|item| item.id}
       
-      if @completed 
-        @completed_jobs.push(i)
-      else
-        @uncompleted_jobs.push(i)    
-      end    
-    end  
+      
+      
+    end
+    
+    
+    @open_jobs = Job.find(@rest_of_the_items)
+    @closed_jobs = Job.find(@items)
+    
+    
+    
   end
   
   def new
