@@ -2,7 +2,6 @@ Submarine::Application.routes.draw do
   
  
   match "/history/:id" => "jobs#history"
-  match "/fade/:id" => "jobs#fade"
   
   resources :list_items
   resources :jobs
@@ -13,7 +12,6 @@ Submarine::Application.routes.draw do
   match "/modify/:id/:action_id" => "controls#modify"
   match "/touch_all/:id" => "controls#touch_all"
   match "/mark_done/:id" => "controls#mark_done"
-  match "partner/:id" => "partner#show"
   match "/sort/" => "subcontractors#sort"
   
   

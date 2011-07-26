@@ -48,7 +48,7 @@
 	color: #888888;
 }
 
-.subs_names {
+.list_items {
 	
 	float: left;
 	clear: left;
@@ -59,17 +59,3 @@
 	margin-top: 10px;
 	margin-bottom: 5px;
 }
-
-.subs_items {}
-
-.sub_subs_names {}
-
-.sups_names {}
-
-.subs_details {
-	margin-left: 15px;
-}
-
-.headers {}
-
-.detail_row {}

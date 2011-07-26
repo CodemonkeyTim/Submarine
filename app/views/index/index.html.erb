@@ -2,7 +2,9 @@
 	<legend>Recent jobs</legend>	
 	
 	<% @recent_jobs.each do |i| %>
-		<div class="job_headers"><%= link_to "#{i.job_number} #{i.name}", jobs_path(i.job_number)%></div>
+		<div class="job_headers"> 
+			<%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number) %> 
+		</div>
 	
 		<% unless i.subcontractors.first.nil? then i.subcontractors.each do |t| %>
 			<div class="sub_names"> <%= image_tag get_image(1) %> <%= link_to t.name, subcontractor_path(t.id) %></div>

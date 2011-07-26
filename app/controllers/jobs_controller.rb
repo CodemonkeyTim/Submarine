@@ -1,31 +1,6 @@
 class JobsController < ApplicationController
-  def show
-    #---------------------------------------------------------------------#
-    # Fetches from DB all the  important data to be used in show.html.erb #
-    #---------------------------------------------------------------------#
-    
-    #Current jobs data is needed so it's fetched from DB
+  def show    
     @job = Job.find_by_job_number(params[:id])
-    
-    #Partner data includes ids of all partners of this job. We want 'em.
-    @partner_data = JobPartner.find_all_by_job_number(@job.job_number)
-    @partner_ids = []
-    
-    #Partner ids are pushed to a var
-    @partner_data.each do |i| 
-      @partner_ids.push(i.partner_id)
-    end
-    
-    #Subcontractors of this job are stored to this var
-    @subcontractors = Partner.find_all_by_id(@partner_ids)
-        
-    #Consists of all subcontractors in DB
-    @all_subcontractors = Partner.find_all_by_partner_type(1)
-    
-    #--------------------------------------------------------------------#
-    
-    #these will be used to show job history
-    @items = ListItem.find_by_job_number(@job.job_number, :order => "touched_at")
     
     #Following block reads from log file and stores loggings into an array.
     @log = []
@@ -41,25 +16,14 @@ class JobsController < ApplicationController
     
   def index
     @jobs = Job.find(:all)
-    
-    @jobs.each do |i|
-      i.subcontractors.each do |t|
-        t.find_all_by_state_and_listable_type(4, "Job").collect {|item| item.id}
         
-      end
-      @rest_of_the_items = ChecklistItem.find_all_by_state_and_listable_type([1, 2, 3], "Job").collect {|item| item.id}
-      
-      
-      
+    @jobs.each do |l| 
+      l.state = (l.subcontractors.collect {|i| i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|j| j.checklist_items.collect {|k| k.state}}}).flatten.sort!.first
     end
     
-    
-    @open_jobs = Job.find(@rest_of_the_items)
-    @closed_jobs = Job.find(@items)
-    
-    
-    
+            
   end
+    
   
   def new
 
