@@ -65,6 +65,9 @@ module ApplicationHelper
     if $active_page == "vendor.index"
       @sheets.push("./vendor/index_style.css")
     end
+    if $active_page == "list_item.index"
+      @sheets.push("./list_item/index_style.css")
+    end
     
     
     return @sheets

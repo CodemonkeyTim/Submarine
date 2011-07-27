@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110722235634) do
+ActiveRecord::Schema.define(:version => 20110727193926) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20110722235634) do
     t.datetime "touched_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "job_number"
   end
 
   create_table "contact_people", :force => true do |t|

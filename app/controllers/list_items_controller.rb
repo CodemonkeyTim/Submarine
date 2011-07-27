@@ -18,10 +18,38 @@ class ListItemsController < ApplicationController
   end
 
   def index
-    @overdue_items = ListItem.find_all_by_state(1)
-    @open_items = ListItem.find_all_by_state(2)
-    @waiting_items = ListItem.find_all_by_state(3)
-    @completed_items = ListItem.find_all_by_state(4)
+    
+    #All items categorized by state
+    @overdue_items = []
+    @open_items = [] 
+    @waiting_items = [] 
+    @completed_items = []   
+    
+    @jobs = Job.all
+    
+    @jobs.each do |i|
+      @items = (i.subcontractors.collect {|j| j.checklist_items} + i.subcontractors.collect {|j| j.suppliers.collect {|k| k.checklist_items}}).flatten
+      @items.each do |j|
+        j.job_number = i.job_number
+      end
+      
+      @items.each do |j|
+        if j.state == 1
+          @overdue_items.push(j)
+        end
+        if j.state == 2
+          @open_items.push(j)
+        end
+        if j.state == 3
+          @waiting_items.push(j)
+        end
+        if j.state == 4
+          @completed_items.push(j)
+        end
+      end
+      
+    end    
+    
   end
 
 end

@@ -1,38 +1,57 @@
 <fieldset>
 	<legend>All tasks</legend>
 	
-	<h3>Overdue Items</h3>
-	
-	<div id="overdue">
-		<% @overdue_items.each do |i| %>
-			<div id="<%= i.id%>Listitem"> <%= image_tag get_image(i.state)%> <input id="<%= i.id%>ChkBox" type="checkbox" /> <%= i.item_data %> </div>
-		<% end %>
-	</div>
+	<% if @overdue_items.length != 0 %>
+		<div id="overdue">
+			<div class="headers">Overdue</div>
+			<% @overdue_items.each do |i| %>
+				<div class="list_items" id="<%= i.id%>cli"> 
+					<%= image_tag get_image(i.state)%> 
+					<input id="<%= i.id%>ChkBox" type="checkbox" /> 
+					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 
-	<h3>Open Items</h3>
+	<% if @open_items.length != 0 %>
+		<div id="open">
+			<div class="headers">Open</div>
+			<% @open_items.each do |i| %>
+				<div class="list_items" id="<%= i.id%>cli"> 
+					<%= image_tag get_image(i.state)%> 
+					<input id="<%= i.id%>ChkBox" type="checkbox" /> 
+					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 
-	<div id="open">
-		<% @open_items.each do |i| %>
-			<div id="<%= i.id%>Listitem"> <%= image_tag get_image(i.state)%> <input id="<%= i.id%>ChkBox" type="checkbox" onClick/> <%= i.item_data %> </div>
-		<% end %>
-	</div>
-
-	<h3>Waiting Items</h3>
-
-	<div id="waiting">
-		<% @waiting_items.each do |i| %>
-			<div id="<%= i.id%>Listitem"> <%= image_tag get_image(i.state)%> <input id="<%= i.id%>ChkBox" type="checkbox" /> <%= i.item_data %> </div>
-		<% end %>
-	</div>
-
-	<h3>Closed Items</h3>
+	<% if @waiting_items.length != 0 %>
+		<div id="waiting">
+			<div class="headers">Waiting</div>
+			<% @waiting_items.each do |i| %>
+				<div class="list_items" id="<%= i.id%>cli"> 
+					<%= image_tag get_image(i.state)%> 
+					<input id="<%= i.id%>ChkBox" type="checkbox" /> 
+					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 		
-	<div id="completed">
-		<% @completed_items.each do |i| %>
-			<div id="<%= i.id%>Listitem"> <%= image_tag get_image(i.state)%> <input id="<%= i.id%>ChkBox" type="checkbox" /> <%= i.item_data %> </div>
-		<% end %>
-	</div>
-	
+	<% if @completed_items.length != 0 %>
+		<div id="completed">
+			<div class="headers">Completed</div>
+			<% @completed_items.each do |i| %>
+				<div class="list_items" id="<%= i.id%>cli"> 
+					<%= image_tag get_image(i.state)%> 
+					<input id="<%= i.id%>ChkBox" type="checkbox" /> 
+					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 </fieldset>
 
 
@@ -42,4 +61,4 @@
 <% #Page's method calls and global variable modifiers %>
 
 <% $active_tab = 4 %>
-<% $active_page = "index.index" %>
+<% $active_page = "list_item.index" %>
