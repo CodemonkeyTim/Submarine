@@ -26,6 +26,10 @@ class JobsController < ApplicationController
     
   
   def new
+    @job = Job.new
+    @subcontractors = Subcontractor.all
+    @address = Address.new
+    @contact_person = ContactPerson.new
 
   end
   

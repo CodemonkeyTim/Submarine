@@ -1,0 +1,57 @@
+#job_supplier_info {
+	float: left;
+	clear: left;
+	
+}
+
+#subcontractors_list {
+	width: 250px;
+	height: 200px;
+	background: #888888;
+	border: solid 1px black;
+	
+}
+
+.input_rows {
+	width: 400px;
+	
+	float: left;
+	clear: left;
+}
+
+.labels {
+	width: 200px;
+	
+	float: left;
+	clear: left;
+	
+	margin-bottom: 5px;
+	
+}
+
+.inputs {
+	width: 200px;
+	
+	float: left;
+
+	margin-bottom: 5px;	
+}
+
+.chk_row {
+	
+	float: left;
+	clear: left;
+}
+
+.chk_boxes {
+	float: left;
+	
+}
+
+.sub_names {
+	
+	float: left;
+}
+
+
+

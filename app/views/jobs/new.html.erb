@@ -1,15 +1,39 @@
-<h2>New Job:</h2>
+<fieldset id="basic_info">
+	<legend>Basic information</legend>
+	
+	<%= form_for @job do |i| %>
+	<div class="input_rows"> <div class="labels"> <%= i.label :name %> </div> <div class="inputs"><%= i.text_field :name %> </div> </div>
+	<div class="input_rows"> <div class="labels"> <%= i.label :job_number %> </div> <div class="inputs"><%= i.text_field :job_number %> </div> </div>
+	<div class="input_rows"> <div class="labels"> <%= i.label :location %> </div> <div class="inputs"><%= i.text_field :location %> </div> </div>
+	<div class="input_rows"> <div class="labels"> <%= i.label :value %> </div> <div class="inputs"><%= i.text_field :value %> </div> </div>
+	<div class="input_rows"> <div class="labels"> <%= i.label :project_manager %> </div> <div class="inputs"><%= i.text_field :PM_id %> </div> </div>
+	<% end %>
 
-<h3>Job information:</h3>
+</fieldset>
 
-<%= form_tag({:controller => "jobs", :action => "create"}, :method =>"post") do %>
-	<div class = "input_items"><div class="input_headers">Number: </div>  <%= text_field_tag(:number) %> </div>
-	<div class = "input_items"><div class="input_headers">Name: </div>  <%= text_field_tag(:name) %> </div>
-	<div class = "input_items"><div class="input_headers">PM id: </div>  <%= text_field_tag(:PM_id) %> </div>
-	<div class = "input_items"><div class="input_headers">Location: </div>  <%= text_field_tag(:location) %> </div>
-	<div class = "input_items"><div class="input_headers">Value: </div>  <%= text_field_tag(:value) %> </div>
-	<div class = "input_items"><div class="input_headers">Submit </div>  <%= submit_tag("Create new job") %> </div>		
-<% end %>
+<fieldset id="subcontractor_info">
+	<legend>Subcontractors</legend>
+	
+	<form action="/jobs/create" method="post">
+	<div id="subcontractors_list">
+		<% @subcontractors.each do |i|%>
+			<div class="chk_row"><div class="chk_boxes"><input type="checkbox" /></div> <div class="sub_names"><%= i.name %></div></div>
+		<% end %>
+	</div>
+	
+	<input type="submit" value="Asssign"/>
+	</form>
+
+</fieldset>
+
+
+
+<fieldset id="basic_job_info">
+	<legend>Basic information</legend>
+	
+	
+</fieldset>	
+
 
 <% #Method calls and global variable modifiers of the page %>
 
