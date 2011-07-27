@@ -28,6 +28,22 @@
 	
 }
 
+/* ChecklistItem blocks*/
+
+#overdue, #open, #waiting {
+	
+	margin-bottom:10px;
+	
+	float: left;
+	clear: left;
+}
+
+.headers {
+	
+	float: left;
+	clear: left;
+}
+
 .sup_names {
 	margin-left: 15px;
 	
@@ -38,11 +54,5 @@
 
 .list_items {
 	margin-left: 15px;
-	
-}
-
-
-.list_items {
-	
 	
 }

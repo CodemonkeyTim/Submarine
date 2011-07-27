@@ -1,17 +1,20 @@
 class SuppliersController < ApplicationController
   def show
-    @supplier = Partner.find(params[:id])
-    @job = Job.find_by_job_number(params[:format])
-        
-    @overdue_items = ListItem.find_all_by_job_number_and_partner_id_and_state(params[:format], params[:id], 1)
-    @open_items = ListItem.find_all_by_job_number_and_partner_id_and_state(params[:format], params[:id], 2)
-    @waiting_items = ListItem.find_all_by_job_number_and_partner_id_and_state(params[:format], params[:id], 3)
-    @completed_items = ListItem.find_all_by_job_number_and_partner_id_and_state(params[:format], params[:id], 4)
+    @supplier = Supplier.find(params[:id])
+    @job = Job.find_by_job_number(params[:job_number])
+    @subcontractor  = @supplier.subcontractors.find(params[:sub_id])
     
-    @contact_person = ContactPerson.find(PartnerContactPerson.find_by_partner_id(@supplier.id).contact_id)
+    @overdue_items = @supplier.checklist_items.find_all_by_state(1)
+    @open_items = @supplier.checklist_items.find_all_by_state(2)
+    @waiting_items = @supplier.checklist_items.find_all_by_state(3)
+    @completed_items = @supplier.checklist_items.find_all_by_state(4)
     
-    @rel = JobPartnerPartner.find_by_job_number_and_p_partner_id(@job.job_number, @supplier.id)
-    @subcontractor = Partner.find(@rel.partner_id)
+    @subcontractor = 
+    
+    @contact_person = ContactPerson.new
+    @contact_person.name = "Karl Johanson"
+    @contact_person.phone_number = "360-409-3095"
+    @contact_person.email = "karl@johansonarchitecture.com"
     
   end
 

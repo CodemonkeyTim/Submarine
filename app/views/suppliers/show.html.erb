@@ -18,42 +18,44 @@
 
 
 <fieldset id="subs_details" class="">
-	<legend><%= image_tag get_image_by_job_and_sup(@job.job_number, @supplier.id)%> <%= @supplier.name %> - supplier to <%= @subcontractor.name %> </legend>
+	<legend> <%= @supplier.name %> - supplier to <%= @subcontractor.name %> </legend>
   		
-  		<h3 class="subheaders">Checklist:</h3>
+	<% unless @supplier.checklist_items.first.nil? then%>
+  		<div class="headers">Checklist:</div>
   		
-  		<% unless @overdue_items.length == 0 then %>
-  			<div id="overdue">
- 	 			<% @overdue_items.each do |i|  %>
-					<div class="list_items" id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <input type="checkbox" /> <%= i.item_data %> </div>
-				<% end %>
+  		<% if @overdue_items.length != 0 %>
+			<div id="overdue">	
+				<% @overdue_items.each do |i| %>
+					<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+		  		<% end %>	
 			</div>
-		<% end %>
-		
-		<% unless @open_items.length == 0 then %>
-  			<div id="open">
- 	 			<% @open_items.each do |i|  %>
-					<div class="list_items" id="<%= "#{i.id}list_item" %>"> <%= image_tag get_image(i.state)%> <input type="checkbox" /> <%= i.item_data %>  </div>
-				<% end %>
-			</div>
-		<% end %>
-			
-		<% unless @waiting_items.length == 0 then %>
-  			<div id="waiting">
- 	 			<% @waiting_items.each do |i|  %>
-					<div class="list_items" id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <input type="checkbox" /> <%= i.item_data %> </div>
-				<% end %>
-			</div>
-		<% end %>
-			
-		<% unless @completed_items.length == 0 then %>
-  			<div id="completed">
- 	 			<% @completed_items.each do |i|  %>
-					<div class="list_items" id="<%= "#{i.id}list_item" %>"><%= image_tag get_image(i.state)%> <input type="checkbox" /> <%= i.item_data %> </div>
-				<% end %>
-			</div>
-		<% end %>
-
+  		<% end %>
+  		
+  		<% if @open_items.length != 0 %>
+	  		<div id="open">
+	  			<% @open_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+		  		<% end %>
+	  		</div>
+  		<% end %>
+  		
+  		<% if @waiting_items.length != 0 %>
+	  		<div id="waiting">
+		  		<% @waiting_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  			<% end %>
+	  		</div>
+  		<% end %>
+  		
+  		<% if @completed_items.length != 0 %>
+	  		<div id="completed">
+		  		<% @completed_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  			<% end %>
+  			</div>
+  		<% end %>
+  		
+	<% end %>
 </fieldset>
 
 <fieldset id="subs_history">

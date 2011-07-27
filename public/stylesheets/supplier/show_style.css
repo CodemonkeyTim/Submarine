@@ -28,42 +28,21 @@
 	
 }
 
-#overdue, #open, #waiting, #completed
-
-.list_blocks {
-	margin-bottom: 10px;
+#overdue, #open, #waiting {
+	
+	margin-bottom:10px;
 	
 	float: left;
 	clear: left;
-	
-	width: 820px;
-	
 }
+
 
 .list_items {
-	margin: 0px;
+	margin-left: 15px;
 	float: left;
 	clear: left;
 	
 }
 
 
-.subheaders {
-	
-	
-}
 
-.controls {
-	
-	float: right;
-}
-
-input {
-	float: left;
-	margin-left: 0px;
-}
-
-img {
-	float: left; 
-	margin: left;
-}

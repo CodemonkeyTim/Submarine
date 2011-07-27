@@ -22,31 +22,38 @@
 	
 	<% unless @subcontractor.checklist_items.first.nil? then%>
   		<div class="headers">Checklist:</div>
-  	
-  		<div id="overdue">	
-  			<% @overdue_items.each do |i| %>
-  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-	  		<% end %>	
-  		</div>
   		
-  		<div id="open">
-  			<% @open_items.each do |i| %>
-  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-	  		<% end %>
-  		</div>
+  		<% if @overdue_items.length != 0 %>
+			<div id="overdue">	
+				<% @overdue_items.each do |i| %>
+					<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+		  		<% end %>	
+			</div>
+  		<% end %>
   		
-  		<div id="waiting">
-	  		<% @waiting_items.each do |i| %>
-  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-  			<% end %>
-  		</div>
+  		<% if @open_items.length != 0 %>
+	  		<div id="open">
+	  			<% @open_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+		  		<% end %>
+	  		</div>
+  		<% end %>
   		
-  		<div id="completed">
-	  		<% @completed_items.each do |i| %>
-  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-  			<% end %>
-  		</div>
+  		<% if @waiting_items.length != 0 %>
+	  		<div id="waiting">
+		  		<% @waiting_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  			<% end %>
+	  		</div>
+  		<% end %>
   		
+  		<% if @completed_items.length != 0 %>
+	  		<div id="completed">
+		  		<% @completed_items.each do |i| %>
+	  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  			<% end %>
+  		</div>
+  		<% end %>
   		
 	<% end %>
   	
@@ -54,7 +61,7 @@
 		<div class="headers">Suppliers:</div>
 		
 		<% @subcontractor.suppliers.each do |i| %>
-			<div class="sup_names"><%= image_tag get_image(i.state) %> <%= i.name %></div>
+			<div class="sup_names"><%= image_tag get_image(i.state) %> <%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %></div>
 		<% end %>
 		
 	<% end %>

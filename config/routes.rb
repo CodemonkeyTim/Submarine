@@ -1,6 +1,10 @@
 Submarine::Application.routes.draw do
   
  
+  get "vendor/index"
+
+  get "vendor/show"
+
   match "/history/:id" => "jobs#history"
   
   resources :list_items
