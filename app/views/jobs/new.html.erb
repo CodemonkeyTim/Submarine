@@ -1,38 +1,58 @@
 <fieldset id="basic_info">
-	<legend>Basic information</legend>
+	<legend>Job information</legend>
 	
-	<%= form_for @job do |i| %>
-	<div class="input_rows"> <div class="labels"> <%= i.label :name %> </div> <div class="inputs"><%= i.text_field :name %> </div> </div>
-	<div class="input_rows"> <div class="labels"> <%= i.label :job_number %> </div> <div class="inputs"><%= i.text_field :job_number %> </div> </div>
-	<div class="input_rows"> <div class="labels"> <%= i.label :location %> </div> <div class="inputs"><%= i.text_field :location %> </div> </div>
-	<div class="input_rows"> <div class="labels"> <%= i.label :value %> </div> <div class="inputs"><%= i.text_field :value %> </div> </div>
-	<div class="input_rows"> <div class="labels"> <%= i.label :project_manager %> </div> <div class="inputs"><%= i.text_field :PM_id %> </div> </div>
-	<% end %>
+	<form action="/jobs" method="post">
+		<div class="input_rows"> <div class="labels"> Name </div> <div class="inputs"> <%= text_field_tag("name") %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Job number </div> <div class="inputs"> <%= text_field_tag("job_number") %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Location </div> <div class="inputs"> <%= text_field_tag("location") %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Value </div> <div class="inputs"> <%= text_field_tag("value") %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Project manager </div> <div class="inputs"> <%= text_field_tag("project_manager") %> </div> </div>
+		<div class="input_rows"><input type="submit" value="Assign"/></div>
+	</form %>
 
 </fieldset>
 
-<fieldset id="subcontractor_info">
+<!--<fieldset id="subcontractor_info">
 	<legend>Subcontractors</legend>
-	
-	<form action="/jobs/create" method="post">
-	<div id="subcontractors_list">
-		<% @subcontractors.each do |i|%>
-			<div class="chk_row"><div class="chk_boxes"><input type="checkbox" /></div> <div class="sub_names"><%= i.name %></div></div>
-		<% end %>
+
+	<div id="subs_selector">
+		<form action="/jobs" method="post">
+			<select name"subs" multiple="true">
+				<% @subcontractors.each do |i|%>
+					<option onclick=""><%= i.name %></option>
+				<% end %>
+			</select> <br />		
+			
+		<input type="submit" value="Assign" style="width:186px;"/>
 	</div>
 	
-	<input type="submit" value="Asssign"/>
-	</form>
+	<div id="suppliers_seelector">
+		</form>
+			<form action="/jobs" method="post">
+			<select name"sups" multiple="true">
+				<% @suppliers.each do |i|%>
+					<option onclick=""><%= i.name %></option>
+				<% end %>
+			</select> <br />		
+				
+			<input type="submit" value="Assign" style="width:186px;"/>
+		</form>
+	</div>
+	
+	<div id="checklist_items_selector">
+		<form action="/jobs" method="post">
+			<select name"checklist" multiple="true">
+				<% @checklist_items.each do |i|%>
+					<option onclick=""><%= i.item_data %></option>
+				<% end %>
+			</select> <br />		
+				
+			<input type="submit" value="Assign" style="width:186px;"/>
+		</form>
+	</div>
 
 </fieldset>
-
-
-
-<fieldset id="basic_job_info">
-	<legend>Basic information</legend>
-	
-	
-</fieldset>	
+-->
 
 
 <% #Method calls and global variable modifiers of the page %>

@@ -4,11 +4,23 @@
 	
 }
 
-#subcontractors_list {
-	width: 250px;
-	height: 200px;
-	background: #888888;
-	border: solid 1px black;
+#subs_selector {
+	float: left;
+	clear: left;
+	
+}
+
+#suppliers_selector {
+	
+	margin-left: 20%;
+	
+	float: left;
+	
+}
+
+#checklist_items_selector {
+	float: right;
+	clear: right;
 	
 }
 
@@ -25,7 +37,7 @@
 	float: left;
 	clear: left;
 	
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 	
 }
 
@@ -34,24 +46,6 @@
 	
 	float: left;
 
-	margin-bottom: 5px;	
+	margin-bottom: 3px;	
 }
-
-.chk_row {
-	
-	float: left;
-	clear: left;
-}
-
-.chk_boxes {
-	float: left;
-	
-}
-
-.sub_names {
-	
-	float: left;
-}
-
-
 

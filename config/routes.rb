@@ -2,6 +2,9 @@ Submarine::Application.routes.draw do
 
   match "/history/:id" => "jobs#history"
   
+  #assigning a sub
+  match "/subcontractors/assign" => "subcontractors#assign"
+  
   resources :list_items
   resources :jobs
   resources :subcontractors

@@ -11,11 +11,16 @@
 	<div id="receive_payments">
 		<%= link_to "Payment received", {:controller => "controls", :action => "touch_all", :id => @job.job_number}, :remote => true %>
 	</div>
-
-	<h3 class="headers">Subcontractors</h3>
 	
-	<% @job.subcontractors.each do |i| %>
-		<div class="list_items"><%= link_to i.name, {:controller => "subcontractors", :action => "show", :id => i.id, :job_number => @job.job_number} %></div>
+	<div id="assign_sub">
+		<%= link_to "Assign a sub", {:controller => "subcontractors", :action => "new", :id => @job.job_number}%>
+	</div>
+	
+	<% if @job.subcontractors.length != 0 %>
+		<div class="headers">Subcontractors</div>
+		<% @job.subcontractors.each do |i| %>
+			<div class="list_items"><%= link_to i.name, {:controller => "subcontractors", :action => "show", :id => i.id, :job_number => @job.job_number} %></div>
+		<% end %>
 	<% end %>	
 
 	

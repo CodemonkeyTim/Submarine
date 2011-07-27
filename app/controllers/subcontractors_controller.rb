@@ -37,7 +37,7 @@ class SubcontractorsController < ApplicationController
   end
   
   def new
-    
+    @job = Job.find_by_job_number(params[:id])
     
   end
   
@@ -56,7 +56,14 @@ class SubcontractorsController < ApplicationController
   def sort
     
   end
-
+  
+  def assign
+    @sub = Subcontractor.new
+    @sub.name = params[:name]
+    @job = Job.find_by_job_number(params[:job_number])
+    @job.subcontractors.push(@sub)
+    @job.save
+  end
 
 
 end

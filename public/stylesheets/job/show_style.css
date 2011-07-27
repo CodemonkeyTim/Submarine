@@ -24,7 +24,7 @@
 }
 
 
-#receive_payments {
+#receive_payments, #assign_sub {
 	float: right;
 	
 	padding: 5px;
@@ -38,7 +38,7 @@
 	-moz-border-radius: 5px;
 }
 
-#receive_payments a {
+#receive_payments a, #assign_sub a {
 	color: #666666;
 	
 	text-decoration: none;
@@ -48,14 +48,23 @@
 	color: #888888;
 }
 
+#assign_sub a:hover {
+	color: #888888;
+}
+
+#assign_sub {
+	margin-top: 5px;
+	
+	clear: right;
+}
+
+.headers {
+	
+}
+
 .list_items {
 	
 	float: left;
 	clear: left;
 	
-}
-
-.sub_headers {
-	margin-top: 10px;
-	margin-bottom: 5px;
 }
