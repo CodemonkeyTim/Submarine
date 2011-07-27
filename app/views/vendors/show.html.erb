@@ -1,0 +1,33 @@
+<fieldset id="vendor_details">
+	<legend>Vendor details</legend>
+	
+	
+	
+</fieldset>
+
+<fieldset id="vendor_jobs_details">
+	<legend><%= @vendor.name %> - jobs details</legend>
+	
+	<% if @jobs.length != 0 then %>
+		<% @jobs.each do |i| %>
+			<div class="jobs">
+				<div class="job_sidebar">
+					<%= i.job_number%> <br />
+					<%= i.name%>
+				</div>
+				
+				<div class="job_item_list">
+					<%= render :partial => "list_items"%>			
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</fieldset>
+
+
+
+
+<% #Page's method calls and global variable modifiers %>
+
+<% $active_tab = 3 %>
+<% $active_page = "vendor.show" %>

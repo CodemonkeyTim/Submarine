@@ -1,9 +1,4 @@
 Submarine::Application.routes.draw do
-  
- 
-  get "vendor/index"
-
-  get "vendor/show"
 
   match "/history/:id" => "jobs#history"
   
@@ -11,6 +6,7 @@ Submarine::Application.routes.draw do
   resources :jobs
   resources :subcontractors
   resources :suppliers
+  resources :vendors
   
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"

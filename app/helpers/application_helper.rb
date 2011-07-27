@@ -59,10 +59,12 @@ module ApplicationHelper
     if $active_page == "supplier.show"
       @sheets.push("./supplier/show_style.css")
     end
-    if $active_page == "partner.show"
-      @sheets.push("./partner/show_style.css")
+    if $active_page == "vendor.show"
+      @sheets.push("./vendor/show_style.css")
     end
-    
+    if $active_page == "vendor.index"
+      @sheets.push("./vendor/index_style.css")
+    end
     
     
     return @sheets

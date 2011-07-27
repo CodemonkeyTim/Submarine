@@ -1,0 +1,62 @@
+#vendor_details {
+	width: 300px;
+	
+	float: right;
+	
+}
+
+#vendor_jobs_details {
+	width: 840px;
+	
+	
+}
+
+#vendor_history {
+	width: 840px;
+	
+}
+
+#overdue, #open, #waiting {
+	
+	margin-bottom: 10px;
+	
+	float: left;
+	clear: left;
+}
+
+.job_sidebar {
+	width: 70px;
+	
+	margin-right: 10px;
+	border-right: 1px solid black;
+	
+	float: left;
+	clear: left;
+	
+}
+
+.job_item_list {
+	
+	float: left;
+	
+	
+}
+
+.jobs {
+	margin-bottom: 10px;
+	
+}
+
+
+.list_blocks {
+	
+	
+	
+}
+
+.list_items {
+	
+	float: left;
+	clear: left;	
+	
+}

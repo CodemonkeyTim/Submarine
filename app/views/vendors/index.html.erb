@@ -1,0 +1,27 @@
+<fieldset id="vendors" class="">
+	<legend> Vendors </legend>	
+  		
+		<% if @subcontractors.length != 0 %>
+			<div id="subcontractors">	
+				<div class="headers">Subcontractors:</div>
+				<% @subcontractors.each do |i| %>
+					<div class="list_items"> <%= link_to i.name, vendor_path(i.id, :type => 1) %></div>
+		  		<% end %>	
+			</div>
+		<% end %>
+		
+		<% if @suppliers.length != 0 %>
+	  		<div id="suppliers">
+	  			<div class="headers">Suppliers:</div>
+	  			<% @suppliers.each do |i| %>
+	  				<div class="list_items"> <%= link_to i.name, vendor_path(i.id, :type => 2) %></div>
+		  		<% end %>
+	  		</div>
+		<% end %>
+	
+</fieldset>
+
+<% #Page's method calls and global variable modifiers %>
+
+<% $active_tab = 3 %>
+<% $active_page = "vendor.index" %>
