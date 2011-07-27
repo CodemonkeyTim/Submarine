@@ -18,38 +18,52 @@
 
 
 <fieldset id="subs_details" class="">
-  <legend><%= image_tag get_image_by_job_and_sub(@job.job_number, @subcontractor.id)%> <%= @subcontractor.name %></legend>
+  <legend> <%= @subcontractor.name %></legend>
+	
+	<% unless @subcontractor.checklist_items.first.nil? then%>
+  		<div class="headers">Checklist:</div>
   	
-  	<% unless @items.length == 0 then %>
-  		<h3 class="subheaders">Checklist:</h3>
+  		<div id="overdue">	
+  			<% @overdue_items.each do |i| %>
+  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  		<% end %>	
+  		</div>
   		
-  		<div class="list_blocks">  
- 	 		<% @items.each do |i|  %>
-				<div class="list_items"> <%= image_tag get_image(i.state)%> <%= i.item_data %></div>
-			<% end %>
-		</div>
+  		<div id="open">
+  			<% @open_items.each do |i| %>
+  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  		<% end %>
+  		</div>
+  		
+  		<div id="waiting">
+	  		<% @waiting_items.each do |i| %>
+  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+  			<% end %>
+  		</div>
+  		
+  		<div id="completed">
+	  		<% @completed_items.each do |i| %>
+  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+  			<% end %>
+  		</div>
+  		
+  		
 	<% end %>
   	
-  	
-  	<% unless @suppliers.length == 0 then %>
-  		<h3 class="subheaders">Suppliers:</h3>
-  		
-  		<div class="list_blocks">
-	 	 		<% @suppliers.each do |i|  %>
-					<div class="list_items"><%= image_tag get_image_by_job_and_sup(@job.job_number, i.id)%> <%= link_to i.name, supplier_path(i.id, @job.job_number) %></div>
-				<% end %>
-			<% end %>
-		</div>  
-	<% unless @subcontractors.length == 0 then %>
-		<h3 class="subheaders">Subcontractors:</h3>
+  	<% unless @subcontractor.suppliers.first.nil? then%>
+		<div class="headers">Suppliers:</div>
 		
-		<div class="list_blocks">	
-			<% @subcontractors.each do |i|  %>
-				<div class="list_items"><%= link_to i.name, subcontractor_path(i.id, @job.job_number) %>
-			<% end %>
-		</div>
+		<% @subcontractor.suppliers.each do |i| %>
+			<div class="sup_names"><%= image_tag get_image(i.state) %> <%= i.name %></div>
+		<% end %>
+		
 	<% end %>
 
+  	<% unless @subcontractor.subtiersubcontractors.first.nil? then%>
+  		<div class="headers">Subcontractors</div>
+  	<% end %>
+
+		
 </fieldset>
 
 <fieldset id="subs_history">

@@ -1,42 +1,33 @@
 class SubcontractorsController < ApplicationController
   def show 
     @sub_id = params[:id]
-    @job_number = params[:format]
+    @job_number = params[:job_number]
     
     @job = Job.find_by_job_number(@job_number)
     
-    @partnerRel_data = JobPartnerPartner.find_all_by_job_number_and_partner_id(@job_number, @sub_id)
-    @partner_ids = []
-    @partnerRel_data.each do |i| 
-      @partner_ids.push(i.p_partner_id)
+    
+    @all_subcontractors = Subcontractor.all
+    @all_suppliers = Supplier.all
+    
+    @subcontractor = Subcontractor.find(@sub_id)
+    
+    @contact_person = ContactPerson.new
+    @contact_person.name = "Karl Johanson"
+    @contact_person.phone_number = "360-409-3095"
+    @contact_person.email = "karl@johansonarchitecture.com"    
+    
+    @overdue_items = @subcontractor.checklist_items.find_all_by_state(1)
+    @open_items = @subcontractor.checklist_items.find_all_by_state(2)
+    @waiting_items = @subcontractor.checklist_items.find_all_by_state(3)
+    @completed_items = @subcontractor.checklist_items.find_all_by_state(4)
+    
+    @subcontractor.suppliers.each do |i|
+      i.state = i.checklist_items.collect {|j| j.state}.flatten.sort!.first  
     end
-    @partner_data = Partner.find(@partner_ids)
-        
-    @supplier_ids = []
-    @partner_data.each do |i| 
-      if i.partner_type == 2 
-        @supplier_ids.push(i.id)
-      end
-    end 
     
-    @subcontractor_ids = []
-    @partner_data.each do |i| 
-      if i.partner_type == 1 
-        @subcontractor_ids.push(i.id)
-      end
-    end
-    
-    @suppliers  = Partner.find_all_by_id(@supplier_ids)
-    @subcontractors = Partner.find_all_by_id(@subcontractor_ids)
-    
-    @all_subcontractors = Partner.find_all_by_partner_type(1)
-    @all_suppliers = Partner.find_all_by_partner_type(2)
-    
-    @subcontractor = Partner.find_by_id(@sub_id)
-        
-    @contact_person = ContactPerson.find(PartnerContactPerson.find_by_partner_id(@sub_id).contact_id)
-    
-    @items = ListItem.find_all_by_job_number_and_partner_id(@job.job_number, @sub_id)
+    @subcontractor.subtiersubcontractors.each do |i|
+      i.state = (i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|k| k.checklist_items.collect {|l| l.state}}).flatten.sort!.first  
+    end    
     
   end
 

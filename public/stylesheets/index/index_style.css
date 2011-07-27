@@ -40,9 +40,20 @@
 
 .job_headers {
 	
+	color: #6600AA;
+	text-decoration: none;
 	
 	float: left;
-	clear: none;
+	clear: left;;
+}
+
+.job_headers {
+	
+	color: #6600AA;
+	text-decoration: none;
+	
+	float: left;
+	clear: left;;
 }
 
 .overdue_amounts {
@@ -63,6 +74,12 @@
 	
 	float: left;
 	clear: left;
+}
+
+a {
+	color: #66AABB;
+	text-decoration: none;
+	
 }
 
 fieldset {

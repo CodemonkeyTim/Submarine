@@ -28,19 +28,19 @@
 	
 }
 
-.subheaders {
+.sup_names {
+	margin-left: 15px;
+	
 	float: left;
 	clear: left;
 	
 }
 
-.list_blocks {
-	margin-bottom: 10px;
-	
-	float: left;
-	clear: left;
+.list_items {
+	margin-left: 15px;
 	
 }
+
 
 .list_items {
 	

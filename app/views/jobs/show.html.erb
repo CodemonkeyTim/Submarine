@@ -15,7 +15,7 @@
 	<h3 class="headers">Subcontractors</h3>
 	
 	<% @job.subcontractors.each do |i| %>
-		<div class="list_items"><%= link_to i.name, subcontractor_path(i.id, @job.job_number)%></div>
+		<div class="list_items"><%= link_to i.name, {:controller => "subcontractors", :action => "show", :id => i.id, :job_number => @job.job_number} %></div>
 	<% end %>	
 
 	
