@@ -3,6 +3,8 @@ class PdfFile < ActiveRecord::Base
     name = upload['datafile'].original_filename
     directory  = "public/data/PDFs"
     
+    
+    
   end
   
 end
