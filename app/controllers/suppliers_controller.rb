@@ -9,10 +9,9 @@ class SuppliersController < ApplicationController
     @waiting_items = @supplier.checklist_items.find_all_by_state(3)
     @completed_items = @supplier.checklist_items.find_all_by_state(4)
     
-    @contact_person = ContactPerson.new
-    @contact_person.name = "Karl Johanson"
-    @contact_person.phone_number = "360-409-3095"
-    @contact_person.email = "karl@johansonarchitecture.com"
+    if @supplier.contact_person.nil?
+      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+    end
     
   end
 

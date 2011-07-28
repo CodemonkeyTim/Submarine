@@ -5,6 +5,8 @@ class Subcontractor < ActiveRecord::Base
   has_many :subtiersubcontractors, :class_name => "Subcontractor", :foreign_key => "supercontractor_id"
   belongs_to :supercontractor, :class_name => "Subcontractor"
   
+  belongs_to :contact_person
+  
   attr_accessor :state
   
   def state

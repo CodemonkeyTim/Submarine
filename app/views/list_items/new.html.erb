@@ -4,8 +4,9 @@
 	<form action="/list_items" method="post">		
 		<div class="input_rows"><div class="labels">Item</div><div class="inputs"><input type="text" name="item_data"></div></div>
 		<input type="hidden" name="job_number" value="<%= @job.job_number %>" />
-		<input type="hidden" name="sub_id" value="<%= @vendor_id %>" />
+		<input type="hidden" name="sub_id" value="<%= @vendor.id %>" />
 		<input type="hidden" name="type" value="<%= @type %>" />
+		<input type="hidden" name="sups_subs_id" value="<%= @sups_subs_id %>" />
 		<div class="input_rows"><input type="submit" value="Assign" /></div>
 	</form>
 	

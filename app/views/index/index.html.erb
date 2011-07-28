@@ -3,7 +3,7 @@
 	
 	<% @recent_jobs.each do |i| %>
 		<div class="job_headers"> 
-			<%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number) %> 
+			<%= image_tag get_image(i.state)%> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number) %> 
 		</div>
 	
 		<% unless i.subcontractors.first.nil? then i.subcontractors.each do |t| %>

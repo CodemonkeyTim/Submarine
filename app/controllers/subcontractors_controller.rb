@@ -11,10 +11,9 @@ class SubcontractorsController < ApplicationController
     
     @subcontractor = Subcontractor.find(@sub_id)
     
-    @contact_person = ContactPerson.new
-    @contact_person.name = "Karl Johanson"
-    @contact_person.phone_number = "360-409-3095"
-    @contact_person.email = "karl@johansonarchitecture.com"    
+    if @subcontractor.contact_person.nil?
+      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+    end
     
     @overdue_items = @subcontractor.checklist_items.find_all_by_state(1)
     @open_items = @subcontractor.checklist_items.find_all_by_state(2)
@@ -58,11 +57,7 @@ class SubcontractorsController < ApplicationController
   end
   
   def assign
-    @sub = Subcontractor.new
-    @sub.name = params[:name]
-    @job = Job.find_by_job_number(params[:job_number])
-    @job.subcontractors.push(@sub)
-    @job.save
+    Job.find_by_job_number(params[:job_number]).subcontractors.new(:name => params[:name]).save
   end
   
   def add_item

@@ -1,19 +1,27 @@
 class ListItemsController < ApplicationController
-  def new
-    @vendor_id = params[:id]
-    
+  def new          
     @job = Job.find_by_job_number(params[:job_number])
     
     @type = params[:type]
+    
+    if @type == "Subcontractor"
+      @vendor = Subcontractor.find(params[:id])
+      @sups_subs_id = 0
+    end
+    if @type == "Supplier"
+      @vendor = Supplier.find(params[:id])
+      @sups_subs_id = params[:sub_id]
+    end
+    
   end
 
   def create
     if params[:type] == "Subcontractor"
       Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3).save
-    else
-      
     end
-    
+    if params[:type] == "Supplier"
+      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sups_subs_id]).suppliers.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3).save
+    end    
   end
 
   def show
