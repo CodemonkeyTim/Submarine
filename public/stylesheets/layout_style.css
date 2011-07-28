@@ -88,7 +88,7 @@ body {
 }
 
 #nav li a:hover {
-	color: #888888;
+	color: black;
 }
 
 #nav li a#active {
@@ -129,9 +129,30 @@ body {
 	
 }
 
+a {
+	color: #888888;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 14px;
+	
+	
+}
 
+a:hover {
+	color: white;
+	background: #888888;
+	
+}
 
 select {
 	width: 185px;
+	
+}
+
+.list_items {
+	color: #888888;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 14px;	
 	
 }

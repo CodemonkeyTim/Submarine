@@ -57,7 +57,7 @@ class SubcontractorsController < ApplicationController
   end
   
   def assign
-    Job.find_by_job_number(params[:job_number]).subcontractors.new(:name => params[:name]).save
+    Job.find_by_job_number(params[:job_number]).subcontractors.push(Subcontractor.new(:name => params[:name]))
   end
   
   def add_item

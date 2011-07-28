@@ -38,20 +38,6 @@
 	-moz-border-radius: 5px;
 }
 
-#receive_payments a, #assign_sub a {
-	color: #666666;
-	
-	text-decoration: none;
-}
-
-#receive_payments a:hover {
-	color: #888888;
-}
-
-#assign_sub a:hover {
-	color: #888888;
-}
-
 #assign_sub {
 	margin-top: 5px;
 	

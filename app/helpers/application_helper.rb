@@ -152,4 +152,14 @@ module ApplicationHelper
     
     return @answer
   end
+  
+  def refresh_states
+    ChecklistItem.all.each do |i|
+      if (Time.now.utc - i.touched_at) > 864000
+        i.state = 1
+      end
+    end
+  end
+  
+  
 end

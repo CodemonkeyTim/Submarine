@@ -1,12 +1,21 @@
 .sub_list_items {
-	color: #405966;
+	color: #888888;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 14px;
+	
 	margin-left: 30px;
 	float: left;
 	clear: left;
 }
 
 .sup_list_items {
-	color: #405966;
+	
+	color: #888888;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 14px;
+	
 	margin-left: 45px;
 	float: left;
 	clear: left;
@@ -74,12 +83,6 @@
 	
 	float: left;
 	clear: left;
-}
-
-a {
-	color: #66AABB;
-	text-decoration: none;
-	
 }
 
 fieldset {
