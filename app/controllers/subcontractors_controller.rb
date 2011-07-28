@@ -21,12 +21,11 @@ class SubcontractorsController < ApplicationController
     @completed_items = @subcontractor.checklist_items.find_all_by_state(4)
     
     @subcontractor.suppliers.each do |i|
-      i.state = i.checklist_items.collect {|j| j.state}.flatten.sort!.first  
-    end
-    
-    @subcontractor.subtiersubcontractors.each do |i|
-      i.state = (i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|k| k.checklist_items.collect {|l| l.state}}).flatten.sort!.first  
-    end    
+      i.state = (@subcontractor.checklist_items.collect {|j| j.state} + i.checklist_items.collect {|j| j.state}).flatten.sort!.first
+      if i.state.nil?
+        i.state = 4
+      end
+    end 
     
   end
 

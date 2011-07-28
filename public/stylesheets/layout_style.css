@@ -114,6 +114,10 @@ body {
 
 /* These should find their place in some other file!! */
 
+.break {
+	clear: both;
+}
+
 .closed_items {
 	color: green;
 	
@@ -127,6 +131,20 @@ body {
 .waiting_items {
 	color: blue;
 	
+}
+
+.controls {
+	float: right;
+	
+	padding: 5px;
+	
+	width: 160px;
+	height: 22px;
+	
+	text-align: center;
+	
+	border: 1px solid black;
+	-moz-border-radius: 5px;
 }
 
 a {

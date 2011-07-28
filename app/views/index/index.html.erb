@@ -7,13 +7,13 @@
 		</div>
 	
 		<% unless i.subcontractors.first.nil? then i.subcontractors.each do |t| %>
-			<div class="sub_names"> <%= image_tag get_image(1) %> <%= link_to t.name, subcontractor_path(t.id) %></div>
+			<div class="sub_names"> <%= image_tag get_image(t.state) %> <%= link_to t.name, subcontractor_path(t.id, i.job_number) %></div>
 				
 				<%= render :partial => "jobs/sub_checklist", :locals => {:t => t} %>
 							
 				<% unless t.suppliers.first.nil? then t.suppliers.each do |l|%>
 					<% unless l.checklist_items.first.nil? then %>
-						<div class="sup_names"> <%= image_tag get_image(1)%> <%= link_to l.name, supplier_path(l.id, i.job_number) %></div>
+						<div class="sup_names"> <%= image_tag get_image(l.state)%> <%= link_to l.name, supplier_path(l.id, i.job_number) %></div>
 						<%= render :partial => "jobs/sup_checklist", :locals => {:l => l} %>
 					<% end %>
 					

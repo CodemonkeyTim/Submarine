@@ -20,8 +20,11 @@
 <fieldset id="subs_details" class="">
   <legend> <%= @subcontractor.name %></legend>
 	
-	<div id="assign_item">
+	<div class="controls" id="assign_item">
 		<%= link_to "Add item", {:controller => "list_items", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number, :type => "Subcontractor"}%>
+	</div>
+	<div class="controls" id="assign_sup">
+		<%= link_to "Assign a supplier", {:controller => "suppliers", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number}%>
 	</div>
 	
 	<% unless @subcontractor.checklist_items.first.nil? then%>
@@ -61,13 +64,14 @@
   		
 	<% end %>
   	
-  	<% unless @subcontractor.suppliers.first.nil? then%>
+  	<% unless @subcontractor.suppliers.first.nil? then%>			
 		<div class="headers">Suppliers:</div>
-		
-		<% @subcontractor.suppliers.each do |i| %>
-			<div class="sup_names"><%= image_tag get_image(i.state) %> <%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %></div>
-		<% end %>
-		
+		<div id="suppliers">
+			<% @subcontractor.suppliers.each do |i| %>
+				<div class="sup_names"><%= image_tag get_image(i.state) %> <%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %></div>
+			<% end %>
+			<div class="break"></div>
+		</div>		
 	<% end %>
 
   	<% unless @subcontractor.subtiersubcontractors.first.nil? then%>

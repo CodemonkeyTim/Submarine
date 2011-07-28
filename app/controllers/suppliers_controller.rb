@@ -17,5 +17,17 @@ class SuppliersController < ApplicationController
 
   def index
   end
+  
+  def new
+    @job = Job.find_by_job_number(params[:job_number])
+    @subcontractor = Subcontractor.find(params[:id])
+  end
 
+  def assign
+    Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:id]).suppliers.push(Supplier.new(:name => params[:name]))
+  end
+  
+  def create
+    
+  end
 end

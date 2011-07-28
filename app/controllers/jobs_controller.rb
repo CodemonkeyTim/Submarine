@@ -11,6 +11,12 @@ class JobsController < ApplicationController
       end
     end
     
+    @job.subcontractors.each do |i|
+      i.state = (i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|j| j.checklist_items.collect {|k| k.state}}).flatten.sort!.first
+      if i.state.nil?
+        i.state = 4
+      end
+    end
   
   end
     

@@ -1,0 +1,13 @@
+<fieldset>
+	<legend>Assign a sub to job: <%= @job.name %></legend>
+	
+	<form action="/subcontractors/assign" method="post">
+		<div class="input_rows"><div class="labels">Name</div><div class="inputs"><input type="text" name="name"></div></div>
+		<input type="hidden" name="job_number" value="<%= @job.job_number%>" />
+		<div class="input_rows"><input type="submit" value="Assign" /></div>
+	</form>
+</fieldset>
+
+<% #Page's method calls and global variable modifiers %>
+
+<% $active_page = "subcontractor.new" %>

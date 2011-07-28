@@ -11,6 +11,20 @@ class IndexController < ApplicationController
       if l.state.nil?
         l.state = 4
       end
+      
+      l.subcontractors.each do |i| 
+        i.state = (i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|j| j.checklist_items.collect {|k| k.state}}).flatten.sort!.first
+        if i.state.nil?
+          i.state = 4
+        end
+        
+        i.suppliers.each do |j| 
+          j.state = (j.checklist_items.collect {|j| i.state}).flatten.sort!.first
+          if j.state.nil?
+            j.state = 4
+          end
+        end      
+      end
     end
     
     @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at")

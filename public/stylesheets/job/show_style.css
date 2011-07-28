@@ -23,21 +23,6 @@
 	width: 50%;
 }
 
-
-#receive_payments, #assign_sub {
-	float: right;
-	
-	padding: 5px;
-	
-	width: 155px;
-	height: 22px;
-	
-	text-align: center;
-	
-	border: 1px solid black;
-	-moz-border-radius: 5px;
-}
-
 #assign_sub {
 	margin-top: 5px;
 	

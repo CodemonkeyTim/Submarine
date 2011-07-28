@@ -5,6 +5,11 @@
 	
 }
 
+#suppliers {
+	margin-top: 5px;
+	
+}
+
 #vendor_details_box {
 	width: 300px;
 	
@@ -28,20 +33,11 @@
 	
 }
 
-#assign_item {
-	float: right;
+#assign_sup {
+	margin-top: 5px;
 	
-	padding: 5px;
-	
-	width: 155px;
-	height: 22px;
-	
-	text-align: center;
-	
-	border: 1px solid black;
-	-moz-border-radius: 5px;
+	clear: right;
 }
-
 
 /* ChecklistItem blocks*/
 
@@ -69,5 +65,5 @@
 
 .list_items {
 	margin-left: 15px;
-	
+	float: left;
 }

@@ -8,13 +8,12 @@ class ControlsController < ApplicationController
   end
   
   def touch_all
-    @job_number = params[:id]
-    @items = ListItem.find_all_by_job_number(@job_number)
+    @items = ChecklistItem.find_all_by_job_number(params[:job_number])
     
-    @items.each do |i| 
-      i.touched_at = Time.now.utc
+    @items.each do |i|
       i.state = 2
-      i.save      
+      i.touched_at = Time.now.utc
+      i.save
     end
     
   end

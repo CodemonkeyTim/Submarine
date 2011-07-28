@@ -17,10 +17,10 @@ class ListItemsController < ApplicationController
 
   def create
     if params[:type] == "Subcontractor"
-      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3).save
+      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3, :touched_at => (Time.now.utc+9000000000), :job_number => params[:job_number]).save
     end
     if params[:type] == "Supplier"
-      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sups_subs_id]).suppliers.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3).save
+      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sups_subs_id]).suppliers.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3, :touched_at => (Time.now.utc+9000000000), :job_number => params[:job_number]).save
     end    
   end
 
