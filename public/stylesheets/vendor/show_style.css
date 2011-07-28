@@ -18,18 +18,37 @@
 
 #overdue, #open, #waiting {
 	
+	padding-left: 10px;
+	
 	margin-bottom: 10px;
+	
+	border-left: solid 1px black;
 	
 	float: left;
 	clear: left;
 }
 
+#completed {
+	padding-left: 10px;
+	
+	border-left: solid 1px black;
+	
+	float: left;
+	clear: left;
+	
+}
+
+.break {
+	clear: both;
+	
+}
 .job_sidebar {
-	width: 70px;
+	width: 60px;
+	
+	height: inherit;
 	
 	margin-right: 10px;
-	border-right: 1px solid black;
-	
+		
 	float: left;
 	clear: left;
 	
