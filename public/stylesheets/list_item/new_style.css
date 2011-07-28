@@ -1,0 +1,18 @@
+.input_rows {
+	float: left;
+	clear: left;
+}
+
+.labels {
+	width: 200px;
+	
+	float: left;
+	clear: left;
+	
+}
+
+.inputs {
+	float: left;
+	
+}
+

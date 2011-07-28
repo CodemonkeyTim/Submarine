@@ -20,6 +20,10 @@
 <fieldset id="subs_details" class="">
   <legend> <%= @subcontractor.name %></legend>
 	
+	<div id="assign_item">
+		<%= link_to "Add item", {:controller => "list_items", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number, :type => "Supplier"}%>
+	</div>
+	
 	<% unless @subcontractor.checklist_items.first.nil? then%>
   		<div class="headers">Checklist:</div>
   		

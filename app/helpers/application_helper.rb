@@ -68,6 +68,10 @@ module ApplicationHelper
     if $active_page == "list_item.index"
       @sheets.push("./list_item/index_style.css")
     end
+    if $active_page == "list_item.new"
+      @sheets.push("./list_item/new_style.css")
+    end
+    
     
     
     return @sheets

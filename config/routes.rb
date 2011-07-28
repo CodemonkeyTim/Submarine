@@ -4,6 +4,7 @@ Submarine::Application.routes.draw do
   
   #assigning a sub
   match "/subcontractors/assign" => "subcontractors#assign"
+  match "/subcontractors/add_item" => "subcontractors#add_item"
   
   resources :list_items
   resources :jobs

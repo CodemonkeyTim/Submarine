@@ -64,6 +64,10 @@ class SubcontractorsController < ApplicationController
     @job.subcontractors.push(@sub)
     @job.save
   end
-
+  
+  def add_item
+    
+    
+  end
 
 end

@@ -28,6 +28,21 @@
 	
 }
 
+#assign_item {
+	float: right;
+	
+	padding: 5px;
+	
+	width: 155px;
+	height: 22px;
+	
+	text-align: center;
+	
+	border: 1px solid black;
+	-moz-border-radius: 5px;
+}
+
+
 /* ChecklistItem blocks*/
 
 #overdue, #open, #waiting {
