@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  job_number: 1
-  partner_id: 1
-
-two:
-  job_number: 1
-  partner_id: 1
