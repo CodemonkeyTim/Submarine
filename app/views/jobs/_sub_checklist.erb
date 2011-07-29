@@ -3,6 +3,11 @@
 		<% if l.state < 3 %>
 			<input type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
 		<% end %>
-		<%= l.item_data %> </div>
+		<%= l.item_data %> 
+		<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => l.id}, :class => "add_document"%> 
+		<% unless l.document_file_name.nil? %>
+			<%= link_to "Open the document", l.document.url %>
+		<% end %>
+		</div>
 	<% end %>
 <% end %>

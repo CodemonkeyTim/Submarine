@@ -114,6 +114,12 @@ body {
 
 /* These should find their place in some other file!! */
 
+.add_document {
+	font-size: 12px;
+	color: #888888;
+	
+}
+
 .break {
 	clear: both;
 }
@@ -148,7 +154,7 @@ body {
 }
 
 a {
-	color: #888888;
+	color: #111111;
 	text-decoration: none;
 	font-family: Arial;
 	font-size: 14px;
@@ -168,9 +174,10 @@ select {
 }
 
 .list_items {
-	color: #888888;
+	color: #111111;
 	text-decoration: none;
 	font-family: Arial;
 	font-size: 14px;	
 	
 }
+

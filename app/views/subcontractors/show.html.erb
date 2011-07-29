@@ -33,7 +33,14 @@
   		<% if @overdue_items.length != 0 %>
 			<div id="overdue">	
 				<% @overdue_items.each do |i| %>
-					<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
+					<div class="list_items" id="<%= i.id %>cli"> 
+						<%= image_tag get_image(i.state) %> 
+						<input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %>
+						<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class => "add_document"%>
+						<% unless i.document_file_name.nil? %>
+							<%= link_to "Open the document", i.document.url %>
+						<% end %>
+					</div>
 		  		<% end %>	
 			</div>
   		<% end %>
@@ -41,7 +48,15 @@
   		<% if @open_items.length != 0 %>
 	  		<div id="open">
 	  			<% @open_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
+	  				<div class="list_items" id="<%= i.id %>cli"> 
+	  					<%= image_tag get_image(i.state) %> 
+	  					<input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %>
+		  				<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class => "add_document"%>
+		  				<%= link_to "Add a document", i.document.url %>
+		  				<% unless i.document_file_name.nil? %>
+							<%= link_to "Open the document", i.document.url %>
+						<% end %>    
+		  			</div> 
 		  		<% end %>
 	  		</div>
   		<% end %>
@@ -49,7 +64,14 @@
   		<% if @waiting_items.length != 0 %>
 	  		<div id="waiting">
 		  		<% @waiting_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  				<div class="list_items" id="<%= i.id %>cli"> 
+	  					<%= image_tag get_image(i.state) %>
+	  					<%= i.item_data %>
+	  					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class => "add_document"%>
+	  					<% unless i.document_file_name.nil? %>
+							<%= link_to "Open the document", i.document.url %>
+						<% end %>
+	  				</div>
 	  			<% end %>
 	  		</div>
   		<% end %>
@@ -57,7 +79,14 @@
   		<% if @completed_items.length != 0 %>
 	  		<div id="completed">
 		  		<% @completed_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
+	  				<div class="list_items" id="<%= i.id %>cli">
+	  					<%= image_tag get_image(i.state) %> 
+	  					<%= i.item_data %>
+	  					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class => "add_document"%>
+	  					<% unless i.document_file_name.nil? %>
+							<%= link_to "Open the document", i.document.url %>
+						<% end %>
+	  				</div>
 	  			<% end %>
   		</div>
   		<% end %>
@@ -68,7 +97,10 @@
 		<div class="headers">Suppliers:</div>
 		<div id="suppliers">
 			<% @subcontractor.suppliers.each do |i| %>
-				<div class="sup_names"><%= image_tag get_image(i.state) %> <%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %></div>
+				<div class="sup_names">
+					<%= image_tag get_image(i.state) %> 
+					<%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %>
+				</div>
 			<% end %>
 			<div class="break"></div>
 		</div>		

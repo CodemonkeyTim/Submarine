@@ -16,7 +16,10 @@ Submarine::Application.routes.draw do
   resources :subcontractors
   resources :suppliers
   resources :vendors
-  resources :documents
+  
+  #Document attaching paths
+  match "/documents/new" => "documents#new"
+  match "/documents/" => "documents#create"
   
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"

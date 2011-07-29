@@ -4,6 +4,9 @@
 			<input type="checkbox" onclick="$.ajax('/mark_done/<%= o.id %>')" />
 		<% end %>
 		<%= o.item_data %>
-		<%= link_to "Add document", {:controller => "documents",:action => "new", :id => o.id}%>  
+		<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => o.id}, :class => "add_document"%> 
+		<% unless o.document_file_name.nil? %>
+			<%= link_to "Open the document", o.document.url %>
+		<% end %>
 	</div> 
 <% end %>
