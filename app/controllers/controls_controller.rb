@@ -16,6 +16,8 @@ class ControlsController < ApplicationController
       i.save
     end
     
+    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Payment received - all items opened at #{Time.now}", :log_level => 1))
+    
   end
   
   def modify
@@ -65,5 +67,15 @@ class ControlsController < ApplicationController
       @former_state_with_words = "completed"
     end    
     
-  end  
+  end
+  
+  def mark_done
+    @id = params[:id]
+    @cli = ChecklistItem.find(@id)
+    @cli.state = 3
+    @cli.touched_at = Time.now.utc + 9000000000
+    @cli.save    
+  end
+  
+    
 end

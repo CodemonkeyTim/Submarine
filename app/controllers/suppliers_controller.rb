@@ -25,6 +25,12 @@ class SuppliersController < ApplicationController
 
   def assign
     Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:id]).suppliers.push(Supplier.new(:name => params[:name]))
+    
+    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Supplier assigned to #{Subcontractor.find(params[:id]).name} at #{Time.now}", :log_level => 3))
+    
+    #File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{params[:name]}-in-#{params[:job_number]}-for-#{Subcontractor.find(params[:id]).name}.log", 'w') do |i|
+    #  i.write("Supplier assigned to #{Subcontractor.find(params[:id]).name} at #{Time.now}")
+    #end
   end
   
   def create

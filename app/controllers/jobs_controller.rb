@@ -50,9 +50,11 @@ class JobsController < ApplicationController
     @job.value = params[:value]
     @job.save
     
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
-      i.write("Job created at #{Time.now}")
-    end
+    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Job created at #{Time.now}", :log_level => 1))
+    
+    #File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
+    #  i.write("Job created at #{Time.now}")
+    #end
     
   end
   

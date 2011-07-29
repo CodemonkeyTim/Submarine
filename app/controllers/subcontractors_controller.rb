@@ -57,6 +57,12 @@ class SubcontractorsController < ApplicationController
   
   def assign
     Job.find_by_job_number(params[:job_number]).subcontractors.push(Subcontractor.new(:name => params[:name]))
+    
+    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Subcontractor assigned to #{params[:job_number]} at #{Time.now}", :log_level => 2))
+    
+    #File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{params[:name]}-in-#{@job.job_number}.log", 'w') do |i|
+    #  i.write("Subcontractor assigned at #{Time.now}")
+    #end
   end
   
   def add_item

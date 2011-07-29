@@ -2,7 +2,7 @@
 	<% if @overdue_items.length != 0 %>
 		<div id="overdue">	
 			<% @overdue_items.each do |i| %>
-				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
 	  		<% end %>	
 		</div>
 	<% end %>
@@ -10,7 +10,7 @@
 	<% if @open_items.length != 0 %>
 		<div id="open">
 			<% @open_items.each do |i| %>
-				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" /> <%= i.item_data %></div>
+				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
 	  		<% end %>
 		</div>
 	<% end %>

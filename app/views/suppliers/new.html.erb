@@ -1,9 +1,10 @@
 <fieldset>
-	<legend>Assign a sub to job: <%= @job.name %></legend>
+	<legend>Assign a supplier to subcontractor: <%= @subcontractor.name %></legend>
 	
-	<form action="/subcontractors/assign" method="post">
+	<form action="/suppliers/assign" method="post">
 		<div class="input_rows"><div class="labels">Name</div><div class="inputs"><input type="text" name="name"></div></div>
 		<input type="hidden" name="job_number" value="<%= @job.job_number%>" />
+		<input type="hidden" name="id" value="<%= @subcontractor.id%>" />
 		<div class="input_rows"><input type="submit" value="Assign" /></div>
 	</form>
 </fieldset>
