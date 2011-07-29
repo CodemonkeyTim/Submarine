@@ -5,7 +5,7 @@ class JobsController < ApplicationController
     #Following block reads from log file and stores loggings into an array.
     @log = []
     
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'r') do |i|
+    File.open("~/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'r') do |i|
       while line = i.gets
         @log.push(line)
       end
@@ -52,7 +52,7 @@ class JobsController < ApplicationController
     
     Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Job created at #{Time.now}", :log_level => 1))
     
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
+    File.open("~/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
       i.write("Job created at #{Time.now}")
     end
     
