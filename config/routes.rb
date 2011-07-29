@@ -1,5 +1,9 @@
 Submarine::Application.routes.draw do
 
+  get "documents/new"
+
+  get "documents/edit"
+
   match "/history/:id" => "jobs#history"
   
   #assigning a sub
@@ -12,6 +16,7 @@ Submarine::Application.routes.draw do
   resources :subcontractors
   resources :suppliers
   resources :vendors
+  resources :documents
   
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"

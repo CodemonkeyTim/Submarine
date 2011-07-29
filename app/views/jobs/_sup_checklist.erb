@@ -1,7 +1,9 @@
 <% l.checklist_items.each do |o|%>
 	<div class="sup_list_items" id="<%= "#{o.id}cli" %>"> <%= image_tag get_image(o.state)%>
-		 <% if o.state < 3 %>
+		<% if o.state < 3 %>
 			<input type="checkbox" onclick="$.ajax('/mark_done/<%= o.id %>')" />
 		<% end %>
-		 <%= o.item_data %>  </div>
+		<%= o.item_data %>
+		<%= link_to "Add document", {:controller => "documents",:action => "new", :id => o.id}%>  
+	</div> 
 <% end %>
