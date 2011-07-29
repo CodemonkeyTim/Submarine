@@ -5,11 +5,19 @@ class SubcontractorsController < ApplicationController
     
     @job = Job.find_by_job_number(@job_number)
     
+    @subcontractor = Subcontractor.find(@sub_id)
+    
+    #Following block reads from log file and stores loggings into an array.
+    @log = []
+    
+    File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{@subcontractor.name}-in-#{@job.job_number}.log", 'r') do |i|
+      while line = i.gets
+        @log.push(line)
+      end
+    end
     
     @all_subcontractors = Subcontractor.all
     @all_suppliers = Supplier.all
-    
-    @subcontractor = Subcontractor.find(@sub_id)
     
     if @subcontractor.contact_person.nil?
       @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
@@ -57,12 +65,10 @@ class SubcontractorsController < ApplicationController
   
   def assign
     Job.find_by_job_number(params[:job_number]).subcontractors.push(Subcontractor.new(:name => params[:name]))
-    
-    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Subcontractor assigned to #{params[:job_number]} at #{Time.now}", :log_level => 2))
-    
-    #File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{params[:name]}-in-#{@job.job_number}.log", 'w') do |i|
-    #  i.write("Subcontractor assigned at #{Time.now}")
-    #end
+        
+    File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{params[:name]}-in-#{params[:job_number]}.log", 'w') do |i|
+      i.write("Subcontractor assigned at #{Time.now}")
+    end
   end
   
   def add_item

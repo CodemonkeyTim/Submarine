@@ -64,8 +64,10 @@
 
 <fieldset id="subs_history">
 	<legend>Subs History - <%= link_to "See full history", "somewhere"%></legend>
-	
-		
+		<% @log.each do |i| %>
+			<div class="history_logging"><%= i %></div>
+		<% end %>
+			
 </fieldset>
 
 <% #Page's method calls and global variable modifiers %>
