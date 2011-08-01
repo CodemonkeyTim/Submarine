@@ -1,4 +1,3 @@
 class ContactPerson < ActiveRecord::Base
-  has_many :subcontractors
-  has_many :suppliers
+  has_many :partners
 end

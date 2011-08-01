@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801162303) do
+ActiveRecord::Schema.define(:version => 20110801165015) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -67,9 +67,8 @@ ActiveRecord::Schema.define(:version => 20110801162303) do
   end
 
   create_table "logs", :force => true do |t|
+    t.integer  "assignment_id"
     t.string   "log_data"
-    t.integer  "loggable_id"
-    t.integer  "loggable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
