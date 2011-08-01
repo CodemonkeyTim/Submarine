@@ -1,0 +1,21 @@
+<% unless j.checklist_items(job_id, parent_id).first.nil? %>
+	<%= render :partial => "jobs/sub_checklist", :locals => {:j => j, :job_id => job_id, :parent_id => parent_id} %>
+<% end %>
+
+<% unless j.suppliers(job_id).first.nil? %>
+	<% j.suppliers(job_id).each do |k| %>
+		<div class="sups">
+			<div class="sups_headers"><%= image_tag get_image(k.state) %><%= "#{k.name} - #{k.state}" %></div>
+			<%= render :partial => "jobs/sup_checklist", :locals => {:k => k, :job_id => job_id, :parent_id => j.id} %>
+		</div>
+	<% end %>
+<% end %>
+
+<% unless j.subcontractors(job_id).first.nil? %>		
+		<% j.subcontractors(job_id, j.id).each do |k| %>
+			<div class="subs">
+				<div class="subs_headers"><%= k.name%></div>
+				<%= render :partial => "sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id} %>
+			</div>
+		<% end %>
+<% end %>

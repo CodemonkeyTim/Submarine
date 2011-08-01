@@ -21,16 +21,7 @@ class JobsController < ApplicationController
   end
     
   def index
-    @jobs = Job.find(:all)
-        
-    @jobs.each do |l| 
-      l.state = (l.subcontractors.collect {|i| i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|j| j.checklist_items.collect {|k| k.state}}}).flatten.sort!.first
-      if l.state.nil?
-        l.state = 4
-      end
-    end
-    
-            
+    @jobs = Job.all            
   end
     
   

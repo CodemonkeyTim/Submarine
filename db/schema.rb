@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801165015) do
+ActiveRecord::Schema.define(:version => 20110801202836) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20110801165015) do
     t.integer  "job_id"
     t.integer  "parent_id"
     t.integer  "partner_id"
-    t.integer  "type"
+    t.integer  "partner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

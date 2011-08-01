@@ -2,6 +2,7 @@
 	<legend>Open</legend>
 	
 	<% @jobs.each do |i| %>
+		<% set_states(i) %>
 		<div class="job_headers"> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.job_number) %></div>
 	<% end %>
 	

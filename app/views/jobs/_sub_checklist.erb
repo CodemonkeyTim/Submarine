@@ -1,13 +1,9 @@
-<% unless t.checklist_items.first.nil? then t.checklist_items.each do |l|%>
-	<div class="sub_list_items" id="<%= "#{l.id}cli" %>"> <%= image_tag get_image(l.state)%> 
-		<% if l.state < 3 %>
-			<input type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
+<% unless j.checklist_items(job_id, parent_id).first.nil? then j.checklist_items(job_id, parent_id).each do |k|%>
+	<div class="subs_list_items" id="<%= "#{k.id}cli" %>"> <%= image_tag get_image(k.state)%>
+		<% if k.state < 3 %>
+			<input type="checkbox" onclick="$.ajax('/mark_done/<%= k.id %>')" />
 		<% end %>
-		<%= l.item_data %> 
-		<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => l.id}, :class => "add_document"%> 
-		<% unless l.document_file_name.nil? %>
-			<%= link_to "Open the document", l.document.url %>
-		<% end %>
-		</div>
+		<%= k.item_data %>
+	</div>
 	<% end %>
 <% end %>
