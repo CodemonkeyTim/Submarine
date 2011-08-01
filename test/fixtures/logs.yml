@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  job_id: 1
   log_data: MyString
-  log_level: 1
+  loggable_id: 1
+  loggable_type: 1
 
 two:
-  job_id: 1
   log_data: MyString
-  log_level: 1
+  loggable_id: 1
+  loggable_type: 1

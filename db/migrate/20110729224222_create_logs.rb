@@ -1,9 +1,9 @@
 class CreateLogs < ActiveRecord::Migration
   def self.up
     create_table :logs do |t|
-      t.integer :job_id
       t.string :log_data
-      t.integer :log_level
+      t.integer :loggable_id
+      t.integer :loggable_type
 
       t.timestamps
     end

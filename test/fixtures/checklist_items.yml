@@ -1,15 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  assignment_id: 1
   item_data: MyString
-  listable_id: 1
-  listable_type: MyString
   state: 1
-  touched_at: 2011-07-22 16:16:49
+  touched_at: 2011-08-01 09:15:54
 
 two:
+  assignment_id: 1
   item_data: MyString
-  listable_id: 1
-  listable_type: MyString
   state: 1
-  touched_at: 2011-07-22 16:16:49
+  touched_at: 2011-08-01 09:15:54

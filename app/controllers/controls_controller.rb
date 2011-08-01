@@ -74,7 +74,10 @@ class ControlsController < ApplicationController
     @cli = ChecklistItem.find(@id)
     @cli.state = 3
     @cli.touched_at = Time.now.utc + 9000000000
-    @cli.save    
+    @cli.save  
+    
+    
+      
   end
   
     
