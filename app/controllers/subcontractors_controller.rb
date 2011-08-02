@@ -10,11 +10,12 @@ class SubcontractorsController < ApplicationController
     #Following block reads from log file and stores loggings into an array.
     @log = []
     
-    File.open("~/rails/Submarine/log/history_logs/#{@subcontractor.name}-in-#{@job.job_number}.log", 'r') do |i|
-      while line = i.gets
-        @log.push(line)
-      end
-    end
+   # Comment block just to get it working 
+   # File.open("~/rails/Submarine/log/history_logs/#{@subcontractor.name}-in-#{@job.job_number}.log", 'r') do |i|
+   #   while line = i.gets
+   #     @log.push(line)
+   #   end
+   # end
     
     @all_subcontractors = Subcontractor.all
     @all_suppliers = Supplier.all
