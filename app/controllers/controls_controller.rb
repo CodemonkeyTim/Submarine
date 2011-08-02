@@ -8,7 +8,8 @@ class ControlsController < ApplicationController
   end
   
   def touch_all
-    @items = ChecklistItem.find_all_by_job_number(params[:job_number])
+    @job = Job.find(params[:id])
+    @items = @job.checklist_items
     
     @items.each do |i|
       i.state = 2
@@ -16,7 +17,7 @@ class ControlsController < ApplicationController
       i.save
     end
     
-    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Payment received - all items opened at #{Time.now}", :log_level => 1))
+    @job.log_markings.push(LogMarking.new(:log_data => "Payment received - all items opened at #{Time.now}"))
     
   end
   

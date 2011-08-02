@@ -37,7 +37,7 @@
 	<legend>Job history - <%= link_to "See full history", {:action => "history", :controller => "jobs"}%></legend>	
 	
 	<% @log.each do |i| %>
-		<div class="history_logging"><%= i %></div>
+		<div class="history_logging"><%= i.log_data %></div>
 	<% end %>
 </fieldset>
 
