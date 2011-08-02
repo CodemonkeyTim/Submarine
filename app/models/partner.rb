@@ -2,6 +2,8 @@ class Partner < ActiveRecord::Base
   has_one :address
   has_one :contact_person
   
+  has_many :log_markings, :as => :loggable
+  
   attr_accessor :state
   
   def get_state(job_id, parent_id)

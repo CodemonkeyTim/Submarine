@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801202836) do
+ActiveRecord::Schema.define(:version => 20110802184310) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "building_number"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(:version => 20110801202836) do
     t.datetime "updated_at"
   end
 
+  create_table "documents", :force => true do |t|
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "jobs", :force => true do |t|
     t.string   "name"
     t.integer  "job_number"
@@ -62,6 +73,14 @@ ActiveRecord::Schema.define(:version => 20110801202836) do
 
   create_table "list_item_templates", :force => true do |t|
     t.string   "item_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "log_markings", :force => true do |t|
+    t.string   "log_data"
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

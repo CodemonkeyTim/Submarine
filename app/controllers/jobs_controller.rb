@@ -1,23 +1,9 @@
 class JobsController < ApplicationController
   def show    
-    @job = Job.find_by_job_number(params[:id])
+    @job = Job.find(params[:id])
     
-    #Following block reads from log file and stores loggings into an array.
-    @log = []
-    
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'r') do |i|
-      while line = i.gets
-        @log.push(line)
-      end
-    end
-    
-    @job.subcontractors.each do |i|
-      i.state = (i.checklist_items.collect {|j| j.state} + i.suppliers.collect {|j| j.checklist_items.collect {|k| k.state}}).flatten.sort!.first
-      if i.state.nil?
-        i.state = 4
-      end
-    end
-  
+    @log = @job.log_markings
+      
   end
     
   def index
