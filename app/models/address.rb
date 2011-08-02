@@ -1,4 +1,3 @@
 class Address < ActiveRecord::Base
-  belongs_to :subcontractors
-  belongs_to :suppliers
+  belongs_to :partners
 end

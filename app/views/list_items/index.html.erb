@@ -9,6 +9,10 @@
 					<%= image_tag get_image(i.state)%> 
 					<input id="<%= i.id%>cli" type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
 					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
+					<% unless i.document_file_name.nil? %>
+						<%= link_to "Open the document", i.document.url %>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
@@ -22,6 +26,10 @@
 					<%= image_tag get_image(i.state)%> 
 					<input id="<%= i.id%>cli" type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
 					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
+					<% unless i.document_file_name.nil? %>
+						<%= link_to "Open the document", i.document.url %>
+					<% end %>  
 				</div>
 			<% end %>
 		</div>
@@ -34,6 +42,10 @@
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
 					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
+					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
+					<% unless i.document_file_name.nil? %>
+						<%= link_to "Open the document", i.document.url %>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
@@ -46,7 +58,10 @@
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
 					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
-				</div>
+					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
+					<% unless i.document_file_name.nil? %>
+						<%= link_to "Open the document", i.document.url %>
+					<% end %>
 			<% end %>
 		</div>
 	<% end %>

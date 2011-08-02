@@ -2,7 +2,7 @@
 	<legend>Job details</legend>
 	
 	<div class="job_detail_list_item"><%= "Job number: #{@job.job_number}" %></div>
-	<div class="job_detail_list_item"><%= "Job name: #{@job.name}" %></div>
+	<div class="job_detail_list_item"><%= "Job name: #{@job.name}" %></div>	
 </fieldset>
 
 <fieldset id="vendor_details_box">
@@ -12,6 +12,18 @@
 		<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
 		<div class="job_detail_list_item"><%= "Phone: #{@contact_person.phone_number}" %></div>
 		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
+	</div>
+	
+	<div id="sub_header">Job specific vendor information:</div> <br />
+	
+	<div id="documents_section">
+		<div id="section_header">Documents:</div>
+		<% unless @subcontractor.documents.length == 0 %>
+			<% @subcontractor.documents.each do |i| %>
+				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+			<% end %>
+		<% end %>
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "sub", :id => @job.id} %></div>		
 	</div>
 	
 </fieldset>
@@ -27,57 +39,7 @@
 		<%= link_to "Assign a supplier", {:controller => "suppliers", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number}%>
 	</div>
 	
-	<% unless @subcontractor.checklist_items.first.nil? then%>
-  		<div class="headers">Checklist:</div>
-  		
-  		<% if @overdue_items.length != 0 %>
-			<div id="overdue">	
-				<% @overdue_items.each do |i| %>
-					<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
-		  		<% end %>	
-			</div>
-  		<% end %>
-  		
-  		<% if @open_items.length != 0 %>
-	  		<div id="open">
-	  			<% @open_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> <%= i.item_data %></div>
-		  		<% end %>
-	  		</div>
-  		<% end %>
-  		
-  		<% if @waiting_items.length != 0 %>
-	  		<div id="waiting">
-		  		<% @waiting_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> <%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-	  			<% end %>
-	  		</div>
-  		<% end %>
-  		
-  		<% if @completed_items.length != 0 %>
-	  		<div id="completed">
-		  		<% @completed_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"><%= image_tag get_image(i.state) %> <%= i.item_data %></div>
-	  			<% end %>
-  		</div>
-  		<% end %>
-  		
-	<% end %>
-  	
-  	<% unless @subcontractor.suppliers.first.nil? then%>			
-		<div class="headers">Suppliers:</div>
-		<div id="suppliers">
-			<% @subcontractor.suppliers.each do |i| %>
-				<div class="sup_names"><%= image_tag get_image(i.state) %> <%= link_to i.name, {:controller => "suppliers", :action => "show", :id => i.id, :job_number => @job_number, :sub_id => @subcontractor.id } %></div>
-			<% end %>
-			<div class="break"></div>
-		</div>		
-	<% end %>
-
-  	<% unless @subcontractor.subtiersubcontractors.first.nil? then%>
-  		<div class="headers">Subcontractors</div>
-  	<% end %>
-
+	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
 		
 </fieldset>
 

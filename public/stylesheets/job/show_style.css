@@ -29,6 +29,17 @@
 	clear: right;
 }
 
+.subs_headers {
+	float: left;
+	clear: left;
+	
+}
+
+.sups_headers {
+	float: left;
+	clear: left;
+}
+
 .headers {
 	
 }

@@ -1,6 +1,7 @@
 class CreateAddresses < ActiveRecord::Migration
   def self.up
     create_table :addresses do |t|
+      t.integer :partner_id
       t.integer :building_number
       t.string :street
       t.string :city

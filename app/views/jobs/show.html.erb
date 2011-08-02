@@ -3,6 +3,15 @@
 	
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+	<div id="documents_section">
+		<div id="section_header">Documents:</div>
+		<% unless @job.documents.length == 0 %>
+			<% @job.documents.each do |i| %>
+				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+			<% end %>
+		<% end %>
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+	</div>
 </fieldset>
 
 <fieldset id="job_sub_and_item_details">
@@ -16,13 +25,11 @@
 		<%= link_to "Assign a sub", {:controller => "subcontractors", :action => "new", :id => @job.job_number}%>
 	</div>
 	
-	<% if @job.subcontractors.length != 0 %>
-		<div class="headers">Subcontractors</div>
-		<% @job.subcontractors.each do |i| %>
-			<div class="list_items"> <%= image_tag get_image(i.state)%> <%= link_to i.name, {:controller => "subcontractors", :action => "show", :id => i.id, :job_number => @job.job_number} %></div>
+	<% unless @job.subcontractors.first.nil? %>
+		<% @job.subcontractors.each do |j| %>
+			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 1} %>
 		<% end %>
-	<% end %>	
-
+	<% end %>
 	
 </fieldset>
 
@@ -31,7 +38,7 @@
 	
 	<!--
 	<% @log.each do |i| %>
-		<div class="history_logging"><%= i %></div>
+		<div class="history_logging"><%= i.log_data %></div>
 	<% end %>
 	-->
 </fieldset>

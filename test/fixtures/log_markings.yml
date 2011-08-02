@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  log_data: MyString
+  loggable_id: 1
+  loggable_type: MyString
+
+two:
+  log_data: MyString
+  loggable_id: 1
+  loggable_type: MyString

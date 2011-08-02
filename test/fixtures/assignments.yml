@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  job_id: 1
+  parent_id: 1
+  partner_id: 1
+  type: 1
+
+two:
+  job_id: 1
+  parent_id: 1
+  partner_id: 1
+  type: 1

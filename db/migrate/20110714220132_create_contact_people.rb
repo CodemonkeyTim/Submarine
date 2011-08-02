@@ -1,9 +1,10 @@
 class CreateContactPeople < ActiveRecord::Migration
   def self.up
     create_table :contact_people do |t|
+      t.integer :partner_id
       t.string :name
       t.string :title
-      t.integer :phone_number
+      t.string :phone_number
       t.string :email
 
       t.timestamps
