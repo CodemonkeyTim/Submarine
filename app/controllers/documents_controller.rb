@@ -1,15 +1,26 @@
 class DocumentsController < ApplicationController
   def new
-    @cli = ChecklistItem.find(params[:cli_id])
-    
+    if params[:owner_type] == "job"
+      @owner = Job.find(params[:id])
+      @owner_type = "Job"
+    end
+    if params[:owner_type] == "sub"
+      
+    end
+    if params[:owner_type] == "sup"
+      
+    end
   end
   
-  def edits
+  def edit
   end
   
   def create
-    @cli = ChecklistItem.find(params[:cli_id])
-    @cli.document = params[:document]
-    @cli.save
+    @doc = Document.new
+    @doc.owner_type = params[:owner_type]
+    @doc.owner_id = params[:owner_id]    
+    @doc.document = params[:document]
+    @doc.name = params[:name]
+    @doc.save
   end
 end

@@ -1,7 +1,6 @@
 class Job < ActiveRecord::Base
   has_many :log_markings, :as => :loggable
-  
-  has_attached_file :document
+  has_many :documents, :as => :owner
   
   attr_accessor :state
   

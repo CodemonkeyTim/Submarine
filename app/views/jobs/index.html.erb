@@ -1,8 +1,7 @@
 <fieldset>
 	<legend>Open</legend>
 	
-	<% @jobs.each do |i| %>
-		<% set_states(i) %>
+	<% @open_jobs.each do |i| %>
 		<div class="job_headers"> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
 	<% end %>
 	
@@ -10,7 +9,11 @@
 
 <fieldset>
 	<legend>Closed</legend>
-
+	
+	<% @closed_jobs.each do |i| %>
+		<div class="job_headers"> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
+	<% end %>
+	
 </fieldset>
 
 <% #Method calls and global variable modifiers of the page %>

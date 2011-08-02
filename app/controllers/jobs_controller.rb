@@ -7,7 +7,19 @@ class JobsController < ApplicationController
   end
     
   def index
-    @jobs = Job.all            
+    @jobs = Job.all
+    
+    @open_jobs = []
+    @closed_jobs = []
+    
+    @jobs.each do |i|
+      if i.state == 4
+        @closed_jobs.push(i)
+      else
+        @open_jobs.push(i)
+      end
+      
+    end            
   end
     
   

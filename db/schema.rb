@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110802184310) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.string   "name"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

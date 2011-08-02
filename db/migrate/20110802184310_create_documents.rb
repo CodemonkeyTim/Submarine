@@ -5,6 +5,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :document_content_type
       t.integer :document_file_size
       t.datetime :document_updated_at
+      t.string :name
       t.integer :owner_id
       t.string :owner_type
 

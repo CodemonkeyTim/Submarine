@@ -1,9 +1,11 @@
 <fieldset id="add_document_form">
-	<legend>Attach a document to <%= @cli.item_data %></legend>
+	<legend>Attach a document to <%= @owner.name %></legend>
 	
 	<form action="/documents/" method="post" enctype="multipart/form-data">
+		<input type="text" name="name" value="Give document a name..."/>
 		<input type="file" name="document"/>
-		<input type="hidden" name="cli_id" value="<%= @cli.id %>"/>
+		<input type="hidden" name="owner_id" value="<%= @owner.id %>"/>
+		<input type="hidden" name="owner_type" value="<%= @owner_type %>"/>
 		<input type="submit" value="Upload" />
 	</form>	
 	
