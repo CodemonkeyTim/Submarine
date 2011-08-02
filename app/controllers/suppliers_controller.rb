@@ -7,7 +7,7 @@ class SuppliersController < ApplicationController
     #Following block reads from log file and stores loggings into an array.
     @log = []
     
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{@supplier.name}-in-#{@job.job_number}-for-#{@subcontractor.name}.log", 'r') do |i|
+    File.open("~/rails/Submarine/log/history_logs/#{@supplier.name}-in-#{@job.job_number}-for-#{@subcontractor.name}.log", 'r') do |i|
       while line = i.gets
         @log.push(line)
       end
@@ -35,7 +35,7 @@ class SuppliersController < ApplicationController
   def assign
     Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:id]).suppliers.push(Supplier.new(:name => params[:name]))
         
-    File.open("/home/codemonkey/rails/Submarine/log/history_logs/#{params[:name]}-in-#{params[:job_number]}-for-#{Subcontractor.find(params[:id]).name}.log", 'w') do |i|
+    File.open("~/rails/Submarine/log/history_logs/#{params[:name]}-in-#{params[:job_number]}-for-#{Subcontractor.find(params[:id]).name}.log", 'w') do |i|
       i.write("Supplier assigned to #{Subcontractor.find(params[:id]).name} at #{Time.now}")
     end
   end
