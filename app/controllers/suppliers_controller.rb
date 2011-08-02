@@ -1,22 +1,13 @@
 class SuppliersController < ApplicationController
   def show
-    @supplier = Supplier.find(params[:id])
-    @job = Job.find_by_job_number(params[:job_number])
-    @subcontractor  = @supplier.subcontractors.find(params[:sub_id])
+    @job_id = params[:job_id]
+    @parent_id = params[:parent_id]
     
-    #Following block reads from log file and stores loggings into an array.
-    @log = []
+    @supplier = Partner.find(params[:id])
+    @job = Job.find(params[:job_id])
+    @subcontractor = Partner.find(params[:subcontractor_id])
     
-    File.open("~/rails/Submarine/log/history_logs/#{@supplier.name}-in-#{@job.job_number}-for-#{@subcontractor.name}.log", 'r') do |i|
-      while line = i.gets
-        @log.push(line)
-      end
-    end
-    
-    @overdue_items = @supplier.checklist_items.find_all_by_state(1)
-    @open_items = @supplier.checklist_items.find_all_by_state(2)
-    @waiting_items = @supplier.checklist_items.find_all_by_state(3)
-    @completed_items = @supplier.checklist_items.find_all_by_state(4)
+    @log = @supplier.log_markings
     
     if @supplier.contact_person.nil?
       @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 

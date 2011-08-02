@@ -1,5 +1,7 @@
 <div class="subs">
-	<div class="subs_headers"><%= image_tag get_image(j.get_state(job_id, 0))%><%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %></div>
+	<% unless show_subname == 0 %>
+		<div class="subs_headers"><%= image_tag get_image(j.get_state(job_id, 0))%><%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %></div>
+	<% end %>
 
 	<% unless j.checklist_items(job_id, parent_id).first.nil? %>
 		<%= render :partial => "jobs/sub_checklist", :locals => {:j => j, :job_id => job_id, :parent_id => parent_id} %>
@@ -8,7 +10,7 @@
 	<% unless j.suppliers(job_id).first.nil? %>
 		<% j.suppliers(job_id).each do |k| %>
 			<div class="sups">
-				<div class="sups_headers"><%= image_tag get_image(k.get_state(job_id, j.id)) %><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id) %></div>
+				<div class="sups_headers"><%= image_tag get_image(k.get_state(job_id, j.id)) %><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id, :subcontractor_id => j.id) %></div>
 				<%= render :partial => "jobs/sup_checklist", :locals => {:k => k, :job_id => job_id, :parent_id => j.id} %>
 			</div>
 		<% end %>

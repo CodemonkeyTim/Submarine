@@ -27,6 +27,13 @@ class Partner < ActiveRecord::Base
   end
   
   def checklist_items(job_id, parent_id)
-    return Assignment.find_by_job_id_and_parent_id_and_partner_id(job_id, parent_id, self.id).checklist_items
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id(job_id, parent_id, self.id)
+    
+    if @asg.nil?
+      return []
+    else
+      return @asg.checklist_items
+    end
+    
   end
 end

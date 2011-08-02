@@ -14,6 +14,18 @@
 		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
 	</div>
 	
+	<div id="sub_header">Job specific vendor information:</div> <br />
+	
+	<div id="documents_section">
+		<div id="section_header">Documents:</div>
+		<% unless @subcontractor.documents.length == 0 %>
+			<% @subcontractor.documents.each do |i| %>
+				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+			<% end %>
+		<% end %>
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "sup", :id => @job.id} %></div>		
+	</div>
+	
 </fieldset>
 
 
@@ -23,71 +35,9 @@
   	<div class="controls" id="assign_item">
 		<%= link_to "Add item", {:controller => "list_items", :action => "new", :id => @supplier.id, :sub_id => @subcontractor.id, :job_number => @job.job_number, :type => "Supplier"}%>
 	</div>
-  		
-	<% unless @supplier.checklist_items.first.nil? then%>
-  		<div class="headers">Checklist:</div>
-  		
-  		<% if @overdue_items.length != 0 %>
-			<div id="overdue">	
-				<% @overdue_items.each do |i| %>
-					<div class="list_items" id="<%= i.id %>cli"> 
-						<%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
-						<%= i.item_data %>
-						<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class="add_document"%>
-						<% unless i.document_file_name.nil? %>
-							<%= link_to "Open the document", i.document.url %>
-						<% end %>
-					</div>
-		  		<% end %>	
-			</div>
-  		<% end %>
-  		
-  		<% if @open_items.length != 0 %>
-	  		<div id="open">
-	  			<% @open_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> 
-	  					<%= image_tag get_image(i.state) %> <input type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
-	  					<%= i.item_data %>
-	  					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class="add_document"%>
-	  					<% unless i.document_file_name.nil? %>
-							<%= link_to "Open the document", i.document.url %>
-						<% end %>
-	  				</div>
-		  		<% end %>
-	  		</div>
-  		<% end %>
-  		
-  		<% if @waiting_items.length != 0 %>
-	  		<div id="waiting">
-		  		<% @waiting_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> 
-	  					<%= image_tag get_image(i.state) %>
-	  					<%= i.item_data %>
-	  					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class="add_document"%>
-	  					<% unless i.document_file_name.nil? %>
-							<%= link_to "Open the document", i.document.url %>
-						<% end %>
-	  					</div>
-	  			<% end %>
-	  		</div>
-  		<% end %>
-  		
-  		<% if @completed_items.length != 0 %>
-	  		<div id="completed">
-		  		<% @completed_items.each do |i| %>
-	  				<div class="list_items" id="<%= i.id %>cli"> 
-	  					<%= image_tag get_image(i.state) %> 
-	  					<%= i.item_data %>
-	  					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class="add_document"%>
-	  					<% unless i.document_file_name.nil? %>
-							<%= link_to "Open the document", i.document.url %>
-						<% end %>
-	  				</div>
-	  			<% end %>
-  			</div>
-  		<% end %>
-  		
-	<% end %>
+  	
+  	<%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id} %>
+  	
 </fieldset>
 
 <fieldset id="subs_history">

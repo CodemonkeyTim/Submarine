@@ -23,7 +23,7 @@
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "sub", :id => @job.id} %></div>		
 	</div>
 	
 </fieldset>
@@ -39,7 +39,7 @@
 		<%= link_to "Assign a supplier", {:controller => "suppliers", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number}%>
 	</div>
 	
-	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => 0} %>
+	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
 		
 </fieldset>
 

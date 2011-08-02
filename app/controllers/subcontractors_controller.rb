@@ -12,11 +12,6 @@ class SubcontractorsController < ApplicationController
       @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
     end
     
-    @overdue_items = @subcontractor.checklist_items(@job_id, @parent_id).find_all_by_state(1)
-    @open_items = @subcontractor.checklist_items(@job_id, @parent_id).find_all_by_state(2)
-    @waiting_items = @subcontractor.checklist_items(@job_id, @parent_id).find_all_by_state(3)
-    @completed_items = @subcontractor.checklist_items(@job_id, @parent_id).find_all_by_state(4) 
-    
   end
 
   def index
