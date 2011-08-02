@@ -3,14 +3,10 @@
 	
 	<% @recent_jobs.each do |i| %>
 		<div class="jobs">
-		<% set_states(i) %> <!-- Calls a helper method to set state attribute for jobs, subs and sups-->
-		<div class="job_name_headers"><%= image_tag get_image(i.state) %><%= "#{i.job_number} - #{i.name}" %></div>
+		<div class="job_name_headers"><%= image_tag get_image(i.state) %><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
-				<div class="subs">
-					<div class="subs_headers"><%= image_tag get_image(j.state)%><%= i.subcontractors.first.name %></div>
-					<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0} %>
-				</div>
+				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0} %>
 			<% end %>
 		<% end %>
 		</div>

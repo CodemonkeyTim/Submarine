@@ -4,7 +4,12 @@ class Job < ActiveRecord::Base
   attr_accessor :state
   
   def state
-    @state
+    @stat = self.checklist_items.collect {|i| i.state}.flatten.sort!.first
+    if @stat.nil?
+      return 4
+    else
+      return @stat
+    end
   end
   
   def subcontractors

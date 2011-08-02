@@ -167,6 +167,9 @@ module ApplicationHelper
   
   def set_states(job)
     job.state = (job.checklist_items.collect {|i| i.state}).flatten.sort!.first
+    if job.state.nil?
+      job.state = 4
+    end
     
     job.subcontractors.each do |i|
       set_subs_state(i, job.id)
@@ -174,13 +177,25 @@ module ApplicationHelper
   end
   
   def set_subs_state(sub, job_id)    
+    sub.state =  sub.checklist_items(job_id, 0).collect {|i| i.state}.flatten.sort!.first
+    if sub.state.nil?
+      sub.state = 4
+    end
+        
+    sub.suppliers(job_id).each do |i|
+      i.checklist_items(job_id, sub.id).collect {|j| j.state}.flatten.sort!.first
+      if i.state.nil?
+        i.state = 4
+      end
+    end
+    
     unless sub.subcontractors(job_id).first.nil?
       sub.subcontractors(job_id).each do |i|
         set_subs_state(i, job_id)
         
         unless sub.suppliers(job_id).first.nil?
           sub.suppliers(job_id).each do |j|
-            j.state = (Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(job_id, sub.id, j.id, 2).checklist_items.collect {|k| k.state}.flatten).sort!.first
+            j.state = (Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(job_id, sub.id, j.id, 2).checklist_items.collect {|k| k.state}.flatten.sort!.first).first
             if j.state.nil?
               j.state = 4
             end            
@@ -189,8 +204,5 @@ module ApplicationHelper
         i.state = (i.suppliers(job_id).collect {|j| j.state }).flatten.sort!.first         
       end
     end
-  end
-  
-  
-  
+  end  
 end

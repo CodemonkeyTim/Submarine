@@ -8,8 +8,7 @@ class IndexController < ApplicationController
     @overdue_amounts = []
     
     @overdue_items.each do |i|
-      @overdue_amounts.push(((Time.now.utc - i.touched_at)/86400).to_i)      
+      @overdue_amounts.push(((Time.now.utc - i.touched_at)/86400).to_i)
     end
-    
   end
 end
