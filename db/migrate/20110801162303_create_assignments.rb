@@ -4,7 +4,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.integer :job_id
       t.integer :parent_id
       t.integer :partner_id
-      t.integer :type
+      t.integer :partner_type
 
       t.timestamps
     end

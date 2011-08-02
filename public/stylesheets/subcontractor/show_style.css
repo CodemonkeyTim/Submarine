@@ -67,3 +67,22 @@
 	margin-left: 15px;
 	float: left;
 }
+
+.subs_headers {
+	float: left;
+	clear: left;
+	
+}
+
+.sups_headers {
+	float: left;
+	clear: left;
+}
+
+
+.list_items {
+	
+	float: left;
+	clear: left;
+	
+}

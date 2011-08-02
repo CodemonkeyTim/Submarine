@@ -1,8 +1,6 @@
 class CreatePartners < ActiveRecord::Migration
   def self.up
     create_table :partners do |t|
-      t.integer :address_id
-      t.integer :contact_id
       t.string :name
 
       t.timestamps

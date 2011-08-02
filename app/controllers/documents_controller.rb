@@ -22,5 +22,18 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.name = params[:name]
     @doc.save
+    
+    if params[:owner_type] == "Job"
+      @owner = Job.find(params[:owner_id])
+    end
+    if params[:owner_type] == "sub"
+      
+    end
+    if params[:owner_type] == "sup"
+      
+    end
+    
+    @owner.log_markings.push(LogMarking.new(:log_data => "Document #{params[:name]} added at #{get_time}"))
+    
   end
 end

@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110802184310) do
 
   create_table "addresses", :force => true do |t|
+    t.integer  "partner_id"
     t.integer  "building_number"
     t.string   "street"
     t.string   "city"
@@ -41,9 +42,10 @@ ActiveRecord::Schema.define(:version => 20110802184310) do
   end
 
   create_table "contact_people", :force => true do |t|
+    t.integer  "partner_id"
     t.string   "name"
     t.string   "title"
-    t.string   "phone_number", :limit => 15
+    t.string   "phone_number"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,16 +88,7 @@ ActiveRecord::Schema.define(:version => 20110802184310) do
     t.datetime "updated_at"
   end
 
-  create_table "logs", :force => true do |t|
-    t.integer  "assignment_id"
-    t.string   "log_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "partners", :force => true do |t|
-    t.integer  "address_id"
-    t.integer  "contact_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

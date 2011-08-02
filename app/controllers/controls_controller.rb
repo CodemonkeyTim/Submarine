@@ -17,7 +17,7 @@ class ControlsController < ApplicationController
       i.save
     end
     
-    @job.log_markings.push(LogMarking.new(:log_data => "Payment received - all items opened at #{Time.now}"))
+    @job.log_markings.push(LogMarking.new(:log_data => "Payment received - All items opened at #{get_time}"))
     
   end
   
@@ -74,7 +74,7 @@ class ControlsController < ApplicationController
     @id = params[:id]
     @cli = ChecklistItem.find(@id)
     @cli.state = 3
-    @cli.touched_at = Time.now.utc + 9000000000
+    @cli.touched_at = Time.now.utc + 16000000000
     @cli.save  
     
     
