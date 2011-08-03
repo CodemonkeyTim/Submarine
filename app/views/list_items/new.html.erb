@@ -1,12 +1,12 @@
 <fieldset id="new_item">
-	<legend>Add new item to <%= @vendor.name %></legend>
+	<legend>Add new item to <%= @name %></legend>
 	
 	<form action="/list_items" method="post">		
 		<div class="input_rows"><div class="labels">Item</div><div class="inputs"><input type="text" name="item_data"></div></div>
-		<input type="hidden" name="job_number" value="<%= @job.job_number %>" />
-		<input type="hidden" name="sub_id" value="<%= @vendor.id %>" />
-		<input type="hidden" name="type" value="<%= @type %>" />
-		<input type="hidden" name="sups_subs_id" value="<%= @sups_subs_id %>" />
+		<input type="hidden" name="job_id" value="<%= @job_id %>" />
+		<input type="hidden" name="partner_id" value="<%= @partner_id %>" />
+		<input type="hidden" name="partner_type" value="<%= @partner_type %>" />
+		<input type="hidden" name="parent_id" value="<%= @parent_id %>" />
 		<div class="input_rows"><input type="submit" value="Assign" /></div>
 	</form>
 	

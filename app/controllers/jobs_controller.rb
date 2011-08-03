@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   def show    
     @job = Job.find(params[:id])
     
-    @log = @job.log_markings
+    @log = @job.logs
       
   end
     
@@ -18,8 +18,8 @@ class JobsController < ApplicationController
       else
         @open_jobs.push(i)
       end
-      
-    end            
+    end  
+              
   end
     
   
@@ -37,14 +37,10 @@ class JobsController < ApplicationController
     @job.job_number = params[:job_number]
     @job.location = params[:location]
     @job.value = params[:value]
+    
+    @job.logs.create(:log_data => "Job created at #{Time.now}")
+    
     @job.save
-    
-    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Job created at #{Time.now}", :log_level => 1))
-    
-    File.open("~/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
-      i.write("Job created at #{Time.now}")
-    end
-    
   end
   
   def touch_all

@@ -1,6 +1,6 @@
-class CreateLogMarkings < ActiveRecord::Migration
+class CreateLogs < ActiveRecord::Migration
   def self.up
-    create_table :log_markings do |t|
+    create_table :logs do |t|
       t.string :log_data
       t.integer :loggable_id
       t.string :loggable_type
@@ -10,6 +10,6 @@ class CreateLogMarkings < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :log_markings
+    drop_table :logs
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802184310) do
+ActiveRecord::Schema.define(:version => 20110803164215) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20110802184310) do
     t.datetime "updated_at"
   end
 
-  create_table "log_markings", :force => true do |t|
+  create_table "logs", :force => true do |t|
     t.string   "log_data"
     t.integer  "loggable_id"
     t.string   "loggable_type"

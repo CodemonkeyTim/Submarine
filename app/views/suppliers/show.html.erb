@@ -18,8 +18,8 @@
 	
 	<div id="documents_section">
 		<div id="section_header">Documents:</div>
-		<% unless @supplier.documents.length == 0 %>
-			<% @supplier.documents.each do |i| %>
+		<% unless @asg.nil? || @asg.documents.length == 0 %>
+			<% @asg.documents.each do |i| %>
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
@@ -32,7 +32,7 @@
 	<legend> <%= @supplier.name %> - supplier to <%= @subcontractor.name %> </legend>
   	
   	<div class="controls" id="assign_item">
-		<%= link_to "Add item", {:controller => "list_items", :action => "new", :id => @supplier.id, :sub_id => @subcontractor.id, :job_number => @job.job_number, :type => "Supplier"}%>
+		<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @supplier.id, :parent_id => @subcontractor.id, :job_id => @job.id, :partner_type => 2, :name => @supplier.name}%>
 	</div>
   	
   	<%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id} %>
@@ -41,8 +41,9 @@
 
 <fieldset id="subs_history">
 	<legend>Subs History - <%= link_to "See full history", "somewhere"%></legend>
-		<% @log.each do |i| %>
-			<div class="history_logging"><%= i.log_data %></div>
+		<% unless @log.nil? then @log.each do |i| %>
+				<div class="history_logging"><%= i.log_data %></div>
+			<% end %>
 		<% end %>
 			
 </fieldset>

@@ -1,35 +1,16 @@
 class ListItemsController < ApplicationController
-  def new          
-    @job = Job.find_by_job_number(params[:job_number])
-    
-    @type = params[:type]
-    
-    if @type == "Subcontractor"
-      @vendor = Subcontractor.find(params[:id])
-      @sups_subs_id = 0
-    end
-    if @type == "Supplier"
-      @vendor = Supplier.find(params[:id])
-      @sups_subs_id = params[:sub_id]
-    end
-    
+  def new
+    @name = params[:name]          
+    @job_id = params[:job_id]
+    @partner_id = params[:partner_id]
+    @parent_id = params[:parent_id]
+    @partner_type = params[:partner_type]
   end
 
   def create
-    if params[:type] == "Subcontractor"
-      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3, :touched_at => (Time.now.utc+9000000000), :job_number => params[:job_number]).save
-            
-      File.open("~/rails/Submarine/log/history_logs/#{Subcontractor.find(params[:sub_id]).name}-in-#{params[:job_number]}.log", 'a') do |i|
-        i.write("\n#{params[:item_data]} added at #{Time.now}")
-      end
-    end
-    if params[:type] == "Supplier"
-      Job.find_by_job_number(params[:job_number]).subcontractors.find(params[:sups_subs_id]).suppliers.find(params[:sub_id]).checklist_items.new(:item_data => params[:item_data], :state => 3, :touched_at => (Time.now.utc+9000000000), :job_number => params[:job_number]).save
-            
-      File.open("~/rails/Submarine/log/history_logs/#{Supplier.find(params[:sub_id]).name}-in-#{params[:job_number]}-for-#{Subcontractor.find(params[:sups_subs_id])}.log", 'a') do |i|
-        i.write("\n#{params[:item_data]} added at #{Time.now}")
-      end
-    end    
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(params[:job_id], params[:parent_id], params[:partner_id], params[:partner_type])
+    @asg.checklist_items.create(:item_data => params[:item_data], :state => 3, :touched_at => Time.now+16000000000)    
+    @asg.logs.create(:log_data => "Item #{params[:item_data]} added at #{get_time}")
   end
 
   def show
