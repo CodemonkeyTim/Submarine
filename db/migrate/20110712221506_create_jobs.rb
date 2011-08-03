@@ -2,7 +2,7 @@ class CreateJobs < ActiveRecord::Migration
   def self.up
     create_table :jobs do |t|
       t.string :name
-      t.integer :job_number
+      t.string :job_number
       t.integer :PM_id
       t.string :location
       t.integer :value
