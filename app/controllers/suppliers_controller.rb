@@ -1,17 +1,18 @@
 class SuppliersController < ApplicationController
   def show
     @job_id = params[:job_id]
-    @parent_id = params[:parent_id]
+    @parent_id = params[:subcontractor_id]
     
     @supplier = Partner.find(params[:id])
     @job = Job.find(params[:job_id])
     @subcontractor = Partner.find(params[:subcontractor_id])
     
     @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @supplier.id, 2)
+    
     unless @asg.nil?
       @log = @asg.logs
     else
-      @log =  nil
+      @log = nil
     end
     
     if @supplier.contact_person.nil?

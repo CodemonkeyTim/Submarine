@@ -6,7 +6,7 @@ class SubcontractorsController < ApplicationController
     @job = Job.find(@job_id)
     @subcontractor = Partner.find(params[:id])
     
-    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @supplier.id, 2)
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @subcontractor.id, 1)
     unless @asg.nil?
       @log = @asg.logs
     else

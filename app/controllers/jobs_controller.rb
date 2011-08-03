@@ -2,7 +2,22 @@ class JobsController < ApplicationController
   def show    
     @job = Job.find(params[:id])
     
-    @log = @job.logs
+    @assignments = Assignment.find_all_by_job_id(params[:id])
+    @asg_loggings = @assignments.collect {|i| i.logs}.flatten
+        
+    @loggings = @job.logs + @asg_loggings 
+    @loggings.sort_by! {|i| i.created_at }
+    @loggings.reverse!
+    
+    @loggings.each do |i|
+      if i.loggable_type == "Assignment"
+        @id = Assignment.find(i.loggable_id).partner_id
+        @partner = Partner.find(@id)
+        i.log_data = "#{@partner.name}: #{i.log_data}"
+      end
+    end
+    
+    @log = @loggings[(0..3)]
       
   end
     

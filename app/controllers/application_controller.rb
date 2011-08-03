@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
       @amorpm = "pm"
     end
     
-    @time  = "#{@abbs[Time.now.mon]} #{Time.now.day}, #{Time.now.year} #{@hour}:#{Time.now.min} #{@amorpm}"
+    @minute = Time.now.min
+    
+    if @minute < 10
+      @minute = "0#{@minute}"
+    end
+    
+    @time  = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year} #{@hour}:#{@minute} #{@amorpm}"
   end
 end

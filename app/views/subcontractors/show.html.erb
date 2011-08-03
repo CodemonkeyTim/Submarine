@@ -18,12 +18,12 @@
 	
 	<div id="documents_section">
 		<div id="section_header">Documents:</div>
-		<% unless @subcontractor.documents.length == 0 %>
-			<% @subcontractor.documents.each do |i| %>
+		<% unless @asg.nil? || @asg.documents.length == 0 %>
+			<% @asg.documents.each do |i| %>
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "sub", :id => @job.id} %></div>		
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :partner_type => 1, :job_id => @job.id} %></div>		
 	</div>
 	
 </fieldset>
@@ -45,8 +45,9 @@
 
 <fieldset id="subs_history">
 	<legend>Subs History - <%= link_to "See full history", "somewhere"%></legend>
-		<% @log.each do |i| %>
-			<div class="history_logging"><%= i.log_data %></div>
+		<% unless @log.nil? then @log.each do |i| %>
+				<div class="history_logging"><%= i.log_data %></div>
+			<% end %>
 		<% end %>
 	
 </fieldset>
