@@ -13,12 +13,11 @@ class VendorsController < ApplicationController
   end
   
   def new
-    @partner = Partner.create(:name => params[:partner_name])    
+    
   end
   
   def create
-    
-    
+     @partner = Partner.create(:name => params[:partner_name])   
   end
 
 
