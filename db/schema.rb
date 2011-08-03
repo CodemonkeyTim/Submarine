@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20110802184310) do
 
   create_table "jobs", :force => true do |t|
     t.string   "name"
-    t.integer  "job_number"
+    t.string   "job_number"
     t.integer  "PM_id"
     t.string   "location"
     t.integer  "value"

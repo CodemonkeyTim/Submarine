@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   def get_time
     @abbs = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         
-    @time  = "#{@abbs[Time.now.mon]} #{Time.now.day}, #{Time.now.year} #{Time.now.hour}:#{Time.now.min}"
+    @hour = Time.now.hour
+    @amorpm = "am"
+    
+    if @hour > 12
+      @hour =  @hour-12
+      @amorpm = "pm"
+    end
+    
+    @time  = "#{@abbs[Time.now.mon]} #{Time.now.day}, #{Time.now.year} #{@hour}:#{Time.now.min} #{@amorpm}"
   end
 end
