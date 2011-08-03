@@ -11,5 +11,17 @@ class VendorsController < ApplicationController
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
   end
+  
+  def new
+    
+    
+  end
+  
+  def create
+    
+    
+  end
+
+
 
 end

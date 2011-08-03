@@ -1,3 +1,12 @@
-<h2> Job created with following values: </h2>
+<h2> Job created! Redirecting to its page... </h2>
+
+<script type="text/javascript">
+	
+	window.onload = setTimeout('redirect()', 2000);
+	
+	function redirect () {
+	  window.location = "/jobs/<%= @job.id %>"
+	}
+</script>
 
 <%= @data %>

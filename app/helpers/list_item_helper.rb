@@ -1,19 +1,12 @@
 module ListItemHelper
   
-  def get_vendorname(vendor_id, vendor_type)    
-    if vendor_type == "Subcontractor"
-      @answer = Subcontractor.find(vendor_id).name
-    end
-    
-    if vendor_type == "Supplier"
-      @answer = Supplier.find(vendor_id).name      
-    end    
-    
-    return @answer
+  def get_vendor_name(cli)  
+    return Partner.find(Assignment.find(cli.assignment_id).partner_id).name
   end
   
-  def get_job_details job_number
-    "#{Job.find_by_job_number(job_number).job_number} / #{Job.find_by_job_number(job_number).name}"
+  def get_job_details(cli)
+    @job = Job.find(Assignment.find(cli.assignment_id).job_id)
+    "#{@job.job_number} / #{@job.name}"
   end
   
 end

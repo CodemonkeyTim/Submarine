@@ -39,23 +39,13 @@ class JobsController < ApplicationController
     
   
   def new
-    @job = Job.new
-    @subcontractors = Subcontractor.all
-    @suppliers = Supplier.all
-    @checklist_items = ChecklistItem.all
 
   end
   
   def create
-    @job = Job.new
-    @job.name = params[:name]
-    @job.job_number = params[:job_number]
-    @job.location = params[:location]
-    @job.value = params[:value]
+    @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
-    @job.logs.create(:log_data => "Job created at #{Time.now}")
-    
-    @job.save
+    @job.logs.create(:log_data => "Job created at #{get_time}")
   end
   
   def touch_all

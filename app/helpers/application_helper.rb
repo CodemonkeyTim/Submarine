@@ -71,7 +71,9 @@ module ApplicationHelper
     if $active_page == "list_item.new"
       @sheets.push("./list_item/new_style.css")
     end
-    
+    if $active_page == "vendor.new"
+      @sheets.push("./vendor/new_style.css")
+    end
     
     
     return @sheets

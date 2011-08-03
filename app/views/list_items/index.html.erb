@@ -8,11 +8,7 @@
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
 					<input id="<%= i.id%>cli" type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
-					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
-					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
-					<% unless i.document_file_name.nil? %>
-						<%= link_to "Open the document", i.document.url %>
-					<% end %>
+					<%= "#{i.item_data} - #{get_vendor_name(i)} - #{get_job_details(i)}" %>
 				</div>
 			<% end %>
 		</div>
@@ -25,11 +21,7 @@
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
 					<input id="<%= i.id%>cli" type="checkbox" onclick="$.ajax('/mark_done/<%= i.id %>')"/> 
-					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
-					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
-					<% unless i.document_file_name.nil? %>
-						<%= link_to "Open the document", i.document.url %>
-					<% end %>  
+					<%= "#{i.item_data} - #{get_vendor_name(i)} - #{get_job_details(i)}" %>
 				</div>
 			<% end %>
 		</div>
@@ -41,11 +33,7 @@
 			<% @waiting_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
-					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
-					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
-					<% unless i.document_file_name.nil? %>
-						<%= link_to "Open the document", i.document.url %>
-					<% end %>
+					<%= "#{i.item_data} - #{get_vendor_name(i)} - #{get_job_details(i)}" %>
 				</div>
 			<% end %>
 		</div>
@@ -56,12 +44,7 @@
 			<div class="headers">Completed</div>
 			<% @completed_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
-					<%= image_tag get_image(i.state)%> 
-					<%= link_to "#{i.item_data} - #{get_vendorname(i.listable_id, i.listable_type)} - #{get_job_details(i.job_number)}", "lol" %>
-					<%= link_to "Add a document", {:controller => "documents",:action => "new", :cli_id => i.id}, :class =>"add_document"%>
-					<% unless i.document_file_name.nil? %>
-						<%= link_to "Open the document", i.document.url %>
-					<% end %>
+					<%= "#{i.item_data} - #{get_vendor_name(i)} - #{get_job_details(i)}" %>
 			<% end %>
 		</div>
 	<% end %>

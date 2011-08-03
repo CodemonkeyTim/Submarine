@@ -27,10 +27,7 @@ class ListItemsController < ApplicationController
     @jobs = Job.all
     
     @jobs.each do |i|
-      @items = (i.subcontractors.collect {|j| j.checklist_items} + i.subcontractors.collect {|j| j.suppliers.collect {|k| k.checklist_items}}).flatten
-      @items.each do |j|
-        j.job_number = i.job_number
-      end
+      @items = i.checklist_items
       
       @items.each do |j|
         if j.state == 1
