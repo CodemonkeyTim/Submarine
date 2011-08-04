@@ -5,12 +5,18 @@ body {
   height: auto;
   padding-bottom: 20px;
 }
+/*Header styling*/
+
+#header	{
+	border: 1px solid;	
+}
 
 /*Header buttons*/
 
 #headerbuttons {
 	float: right;
 	height: 30px;
+	margin-top: 30px;
 }
 
 #headerbuttons ul {
