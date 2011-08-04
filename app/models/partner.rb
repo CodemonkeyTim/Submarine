@@ -5,10 +5,24 @@ class Partner < ActiveRecord::Base
   attr_accessor :state
   
   def get_state(job_id, parent_id)
-    @stat = self.checklist_items(job_id, parent_id).collect {|i| i.state}.flatten.sort!.first
+    @stat = self.checklist_items(job_id, parent_id).collect {|i| i.state}.flatten
+    unless self.suppliers(job_id).first.nil?
+      self.suppliers(job_id).each do |i|
+        @i_stat = i.get_state(job_id, self.id)
+        @stat.push(@i_stat)
+      end
+    end
+    unless self.subcontractors(job_id).first.nil?
+      self.subcontractors(job_id).each do |i|
+        @i_stat = i.get_state(job_id, self.id)
+        @stat.push(@i_stat)
+      end
+    end
+    
     if @stat.nil?
       return 4
     else
+      @stat = @stat.flatten.sort!.first
       return @stat
     end
   end

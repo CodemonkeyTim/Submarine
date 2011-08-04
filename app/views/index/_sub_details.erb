@@ -1,6 +1,6 @@
 <div class="subs">
 	<% unless show_subname == 0 %>
-		<div class="subs_headers"><%= image_tag get_image(j.get_state(job_id, 0))%><%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %></div>
+		<div class="subs_headers"><%= image_tag get_image(j.get_state(job_id, parent_id))%><%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %></div>
 	<% end %>
 
 	<% unless j.checklist_items(job_id, parent_id).first.nil? %>
@@ -17,10 +17,9 @@
 	<% end %>
 
 	<% unless j.subcontractors(job_id).first.nil? %>		
-		<% j.subcontractors(job_id, j.id).each do |k| %>
+		<% j.subcontractors(job_id).each do |k| %>
 			<div class="subs">
-				<div class="subs_headers"><%= image_tag get_image(k.get_state(job_id, j.id)) %><%= k.name%></div>
-				<%= render :partial => "sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id} %>
+				<%= render :partial => "index/sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id, :show_subname => 1} %>
 			</div>
 		<% end %>
 	<% end %>

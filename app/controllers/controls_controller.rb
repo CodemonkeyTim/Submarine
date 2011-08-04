@@ -5,7 +5,6 @@ class ControlsController < ApplicationController
     @item.state = 2
 
     @item.save
-    
   end
   
   def touch_all
@@ -81,7 +80,6 @@ class ControlsController < ApplicationController
     @asg.logs.create(:log_data => "Item #{@cli.item_data} marked done at #{get_time}")
     
     @cli.save
-      
   end
   
     

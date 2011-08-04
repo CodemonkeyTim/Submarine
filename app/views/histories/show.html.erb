@@ -1,0 +1,9 @@
+<fieldset id="full_history">
+	<legend><%= "Full history for #{@title_text}"%></legend>
+	
+	<% unless @logs.nil? || @logs.length == 1%>
+		<% @logs.each do |i| %>
+			<div class="log_mark"><%= i.log_data%></div>
+		<% end %>
+	<% end %>
+</fieldset>

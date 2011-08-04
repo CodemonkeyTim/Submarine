@@ -47,4 +47,5 @@ class SuppliersController < ApplicationController
   def create
     
   end
+  
 end

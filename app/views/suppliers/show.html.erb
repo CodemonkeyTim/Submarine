@@ -40,7 +40,7 @@
 </fieldset>
 
 <fieldset id="subs_history">
-	<legend>Suppliers History - <%= link_to "See full history", "somewhere"%></legend>
+	<legend>Suppliers History - <%= link_to "See full history", {:controller => "histories", :action => "show", :job_id => @job.id, :parent_id => @parent_id, :partner_id => @supplier.id, :partner_type => 2}%></legend>
 		<% unless @log.nil? then @log.each do |i| %>
 				<div class="history_logging"><%= i.log_data %></div>
 			<% end %>

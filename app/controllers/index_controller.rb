@@ -8,9 +8,10 @@ class IndexController < ApplicationController
     @ids = @logs.collect {|i| i.loggable_id}.flatten.uniq
     @ids = @ids[(0..2)]
     
-    @recent_jobs = Job.find_all_by_id[@ids]
+    @recent_jobs = Job.find_all_by_id(@ids)
     
     @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at")
+    @overdue_items = @overdue_items[(0..3)]
     
     @overdue_amounts = []
     

@@ -142,6 +142,8 @@ body {
 .controls {
 	float: right;
 	
+	clear: left;
+	
 	padding: 5px;
 	
 	width: 160px;
