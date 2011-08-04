@@ -93,9 +93,10 @@ body {
 /*a styles*/
 
 a {
-  color: #fff;
+  color: #001a9c;
+  font-weight: bold;
   text-decoration: none;
-}
+ }
 
 a:hover {
   text-decoration: underline;
