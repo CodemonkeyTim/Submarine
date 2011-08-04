@@ -6,6 +6,38 @@ body {
   padding-bottom: 20px;
 }
 
+/*Header buttons*/
+
+#headerbuttons {
+	float: right;
+	height: 30px;
+}
+
+#headerbuttons ul {
+	list-style: none;
+}
+
+#headerbuttons img {
+	border: 0px;
+}
+
+#headerbuttons li a.button {
+	background: #EEEEEE url(/images/n1.gif);
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 4px 10px 4px;
+	color:	#666666;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+	float: right;
+}
+
+#headerbuttons li a:hover {
+	color: #000000;
+	
+/*a div*/
+
 a {
   color: #fff;
   text-decoration: none;
