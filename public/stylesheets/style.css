@@ -101,7 +101,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* header styles */
+/* heading styles */
 
 h1 {
   font-family: Georgia, serif;
@@ -121,6 +121,12 @@ p {
   padding: 10px 0;
   text-align: center;
 }
+
+/*Page specific styling*/
+#jobs {
+	border: 1px solid;
+}
+
 
 .container_12,
 .container_16,
