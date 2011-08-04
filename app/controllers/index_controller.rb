@@ -1,7 +1,14 @@
 class IndexController < ApplicationController
   
   def index
-    @recent_jobs = Job.all
+    @jobs = Job.all
+    
+    @logs = @jobs.collect {|i| i.logs}.flatten
+    @logs.sort_by! {|i| i.created_at}
+    @ids = @logs.collect {|i| i.loggable_id}.flatten.uniq
+    @ids = @ids[(0..2)]
+    
+    @recent_jobs = Job.find_all_by_id[@ids]
     
     @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at")
     
