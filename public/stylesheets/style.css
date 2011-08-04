@@ -8,7 +8,14 @@ body {
 /*Header styling*/
 
 #header	{
-	border: 1px solid;	
+	padding: 15px;
+	color: black;
+	width: 1200px;
+	height: 100px;
+	background: #d1d1d1;
+	-moz-border-radius: 8px 8px 0px 0px;
+	-webkit-border-radius: 8px 8px 0px 0px;
+	border-radius: 8px 8px 0px 0px;
 }
 
 /*Header buttons*/
@@ -41,6 +48,47 @@ body {
 
 #headerbuttons li a:hover {
 	color: #000000;
+
+/* Navigation */
+
+#nav {
+	background: #d1d1d1;
+	height: 23px;
+	width: 1200px;
+	padding: 15px;
+	padding-bottom: 17px;
+	color: #000000;
+	border-bottom: 5px solid #0a7e07;
+}
+
+#nav ul {
+	list-style: none;
+	padding: 4px;
+}
+
+#nav li {
+	display: block;
+	float: left;
+}
+
+#nav li a {
+	background: #EEEEEE;
+	border: 1px solid #999999;
+	border-bottom: none;
+	color: #666666;
+	font-size: 14px;
+	padding: 4px 15px 4px;
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+#nav li a:hover {
+	color: black;
+}
+
+#nav li a#active {
+	background: #EEEEEE url(/images/n3.png);
+}
 	
 /*a div*/
 
