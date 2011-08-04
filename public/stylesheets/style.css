@@ -8,7 +8,6 @@ body {
 /*Header styling*/
 
 #header	{
-	padding: 15px;
 	color: black;
 	height: 100px;
 	background: #d1d1d1;
@@ -55,8 +54,6 @@ body {
 #nav {
 	background: #d1d1d1;
 	height: 25px;
-	padding-right: 15px;
-	padding-left: 15px;
 	color: #000000;
 	border-bottom: 5px solid #0a7e07;
 }
