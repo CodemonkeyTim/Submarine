@@ -6,24 +6,8 @@ class SubcontractorsController < ApplicationController
     @job = Job.find(@job_id)
     @subcontractor = Partner.find(params[:id])
     
-<<<<<<< HEAD
-    @subcontractor = Subcontractor.find(@sub_id)
-    
-    #Following block reads from log file and stores loggings into an array.
-    @log = []
-    
-   # Comment block just to get it working 
-   # File.open("~/rails/Submarine/log/history_logs/#{@subcontractor.name}-in-#{@job.job_number}.log", 'r') do |i|
-   #   while line = i.gets
-   #     @log.push(line)
-   #   end
-   # end
-    
-    @all_subcontractors = Subcontractor.all
-    @all_suppliers = Supplier.all
-=======
+
     @log = @subcontractor.log_markings
->>>>>>> 3e0c4c1e3fc0256d090320a138580f26b1ecbcc6
     
     if @subcontractor.contact_person.nil?
       @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
