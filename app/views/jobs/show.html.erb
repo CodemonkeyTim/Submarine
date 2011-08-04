@@ -10,7 +10,7 @@
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :owner_id => @job.id} %></div>		
 	</div>
 </fieldset>
 

@@ -9,6 +9,8 @@ class SubcontractorsController < ApplicationController
     @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @subcontractor.id, 1)
     unless @asg.nil?
       @log = @asg.logs
+      @log.reverse!
+      @log = @log[(0..3)]
     else
       @log =  nil
     end
