@@ -59,6 +59,10 @@
 	float: left;
 	
 	
+	padding-left: 10px;
+	
+	border-left: solid 1px black;
+	
 }
 
 .jobs {

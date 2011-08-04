@@ -1,28 +1,25 @@
 class VendorsController < ApplicationController
   def index
-    @suppliers = Supplier.all
-    @subcontractors = Subcontractor.all
+    @vendors  = Partner.all
     
   end
 
   def show
-    @vendor
+    @vendor = Partner.find(params[:id])
+    @assignments = Assignment.find_all_by_partner_id(params[:id])
     
-    if params[:type] == "1"
-      @vendor = Subcontractor.find(params[:id])
-      @jobs = @vendor.jobs.all
-    end
-    if params[:type] == "2"
-      @vendor = Supplier.find(params[:id])
-      @jobs = @vendor.subcontractors.collect {|i| i.jobs}.flatten
-    end
-    
-    @overdue_items = @vendor.checklist_items.find_all_by_state(1)
-    @open_items = @vendor.checklist_items.find_all_by_state(2)
-    @waiting_items = @vendor.checklist_items.find_all_by_state(3)
-    @completed_items = @vendor.checklist_items.find_all_by_state(4)
-    
+    @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
   end
+  
+  def new
+    
+  end
+  
+  def create
+     @partner = Partner.create(:name => params[:partner_name])   
+  end
+
+
 
 end

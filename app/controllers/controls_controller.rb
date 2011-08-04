@@ -5,6 +5,7 @@ class ControlsController < ApplicationController
     @item.state = 2
 
     @item.save
+    
   end
   
   def touch_all
@@ -17,7 +18,7 @@ class ControlsController < ApplicationController
       i.save
     end
     
-    @job.log_markings.push(LogMarking.new(:log_data => "Payment received - All items opened at #{get_time}"))
+    @job.logs.create(:log_data => "Payment received - All items opened at #{get_time}")
     
   end
   
@@ -75,9 +76,11 @@ class ControlsController < ApplicationController
     @cli = ChecklistItem.find(@id)
     @cli.state = 3
     @cli.touched_at = Time.now.utc + 16000000000
-    @cli.save  
     
+    @asg = Assignment.find(@cli.assignment_id)
+    @asg.logs.create(:log_data => "Item #{@cli.item_data} marked done at #{get_time}")
     
+    @cli.save
       
   end
   

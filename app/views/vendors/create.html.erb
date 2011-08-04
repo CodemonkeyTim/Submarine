@@ -1,11 +1,12 @@
-<h1> Item added succesfully! </h1>
+<h2> Vendor created! Redirecting to its page... </h2>
 
 <script type="text/javascript">
 	
 	window.onload = setTimeout('redirect()', 2000);
 	
 	function redirect () {
-	  window.location = "/jobs/<%= @job.id %>"
+	  window.location = "/vendors/<%= @partner.id %>"
 	}
 </script>
 
+<%= @data %>

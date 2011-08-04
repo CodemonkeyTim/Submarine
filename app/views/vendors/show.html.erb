@@ -2,7 +2,6 @@
 	<legend>Vendor details</legend>
 	
 	
-	
 </fieldset>
 
 <fieldset id="vendor_jobs_details">
@@ -13,12 +12,15 @@
 			<div class="jobs">
 				<div class="job_sidebar">
 					<%= i.job_number%> <br />
-					<%= i.name%>
+					<%= i.name %>
 				</div>
 				
-				<div class="job_item_list">
-					<%= render :partial => "list_items"%>			
-				</div>
+				<% get_roles(i, @vendor.id).each_with_index do |j, x| %>
+					<div class="sub_headers"><%= j %></div>
+					<div class="job_item_list">
+						<%= render :partial => "jobs/sup_checklist", :locals => {:k => @vendor, :job_id => i.id, :parent_id => $parent_ids[x]} %>
+					</div>
+				<% end %>
 				<div class="break"></div>
 			</div>
 		<% end %>

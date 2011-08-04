@@ -1,0 +1,22 @@
+<fieldset id="basic_info">
+	<legend>Vendor information</legend>
+	
+	<form action="/vendors" method="post">
+		<div class="input_rows"> <div class="labels"> Vendor Name </div> <div class="inputs"> <%= text_field_tag("partner_name") %> </div></div><div class="required_marker">*</div>
+		<!--><div class="sub_header">Contact Person details</div>
+		<div class="input_rows"> <div class="labels"> Name </div> <div class="inputs"> <%= text_field_tag("cp_name") %> </div></div><div class="required_marker">*</div>
+		<div class="input_rows"> <div class="labels"> Title </div> <div class="inputs"> <%= text_field_tag("cp_title") %> </div></div>
+		<div class="input_rows"> <div class="labels"> Phone number </div> <div class="inputs"> <%= text_field_tag("cp_phone_number") %> </div></div>
+		<div class="input_rows"> <div class="labels"> E-mail </div> <div class="inputs"> <%= text_field_tag("cp_email") %> </div></div>
+		<div class="sub_header">Address details details</div>-->
+		
+		
+		
+		<div class="input_rows"><input type="submit" value="Create"/></div>
+	</form>
+
+</fieldset>
+
+<% #Method calls and global variable modifiers of the page %>
+
+<% $active_page = "vendor.new"%>

@@ -1,15 +1,15 @@
 class Job < ActiveRecord::Base
-  has_many :log_markings, :as => :loggable
+  has_many :logs, :as => :loggable
   has_many :documents, :as => :owner
   
   attr_accessor :state
   
   def state
-    @stat = self.checklist_items.collect {|i| i.state}.flatten.sort!.first
-    if @stat.nil?
+    @state = self.checklist_items.collect {|i| i.state}.flatten.sort!.first
+    if @state.nil?
       return 4
     else
-      return @stat
+      return @state
     end
   end
   

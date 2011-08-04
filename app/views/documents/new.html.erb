@@ -4,7 +4,7 @@
 	<form action="/documents/" method="post" enctype="multipart/form-data">
 		<input type="text" name="name" value="Give document a name..."/>
 		<input type="file" name="document"/>
-		<input type="hidden" name="owner_id" value="<%= @owner.id %>"/>
+		<input type="hidden" name="" value="<%= @owner.id %>"/>
 		<input type="hidden" name="owner_type" value="<%= @owner_type %>"/>
 		<input type="submit" value="Upload" />
 	</form>	

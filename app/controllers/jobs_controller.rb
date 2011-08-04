@@ -2,7 +2,22 @@ class JobsController < ApplicationController
   def show    
     @job = Job.find(params[:id])
     
-    @log = @job.log_markings
+    @assignments = Assignment.find_all_by_job_id(params[:id])
+    @asg_loggings = @assignments.collect {|i| i.logs}.flatten
+        
+    @loggings = @job.logs + @asg_loggings 
+    @loggings.sort_by! {|i| i.created_at }
+    @loggings.reverse!
+    
+    @loggings.each do |i|
+      if i.loggable_type == "Assignment"
+        @id = Assignment.find(i.loggable_id).partner_id
+        @partner = Partner.find(@id)
+        i.log_data = "#{@partner.name}: #{i.log_data}"
+      end
+    end
+    
+    @log = @loggings[(0..3)]
       
   end
     
@@ -18,34 +33,20 @@ class JobsController < ApplicationController
       else
         @open_jobs.push(i)
       end
-      
-    end            
+    end  
+              
   end
     
   
   def new
-    @job = Job.new
-    @subcontractors = Subcontractor.all
-    @suppliers = Supplier.all
-    @checklist_items = ChecklistItem.all
 
   end
   
   def create
-    @job = Job.new
-    @job.name = params[:name]
-    @job.job_number = params[:job_number]
-    @job.location = params[:location]
-    @job.value = params[:value]
-    @job.save
+
+    @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
-    Job.find_by_job_number(params[:job_number]).logs.push(Log.new(:log_data => "Job created at #{Time.now}", :log_level => 1))
-    
-    
-    #File.open("~/rails/Submarine/log/history_logs/job#{@job.job_number}.log", 'w') do |i|
-    #  i.write("Job created at #{Time.now}")
-    #end
-    
+    @job.logs.create(:log_data => "Job created at #{get_time}")
   end
   
   def touch_all
