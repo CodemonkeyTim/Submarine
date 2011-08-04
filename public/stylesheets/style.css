@@ -90,7 +90,7 @@ body {
 	background: #EEEEEE url(/images/n3.png);
 }
 	
-/*a div*/
+/*a styles*/
 
 a {
   color: #fff;
@@ -100,6 +100,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* header styles */
 
 h1 {
   font-family: Georgia, serif;
