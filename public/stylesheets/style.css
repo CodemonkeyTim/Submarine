@@ -125,8 +125,14 @@ p {
 	border: 1px solid;
 }
 
-#jobdetails {
+#sidebar {
 	border: 1px solid;
+	padding: 8px;
+}
+#sidebar h2 {
+	padding: 0px;
+	font-weight: bold;
+	color: #939393;
 }
 
 .container_12,
