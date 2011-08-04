@@ -15,13 +15,14 @@ body {
 	-moz-border-radius: 8px 8px 0px 0px;
 	-webkit-border-radius: 8px 8px 0px 0px;
 	border-radius: 8px 8px 0px 0px;
+	margin-bottom: 0px;
 }
 
 /*Header buttons*/
 
 #headerbuttons {
 	float: right;
-	height: 30px;
+	height: 20px;
 	margin-top: 30px;
 }
 
@@ -47,15 +48,15 @@ body {
 
 #headerbuttons li a:hover {
 	color: #000000;
+}
 
 /* Navigation */
 
 #nav {
 	background: #d1d1d1;
-	height: 23px;
-	width: 1200px;
-	padding: 15px;
-	padding-bottom: 17px;
+	height: 25px;
+	padding-right: 15px;
+	padding-left: 15px;
 	color: #000000;
 	border-bottom: 5px solid #0a7e07;
 }
@@ -68,6 +69,7 @@ body {
 #nav li {
 	display: block;
 	float: left;
+	margin-left: 10px;
 }
 
 #nav li a {
@@ -77,7 +79,6 @@ body {
 	color: #666666;
 	font-size: 14px;
 	padding: 4px 15px 4px;
-	margin-left: 10px;
 	text-decoration: none;
 }
 
