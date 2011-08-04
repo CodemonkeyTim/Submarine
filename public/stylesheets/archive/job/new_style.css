@@ -1,0 +1,58 @@
+#job_supplier_info {
+	float: left;
+	clear: left;
+	
+}
+
+#subs_selector {
+	float: left;
+	clear: left;
+	
+}
+
+#suppliers_selector {
+	
+	margin-left: 20%;
+	
+	float: left;
+	
+}
+
+#checklist_items_selector {
+	float: right;
+	clear: right;
+	
+}
+
+.input_rows {
+	width: 400px;
+	
+	float: left;
+	clear: left;
+}
+
+.labels {
+	width: 200px;
+	
+	float: left;
+	clear: left;
+	
+	margin-bottom: 3px;
+	
+}
+
+.required_marker {
+	margin-left: 5px;
+	
+	float: left;
+	clear: right;
+}
+
+.inputs {
+	width: 200px;
+	
+	float: left;
+
+	margin-bottom: 3px;	
+}
+

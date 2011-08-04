@@ -1,0 +1,52 @@
+#job_sub_and_item_details {
+	width: 840px;
+	height: 379px;
+	
+}
+
+#job_details_box {
+	width: 300px;
+	height: 500px;
+	
+	float: right;
+	
+}
+
+#job_history_box {
+	width: 840px;
+	height: 100px;
+}
+
+#contents h3 {
+	float: left;
+	clear: left;
+	width: 50%;
+}
+
+#assign_sub {
+	margin-top: 5px;
+	
+	clear: right;
+}
+
+.subs_headers {
+	float: left;
+	clear: left;
+	
+}
+
+.sups_headers {
+	float: left;
+	clear: left;
+}
+
+.headers {
+	
+}
+
+.list_items {
+	
+	float: left;
+	clear: left;
+	
+}

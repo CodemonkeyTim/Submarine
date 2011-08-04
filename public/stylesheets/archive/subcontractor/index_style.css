@@ -1,0 +1,33 @@
+#sort_controls {
+	margin-bottom: 15px;
+	
+	font-size: 15px;
+	
+	float: left;
+
+	
+}
+
+.list_items {
+	float: left;	
+	clear: left;
+	
+	margin-bottom: 5px;
+	
+}
+
+#contents h3 {
+	float: left;
+	
+}
+
+#footer {
+	float: left;
+}
+
+fieldset {
+	width: 1172px;
+	
+	float:left;
+	clear: left;
+}
