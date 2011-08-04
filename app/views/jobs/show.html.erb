@@ -1,20 +1,4 @@
-<fieldset id="job_details_box">
-	<legend>Job Details</legend>
-	
-	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
-	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
-	<div id="documents_section">
-		<div id="section_header">Documents:</div>
-		<% unless @job.documents.length == 0 %>
-			<% @job.documents.each do |i| %>
-				<div class="document_links"><%= link_to i.name, i.document.url %></div>
-			<% end %>
-		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
-	</div>
-</fieldset>
-
-<fieldset id="job_sub_and_item_details">
+<div id="job_sub_and_item_details" class="grid_8">
 	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
 	
 	<div class="controls" id="receive_payments">
@@ -31,7 +15,24 @@
 		<% end %>
 	<% end %>
 	
-</fieldset>
+</div>
+
+<div class="grid_4">
+	<div id="jobdetails"><h2>Job Details</h2>
+		
+		<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
+		<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+		<div id="documents_section">
+			<div id="section_header">Documents:</div>
+			<% unless @job.documents.length == 0 %>
+				<% @job.documents.each do |i| %>
+					<div class="document_links"><%= link_to i.name, i.document.url %></div>
+				<% end %>
+			<% end %>
+			<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		</div>
+	</div>
+</div>
 
 <fieldset id="job_history_box">
 	<legend>Job history - <%= link_to "See full history", {:action => "history", :controller => "jobs"}%></legend>	
