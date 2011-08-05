@@ -17,7 +17,7 @@ class ControlsController < ApplicationController
       i.save
     end
     
-    @job.logs.create(:log_data => "Payment received - All items opened at #{get_time}")
+    @job.logs.create(:target_type => "Payment", :target => "", :action => "received", :time => get_time, :date => get_date)
     
   end
   
@@ -77,7 +77,7 @@ class ControlsController < ApplicationController
     @cli.touched_at = Time.now.utc + 16000000000
     
     @asg = Assignment.find(@cli.assignment_id)
-    @asg.logs.create(:log_data => "Item #{@cli.item_data} marked done at #{get_time}")
+    @asg.logs.create(:target_type => "Item", :target => "#{@cli.item_data}", :action => "marked done", :time => get_time, :date => get_date)
     
     @cli.save
   end

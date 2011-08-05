@@ -35,15 +35,16 @@
 
 <fieldset id="full_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
+
 	<ul>
 		<% @log.each do |i| %>
 			<li><%= i.log_data %> <span>by Main User</span></li>
 		<% end %>
 	</ul>	
+
 </fieldset>
 
-<% #Method calls and global variable modifiers of the page %>
-
+<% recents_add(@job.id) %>
 <% $active_page = "job.show"%>
 
 

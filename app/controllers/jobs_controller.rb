@@ -46,7 +46,7 @@ class JobsController < ApplicationController
 
     @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
-    @job.logs.create(:log_data => "Job created at #{get_time}")
+    @job.logs.create(:target_type => "Job", :target => "#{@job.job_number} / #{@job.name}", :action => "created", :date=> get_date, :time => get_date)
   end
   
   def touch_all

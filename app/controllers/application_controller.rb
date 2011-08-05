@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery 
   
   def get_time
-    @abbs = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        
+    
     @hour = Time.now.hour
     @amorpm = "am"
     
@@ -18,6 +17,13 @@ class ApplicationController < ActionController::Base
       @minute = "0#{@minute}"
     end
     
-    @time  = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year} #{@hour}:#{@minute} #{@amorpm}"
+    @time  = "#{@hour}:#{@minute} #{@amorpm}"
   end
+  
+  def get_date
+    @abbs = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        
+    @date = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year}"
+  end
+  
 end

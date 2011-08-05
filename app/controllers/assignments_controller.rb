@@ -29,6 +29,17 @@ class AssignmentsController < ApplicationController
     @super_parent_id = params[:super_parent_id]
     
     @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type])
+    if params[:partner_type] == 1
+      @target_type = "Subcontractor"
+    end
+    if params[:partner_type] == 2
+      @target_type = "Supplier"
+    end
+    
+    @target_name = Partner.find(params[:partner_id]).name
+    
+    Job.find(params[:job_id]).logs.create(:target_type => @target_type, :target_name => @target_name, :action "assigned", :time => get_time, :date => get_date) 
+    
     if @asg.parent_id == 0
       @window_location =  "jobs/#{@asg.job_id}"
     else

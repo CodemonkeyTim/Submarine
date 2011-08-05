@@ -4,6 +4,7 @@ module ApplicationHelper
   
   $active_tab = 2
   @active_page = "no.no"
+  $recent_jobs_ids
   
   def title 
     base_title = "Submarine"
@@ -206,5 +207,15 @@ module ApplicationHelper
         i.state = (i.suppliers(job_id).collect {|j| j.state }).flatten.sort!.first         
       end
     end
+  end 
+  
+  def recents_add(job_id)
+    unless RecentJobs.all.collect {|i| i.job_id}.include?(job_id)
+      RecentJobs.create(:job_id => job_id)
+    end
+    
+    if RecentJobs.all.length > 3
+      RecentJobs.first.delete
+    end    
   end  
 end
