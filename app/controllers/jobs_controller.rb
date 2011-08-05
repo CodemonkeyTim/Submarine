@@ -43,6 +43,7 @@ class JobsController < ApplicationController
   end
   
   def create
+
     @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
     @job.logs.create(:log_data => "Job created at #{get_time}")
