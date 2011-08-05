@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805191640) do
+ActiveRecord::Schema.define(:version => 20110805214150) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20110805191640) do
 
   create_table "checklist_items", :force => true do |t|
     t.integer  "assignment_id"
+    t.integer  "cli_type"
     t.string   "item_data"
     t.integer  "state"
+    t.integer  "sleep_time"
     t.datetime "touched_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -76,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20110805191640) do
 
   create_table "list_item_templates", :force => true do |t|
     t.string   "item_data"
+    t.integer  "item_type"
+    t.integer  "rep_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

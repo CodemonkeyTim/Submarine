@@ -19,7 +19,14 @@
 		<input type="hidden" name="parent_id" value="<%= @parent_id %>" />
 		<input type="hidden" name="partner_type" value="<%= @partner_type %>" />	
 		<div class="input_rows"><input type="submit" value="Assign"/></div>
-		
-		
 	</form>	
+	
+	<div id="list_of_items">
+		<div id="list_of_items_header">Items to be automatically added to vendor:</div>
+		<% @list_of_items.each do |i| %>
+			<div class="list_items"><%= i.item_data %></div>
+		<% end %>
+		</div>
 </fieldset>
+
+<% $active_page = "assignment.new"%>

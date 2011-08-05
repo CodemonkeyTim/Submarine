@@ -4,6 +4,25 @@
 	<form action="/jobs" method="post">
 		<div class="input_rows"> <div class="labels"> Name </div> <div class="inputs"> <%= text_field_tag("name") %> </div></div><div class="required_marker">*</div>
 		<div class="input_rows"> <div class="labels"> Job number </div> <div class="inputs"> <%= text_field_tag("job_number") %></div></div><div class="required_marker">*</div>
+		<div class="input_rows"> 
+			<div class="labels">Job type</div> 
+			<div class="inputs"> 
+				<select name="job_type">
+					<option value="1">Public</option>
+					<option value="2">Private</option>
+				</select>			
+			</div>
+		</div><div class="required_marker">*</div>
+		<div class="input_rows"> 
+			<div class="labels">Role of TU</div> 
+			<div class="inputs"> 
+				<select name="TU_role">
+					<option value="1">Prime contractor</option>
+					<option value="2">Subcontractor</option>
+				</select>			
+			</div>
+		</div><div class="required_marker">*</div>
+
 		<div class="input_rows"> <div class="labels"> Location </div> <div class="inputs"> <%= text_field_tag("location") %> </div> </div>
 		<div class="input_rows"> <div class="labels"> Value </div> <div class="inputs"> <%= text_field_tag("value") %> </div> </div>
 		<div class="input_rows"> <div class="labels"> Project manager </div> <div class="inputs"> <%= text_field_tag("project_manager") %> </div> </div>

@@ -32,6 +32,6 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.save
     
-    @owner.logs.create(:log_data => "Document #{params[:name]} added at #{get_time}")  
+    @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date")  
   end
 end

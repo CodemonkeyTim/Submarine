@@ -75,7 +75,9 @@ module ApplicationHelper
     if $active_page == "vendor.new"
       @sheets.push("./vendor/new_style.css")
     end
-    
+    if $active_page == "assignment.new"
+      @sheets.push("./assignment/new_style.css")
+    end
     
     return @sheets
   
