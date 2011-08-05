@@ -1,9 +1,14 @@
-<fieldset id="full_history">
+<fieldset>
 	<legend><%= "Full history for #{@title_text}"%></legend>
 	
-	<% unless @logs.nil? || @logs.length == 1%>
+	<div id="full_history">
+	<ul>
+		<% unless @logs.nil? || @logs.length == 1%>
 		<% @logs.each do |i| %>
-			<div class="log_mark"><%= i.log_data%></div>
+			<!--<li>Hello <span>marked done on</span> Aug 5, 2011 <span>at</span> 10:24 am</li>-->
+			<li><%= i.log_data%><span> by Main User</span></li>
 		<% end %>
+	</ul>
 	<% end %>
+	</div>
 </fieldset>

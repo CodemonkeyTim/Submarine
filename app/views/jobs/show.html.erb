@@ -33,14 +33,13 @@
 	
 </fieldset>
 
-<fieldset id="job_history_box">
+<fieldset id="full_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
-	
-	<!--
-	<% @log.each do |i| %>
-		<div class="history_logging"><%= i.log_data %></div>
-	<% end %>
-	-->
+	<ul>
+		<% @log.each do |i| %>
+			<li><%= i.log_data %> <span>by Main User</span></li>
+		<% end %>
+	</ul>	
 </fieldset>
 
 <% #Method calls and global variable modifiers of the page %>
