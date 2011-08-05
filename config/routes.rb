@@ -19,7 +19,7 @@ Submarine::Application.routes.draw do
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"
   match "/touch_all/:id" => "controls#touch_all"
-  match "/mark_done/:id" => "controls#mark_done"
+  match "/mark_done/:id" => "controls#mark_done", :via => "GET"
   match "/sort/" => "subcontractors#sort"
   
   
