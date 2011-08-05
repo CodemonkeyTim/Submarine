@@ -12,9 +12,11 @@ class ControlsController < ApplicationController
     @items = @job.checklist_items
         
     @items.each do |i|
-      i.state = 2
-      i.touched_at = Time.now.utc
-      i.save
+      if i.cli_type == 1
+        i.state = 2
+        i.touched_at = Time.now.utc
+        i.save
+      end
     end
     
     @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :time => get_time, :date => get_date)
