@@ -16,6 +16,9 @@ class SubcontractorsController < ApplicationController
       @log = @asg.logs
       @log.reverse!
       @log = @log[(0..3)]
+      @log.each do |i|
+        i.log_data = "#{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
+      end
     else
       @log =  nil
     end

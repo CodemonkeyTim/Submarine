@@ -13,7 +13,9 @@ class JobsController < ApplicationController
       if i.loggable_type == "Assignment"
         @id = Assignment.find(i.loggable_id).partner_id
         @partner = Partner.find(@id)
-        i.log_data = "#{@partner.name}: #{i.log_data}"
+        i.log_data = "#{@partner.name}: #{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
+      else
+        i.log_data = "Job: #{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
       end
     end
     
