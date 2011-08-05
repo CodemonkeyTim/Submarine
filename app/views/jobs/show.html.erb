@@ -38,8 +38,9 @@
 
 	<ul>
 		<% @log.each do |i| %>
-			<li><%= i.log_data %> <span>by Main User</span></li>
+			<li><%=i.target_type %> <%i.target_name%> <%i.action%> <%i.date%> <%i.time%><span>by Main User</span></li>
 		<% end %>
+	
 	</ul>	
 
 </fieldset>
