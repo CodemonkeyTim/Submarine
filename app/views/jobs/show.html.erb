@@ -38,7 +38,7 @@
 
 	<ul>
 		<% @log.each do |i| %>
-			<li><%=i.target_type %> <%i.target_name%> <%i.action%> <%i.date%> <%i.time%><span>by Main User</span></li>
+			<li><%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
 	
 	</ul>	
