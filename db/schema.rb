@@ -81,7 +81,11 @@ ActiveRecord::Schema.define(:version => 20110805175833) do
   end
 
   create_table "logs", :force => true do |t|
-    t.string   "log_data"
+    t.string   "target_type"
+    t.string   "target_name"
+    t.string   "action"
+    t.string   "date"
+    t.string   "time"
     t.integer  "loggable_id"
     t.string   "loggable_type"
     t.datetime "created_at"

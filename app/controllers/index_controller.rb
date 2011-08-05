@@ -5,9 +5,11 @@ class IndexController < ApplicationController
     
     @recent_jobs = []
     
-    @recent_jobs.push(Job.find(@recent_jobs_rows[0].job_id))
-    @recent_jobs.push(Job.find(@recent_jobs_rows[1].job_id))
-    @recent_jobs.push(Job.find(@recent_jobs_rows[2].job_id))
+    unless @recent_jobs_rows.first.nil?
+      @recent_jobs_rows.each do |i|
+        @recent_jobs.push(Job.find(i.job_id))  
+      end  
+    end
     
     @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at").reverse
     @overdue_items = @overdue_items[(0..3)]
