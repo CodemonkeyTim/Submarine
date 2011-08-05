@@ -20,4 +20,5 @@ class ApplicationController < ActionController::Base
     
     @time  = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year} #{@hour}:#{@minute} #{@amorpm}"
   end
+  
 end
