@@ -1,4 +1,12 @@
-<%= params[:job_id] %>
-<%= params[:partner_id] %>
-<%= params[:parent_id] %>
-<%= params[:partner_type] %>
+<h2> Vendor Assigned!</h2>
+
+<script type="text/javascript">
+	
+	window.onload = setTimeout('redirect()', 1000);
+	
+	function redirect () {
+	  window.location = "<%= @window_location %>"
+	}
+</script>
+
+<%= @data %>

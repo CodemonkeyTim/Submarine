@@ -22,7 +22,7 @@
 	</div>
 	
 	<div class="controls" id="assign_sub">
-		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1}%>
+		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 	</div>
 	
 	<% unless @job.subcontractors.first.nil? %>

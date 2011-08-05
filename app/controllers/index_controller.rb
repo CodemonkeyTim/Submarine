@@ -3,14 +3,17 @@ class IndexController < ApplicationController
   def index
     @jobs = Job.all
     
-    @logs = @jobs.collect {|i| i.logs}.flatten
+    @logs = @jobs.collect {|i| i.logs} + Assignment.all.collect {|i| i.logs}
+    @logs.flatten!
+    
     @logs.sort_by! {|i| i.created_at}
-    @ids = @logs.collect {|i| i.loggable_id}.flatten.uniq
+    @logs = @logs.uniq {|i| i.loggable_id}
+    @ids = @logs.collect {|i| i.loggable_id}
     @ids = @ids[(0..2)]
     
     @recent_jobs = Job.find_all_by_id(@ids)
     
-    @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at")
+    @overdue_items = ChecklistItem.find_all_by_state(1, :order => "touched_at").reverse
     @overdue_items = @overdue_items[(0..3)]
     
     @overdue_amounts = []

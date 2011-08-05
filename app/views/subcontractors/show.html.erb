@@ -36,10 +36,10 @@
 		<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name}%>
 	</div>
 	<div class="controls" id="assign_sub">
-		<%= link_to "Assign a subcontractor", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 1}%>
+		<%= link_to "Assign a subcontractor", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 1, :super_parent_id => @parent_id}%>
 	</div>
 	<div class="controls" id="assign_sup">
-		<%= link_to "Assign a supplier", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 2}%>
+		<%= link_to "Assign a supplier", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 2, :super_parent_id => @parent_id}%>
 	</div>
 	
 	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0} %>
