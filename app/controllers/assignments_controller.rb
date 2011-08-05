@@ -38,7 +38,7 @@ class AssignmentsController < ApplicationController
     
     @target_name = Partner.find(params[:partner_id]).name
     
-    Job.find(params[:job_id]).logs.create(:target_type => @target_type, :target_name => @target_name, :action "assigned", :time => get_time, :date => get_date) 
+    Job.find(params[:job_id]).logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
     
     if @asg.parent_id == 0
       @window_location =  "jobs/#{@asg.job_id}"
