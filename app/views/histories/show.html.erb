@@ -6,7 +6,7 @@
 		<% unless @logs.nil? || @logs.length == 1%>
 		<% @logs.each do |i| %>
 			<!--<li>Hello <span>marked done on</span> Aug 5, 2011 <span>at</span> 10:24 am</li>-->
-			<li><%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
+			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
 	</ul>
 	<% end %>
