@@ -1,16 +1,14 @@
 class DocumentsController < ApplicationController
   def new
     if params[:owner_type] == "job"
-      @owner = Job.find(params[:id])
-      @owner_type = "Job"
+      @owner = Job.find(params[:owner_id])
+      @owner_name = @owner.name
+      @owner_type = 1
     end
-    if params[:owner_type] == "sub"
-      @owner = Partner.find(params[:id])
-      @owner_type = "Sub"
-    end
-    if params[:owner_type] == "sup"
-      @owner = Partner.find(params[:id])
-      @owner_type = "Sup" 
+    if params[:owner_type] == "asg"
+      @owner = Assignment.find(params[:owner_id])
+      @owner_name = Partner.find(params[:owner_id]).name
+      @owner_type = 2
     end
   end
   
@@ -18,24 +16,22 @@ class DocumentsController < ApplicationController
   end
   
   def create
-    @doc = Document.new
-    @doc.owner_type = params[:owner_type]
-    @doc.owner_id = params[:owner_id]    
+    @owner
+    @owner_id = params[:owner_id]
+    @owner_type = params[:owner_type]
+    
+    if @owner_type == "1"
+      @owner = Job.find(@owner_id)
+    end
+    
+    if @owner_type == "2"
+      @owner = Assignment.find(@owner_id)
+    end
+    
+    @doc = @owner.documents.create(:name => params[:name])
     @doc.document = params[:document]
-    @doc.name = params[:name]
     @doc.save
     
-    if params[:owner_type] == "Job"
-      @owner = Job.find(params[:owner_id])
-    end
-    if params[:owner_type] == "Sub"
-      @owner = Partner.find(params[:owner_id])
-    end
-    if params[:owner_type] == "Sup"
-      @owner = Partner.find(params[:owner_id])
-    end
-    
-    @owner.log_markings.push(LogMarking.new(:log_data => "Document #{params[:name]} added at #{get_time}"))
-    
+    @owner.logs.create(:log_data => "Document #{params[:name]} added at #{get_time}")  
   end
 end

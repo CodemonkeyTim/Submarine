@@ -54,11 +54,6 @@ class JobsController < ApplicationController
     
   end
   
-  def history
-    
-    
-  end
-  
   def fade
     @id = params[:id]
     

@@ -5,13 +5,12 @@ class ControlsController < ApplicationController
     @item.state = 2
 
     @item.save
-    
   end
   
   def touch_all
     @job = Job.find(params[:id])
     @items = @job.checklist_items
-    
+        
     @items.each do |i|
       i.state = 2
       i.touched_at = Time.now.utc
@@ -81,7 +80,6 @@ class ControlsController < ApplicationController
     @asg.logs.create(:log_data => "Item #{@cli.item_data} marked done at #{get_time}")
     
     @cli.save
-      
   end
   
     

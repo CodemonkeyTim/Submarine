@@ -11,6 +11,8 @@ class SuppliersController < ApplicationController
     
     unless @asg.nil?
       @log = @asg.logs
+      @log.reverse!
+      @log = @log[(0..3)]
     else
       @log = nil
     end
@@ -45,4 +47,5 @@ class SuppliersController < ApplicationController
   def create
     
   end
+  
 end

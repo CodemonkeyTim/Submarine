@@ -10,7 +10,7 @@
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :owner_id => @job.id} %></div>		
 	</div>
 </fieldset>
 
@@ -22,7 +22,7 @@
 	</div>
 	
 	<div class="controls" id="assign_sub">
-		<%= link_to "Assign a sub", {:controller => "subcontractors", :action => "new", :id => @job.job_number}%>
+		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 	</div>
 	
 	<% unless @job.subcontractors.first.nil? %>
@@ -34,7 +34,7 @@
 </fieldset>
 
 <fieldset id="job_history_box">
-	<legend>Job history - <%= link_to "See full history", {:action => "history", :controller => "jobs"}%></legend>	
+	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
 	
 	<!--
 	<% @log.each do |i| %>
