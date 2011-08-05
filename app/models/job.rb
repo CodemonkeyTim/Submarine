@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
   has_many :logs, :as => :loggable
   has_many :documents, :as => :owner
+  has_many :tags, :as => :taggable
   
   attr_accessor :state
   
