@@ -15,12 +15,14 @@
 					<%= i.name %>
 				</div>
 				
+				<div class="job_item_list">
 				<% get_roles(i, @vendor.id).each_with_index do |j, x| %>
-					<div class="sub_headers"><%= j %></div>
-					<div class="job_item_list">
-						<%= render :partial => "jobs/sup_checklist", :locals => {:k => @vendor, :job_id => i.id, :parent_id => $parent_ids[x]} %>
-					</div>
+						<div class="sub_headers"><%= j %></div>
+						<div class="items_block">
+							<%= render :partial => "jobs/sup_checklist", :locals => {:k => @vendor, :job_id => i.id, :parent_id => $parent_ids[x]} %>
+						</div>
 				<% end %>
+				</div>
 				<div class="break"></div>
 			</div>
 		<% end %>

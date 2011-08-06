@@ -1,21 +1,16 @@
 Submarine::Application.routes.draw do
 
-  get "documents/new"
-
-  get "documents/edit"
-
   match "/history/:id" => "jobs#history"
-  
-  #assigning a sub
-  match "/subcontractors/assign" => "subcontractors#assign"
-  match "/suppliers/assign" => "suppliers#assign"
-  match "/subcontractors/add_item" => "subcontractors#add_item"
   
   resources :list_items
   resources :jobs
   resources :subcontractors
   resources :suppliers
   resources :vendors
+  resources :assignments
+  
+  #Show logs history path
+  match "/histories/:id" => "histories#show"
   
   #Document attaching paths
   match "/documents/new" => "documents#new"
@@ -24,7 +19,7 @@ Submarine::Application.routes.draw do
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"
   match "/touch_all/:id" => "controls#touch_all"
-  match "/mark_done/:id" => "controls#mark_done"
+  match "/mark_done/:id" => "controls#mark_done", :via => "GET"
   match "/sort/" => "subcontractors#sort"
   
   

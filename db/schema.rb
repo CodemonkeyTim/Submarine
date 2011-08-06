@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803164215) do
+ActiveRecord::Schema.define(:version => 20110805214150) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20110803164215) do
 
   create_table "checklist_items", :force => true do |t|
     t.integer  "assignment_id"
+    t.integer  "cli_type"
     t.string   "item_data"
     t.integer  "state"
+    t.integer  "sleep_time"
     t.datetime "touched_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -76,12 +78,18 @@ ActiveRecord::Schema.define(:version => 20110803164215) do
 
   create_table "list_item_templates", :force => true do |t|
     t.string   "item_data"
+    t.integer  "item_type"
+    t.integer  "rep_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "logs", :force => true do |t|
-    t.string   "log_data"
+    t.string   "target_type"
+    t.string   "target_name"
+    t.string   "action"
+    t.string   "date"
+    t.string   "time"
     t.integer  "loggable_id"
     t.string   "loggable_type"
     t.datetime "created_at"
@@ -90,6 +98,20 @@ ActiveRecord::Schema.define(:version => 20110803164215) do
 
   create_table "partners", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recent_jobs", :force => true do |t|
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.string   "tag_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

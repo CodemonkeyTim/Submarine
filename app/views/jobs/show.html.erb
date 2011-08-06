@@ -1,4 +1,5 @@
 <div id="job_sub_and_item_details" class="grid_8">
+
 	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
 	
 	<div class="controls" id="receive_payments">
@@ -6,14 +7,18 @@
 	</div>
 	
 	<div class="controls" id="assign_sub">
-		<%= link_to "Assign a sub", {:controller => "subcontractors", :action => "new", :id => @job.job_number}%>
+		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 	</div>
+	
+	<div><h2>Subcontractors</h2></div>	
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
-			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 1} %>
+			<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h3>
+			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
 		<% end %>
 	<% end %>
+
 	
 </div>
 
@@ -33,18 +38,19 @@
 	</div>
 </div>
 
-<fieldset id="job_history_box">
-	<legend>Job history - <%= link_to "See full history", {:action => "history", :controller => "jobs"}%></legend>	
+<fieldset id="full_history">
+	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
+
+	<ul>
+		<% @log.each do |i| %>
+			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
+		<% end %>
 	
-	<!--
-	<% @log.each do |i| %>
-		<div class="history_logging"><%= i.log_data %></div>
-	<% end %>
-	-->
+	</ul>	
+
 </fieldset>
 
-<% #Method calls and global variable modifiers of the page %>
-
+<% recents_add(@job.id) %>
 <% $active_page = "job.show"%>
 
 

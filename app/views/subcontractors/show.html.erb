@@ -23,33 +23,38 @@
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :partner_type => 1, :job_id => @job.id} %></div>		
+		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
 	</div>
 	
 </fieldset>
 
 
 <fieldset id="subs_details" class="">
-  <legend> <%= @subcontractor.name %></legend>
+  <legend><%= "#{@subcontractor.name}#{@sub_to}" %></legend>
 	
 	<div class="controls" id="assign_item">
 		<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name}%>
 	</div>
+	<div class="controls" id="assign_sub">
+		<%= link_to "Assign a subcontractor", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 1, :super_parent_id => @parent_id}%>
+	</div>
 	<div class="controls" id="assign_sup">
-		<%= link_to "Assign a supplier", {:controller => "suppliers", :action => "new", :id => @subcontractor.id, :job_number => @job.job_number}%>
+		<%= link_to "Assign a supplier", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 2, :super_parent_id => @parent_id}%>
 	</div>
 	
 	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0} %>
 		
 </fieldset>
 
-<fieldset id="subs_history">
-	<legend>Subs History - <%= link_to "See full history", "somewhere"%></legend>
+<fieldset id="full_history">
+	<legend>Subs History - <%= link_to "See full history", {:controller => "histories", :action => "show", :job_id => @job.id, :parent_id => @parent_id, :partner_id => @subcontractor.id, :partner_type => 1}%></legend>
+		
+	<ul>
 		<% unless @log.nil? then @log.each do |i| %>
-				<div class="history_logging"><%= i.log_data %></div>
+				<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 			<% end %>
 		<% end %>
-	
+	</ul>
 </fieldset>
 
 <% #Page's method calls and global variable modifiers %>

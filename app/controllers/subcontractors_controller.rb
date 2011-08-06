@@ -6,9 +6,19 @@ class SubcontractorsController < ApplicationController
     @job = Job.find(@job_id)
     @subcontractor = Partner.find(params[:id])
     
+    unless @parent_id == "0"
+      @sub_to = " subcontractor to #{Partner.find(@parent_id).name}"
+    end
+    
+    
     @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @subcontractor.id, 1)
     unless @asg.nil?
       @log = @asg.logs
+      @log.reverse!
+      @log = @log[(0..3)]
+      @log.each do |i|
+        i.log_data = "#{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
+      end
     else
       @log =  nil
     end
@@ -65,5 +75,4 @@ class SubcontractorsController < ApplicationController
     
     
   end
-
 end

@@ -1,0 +1,9 @@
+<% @items.each do |i| %>
+	<% if i.cli_type == 1%>
+		$('#<%= i.id %>cli img ').each( function() {
+			$(this).fadeOut();
+			$(this).attr('src', '/images/open.png');
+			$(this).fadeIn();
+		});
+	<% end %>
+<% end %>

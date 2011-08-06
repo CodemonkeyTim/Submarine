@@ -13,7 +13,9 @@ class JobsController < ApplicationController
       if i.loggable_type == "Assignment"
         @id = Assignment.find(i.loggable_id).partner_id
         @partner = Partner.find(@id)
-        i.log_data = "#{@partner.name}: #{i.log_data}"
+        i.log_data = "#{@partner.name}: #{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
+      else
+        i.log_data = "Job: #{i.target_type} #{i.target_name} #{i.action} on #{i.date} at #{i.time}"
       end
     end
     
@@ -46,15 +48,29 @@ class JobsController < ApplicationController
 
     @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
-    @job.logs.create(:log_data => "Job created at #{get_time}")
+    @job_type = ""
+    @TU_role = ""
+    
+    if params[:job_type] == "1"
+      @job_type = "Public"
+    end
+    if params[:job_type] == "2"
+      @job_type = "Private"
+    end
+    if params[:TU_role] == "1"
+      @TU_role = "Prime"
+    end
+    if params[:TU_role] == "2"
+      @TU_role = "Sub" 
+    end
+    
+    @job.tags.create(:tag_name => @job_type)
+    @job.tags.create(:tag_name => @TU_role)
+    
+    @job.logs.create(:target_type => "Job", :target_name => "#{@job.job_number} / #{@job.name}", :action => "created", :date=> get_date, :time => get_date)
   end
   
   def touch_all
-    
-    
-  end
-  
-  def history
     
     
   end

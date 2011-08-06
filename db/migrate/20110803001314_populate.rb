@@ -8,8 +8,8 @@ class Populate < ActiveRecord::Migration
       f = File.open("/home/michaelleland/rails/Submarine/public/import/jobs.txt")
         dataarray = f.read.split("\n")
       f.close
-        
-        @linesarray =[]
+      
+      @linesarray =[]
         dataarray.each {|line| @linesarray << line.split("\t") }
         
         @jobs = []
@@ -17,7 +17,7 @@ class Populate < ActiveRecord::Migration
         job = Job.new(:name => line[1], :job_number => line[0])
         job.save # to database
         @jobs << job
-        end
+    end
   end
 
   def self.down

@@ -2,13 +2,32 @@ class Partner < ActiveRecord::Base
   has_one :address
   has_one :contact_person
   
+  has_many :tags, :as => :taggable
+  
   attr_accessor :state
   
   def get_state(job_id, parent_id)
-    @stat = self.checklist_items(job_id, parent_id).collect {|i| i.state}.flatten.sort!.first
-    if @stat.nil?
+    @stat =[]
+    unless self.checklist_items(job_id, parent_id).first.nil?
+      @stat.push(self.checklist_items(job_id, parent_id).collect {|i| i.state}.flatten) 
+    end
+    unless self.suppliers(job_id).first.nil?
+      self.suppliers(job_id).each do |i|
+        @i_stat = i.get_state(job_id, self.id)
+        @stat.push(@i_stat)
+      end
+    end
+    unless self.subcontractors(job_id).first.nil?
+      self.subcontractors(job_id).each do |i|
+        @i_stat = i.get_state(job_id, self.id)
+        @stat.push(@i_stat)
+      end
+    end
+    
+    if @stat.nil? || @stat.first.nil?
       return 4
     else
+      @stat = @stat.flatten.sort!.first
       return @stat
     end
   end

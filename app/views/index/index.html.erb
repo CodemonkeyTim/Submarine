@@ -6,7 +6,8 @@
 		<h3><%= image_tag get_image(i.state) %><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
-				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 1} %>
+				<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :id => j.id} %></h3>
+				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 0} %>
 			<% end %>
 		<% end %>
 		</div>

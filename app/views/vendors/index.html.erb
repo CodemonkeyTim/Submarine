@@ -1,8 +1,7 @@
 <fieldset id="vendors" class="">
 	<legend> Vendors </legend>	
 	<% if @vendors.length != 0 %>
-  		<div id="suppliers">
-  			<div class="headers">Suppliers:</div>
+  		<div id="vendors">
   			<% @vendors.each do |i| %>
   				<div class="list_items"> <%= link_to i.name, vendor_path(i.id) %></div>
 	  		<% end %>
