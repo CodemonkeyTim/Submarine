@@ -83,7 +83,7 @@ class AssignmentsController < ApplicationController
     @list_of_items.flatten!
     
     @list_of_items.each do |i|
-      @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10)
+      @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => Time.now+16000000000)
     end
     
   end
