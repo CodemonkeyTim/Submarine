@@ -3,7 +3,7 @@
 	
 	<% @recent_jobs.each do |i| %>
 		<div class="grid_12">
-		<h3><%= image_tag get_image(i.state) %><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
+		<h3><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
 				<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :id => j.id} %></h3>
