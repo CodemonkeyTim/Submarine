@@ -99,31 +99,31 @@ a:hover {
   text-decoration: underline;
 }
 
-/* heading styles */
 
-h1 {
-  font-family: Georgia, serif;
-  font-weight: normal;
-  padding-top: 20px;
-  text-align: left;
-}
-
-h2 {
-  padding-top: 20px;
-  text-align: left;
-}
-
-p {
-  border: 1px solid #666;
-  overflow: hidden;
-  padding: 10px 0;
-  text-align: center;
-}
-
-/*Page specific styling*/
-#jobs {
+/*Contents styling*/
+#contents {
 	border: 1px solid;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
+
+#pagedescription {
+	background:#dadaea;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding-bottom: 10px;
+	/*In order to get the background color to fill all the way to the side,
+	 * had to replace the margin on left and right with padding on left
+	 * and right, below. this replaces the margin defined in 960.css.
+	 */
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+}
+
+/*sidebar styling*/
 
 #sidebar {
 	border: 1px solid;
