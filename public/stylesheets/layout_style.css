@@ -183,3 +183,7 @@ select {
 	
 }
 
+.list_data {
+	float: left;
+	clear: left;
+}

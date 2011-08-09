@@ -18,12 +18,14 @@
 	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
 	
 	<div class="controls" id="receive_payments">
-		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :job_number => @job.job_number}, :remote => true %>
+		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
 	</div>
 	
 	<div class="controls" id="assign_sub">
 		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 	</div>
+	
+	<div id="feedback"></div>
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>

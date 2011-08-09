@@ -10,7 +10,7 @@ class ControlsController < ApplicationController
   def touch_all
     @job = Job.find(params[:id])
     @items = @job.checklist_items
-        
+    
     @items.each do |i|
       if i.cli_type == 1
         i.state = 2
@@ -19,7 +19,14 @@ class ControlsController < ApplicationController
       end
     end
     
-    @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :time => get_time, :date => get_date)
+    if @job.subcontractors.length == 0
+      @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
+    else  
+      @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :time => get_time, :date => get_date)  
+    end
+    
+    @log = @job.logs.last
+    @log.log_data = "Job: #{@log.target_type} #{@log.target_name} #{@log.action}#{unless @log.notes.nil? then ", #{@log.notes}" end} on #{@log.date} at #{@log.time}"
     
   end
   
@@ -77,11 +84,17 @@ class ControlsController < ApplicationController
     @cli = ChecklistItem.find(@id)
     @cli.state = 3
     @cli.touched_at = Time.now.utc + 16000000000
+    @cli.save
     
     @asg = Assignment.find(@cli.assignment_id)
     @asg.logs.create(:target_type => "Item", :target_name => @cli.item_data, :action => "marked done", :time => get_time, :date => get_date)
     
-    @cli.save
+    @log = @asg.logs.last
+    @partner = Partner.find(@asg.partner_id)
+    @log_data = "#{@partner.name}: #{@log.target_type} #{@log.target_name} #{@log.action}#{unless @log.notes.nil? then ", #{@log.notes}" end} on #{@log.date} at #{@log.time}"
+    if @log_data.include?('\'')
+      @log_data = @log_data.gsub('\'', '\\')
+    end
   end
   
     
