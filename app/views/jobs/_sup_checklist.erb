@@ -2,7 +2,7 @@
 	<div class="list_items" id="<%= "#{l.id}cli" %>"> 
 		<%= image_tag get_image(l.state) %>
 		<% if l.state < 3 %>
-			<input type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
+			<input id="<%="#{l.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
 		<% end %>
 		<%= l.item_data %>
 	</div> 

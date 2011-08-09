@@ -21,6 +21,10 @@
 		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
 	</div>
 	
+	<div class="controls" id="edit_job">
+		<%= link_to "Edit job", {:controller => "jobs", :action => "edit", :id => @job.id} %>
+	</div>
+	
 	<div class="controls" id="assign_sub">
 		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 	</div>

@@ -1,0 +1,37 @@
+<fieldset id="basic_info">
+	<legend>Job information</legend>
+	
+	<form action="/jobs/<%= @job.id%>" method="post">
+		<div class="input_rows"> <div class="labels"> Name </div> <div class="inputs"> <%= text_field_tag("name", @job.name) %> </div></div><div class="required_marker">*</div>
+		<div class="input_rows"> <div class="labels"> Job number </div> <div class="inputs"> <%= text_field_tag("job_number", @job.job_number) %></div></div><div class="required_marker">*</div>
+		<div class="input_rows"> 
+			<div class="labels">Job type</div> 
+			<div class="inputs"> 
+				<select name="job_type">
+					<option value="<%= @type_opt_1_val %>"><%= @type_opt_1_text %></option>
+					<option value="<%= @type_opt_2_val %>"><%= @type_opt_2_text %></option>
+				</select>			
+			</div>
+		</div><div class="required_marker">*</div>
+		<div class="input_rows"> 
+			<div class="labels">Role of TU</div> 
+			<div class="inputs"> 
+				<select name="TU_role">
+					<option value="<%= @role_opt_1_val %>"><%= @role_opt_1_text %></option>
+					<option value="<%= @role_opt_2_val %>"><%= @role_opt_2_text %></option>
+				</select>			
+			</div>
+		</div><div class="required_marker">*</div>
+
+		<div class="input_rows"> <div class="labels"> Location </div> <div class="inputs"> <%= text_field_tag("location", @job.location) %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Value </div> <div class="inputs"> <%= text_field_tag("value", @job.value) %> </div> </div>
+		<div class="input_rows"> <div class="labels"> Project manager </div> <div class="inputs"> <%= text_field_tag("project_manager") %> </div> </div>
+		<input type="hidden" name="_method" value="put">
+		<div class="input_rows"><input type="submit" value="Assign"/></div>
+	</form>
+
+</fieldset>
+
+<% #Method calls and global variable modifiers of the page %>
+
+<% $active_page = "job.new"%>

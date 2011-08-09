@@ -1,4 +1,9 @@
 $('#<%= @id %>cli input').fadeOut();
+
+setTimeout(function () {
+		$('#<%= @id %>cli input').remove();
+	}, 600);
+	
 $('#<%= @id %>cli img').fadeOut();
 
 setTimeout(function () {

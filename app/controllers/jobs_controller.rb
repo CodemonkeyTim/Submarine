@@ -67,7 +67,7 @@ class JobsController < ApplicationController
     @job.tags.create(:tag_name => @job_type)
     @job.tags.create(:tag_name => @TU_role)
     
-    @job.logs.create(:target_type => "Job", :target_name => "#{@job.job_number} / #{@job.name}", :action => "created", :date=> get_date, :time => get_date)
+    @job.logs.create(:target_type => "Job", :target_name => "#{@job.job_number} / #{@job.name}", :action => "created", :date=> get_date, :time => get_time)
   end
   
   def touch_all
@@ -75,10 +75,77 @@ class JobsController < ApplicationController
     
   end
   
-  def fade
-    @id = params[:id]
+  def edit
+    @job = Job.find(params[:id])
     
+    @taggys = @job.tags.all
+    @tags = @taggys.collect {|i| i.tag_name}.flatten
     
+      @type_opt_1_val = 1
+      @type_opt_1_text = "Public"
+      @type_opt_2_val = 3
+      @type_opt_2_text = "Private"
+      
+      @role_opt_1_val = 1
+      @role_opt_1_text = "Prime contractor"
+      @role_opt_2_val = 2
+      @role_opt_2_text = "Subcontractor"
+    
+    if @tags.include?("Private")
+      @type_opt_1_val = 2
+      @type_opt_1_text = "Private"
+      @type_opt_2_val = 1
+      @type_opt_2_text = "Public"
+    end
+    if @tags.include?("Public")
+      @type_opt_1_val = 1
+      @type_opt_1_text = "Public"
+      @type_opt_2_val = 2
+      @type_opt_2_text = "Private"
+    end
+    
+    if @tags.include?("Prime") 
+      @role_opt_1_val = 1
+      @role_opt_1_text = "Prime contractor"
+      @role_opt_2_val = 2
+      @role_opt_2_text = "Subcontractor"
+    end
+    if @tags.include?("Sub")
+      @role_opt_1_val = 2
+      @role_opt_1_text = "Subcontractor"
+      @role_opt_2_val = 1
+      @role_opt_2_text = "Prime contractor"
+    end
+  end
+  
+  def update
+    @job = Job.find(params[:id])
+    @job.name = params[:name]
+    @job.job_number = params[:job_number]
+    @job.location = params[:location]
+    @job.value = params[:value]
+    @job.PM_id = params[:project_manager]
+    
+    @job.tags.each {|i| i.delete }
+    
+    if params[:job_type] == "1"
+      @job_type = "Public"
+    end
+    if params[:job_type] == "2"
+      @job_type = "Private"
+    end
+    if params[:TU_role] == "1"
+      @TU_role = "Prime"
+    end
+    if params[:TU_role] == "2"
+      @TU_role = "Sub" 
+    end
+    
+    @job.tags.create(:tag_name => @job_type)
+    @job.tags.create(:tag_name => @TU_role)
+    
+    @job.save
     
   end
+  
 end
