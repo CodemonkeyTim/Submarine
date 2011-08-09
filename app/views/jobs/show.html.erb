@@ -3,7 +3,7 @@
 	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
 	
 	<div class="controls" id="receive_payments">
-		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :job_number => @job.job_number}, :remote => true %>
+		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
 	</div>
 	
 	<div class="controls" id="assign_sub">

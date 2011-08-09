@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20110805214150) do
     t.string   "target_type"
     t.string   "target_name"
     t.string   "action"
+    t.string   "notes"
     t.string   "date"
     t.string   "time"
     t.integer  "loggable_id"
