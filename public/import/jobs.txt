@@ -1,30 +1,28 @@
-Job Number	Job Name
-9119	JULIA BUTLER HANSEN WILDLIFE R
-9124	EGT GRAIN
-9127	RAMSEY RAIL IMPROVEMENTS
-10088	MISC. T&M CHAD MAHONEY
-10100	SR501 RIDGEFIELD INTERCHANG
-10108	ST HELENS 2010 SANITARY STORM
-10109	ASTORIACSO PHS 3 DENVER ST STO
-10117	HILLSBORO FIDUCIAL
-10119	HIGHWAY 35 BETTERMENT
-10122	BG FLOW EQUALIZATION SYS IMPRO
-10123	PORT OF RIDGEFIELD CELL 3 & 4
-10124	HINTON PADDEN EMPLOYMENT CENTE
-10126	SCHMITZ ROAD IMPROVEMENTS
-11104	RAIL LOGISTICS CENTER-P.O.M.
-11105	BEAR CREEK DAM WATERLINE REPLA
-11110	TOPPENISH IRRIGATION PHASE 1B
-11111	Leslie Road RoundaboutPhase II
-11113	NE 33RD DRIVE & BUFFALO SLOUGH
-11114	MEACHAM CREEK FLOODPLAIN RESTO
-11116	CITY OF GEARHART WATER TREATME
+9119	Julia Butler Hansen Wildlife Refuge
+9124	EGT Grain
+9127	Ramsey Rail Improvements
+10100	SR 501 Ridgefield Interchang
+10108	St Helens 2010 Sanitary Storm
+10109	Astoria CSO Phs 3 Denver St Storage
+10117	Hillsboro Fiducial
+10119	Highway 35 Betterment
+10122	BG Flow Equalization Sys Impro
+10123	Port Of Ridgefield Cell 3 & 4
+10124	Hinton Padden Employment Cente
+10126	Schmitz Road Improvements
+11104	Rail Logistics Center-P.O.M.
+11105	Bear Creek Dam Waterline Repla
+11110	Toppenish Irrigation Phase 1B
+11111	Leslie Road Roundabout Phase II
+11113	NE 33rd Drive & Buffalo Slough
+11114	Meacham Creek Floodplain Restoration
+11116	City Of Gearhart Water Treatme
 11118	Kelso Waterline Replacement
-11119	PACIFIC LUMBER & SHIPPING SUPP
+11119	Pacific Lumber & Shipping Supp
 11120	Stilling Basin Right Bank Impr
-11121	SR 14 CAMAS/ WASHOUGAL INTERCH
-11122	ST JOHNS BLVD INTERCHANGE
-11123	East Lents Floodplain Restorat
+11121	Sr 14 Camas/ Washougal Interchange
+11122	St Johns Blvd Interchange
+11123	East Lents Floodplain Restoration
 11125	Badger Mountain Village Phase
 10122C	EQ Basin - Concrete
-11104C	Port of Morrow Concrete
+11104C	Port Of Morrow Concrete

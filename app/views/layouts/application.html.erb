@@ -2,30 +2,37 @@
 <html>
 <head>
   <title> <%= title %> </title>
-  	<%= stylesheet_link_tag get_stylesheets %>
+  	<link rel="stylesheet" href="/stylesheets/reset.css" />
+	<link rel="stylesheet" href="/stylesheets/text.css" />
+	<link rel="stylesheet" href="/stylesheets/960.css" />
+ 	<link rel="stylesheet" href="/stylesheets/style.css" />
   	<%= javascript_include_tag :defaults %>
   	<%= csrf_meta_tag %>
 </head>
 <body>
-	 	<div id="page">
-			<div id="header">
-				<div id="logo">
-					<img src="/images/tulogo.png" alt="Tapani Underground Logo" width="100" height="100">
-				</div>
-				<h1>Submarine</h1>
-				<div id="headerbuttons">
-					<ul>				
-						<li>
-							<a class="button" href='http://localhost/jobs/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
-						</li>
-						<li>
-							<a class="button" href='http://localhost/vendors/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
-						</li>
-					</ul>
-				</div>
+		<div id="header" class="container_12">
+			<div class="grid_2">
+				<img src="/images/tulogo.png" alt="Tapani Underground Logo" width="100" height="100">
 			</div>
+			
+			<div class="grid_8">
+				<h1>Submarine</h1>
+			</div>
+			
+			<div id="headerbuttons" class="grid_2">
+				<ul>				
+					<li>
+						<a class="button" href='http://localhost/jobs/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
+					</li>
+					<li>
+						<a class="button" href='http://localhost/vendors/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	
-			<div id="nav">
+		<div id="nav" class="container_12">
+			<div class="grid_12">
 				<ul>
 					<li>
 						<%= link_to "Home", "http://localhost", :id => am_i_active_tab(1) %>
@@ -41,14 +48,15 @@
 					</li>
 				</ul>
 			</div>
+		</div>
 			
-			<div id="contents">
-				<%= yield %>		
-			</div>
+		<div id="contents" class="container_12">
+			<%= yield %>		
+		</div>
 
-			<div id="footer">
-				<h3 id="footerText"><img src="/images/submarine.png">  &copy; Silvertrek Systems</h3>
-			</div>
+			<footer class="container_12">
+				<h3 id="footerText"><img src="/images/submarine.png">  powered by Silvertrek Systems</h3>
+			</footer>
 		</div>
 </body>
 </html>
