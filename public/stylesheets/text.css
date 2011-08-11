@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-  font-size: 23px;
+  font-size: 20px;
 }
 
 h3 {
@@ -40,7 +40,8 @@ h3 {
 }
 
 h4 {
-  font-size: 19px;
+  font-size: 15px;
+  color: #BABABA;
 }
 
 h5 {

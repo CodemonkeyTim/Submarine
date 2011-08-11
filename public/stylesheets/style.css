@@ -56,6 +56,7 @@ body {
 	height: 25px;
 	color: #000000;
 	border-bottom: 5px solid #0a7e07;
+	margin-bottom: 10px;
 }
 
 #nav ul {
@@ -102,17 +103,21 @@ a:hover {
 
 /*Contents styling*/
 #contents {
-	border: 1px solid;
+	border: 1px solid #BABABA;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	margin-bottom: 0px;
 }
+#contents.controls {
+	float: right;
+} 
 
 #pagedescription {
-	background:#dadaea;
+	background:#B5B5FF;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-	padding-bottom: 10px;
+	padding-top: 5px;
 	/*In order to get the background color to fill all the way to the side,
 	 * had to replace the margin on left and right with padding on left
 	 * and right, below. this replaces the margin defined in 960.css.
@@ -122,18 +127,44 @@ a:hover {
 	padding-right: 10px;
 	margin-right: 0px;
 }
+#pagedescription h2 {
+	margin-bottom: 5px;
+}
+#contentcontrol {
+	height: 30px;
+}
+#contentcontrol ul {
+	list-style: none;
+}
 
 /*sidebar styling*/
 
 #sidebar {
-	border: 1px solid;
-	padding: 8px;
+	margin-right: 0px;
+	padding-right: 10px;
+	background: #E3E3E3;
 }
 #sidebar h2 {
 	padding: 0px;
 	font-weight: bold;
 	color: #939393;
 }
+
+/*footer styling*/
+#footer {
+	background: #f1f1f1;
+}
+
+#footertext {
+	float: right;
+}
+
+#footertext span {
+	color: #BABABA;
+}
+
+
+/*Container styling*/
 
 .container_12,
 .container_16,

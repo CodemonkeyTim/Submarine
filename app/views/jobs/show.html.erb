@@ -1,7 +1,37 @@
+	<div class="grid_12" id="pagedescription">
+		<h2><%= "#{@job.job_number} - #{@job.name}" %></h2>			
+	</div>
+
+	<div id="contentcontrol" class="grid_8">
+		<h4>Items assigned to job</h4>
+		<ul>
+			<li class="controls" id="receive_payments">
+				<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
+			</li>
+			<li class="controls" id="assign_sub">
+				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
+			</li>
+		</ul>
+	</div>
+<div id="sidebar" class="grid_4">
+	<h2>Job Details</h2>
+		<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
+		<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+		<div id="documents_section">
+			<div id="section_header">Documents:</div>
+			<% unless @job.documents.length == 0 %>
+				<% @job.documents.each do |i| %>
+					<div class="document_links"><%= link_to i.name, i.document.url %></div>
+				<% end %>
+			<% end %>
+			<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		</div>
+	
+</div>
+
 <div id="job_sub_and_item_details" class="grid_8">
 
-	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
-	
+
 	<div class="controls" id="receive_payments">
 		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
 	</div>
@@ -22,23 +52,8 @@
 	
 </div>
 
-<div class="grid_4">
-	<div id="sidebar"><h2>Job Details</h2>
-		<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
-		<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
-		<div id="documents_section">
-			<div id="section_header">Documents:</div>
-			<% unless @job.documents.length == 0 %>
-				<% @job.documents.each do |i| %>
-					<div class="document_links"><%= link_to i.name, i.document.url %></div>
-				<% end %>
-			<% end %>
-			<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
-		</div>
-	</div>
-</div>
 
-<fieldset id="full_history">
+<div class="grid_12" id="full_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
 
 	<ul>
@@ -48,7 +63,7 @@
 	
 	</ul>	
 
-</fieldset>
+</div>
 
 <% recents_add(@job.id) %>
 <% $active_page = "job.show"%>
