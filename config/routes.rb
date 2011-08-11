@@ -1,6 +1,4 @@
 Submarine::Application.routes.draw do
-
-  match "/history/:id" => "jobs#history"
   
   resources :list_items
   resources :jobs
