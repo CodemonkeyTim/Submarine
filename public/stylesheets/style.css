@@ -9,20 +9,22 @@ body {
 
 #header	{
 	color: black;
-	height: 100px;
+	height: 50px;
 	background: #d1d1d1;
 	-moz-border-radius: 8px 8px 0px 0px;
 	-webkit-border-radius: 8px 8px 0px 0px;
 	border-radius: 8px 8px 0px 0px;
 	margin-bottom: 0px;
+	margin-top: 3px;
+	padding-top: 8px;
 }
 
 /*Header buttons*/
 
 #headerbuttons {
 	float: right;
-	height: 20px;
-	margin-top: 30px;
+	height: 15px;
+	margin-top: 5px;
 }
 
 #headerbuttons ul {
@@ -56,6 +58,7 @@ body {
 	height: 25px;
 	color: #000000;
 	border-bottom: 5px solid #0a7e07;
+	margin-bottom: 10px;
 }
 
 #nav ul {
@@ -102,17 +105,19 @@ a:hover {
 
 /*Contents styling*/
 #contents {
-	border: 1px solid;
+	background: #F1F1F1;
+	border: 1px solid #BABABA;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	margin-bottom: 0px;
 }
 
 #pagedescription {
-	background:#dadaea;
+	background:#B5B5FF;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-	padding-bottom: 10px;
+	padding-top: 5px;
 	/*In order to get the background color to fill all the way to the side,
 	 * had to replace the margin on left and right with padding on left
 	 * and right, below. this replaces the margin defined in 960.css.
@@ -122,18 +127,117 @@ a:hover {
 	padding-right: 10px;
 	margin-right: 0px;
 }
+#pagedescription h2 {
+	margin-bottom: 5px;
+}
+
+#contentmiddle {
+	background: #fff;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	padding-bottom: 10px;
+}
+
+
+/*Content control styling*/
+
+#contentcontrol {
+	height: 35px;
+}
+
+#controlbuttons {
+	display: inline;
+	width: 460px;
+}
+
+
+#contentcontrol ul {
+	margin-top: 10px;
+	list-style: none;
+	padding: 0px;
+}
+
+#contentcontrol li {
+	display: block;
+	float: right;
+	margin-right: 5px;
+	margin-left: 0px;
+}
+
+#contentcontrol li a {
+	background: #EEEEEE url(/images/n1.gif);
+	border: 1px solid #999999;
+	color: #666666;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#contentcontrol li a:hover {
+	color: black;
+}
 
 /*sidebar styling*/
 
 #sidebar {
-	border: 1px solid;
-	padding: 8px;
+	margin-right: 0px;
+	padding-right: 10px;
 }
+
 #sidebar h2 {
 	padding: 0px;
 	font-weight: bold;
 	color: #939393;
 }
+
+/*Bottom Content styling*/
+
+#contentbottom {
+	background: #fff;
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/*history styling*/
+
+#recent_history {
+	border-top: 1px solid #BABABA;
+	padding-top: 10px;
+}
+#recent_history ul {
+	list-style: none;
+}
+
+#recent_history span {
+	color: #BABABA;
+	font-size: 10px;
+}
+
+/*footer styling*/
+#footer {
+	background: #f1f1f1;
+}
+
+#footertext {
+	float: right;
+}
+
+#footertext span {
+	color: #BABABA;
+}
+
+
+/*Container styling*/
 
 .container_12,
 .container_16,
