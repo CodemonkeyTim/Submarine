@@ -9,20 +9,22 @@ body {
 
 #header	{
 	color: black;
-	height: 100px;
+	height: 50px;
 	background: #d1d1d1;
 	-moz-border-radius: 8px 8px 0px 0px;
 	-webkit-border-radius: 8px 8px 0px 0px;
 	border-radius: 8px 8px 0px 0px;
 	margin-bottom: 0px;
+	margin-top: 3px;
+	padding-top: 8px;
 }
 
 /*Header buttons*/
 
 #headerbuttons {
 	float: right;
-	height: 20px;
-	margin-top: 30px;
+	height: 15px;
+	margin-top: 5px;
 }
 
 #headerbuttons ul {
@@ -103,15 +105,13 @@ a:hover {
 
 /*Contents styling*/
 #contents {
+	background: #F1F1F1;
 	border: 1px solid #BABABA;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	margin-bottom: 0px;
 }
-#contents.controls {
-	float: right;
-} 
 
 #pagedescription {
 	background:#B5B5FF;
@@ -130,11 +130,55 @@ a:hover {
 #pagedescription h2 {
 	margin-bottom: 5px;
 }
-#contentcontrol {
-	height: 30px;
+
+#contentmiddle {
+	background: #fff;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	padding-bottom: 10px;
 }
+
+
+/*Content control styling*/
+
+#contentcontrol {
+	height: 35px;
+}
+
+#controlbuttons {
+	display: inline;
+	width: 460px;
+}
+
+
 #contentcontrol ul {
+	margin-top: 10px;
 	list-style: none;
+	padding: 0px;
+}
+
+#contentcontrol li {
+	display: block;
+	float: right;
+	margin-right: 5px;
+	margin-left: 0px;
+}
+
+#contentcontrol li a {
+	background: #EEEEEE url(/images/n1.gif);
+	border: 1px solid #999999;
+	color: #666666;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#contentcontrol li a:hover {
+	color: black;
 }
 
 /*sidebar styling*/
@@ -142,12 +186,41 @@ a:hover {
 #sidebar {
 	margin-right: 0px;
 	padding-right: 10px;
-	background: #E3E3E3;
 }
+
 #sidebar h2 {
 	padding: 0px;
 	font-weight: bold;
 	color: #939393;
+}
+
+/*Bottom Content styling*/
+
+#contentbottom {
+	background: #fff;
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/*history styling*/
+
+#recent_history {
+	border-top: 1px solid #BABABA;
+	padding-top: 10px;
+}
+#recent_history ul {
+	list-style: none;
+}
+
+#recent_history span {
+	color: #BABABA;
+	font-size: 10px;
 }
 
 /*footer styling*/

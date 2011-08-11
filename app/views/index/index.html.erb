@@ -1,17 +1,18 @@
 	<div class="grid_12" id="pagedescription"><h2>Recent jobs</h2></div>
 	
+	<div id="contentmiddle" class="grid_12">
 	<% @recent_jobs.each do |i| %>
-		<div class="grid_12">
+
 		<h3><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
-				<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :id => j.id} %></h3>
+				<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :id => j.id} %></h5>
 				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 0} %>
 			<% end %>
 		<% end %>
-		</div>
+		
 	<% end %>
-
+	</div>
 
 <fieldset>
 	<legend>Overdue items</legend>
