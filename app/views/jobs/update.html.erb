@@ -1,0 +1,12 @@
+<h2> Job edited! Redirecting to its page... </h2>
+
+<script type="text/javascript">
+	
+	window.onload = setTimeout('redirect()', 1000);
+	
+	function redirect () {
+	  window.location = "/jobs/<%= @job.id %>"
+	}
+</script>
+
+<%= @data %>

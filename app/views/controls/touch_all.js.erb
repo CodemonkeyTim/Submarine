@@ -7,8 +7,8 @@
 		});
 		
 		$('#<%= i.id %>cli img').each( function() {
-			$('#<%= i.id %>cli').contents().find('input').remove()
-			$(this).after('<input type="checkbox" onclick="$.ajax(\'/mark_done/<%= i.id %>\')"/>');
+			$('#<%="#{i.id}input"%>').remove()
+			$(this).after('<input type="checkbox" id="<%="#{i.id}input"%>" onclick="$.ajax(\'/mark_done/<%= i.id %>\')"/>');
 		});
 	<% end %>
 <% end %>
