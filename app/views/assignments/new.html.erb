@@ -1,32 +1,26 @@
 <fieldset id="new_assignment">
 	<legend><%= @title_text %></legend>
 	
-	<form action="/assignments" method="post">
+	<form action="/assignments" method="post" id="assignment_form">
 		<div class="input_rows"> 
 			<div class="labels"> Choose a vendor: </div> 
-				<div class="inputs"> 
-					<select name="partner_id">
-						<% unless @partners.length == 0%>
-							<% @partners.each do |i| %>
-								<option value="<%= i.id%>"><%= i.name %></option>
-							<% end %>		
-						<% end %>
-					</select>					
-				</div>
+			<div class="inputs"> 
+				<select name="partner_id">
+					<% unless @partners.length == 0 %>
+						<% @partners.each do |i| %>
+							<option value="<%= i.id%>"><%= i.name %></option>
+						<% end %>		
+					<% end %>
+				</select>					
 			</div>
-		<input type="hidden" name="super_parent_id" value="<%= @super_parent_id %>" />
-		<input type="hidden" name="job_id" value="<%= @job.id %>" />	
-		<input type="hidden" name="parent_id" value="<%= @parent_id %>" />
-		<input type="hidden" name="partner_type" value="<%= @partner_type %>" />	
-		<div class="input_rows"><input type="submit" value="Assign"/></div>
-	</form>	
-	
-	<div id="list_of_items">
-		<div id="list_of_items_header">Items to be automatically added to vendor:</div>
-		<% @list_of_items.each do |i| %>
-			<div class="list_items"><%= i.item_data %></div>
-		<% end %>
+			<div class="labels"> Or <%= link_to "create a new vendor:", {:controller => "controls", :action => "show_fields"}, :remote => true %> </div>
 		</div>
+		<input type="hidden" class="hiddens" name="super_parent_id" value="<%= @super_parent_id %>" />
+		<input type="hidden" class="hiddens" name="job_id" value="<%= @job.id %>" />	
+		<input type="hidden" class="hiddens" name="parent_id" value="<%= @parent_id %>" />
+		<input type="hidden" class="hiddens" name="partner_type" value="<%= @partner_type %>" />	
+		<div class="input_rows"><input type="submit" value="Assign"/></div>
+	</form>
 </fieldset>
 
 <% $active_page = "assignment.new"%>

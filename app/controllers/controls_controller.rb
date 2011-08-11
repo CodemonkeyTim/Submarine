@@ -97,5 +97,14 @@ class ControlsController < ApplicationController
     end
   end
   
+  def undo
+    
+    
+  end
+  
+  def show_fields
+    
+    
+  end
     
 end
