@@ -1,3 +1,3 @@
 class ProjectManager < ActiveRecord::Base
-  belongs_to :jobs
+  has_many :jobs
 end

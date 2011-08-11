@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
   has_many :documents, :as => :owner
   has_many :tags, :as => :taggable
   
-  has_one :project_manager
+  belongs_to :project_manager
   attr_accessor :state
   
   def state
