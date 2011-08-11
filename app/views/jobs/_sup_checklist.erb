@@ -6,7 +6,7 @@
 		<% end %>
 		<%= l.item_data %>
 		<% if l.state < 3 %>
-			<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => l.id}, :remote => true %></span>
+			<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => l.id, :state => l.state}, :remote => true %></span>
 		<% end %>
 	</div> 
 	<% end %>

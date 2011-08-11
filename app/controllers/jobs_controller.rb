@@ -41,7 +41,7 @@ class JobsController < ApplicationController
     
   
   def new
-
+    @pms = 
   end
   
   def create

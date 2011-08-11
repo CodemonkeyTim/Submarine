@@ -1,10 +1,10 @@
 class CreateJobs < ActiveRecord::Migration
   def self.up
     create_table :jobs do |t|
-      t.string :name
       t.string :job_number
-      t.integer :PM_id
       t.string :location
+      t.string :name
+      t.integer :project_manager_id
       t.integer :value
 
       t.timestamps

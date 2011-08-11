@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery 
   
+  $last_markings
+  
   def get_time
     
     @hour = Time.now.hour
@@ -25,5 +27,8 @@ class ApplicationController < ActionController::Base
         
     @date = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year}"
   end
+  
+  
+  
   
 end
