@@ -25,8 +25,17 @@
 
 		<div class="input_rows"> <div class="labels"> Location </div> <div class="inputs"> <%= text_field_tag("location") %> </div> </div>
 		<div class="input_rows"> <div class="labels"> Value </div> <div class="inputs"> <%= text_field_tag("value") %> </div> </div>
-		<div class="input_rows"> <div class="labels"> Project manager </div> <div class="inputs"> <%= text_field_tag("project_manager") %> </div> </div>
-		<div class="input_rows"><input type="submit" value="Assign"/></div>
+		<div class="input_rows"> 
+			<div class="labels"> Project manager </div> 
+			<div class="inputs"> 
+				<select name="project_manager">
+					<% @pms.each do |i| %>
+						<option value="<%= i.id %>"><%= i.name %></option>
+					<% end %>
+				</select> 
+			</div> 
+		</div>
+		<div class="input_rows"><input type="submit" value="Create"/></div>
 	</form>
 
 </fieldset>

@@ -41,7 +41,7 @@ class JobsController < ApplicationController
     
   
   def new
-
+    @pms = ProjectManager.all
   end
   
   def create

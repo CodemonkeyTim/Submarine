@@ -187,3 +187,58 @@ select {
 	float: left;
 	clear: left;
 }
+
+.sub_header {
+	font-size: 18px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	float: left;
+	clear: left;
+	
+}
+
+#list_of_items {
+	float: right;
+	clear: right;
+}
+
+form {
+	float: left;
+}
+
+.required_marker {
+	margin-left: 5px;
+	
+	float: left;
+	clear: right;
+}
+
+.inputs {
+	width: 200px;
+	
+	float: left;
+
+	margin-bottom: 3px;	
+}
+
+.input_rows {
+	width: 400px;
+	
+	float: left;
+	clear: left;
+}
+
+.labels {
+	width: 200px;
+	
+	float: left;
+	clear: left;
+	
+	margin-bottom: 3px;
+	
+}
+
+select {
+	width: 203px;
+	clear: none;
+}
