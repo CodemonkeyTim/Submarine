@@ -24,10 +24,8 @@
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
-			<% unless j.is_active? %>
-				<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5>
-				<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
-			<% end %>
+			<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5>
+			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
 		<% end %>
 	<% end %>
 	
