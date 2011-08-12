@@ -4,13 +4,13 @@
 	<h2>Jobs with Open Items</h2>
 	
 	<% @open_jobs.each do |i| %>
-		<div class="job_headers"> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
+		<h4> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h4>
 	<% end %>
 	
 	<h2>Jobs with no Open Items</h2>
 	
 	<% @closed_jobs.each do |i| %>
-		<div class="job_headers"> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
+		<h4> <%= image_tag get_image(i.state) %> <%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h4>
 	<% end %>
 	
 </div>

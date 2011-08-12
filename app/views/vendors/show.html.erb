@@ -1,15 +1,7 @@
-<fieldset id="vendor_details">
-	<legend>Vendor details</legend>
-	
-	
-</fieldset>
+<div class="grid_12" id="pagedescription"><h2><%= @vendor.name %></h2></div>
 
-<fieldset id="vendor_jobs_details">
-	<legend><%= @vendor.name %> - Jobs</legend>
-	
-	<div class="controls" id="edit_job">
-		<%= link_to "Edit vendor", {:controller => "vendors", :action => "edit", :id => @vendor.id} %>
-	</div>
+<div class="grid_8" id="contentmiddle">
+	<h3>Jobs</h3>
 	
 	<% if @jobs.length != 0 then %>
 		<% @jobs.each do |i| %>
@@ -31,8 +23,18 @@
 		<% end %>
 	<% end %>	
 	
-</fieldset>
+</div>
 
+<div id="sidebar" class="grid_3">
+	<h2>Contact Details</h2>
+
+	<ul>
+		<li><%= link_to "Edit vendor", {:controller => "vendors", :action => "edit", :id => @vendor.id} %></li>
+		<li>Contact Name: <span>George Smith</span></li>
+		<li>Phone: <span>360-000-0000</span></li>
+	</ul>
+
+</div>
 
 
 

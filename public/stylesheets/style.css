@@ -140,6 +140,37 @@ a:hover {
 	padding-bottom: 10px;
 }
 
+/*Subcontractor Payment Activation items*/
+#subactivation {
+	display: inline;
+}
+
+#subactivation ul {
+	margin-top: 10px;
+	list-style: none;
+	padding: 0px;
+}
+#subactivation li span{
+	display: block;
+	float: left;
+	margin-right: 0px;
+	margin-left: 0px;
+	background: #EEEEEE url(/images/n4.gif);
+	border: 1px solid #999999;
+	border-right: none;
+	color: #666666;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+}
+
+
+/*Item undo coloring*/
+
+.subs span a {
+	color: #FF4D4D;
+	text-decoration: underline;
+}
+
 
 /*Content control styling*/
 
@@ -192,6 +223,12 @@ a:hover {
 	padding: 0px;
 	font-weight: bold;
 	color: #939393;
+}
+#sidebar ul {
+	list-style: none;
+}
+#sidebar span {
+	font-weight: bold; 
 }
 
 /*Bottom Content styling*/

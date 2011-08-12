@@ -1,13 +1,13 @@
-<fieldset id="vendors" class="">
-	<legend> Vendors </legend>	
+<div id="pagedescription" class="grid_12">
+	<h2> Vendors </h2>	
+</div>
+<div id="contentmiddle" class="grid_12">
 	<% if @vendors.length != 0 %>
-  		<div id="vendors">
   			<% @vendors.each do |i| %>
-  				<div class="list_items"> <%= link_to i.name, vendor_path(i.id) %></div>
+  				<h4> <%= link_to i.name, vendor_path(i.id) %></h4>
 	  		<% end %>
-  		</div>
 	<% end %>
-</fieldset>
+</div>
 
 <% #Page's method calls and global variable modifiers %>
 

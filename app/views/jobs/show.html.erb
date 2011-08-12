@@ -24,8 +24,17 @@
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
-			<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5>
+			<div class="grid_8" id="subactivation">
+				<ul>
+					<li><h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5></li>
+					<li><span>Inactive</span></li>
+					<li><span>Reg</span></li>
+					<li><span>Final</span></li>
+				</ul>
+			</div>
+			<div class="grid_8">
 			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
+			</div>
 		<% end %>
 	<% end %>
 	
@@ -49,14 +58,15 @@
 
 
 <div class="grid_12" id="contentbottom">
-	<div id="recent_history"
+	<div id="recent_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
 
 	<ul>
 		<% @log.each do |i| %>
 			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
-	</ul>	
+	</ul>
+	
 	</div>
 </div>
 
