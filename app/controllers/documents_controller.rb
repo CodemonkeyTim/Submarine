@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   def new
     if params[:owner_type] == "job"
-      @owner = Job.find(params[:owner_id])
+      @owner = Job.find(params[:id])
       @owner_name = @owner.name
       @owner_type = 1
     end
@@ -32,6 +32,6 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.save
     
-    @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date")  
+    @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)  
   end
 end

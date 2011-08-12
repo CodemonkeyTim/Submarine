@@ -15,14 +15,19 @@
 			<li class="controls" id="assign_sub">
 				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 			</li>
+			<li class="controls" id="edit_job">
+				<%= link_to "Edit the job", {:controller => "jobs", :action => "edit", :job_id => @job.id}%>
+			</li>
 		</ul>
 		</div>
 	</div>
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
-			<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5>
-			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
+			<% unless j.is_active? %>
+				<h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5>
+				<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
+			<% end %>
 		<% end %>
 	<% end %>
 	
