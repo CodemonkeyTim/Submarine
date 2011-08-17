@@ -95,8 +95,7 @@ class ControlsController < ApplicationController
     if @log_data.include?('\'')
       @log_data = @log_data.gsub('\'', '\\')
     end
-    
-    $last_markings.push([@cli.id, @log.id])
+
   end
   
   def undo

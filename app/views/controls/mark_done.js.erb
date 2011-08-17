@@ -1,16 +1,17 @@
-$('#<%= @id %>cli input').fadeOut();
+$('#<%= params[:id] %>cli input').fadeOut();
 
 setTimeout(function () {
-		$('#<%= @id %>cli input').remove();
+		$('#<%= params[:id] %>cli input').remove();
 	}, 600);
 	
-$('#<%= @id %>cli img').fadeOut();
+$('#<%= params[:id] %>cli img').fadeOut();
 
 setTimeout(function () {
-		$('#<%= @id %>cli img').attr('src', '/images/waiting.png');
+		$('#<%= params[:id] %>cli img').attr('src', '/images/waiting.png');
 	}, 600);
-$('#<%= @id %>cli img').fadeIn();
+$('#<%= params[:id] %>cli img').fadeIn();
 
+/*
 if ($('#job_history_box div').length > 3) {
 	$('#job_history_box div').last().fadeOut("slow");
 	
@@ -21,4 +22,4 @@ if ($('#job_history_box div').length > 3) {
 	$('#job_history_box').prepend('<div id="history_logging"><%= @log_data %></div>');
 } else {
 	$('#job_history_box').prepend('<div id="history_logging"><%= @log_data %></div>');
-}
+}*/
