@@ -1,0 +1,6 @@
+window.onload = setTimeout('redirect()', 500);
+	
+	function redirect () {
+	  window.location = "/jobs/<%= @job.id %>"
+	}
+
