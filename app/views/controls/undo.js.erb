@@ -1,0 +1,12 @@
+$('#<%= @id %>cli img ').each( function() {
+	$(this).fadeOut();
+	$(this).attr('src', '/images/<%= @state%>.png');
+	$(this).fadeIn();
+});
+
+$('#<%= @id %>cli img').each( function() {
+	$('#<%="#{@id}input"%>').remove()
+	$(this).after('<input type="checkbox" id="<%="#{@id}input"%>" onclick="$.ajax(\'/mark_done/<%= @id %>\')"/>');
+});
+
+$('#<%= @id %>cli a').fadeOut();
