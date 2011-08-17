@@ -15,9 +15,6 @@
 			<li class="controls" id="assign_sub">
 				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 			</li>
-			<li class="controls" id="edit_job">
-				<%= link_to "Edit the job", {:controller => "jobs", :action => "edit", :job_id => @job.id}%>
-			</li>
 		</ul>
 		</div>
 	</div>
@@ -43,13 +40,14 @@
 <div id="sidebar" class="grid_3">
 	<h2>Job Details</h2>
 	
+	<div><%= link_to "Edit the job", {:controller => "jobs", :action => "edit", :job_id => @job.id}%></div>
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
 	<div id="documents_section">
 		<div id="section_header">Documents:</div>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
-				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+				<img href="/images/pdf.jpg" /><div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		

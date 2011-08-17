@@ -28,31 +28,31 @@ hr {
 ----------------------------------------------------------------------------------------------------*/
 
 h1 {
-  font-size: 25px;
+  font-size: 28px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 23px;
 }
 
 h3 {
-  font-size: 21px;
+  font-size: 23px;
   border-top: 1px solid #BABABA;
   margin-top: 5px;
 }
 
 h4 {
-  font-size: 12px;
+  font-size: 15px;
   color: #BABABA;
 }
 
 h5 {
-  font-size: 12px;
+  font-size: 15px;
   margin-top: 8px;
 }
 
 h6 {
-  font-size: 15px;
+  font-size: 18px;
 }
 
 /* `Spacing
