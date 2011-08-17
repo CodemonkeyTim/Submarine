@@ -230,6 +230,10 @@ a:hover {
 #sidebar span {
 	font-weight: bold; 
 }
+.document_links {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
 /*Bottom Content styling*/
 
