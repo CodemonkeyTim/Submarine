@@ -42,6 +42,7 @@
 	
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
 	<div id="documents_section">
 		<div id="section_header">Documents:</div>
 		<% unless @job.documents.length == 0 %>

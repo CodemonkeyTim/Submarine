@@ -6,6 +6,7 @@ class CreateProjectManagers < ActiveRecord::Migration
       t.timestamps
     end
     
+    ProjectManager.create(:name => "unassigned")
     ProjectManager.create(:name => "John Cichosz")
     ProjectManager.create(:name => "Darren Cahoon")
     ProjectManager.create(:name => "Aaron Halling")
