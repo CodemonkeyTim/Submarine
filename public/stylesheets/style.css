@@ -140,6 +140,11 @@ a:hover {
 	padding-bottom: 10px;
 }
 
+#contentmiddle ul {
+	list-style: none;
+	font-size: 15px;
+}
+
 /*Subcontractor Payment Activation items*/
 #subactivation {
 	display: inline;
