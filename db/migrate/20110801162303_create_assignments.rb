@@ -5,7 +5,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :partner_id
       t.integer :partner_type
-      t.boolean :is_active
+      t.integer :status
       
       t.timestamps
     end

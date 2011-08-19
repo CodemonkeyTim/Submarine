@@ -21,8 +21,12 @@ Submarine::Application.routes.draw do
   match "/undo/:id" => "controls#undo"
   match "/show_fields" => "controls#show_fields"
   
+  #Partner status control
+  match "/change_status" => "controls#change_status" 
+  
   #Auxiliary assignment creation action
   match "/create_and_assign" => "assignments#create_and_assign", :via => "POST"
+  
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

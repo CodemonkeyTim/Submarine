@@ -15,8 +15,8 @@
 			<div class="labels">Job type</div> 
 			<div class="inputs"> 
 				<select name="job_type">
-					<option value="<%= @type_opt_1_val %>"><%= @type_opt_1_text %></option>
-					<option value="<%= @type_opt_2_val %>"><%= @type_opt_2_text %></option>
+					<option value="Public" <%= if @tags.include? ("Public") then "selected" end %> >Public</option>
+					<option value="Private" <%= if @tags.include? ("Private") then "selected" end %>>Private</option>
 				</select>			
 			</div>
 		</div>
@@ -24,8 +24,8 @@
 			<div class="labels">Role of TU</div> 
 			<div class="inputs"> 
 				<select name="TU_role">
-					<option value="<%= @role_opt_1_val %>"><%= @role_opt_1_text %></option>
-					<option value="<%= @role_opt_2_val %>"><%= @role_opt_2_text %></option>
+					<option value="Primary" <%= if @tags.include? ("Primary") then "selected" end %> >Primary</option>
+					<option value="Subcontractor" <%= if @tags.include? ("Subcontractor") then "selected" end %>>Subcontractor</option>
 				</select>			
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			<div class="labels"> Project manager </div> <div class="inputs"> 				
 				<select name="PM_id">
 					<% @pms.each do |i| %>
-						<option value="<%= i.id %>"><%= i.name %></option>
+						<option value="<%= i.id %>" <%= if i.id == @job.project_manager_id then "selected" end %>><%= i.name %></option>
 					<% end %>
 				</select>
 			</div> 

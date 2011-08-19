@@ -124,5 +124,9 @@ class ControlsController < ApplicationController
     
     
   end
+   
+  def change_status 
+     
+  end
     
 end

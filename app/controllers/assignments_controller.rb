@@ -49,7 +49,7 @@ class AssignmentsController < ApplicationController
   def create
     @super_parent_id = params[:super_parent_id]
     
-    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type])
+    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => 3)
     if params[:partner_type] == 1
       @target_type = "Subcontractor"
     end
@@ -96,7 +96,7 @@ class AssignmentsController < ApplicationController
     
     @super_parent_id = params[:super_parent_id]
     
-    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => @partner.id, :partner_type => params[:partner_type])
+    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => @partner.id, :partner_type => params[:partner_type], :status => 3)
     if params[:partner_type] == 1
       @target_type = "Subcontractor"
     end

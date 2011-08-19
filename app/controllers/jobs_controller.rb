@@ -20,16 +20,7 @@ class JobsController < ApplicationController
     end
     
     @log = @loggings[(0..3)]
-      
-    @assignments.each do |i|
-      @partner = Partner.find(i.partner_id)
-      if i.is_active?
-        @partner.status = "active_sub"
-      else
-        @partner.status = "inactive_sub"
-      end
-    end
-
+    
   end
     
   def index
@@ -92,42 +83,6 @@ class JobsController < ApplicationController
     @taggys = @job.tags.all
     @tags = @taggys.collect {|i| i.tag_name}.flatten
     
-      @type_opt_1_val = 1
-      @type_opt_1_text = "Public"
-      @type_opt_2_val = 3
-      @type_opt_2_text = "Private"
-      
-      @role_opt_1_val = 1
-      @role_opt_1_text = "Prime contractor"
-      @role_opt_2_val = 2
-      @role_opt_2_text = "Subcontractor"
-    
-    if @tags.include?("Private")
-      @type_opt_1_val = 2
-      @type_opt_1_text = "Private"
-      @type_opt_2_val = 1
-      @type_opt_2_text = "Public"
-    end
-    if @tags.include?("Public")
-      @type_opt_1_val = 1
-      @type_opt_1_text = "Public"
-      @type_opt_2_val = 2
-      @type_opt_2_text = "Private"
-    end
-    
-    if @tags.include?("Prime") 
-      @role_opt_1_val = 1
-      @role_opt_1_text = "Prime contractor"
-      @role_opt_2_val = 2
-      @role_opt_2_text = "Subcontractor"
-    end
-    if @tags.include?("Sub")
-      @role_opt_1_val = 2
-      @role_opt_1_text = "Subcontractor"
-      @role_opt_2_val = 1
-      @role_opt_2_text = "Prime contractor"
-    end
-    
     @pms=ProjectManager.all
   end
   
@@ -141,21 +96,8 @@ class JobsController < ApplicationController
     
     @job.tags.each {|i| i.delete }
     
-    if params[:job_type] == "1"
-      @job_type = "Public"
-    end
-    if params[:job_type] == "2"
-      @job_type = "Private"
-    end
-    if params[:TU_role] == "1"
-      @TU_role = "Prime"
-    end
-    if params[:TU_role] == "2"
-      @TU_role = "Sub" 
-    end
-    
-    @job.tags.create(:tag_name => @job_type)
-    @job.tags.create(:tag_name => @TU_role)
+    @job.tags.create(:tag_name => params[:job_type])
+    @job.tags.create(:tag_name => params[:TU_role])
     
     @job.save
     
