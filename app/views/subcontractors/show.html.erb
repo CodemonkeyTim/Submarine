@@ -1,6 +1,6 @@
 <!--Page description & heading-->
 <div class="grid_12" id="pagedescription">
-	<h2><%= "#{@job.job_number} - #{@job.name}" %></h2>
+	<h2><%= link_to "#{@job.job_number} - #{@job.name}", job_path(@job.id) %></h2>
 	<h5><%= "#{@subcontractor.name}#{@sub_to}" %></h5>			
 </div>
 

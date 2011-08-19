@@ -1,15 +1,28 @@
 <!--Page description & heading-->
 <div class="grid_12" id="pagedescription">
-	<h2><%= "#{@job.job_number} - #{@job.name}" %></h2>
-	<h5><%= @supplier.name %> - supplier to <%= @subcontractor.name %> </h5>			
+	<h2><%= link_to "#{@job.job_number} - #{@job.name}", job_path(@job.id) %></h2>
+	<h5><%= @supplier.name %> (supplier to <%= @subcontractor.name %>) </h5>			
 </div>
 
-<fieldset id="job_details_box">
-	<legend>Job details</legend>
+<div id="contentmiddle" class="grid_9">	
+
+<!--control buttons-->	
+	<div id="contentcontrol">
+		
+		<div class="grid_2"><h4>All Items</h4></div>
+		
+		<div class="controlbuttons">
+			<ul>
+				<li class="controls" id="receive_payments">
+					<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name}%>
+				</li>
+			</ul>
+		</div>
+	</div>
 	
-	<div class="job_detail_list_item"><%= "Job number: #{@job.job_number}" %></div>
-	<div class="job_detail_list_item"><%= "Job name: #{@job.name}" %></div>
-</fieldset>
+	 <%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id} %>
+	
+</div>
 
 <fieldset id="vendor_details_box">
 	<legend>Vendor details</legend>
@@ -32,27 +45,16 @@
 		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
 	</div>
 </fieldset>
-
-
-<fieldset id="subs_details" class="">
-	<legend> <%= @supplier.name %> - supplier to <%= @subcontractor.name %> </legend>
   	
-  	<div class="controls" id="assign_item">
-		<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @supplier.id, :parent_id => @subcontractor.id, :job_id => @job.id, :partner_type => 2, :name => @supplier.name}%>
-	</div>
-  	
-  	<%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id} %>
-  	
-</fieldset>
-
-<fieldset id="subs_history">
+<div class="grid_12" id="contentbottom">
+	<div id="recent_history">
 	<legend>Suppliers History - <%= link_to "See full history", {:controller => "histories", :action => "show", :job_id => @job.id, :parent_id => @parent_id, :partner_id => @supplier.id, :partner_type => 2}%></legend>
 		<% unless @log.nil? then @log.each do |i| %>
 				<div class="history_logging"><%= i.log_data %></div>
 			<% end %>
 		<% end %>
-			
-</fieldset>
+	</div>
+</div>
 
 <% #Page's method calls and global variable modifiers %>
 
