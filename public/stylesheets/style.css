@@ -316,5 +316,7 @@ body {
 /* Inactive/Reg/Final tabs styling class*/
 
 .selected {
+	background: red;
 	font-weight: bold;
+	font-style: italic;
 }

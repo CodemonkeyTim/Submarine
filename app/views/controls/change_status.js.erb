@@ -1,11 +1,13 @@
-$('inactive_tab').attr('class', '');
-$('reg_tab').attr('class', '');
-$('final_tab').attr('class', '');
+$('.<%= @partner_id %>sub #inactive_tab').attr('class', '');
+$('.<%= @partner_id %>sub #reg_tab').attr('class', '');
+$('.<%= @partner_id %>sub #final_tab').attr('class', '');
 
-if (<%=params[:status]%> == 1) {
-	$('final_tab').attr('class', 'selected');
-} else if (<%=params[:status]%> == 2) {
-	$('reg_tab').attr('class', 'selected');
-} else if (<%=params[:status]%> == 3) {
-	$('inactive_tab').attr('class', 'selected');
-}
+setTimeout(function() {
+if (<%= params[:status] %> == 1) {
+	$('.<%= @partner_id %>sub #final_tab').attr('class', 'selected');
+} else if (<%= params[:status] %> == 2) {
+	$('.<%= @partner_id %>sub #reg_tab').attr('class', 'selected');
+} else if (<%= params[:status] %> == 3) {
+	$('.<%= @partner_id %>sub #inactive_tab').attr('class', 'selected');
+}	
+}, 200)
