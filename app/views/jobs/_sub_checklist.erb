@@ -6,7 +6,9 @@
 		<% end %>
 		<%= k.item_data %>
 		<% if k.state < 3 %>
-			<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => k.id, :state => k.state}, :remote => true %></span>
+			<span>
+				<a style="display: none;" href=<%= "/undo/1?item_id=#{k.id}&state=#{k.state}" %> data-remote="true">undo</a>
+			</span>
 		<% end %>
 	</div>
 	<% end %>
