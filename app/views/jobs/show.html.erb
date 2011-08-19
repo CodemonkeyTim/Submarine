@@ -23,12 +23,28 @@
 		<% @job.subcontractors.each do |j| %>
 			<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, j.id, 0, 1) %>
 			
-			<div class="grid_8 <%= j.id %>sub" id="subactivation">
+			<div class="grid_9 <%= j.id %>sub" id="subactivation">
 				<ul>
-					<li><h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5></li>
-					<li class="selected" id="inactive_tab"><span><%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id}, :remote => true %></span></li>
-					<li id="reg_tab"><span><%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id}, :remote => true %></span></li>
-					<li id="final_tab"><span><%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id}, :remote => true %></span></li>
+					<li>
+						<span class="vendorname">
+							<%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %>
+						</span>
+					</li>
+					<li class="selected" id="inactive_tab">
+						<span class="firstbutton">
+							<%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
+					<li id="reg_tab">
+						<span class="middlebutton">
+							<%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
+					<li id="final_tab">
+						<span class="lastbutton">
+							<%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="grid_8">

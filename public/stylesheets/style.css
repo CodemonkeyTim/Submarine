@@ -150,8 +150,13 @@ body {
 /*Subcontractor Payment Activation items*/
 #subactivation {
 	display: inline;
+	background: #BABABA;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding-bottom: 5px;
+	padding-left: 5px;
 }
-
 #subactivation ul {
 	margin-top: 10px;
 	list-style: none;
@@ -161,19 +166,69 @@ body {
 	display: block;
 	float: left;
 	margin-left: 0px;
-	margin-right: 10px;
+}
+#subactivation li.selected span a {
+	background: #EEEEEE url(/images/n1.gif);
+	color: #666666;
 }
 
-#subactivation li span{
+#subactivation span a{
 	margin-right: 0px;
-	background: #EEEEEE url(/images/n4.gif);
 	border: 1px solid #999999;
+	background: #EEEEEE url(/images/n4.gif);
 	border-right: none;
-	color: #666666;
+	color: black;
 	padding: 2px 15px 2px;
 	text-decoration: none;
 }
 
+
+#subactivation span.vendorname a{
+	background: none;
+	border: none;
+	padding: 2px 15px 15px 2px;
+ 	color: #001a9c;
+ 	font-size: 20px;
+}
+
+#subactivation span.firstbutton a{
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-top-left-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+#subactivation span.firstbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+}
+
+#subactivation span.middlebutton a{
+
+}
+
+#subactivation span.middlebutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+}
+
+#subactivation span.lastbutton a{
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-right: 1px solid #999999;
+}
+
+#subactivation span.lastbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+	border-right: 1px solid #999999;
+}
 
 /*Item undo coloring*/
 
@@ -182,6 +237,11 @@ body {
 	text-decoration: underline;
 }
 
+.subs {
+	border-left: 1px solid #D7D7D7;
+	padding-left: 10px;
+	margin-left: 10px;
+}
 
 /*Content control styling*/
 
@@ -310,13 +370,4 @@ body {
 
 .container_24 {
   background-image: url(../img/24_col.gif);
-}
-
-/* Some trixy styles for trixy functions */
-/* Inactive/Reg/Final tabs styling class*/
-
-.selected {
-	background: red;
-	font-weight: bold;
-	font-style: italic;
 }
