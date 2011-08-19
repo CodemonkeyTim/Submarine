@@ -15,8 +15,10 @@
 		<h4>Suppliers</h4>
 		<% j.suppliers(job_id).each do |k| %>
 			<div class="sups">
-				<div class="sups_headers"><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id, :subcontractor_id => j.id) %></div>
+d
+				<div class="sups_headers"><%= image_tag get_image(k.get_state(job_id, j.id)) %><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id, :subcontractor_id => j.id) %></div>
 				<%= render :partial => "jobs/sup_checklist", :locals => {:k => k, :job_id => job_id, :parent_id => j.id, :asg_id => asg_id} %>
+
 			</div>
 		<% end %>
 	<% end %>
