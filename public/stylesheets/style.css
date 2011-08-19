@@ -150,8 +150,13 @@ body {
 /*Subcontractor Payment Activation items*/
 #subactivation {
 	display: inline;
+	background: #BABABA;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding-bottom: 5px;
+	padding-left: 5px;
 }
-
 #subactivation ul {
 	margin-top: 10px;
 	list-style: none;
@@ -183,6 +188,7 @@ body {
 	border: none;
 	padding: 2px 15px 15px 2px;
  	color: #001a9c;
+ 	font-size: 20px;
 }
 
 #subactivation span.firstbutton a{
@@ -231,6 +237,11 @@ body {
 	text-decoration: underline;
 }
 
+.subs {
+	border-left: 1px solid #D7D7D7;
+	padding-left: 10px;
+	margin-left: 10px;
+}
 
 /*Content control styling*/
 
@@ -359,11 +370,4 @@ body {
 
 .container_24 {
   background-image: url(../img/24_col.gif);
-}
-
-/* Some trixy styles for trixy functions */
-/* Inactive/Reg/Final tabs styling class*/
-
-.selected {
-	font-weight: bold;
 }

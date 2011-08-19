@@ -126,9 +126,11 @@ class ControlsController < ApplicationController
   end
    
   def change_status 
-     @asg = Assignment.find(params[:asg_id]).status
+     @asg = Assignment.find(params[:asg_id])
      @asg.status = params[:status]
      @asg.save
+     
+     @partner_id = @asg.partner_id
   end
     
 end

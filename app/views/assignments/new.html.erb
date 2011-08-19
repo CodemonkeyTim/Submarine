@@ -1,9 +1,11 @@
-<fieldset id="new_assignment">
-	<legend><%= @title_text %></legend>
+<div id="pagedescription" class="grid_12">
+	<h2><%= @title_text %></h2>
+</div>
 	
+<div id="contentmiddle" class="grid_12">
 	<form action="/assignments" method="post" id="assignment_form">
 		<div class="input_rows"> 
-			<div class="labels"> Choose a vendor: </div> 
+			<h5> Choose a vendor: </h5> 
 			<div class="inputs"> 
 				<select name="partner_id">
 					<% unless @partners.length == 0 %>
@@ -21,6 +23,6 @@
 		<input type="hidden" class="hiddens" name="partner_type" value="<%= @partner_type %>" />	
 		<div class="input_rows"><input type="submit" value="Assign"/></div>
 	</form>
-</fieldset>
+</div>
 
 <% $active_page = "assignment.new"%>
