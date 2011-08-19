@@ -1,9 +1,9 @@
-<div class="subs">
+<div class="subs" id="<%= j.get_status %>">
 	<% unless show_subname == 0 %>
-		<div class="subs_headers">
+		<h5 id="<%= j.get_status %>">
 			<%= image_tag get_image(j.get_state(job_id, parent_id))%>
 			<%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %>
-		</div>
+		</h5>
 	<% end %>
 
 	<% unless j.checklist_items(job_id, parent_id).first.nil? %>

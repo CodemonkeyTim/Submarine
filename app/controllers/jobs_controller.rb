@@ -21,10 +21,19 @@ class JobsController < ApplicationController
     
     @log = @loggings[(0..3)]
       
+    @assignments.each do |i|
+      @partner = Partner.find(i.partner_id)
+      if i.is_active?
+        @partner.status = "active_sub"
+      else
+        @partner.status = "inactive_sub"
+      end
+    end
+
   end
     
   def index
-    @jobs = Job.all
+    @jobs = Job.find(:all, :order => "name")
     
     @open_jobs = []
     @closed_jobs = []

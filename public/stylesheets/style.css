@@ -140,6 +140,14 @@ a:hover {
 	padding-bottom: 10px;
 }
 
+#inactive_sub {
+	opacity: 0.25;
+}
+
+#active_sub {
+
+}
+
 
 /*Content control styling*/
 
