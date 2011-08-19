@@ -1,7 +1,7 @@
 <fieldset id="add_document_form">
 	<legend>Attach a document to <%= @owner_name %></legend>
 	
-	<form action="/documents/" method="post" enctype="multipart/form-data">
+	<form action="/documents/" method="post" enctype="multipart/form-data" data-remote="true">
 		<input type="text" name="name" value="Give document a name..."/>
 		<input type="file" name="document"/>
 		<input type="hidden" name="owner_id" value="<%= @owner.id %>"/>

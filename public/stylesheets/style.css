@@ -140,12 +140,53 @@ a:hover {
 	padding-bottom: 10px;
 }
 
+
 #inactive_sub {
 	opacity: 0.25;
 }
 
 #active_sub {
 
+}
+
+#contentmiddle ul {
+	list-style: none;
+	font-size: 15px;
+}
+
+.list_items {
+	padding-bottom: 4px;
+}
+
+/*Subcontractor Payment Activation items*/
+#subactivation {
+	display: inline;
+}
+
+#subactivation ul {
+	margin-top: 10px;
+	list-style: none;
+	padding: 0px;
+}
+#subactivation li span{
+	display: block;
+	float: left;
+	margin-right: 0px;
+	margin-left: 0px;
+	background: #EEEEEE url(/images/n4.gif);
+	border: 1px solid #999999;
+	border-right: none;
+	color: #666666;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+}
+
+
+/*Item undo coloring*/
+
+.subs span a {
+	color: #FF4D4D;
+	text-decoration: underline;
 }
 
 
@@ -201,6 +242,16 @@ a:hover {
 	font-weight: bold;
 	color: #939393;
 }
+#sidebar ul {
+	list-style: none;
+}
+#sidebar span {
+	font-weight: bold; 
+}
+.document_links {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
 /*Bottom Content styling*/
 
@@ -221,6 +272,7 @@ a:hover {
 #recent_history {
 	border-top: 1px solid #BABABA;
 	padding-top: 10px;
+	font-size: 14px;
 }
 #recent_history ul {
 	list-style: none;

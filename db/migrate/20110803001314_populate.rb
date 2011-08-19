@@ -14,7 +14,7 @@ class Populate < ActiveRecord::Migration
         
         @jobs = []
         @linesarray.each do |line|
-        job = Job.new(:name => line[1], :job_number => line[0])
+        job = Job.new(:name => line[1], :job_number => line[0], :project_manager_id => 1)
         job.save # to database
         @jobs << job
     end

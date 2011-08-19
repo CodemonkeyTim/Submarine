@@ -60,6 +60,8 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
+    @job.project_manager=ProjectManager.find(params[:PM_id])
+    
     if params[:job_type] == "1"
       @job_type = "Public"
     end
@@ -125,6 +127,8 @@ class JobsController < ApplicationController
       @role_opt_2_val = 1
       @role_opt_2_text = "Prime contractor"
     end
+    
+    @pms=ProjectManager.all
   end
   
   def update
@@ -133,7 +137,7 @@ class JobsController < ApplicationController
     @job.job_number = params[:job_number]
     @job.location = params[:location]
     @job.value = params[:value]
-    @job.PM_id = params[:project_manager]
+    @job.project_manager=ProjectManager.find(params[:PM_id])
     
     @job.tags.each {|i| i.delete }
     

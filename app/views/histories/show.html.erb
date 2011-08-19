@@ -1,7 +1,11 @@
-<fieldset>
-	<legend><%= "Full history for #{@title_text}"%></legend>
+	<div id="pagedescription">
+		<h2><%= "Full history for #{@title_text_vendor}"%></h2>
+		<h5><%= "#{@title_text}"%></h5>
+		
+	</div>
 	
-	<div id="full_history">
+	<div id="contentmiddle" class="grid_12">
+	<div id="recent_history">
 	<ul>
 		<% unless @logs.nil? || @logs.length == 1%>
 		<% @logs.each do |i| %>
@@ -10,5 +14,6 @@
 		<% end %>
 	</ul>
 	<% end %>
+	</div>
 	</div>
 </fieldset>

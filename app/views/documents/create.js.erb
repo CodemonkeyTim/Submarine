@@ -1,0 +1,5 @@
+window.onload = setTimeout('redirect()', 1000);
+	
+function redirect () {
+  window.location = "/<%= @owner_type2 %>/<%= @owner.id %>"
+}

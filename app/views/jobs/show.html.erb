@@ -15,35 +15,47 @@
 			<li class="controls" id="assign_sub">
 				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
 			</li>
-			<li class="controls" id="edit_job">
-				<%= link_to "Edit the job", {:controller => "jobs", :action => "edit", :job_id => @job.id}%>
-			</li>
 		</ul>
 		</div>
 	</div>
 	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
+
 			<% if Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, j.id, 0, 1).is_active? then j.status = "active_sub" else j.status = "inactive_sub" end%>
 			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 1} %>
+
+			<div class="grid_8" id="subactivation">
+				<ul>
+					<li><h5><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h5></li>
+					<li><span>Inactive</span></li>
+					<li><span>Reg</span></li>
+					<li><span>Final</span></li>
+				</ul>
+			</div>
+			<div class="grid_8">
+
+			</div>
+
 		<% end %>
 	<% end %>
 	
 </div>
 
 <div id="sidebar" class="grid_3">
-	<h2>Job Details</h2>
+	<h2>Job Details <span><%= link_to "Edit", {:controller => "jobs", :action => "edit", :job_id => @job.id}%></span></h2>
 	
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
 	<div id="documents_section">
 		<div id="section_header">Documents:</div>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
-				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+				<div class="document_links"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/>  <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
 	</div>
 </div>
 
@@ -56,7 +68,8 @@
 		<% @log.each do |i| %>
 			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
-	</ul>	
+	</ul>
+	
 	</div>
 </div>
 
