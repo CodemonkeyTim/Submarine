@@ -1,9 +1,9 @@
 $('#<%= params[:id] %>cli input').fadeOut();
 
 setTimeout(function () {
-		$('#<%= params[:id] %>cli input').remove();
-	}, 600);
-	
+	$('#<%= params[:id] %>cli input').remove();
+}, 600);
+
 $('#<%= params[:id] %>cli img').fadeOut();
 
 setTimeout(function () {
@@ -11,15 +11,18 @@ setTimeout(function () {
 	}, 600);
 $('#<%= params[:id] %>cli img').fadeIn();
 
+$('#<%= params[:id] %>cli a').fadeIn();
+
 /*
-if ($('#job_history_box div').length > 3) {
-	$('#job_history_box div').last().fadeOut("slow");
+if ($('#recent_history div').length > 3) {
+	$('#recent_history div').last().fadeOut("slow");
 	
 	setTimeout(function () {
-		$('#job_history_box div').last().remove();
+		$('#recent_history div').last().remove();
 	}, 600);
 	
-	$('#job_history_box').prepend('<div id="history_logging"><%= @log_data %></div>');
+	$('#recent_history').prepend('<div id="history_logging"><%= @log_data %></div>');
 } else {
-	$('#job_history_box').prepend('<div id="history_logging"><%= @log_data %></div>');
-}*/
+	$('#recent_history').prepend('<div id="history_logging"><%= @log_data %></div>');
+}
+*/

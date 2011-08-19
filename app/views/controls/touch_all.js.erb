@@ -9,7 +9,7 @@
 		$('#<%= i.id %>cli img').each( function() {
 			$('#<%="#{i.id}input"%>').remove()
 			$(this).after('<input type="checkbox" id="<%="#{i.id}input"%>" onclick="$.ajax(\'/mark_done/<%= i.id %>\')"/>');
-			/*$('#<%= i.id %>cli').contents().last().after̈́('<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => i.id}, :remote => true %></span>');*/
+			$('#<%= i.id %>cli span').html('<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => i.id, :state => i.state}, :remote => true %></span>');
 		});
 	<% end %>
 <% end %>

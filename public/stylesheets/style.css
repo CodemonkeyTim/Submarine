@@ -142,6 +142,12 @@ body {
 	list-style: none;
 	font-size: 15px;
 }
+#contentmiddle img {
+	height: 15px;
+	width: 15px;
+	vertical-align: top;
+	padding: 2px;
+}
 
 .list_items {
 	padding-bottom: 4px;

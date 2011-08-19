@@ -99,7 +99,7 @@ class ControlsController < ApplicationController
   end
   
   def undo
-    @cli = ChecklistItem.find(params[:id])
+    @cli = ChecklistItem.find(params[:item_id])
     @cli.state = params[:state]
     @cli.touched_at = @cli.touched_at - 16000000000
     @cli.save
@@ -110,13 +110,9 @@ class ControlsController < ApplicationController
     else
       @state = "open"
     end
-    
-    $last_markings.reverse.each do |i|
-      if i[0] == @id
-        Log.find(i[1]).delete
-        break
-      end
-    end
+  
+    @asg = Assignment.find(@cli.assignment_id)
+    @asg.logs.create(:target_type => "Item", :target_name => @cli.item_data, :action => "corrected", :time => get_time, :date => get_date)
     
   end
   
