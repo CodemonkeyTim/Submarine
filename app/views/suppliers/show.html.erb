@@ -1,12 +1,31 @@
-<fieldset id="job_details_box">
-	<legend>Job details</legend>
-	
-	<div class="job_detail_list_item"><%= "Job number: #{@job.job_number}" %></div>
-	<div class="job_detail_list_item"><%= "Job name: #{@job.name}" %></div>
-</fieldset>
+<!--Page description & heading-->
+<div class="grid_12" id="pagedescription">
+	<h2><%= link_to "#{@job.job_number} - #{@job.name}", job_path(@job.id) %></h2>
+	<h5><%= @supplier.name %> (supplier to <%= @subcontractor.name %>) </h5>			
+</div>
 
-<fieldset id="vendor_details_box">
-	<legend>Vendor details</legend>
+<div id="contentmiddle" class="grid_9">	
+
+<!--control buttons-->	
+	<div id="contentcontrol">
+		
+		<div class="grid_2"><h4>All Items</h4></div>
+		
+		<div class="controlbuttons">
+			<ul>
+				<li class="controls" id="receive_payments">
+					<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name}%>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	 <%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id, :status => @asg.status} %>
+	
+</div>
+
+<div id="sidebar" class="grid_3">
+	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @supplier.id} %></span></h2>
 	
 	<div id="contact_details">
 		<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
@@ -14,39 +33,26 @@
 		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
 	</div>
 	
-	<div id="sub_header">Job specific vendor information:</div> <br />
-	
 	<div id="documents_section">
-		<div id="section_header">Documents:</div>
+		<h2>Supplier Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
 	</div>
-</fieldset>
-
-
-<fieldset id="subs_details" class="">
-	<legend> <%= @supplier.name %> - supplier to <%= @subcontractor.name %> </legend>
+</div>
   	
-  	<div class="controls" id="assign_item">
-		<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @supplier.id, :parent_id => @subcontractor.id, :job_id => @job.id, :partner_type => 2, :name => @supplier.name}%>
-	</div>
-  	
-  	<%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id, :status => @asg.status} %>
-  	
-</fieldset>
-
-<fieldset id="subs_history">
+<div class="grid_12" id="contentbottom">
+	<div id="recent_history">
 	<legend>Suppliers History - <%= link_to "See full history", {:controller => "histories", :action => "show", :job_id => @job.id, :parent_id => @parent_id, :partner_id => @supplier.id, :partner_type => 2}%></legend>
 		<% unless @log.nil? then @log.each do |i| %>
 				<div class="history_logging"><%= i.log_data %></div>
 			<% end %>
 		<% end %>
-			
-</fieldset>
+	</div>
+</div>
 
 <% #Page's method calls and global variable modifiers %>
 

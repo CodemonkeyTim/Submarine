@@ -142,6 +142,12 @@ body {
 	list-style: none;
 	font-size: 15px;
 }
+#contentmiddle img {
+	height: 15px;
+	width: 15px;
+	vertical-align: top;
+	padding: 2px;
+}
 
 .list_items {
 	padding-bottom: 4px;
@@ -335,7 +341,7 @@ body {
 }
 
 #recent_history span {
-	color: #BABABA;
+	color: #666666;
 	font-size: 10px;
 }
 

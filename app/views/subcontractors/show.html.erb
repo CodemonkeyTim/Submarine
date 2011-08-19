@@ -1,6 +1,6 @@
 <!--Page description & heading-->
 <div class="grid_12" id="pagedescription">
-	<h2><%= "#{@job.job_number} - #{@job.name}" %></h2>
+	<h2><%= link_to "#{@job.job_number} - #{@job.name}", job_path(@job.id) %></h2>
 	<h5><%= "#{@subcontractor.name}#{@sub_to}" %></h5>			
 </div>
 
@@ -35,11 +35,11 @@
 	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @subcontractor.id} %></span></h2>
 
 	<ul>
-		<li>Contact Name: <span>George Smith</span></li>
-		<li>Phone: <span>360-000-0000</span></li>
+		<li>Contact Name: <span>asdfasdfasdf</span></li>
+		<li>Phone: <span>2345342543</span></li>
 	</ul>
 	<div id="documents_section">
-		<div id="section_header">Documents:</div>
+		<h2>Sub Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
 				<div class="document_links"><img src="/images/pdf.png" /> <%= link_to i.name, i.document.url %></div>

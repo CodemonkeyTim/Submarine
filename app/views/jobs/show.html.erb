@@ -65,7 +65,7 @@
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
 	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
 	<div id="documents_section">
-		<div id="section_header">Documents:</div>
+		<h2>Job Docs:</h2>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
 				<div class="document_links"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %></div>
