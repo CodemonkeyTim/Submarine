@@ -10,4 +10,5 @@ if (<%= params[:status] %> == 1) {
 } else if (<%= params[:status] %> == 3) {
 	$('.<%= @partner_id %>sub #inactive_tab').attr('class', 'selected');
 }	
-}, 200)
+}, 10)
+
