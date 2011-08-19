@@ -24,8 +24,8 @@
 	
 </div>
 
-<fieldset id="vendor_details_box">
-	<legend>Vendor details</legend>
+<div id="sidebar" class="grid_3">
+	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @supplier.id} %></span></h2>
 	
 	<div id="contact_details">
 		<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
@@ -33,18 +33,16 @@
 		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
 	</div>
 	
-	<div id="sub_header">Job specific vendor information:</div> <br />
-	
 	<div id="documents_section">
-		<div id="section_header">Documents:</div>
+		<h2>Supplier Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
 				<div class="document_links"><%= link_to i.name, i.document.url %></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
 	</div>
-</fieldset>
+</div>
   	
 <div class="grid_12" id="contentbottom">
 	<div id="recent_history">

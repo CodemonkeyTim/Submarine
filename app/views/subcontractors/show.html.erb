@@ -39,7 +39,7 @@
 		<li>Phone: <span>2345342543</span></li>
 	</ul>
 	<div id="documents_section">
-		<div id="section_header">Documents:</div>
+		<h2>Sub Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
 				<div class="document_links"><img src="/images/pdf.png" /> <%= link_to i.name, i.document.url %></div>
