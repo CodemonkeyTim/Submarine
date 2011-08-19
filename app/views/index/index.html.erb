@@ -6,7 +6,7 @@
 		<h3><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
-				<% if Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(i.id, j.id, 0, 1).is_active? then j.status = "active_sub" else j.status = "inactive_sub" end%>
+				<% if Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(i.id, j.id, 0, 1).status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
 				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 1} %>
 			<% end %>
 		<% end %>
