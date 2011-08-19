@@ -1,14 +1,21 @@
-$('.<%= @partner_id %>sub #inactive_tab').attr('class', '');
-$('.<%= @partner_id %>sub #reg_tab').attr('class', '');
-$('.<%= @partner_id %>sub #final_tab').attr('class', '');
+$('.<%= @partner_id %>sub .inactive_tab').attr('class', 'inactive_tab');
+$('.<%= @partner_id %>sub .reg_tab').attr('class', 'reg_tab');
+$('.<%= @partner_id %>sub .final_tab').attr('class', 'final_tab');
+
+var sub = $('.<%= @partner_id %>subb')
 
 setTimeout(function() {
 if (<%= params[:status] %> == 1) {
-	$('.<%= @partner_id %>sub #final_tab').attr('class', 'selected');
+	var tab = $('.<%= @partner_id %>sub .final_tab')
+	tab.attr('class', tab.attr('class')+' selected');
+	sub.attr('id', 'active_sub')
 } else if (<%= params[:status] %> == 2) {
-	$('.<%= @partner_id %>sub #reg_tab').attr('class', 'selected');
+	var tab= $('.<%= @partner_id %>sub .reg_tab')
+	tab.attr('class', tab.attr('class')+' selected');
+	sub.attr('id', 'active_sub')
 } else if (<%= params[:status] %> == 3) {
-	$('.<%= @partner_id %>sub #inactive_tab').attr('class', 'selected');
+	var tab = $('.<%= @partner_id %>sub .inactive_tab')
+	tab.attr('class', tab.attr('class')+' selected');
+	sub.attr('id', 'inactive_sub')
 }	
 }, 10)
-
