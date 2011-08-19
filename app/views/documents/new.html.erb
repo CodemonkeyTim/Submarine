@@ -1,5 +1,5 @@
-<fieldset id="add_document_form">
-	<legend>Attach a document to <%= @owner_name %></legend>
+<div id="contentmiddle" class="grid_12">	
+	<h4>Attach a document to <%= @owner_name %></h4>
 	
 	<form action="/documents/" method="post" enctype="multipart/form-data" data-remote="true">
 		<input type="text" name="name" value="document"/>
@@ -9,4 +9,4 @@
 		<input type="submit" value="Upload" />
 	</form>	
 	
-</fieldset>
+</div>

@@ -150,7 +150,7 @@ body {
 /*Subcontractor Payment Activation items*/
 #subactivation {
 	display: inline;
-	background: #BABABA;
+	background: #E9E9E9;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -180,6 +180,7 @@ body {
 	color: black;
 	padding: 2px 15px 2px;
 	text-decoration: none;
+
 }
 
 
@@ -190,6 +191,9 @@ body {
  	color: #001a9c;
  	font-size: 20px;
 }
+#subactivation span.vendorname a:hover{
+	text-decoration: underline;
+}
 
 #subactivation span.firstbutton a{
 	-webkit-border-top-left-radius: 3px;
@@ -198,11 +202,12 @@ body {
 	-moz-border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
+	
 }
 
 #subactivation span.firstbutton a:hover {
 	background: #EEEEEE url(/images/n1.gif);
-	-webkit-transition: background 2.0s ease-in-out;
+
 }
 
 #subactivation span.middlebutton a{
@@ -211,7 +216,6 @@ body {
 
 #subactivation span.middlebutton a:hover {
 	background: #EEEEEE url(/images/n1.gif);
-	-webkit-transition: background 2.0s ease-in-out;
 }
 
 #subactivation span.lastbutton a{
@@ -226,7 +230,6 @@ body {
 
 #subactivation span.lastbutton a:hover {
 	background: #EEEEEE url(/images/n1.gif);
-	-webkit-transition: background 2.0s ease-in-out;
 	border-right: 1px solid #999999;
 }
 
