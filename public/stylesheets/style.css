@@ -161,19 +161,68 @@ body {
 	display: block;
 	float: left;
 	margin-left: 0px;
-	margin-right: 10px;
+}
+#subactivation li.selected span a {
+	background: #EEEEEE url(/images/n1.gif);
+	color: #666666;
 }
 
-#subactivation li span{
+#subactivation span a{
 	margin-right: 0px;
-	background: #EEEEEE url(/images/n4.gif);
 	border: 1px solid #999999;
+	background: #EEEEEE url(/images/n4.gif);
 	border-right: none;
-	color: #666666;
+	color: black;
 	padding: 2px 15px 2px;
 	text-decoration: none;
 }
 
+
+#subactivation span.vendorname a{
+	background: none;
+	border: none;
+	padding: 2px 15px 15px 2px;
+ 	color: #001a9c;
+}
+
+#subactivation span.firstbutton a{
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-top-left-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+#subactivation span.firstbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+}
+
+#subactivation span.middlebutton a{
+
+}
+
+#subactivation span.middlebutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+}
+
+#subactivation span.lastbutton a{
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-right: 1px solid #999999;
+}
+
+#subactivation span.lastbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	-webkit-transition: background 2.0s ease-in-out;
+	border-right: 1px solid #999999;
+}
 
 /*Item undo coloring*/
 
