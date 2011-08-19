@@ -90,17 +90,6 @@ body {
 	background: #EEEEEE url(/images/n3.png);
 }
 	
-/*a styles*/
-
-a {
-  color: #001a9c;
-  font-weight: bold;
-  text-decoration: none;
- }
-
-a:hover {
-  text-decoration: underline;
-}
 
 
 /*Contents styling*/
@@ -168,16 +157,20 @@ a:hover {
 	list-style: none;
 	padding: 0px;
 }
-#subactivation li span{
+#subactivation li {
 	display: block;
 	float: left;
-	margin-right: 0px;
 	margin-left: 0px;
+	margin-right: 10px;
+}
+
+#subactivation li span{
+	margin-right: 0px;
 	background: #EEEEEE url(/images/n4.gif);
 	border: 1px solid #999999;
 	border-right: none;
 	color: #666666;
-	padding: 4px 15px 4px;
+	padding: 2px 15px 2px;
 	text-decoration: none;
 }
 

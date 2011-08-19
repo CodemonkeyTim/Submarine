@@ -32,11 +32,10 @@
 			</div>
 			<div class="grid_8">
 
-			</div>
-	
 			<% if Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, j.id, 0, 1).status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
 			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
-
+			
+			</div>
 		<% end %>
 	<% end %>
 	

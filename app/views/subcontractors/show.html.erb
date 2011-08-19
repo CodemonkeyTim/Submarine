@@ -5,6 +5,7 @@
 </div>
 
 <div id="contentmiddle" class="grid_9">	
+
 <!--control buttons-->	
 	<div id="contentcontrol">
 		
@@ -24,6 +25,7 @@
 			</ul>
 		</div>
 	</div>
+	
 	<!--All the list items-->
 	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0} %>
 		
@@ -48,9 +50,9 @@
 </div>
 
 <div class="grid_12" id="contentbottom">
-	<div>
+	<div id="recent_history">
 	<legend>Subs History - <%= link_to "See full history", {:controller => "histories", :action => "show", :job_id => @job.id, :parent_id => @parent_id, :partner_id => @subcontractor.id, :partner_type => 1}%></legend>
-		
+	
 	<ul>
 		<% unless @log.nil? then @log.each do |i| %>
 				<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
