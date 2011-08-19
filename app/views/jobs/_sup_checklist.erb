@@ -1,7 +1,9 @@
 <% unless k.checklist_items(job_id, parent_id).first.nil? then k.checklist_items(job_id, parent_id).each do |l|%>
 	<div class="list_items" id="<%= "#{l.id}cli" %>"> 
-		<%= image_tag get_image(l.state) %>
-		<% if l.state < 3 %>
+		<% if status < 3 %>
+			<%= image_tag get_image(l.state) %>
+		<% end %>
+		<% if l.state < 3 && status < 3 %>
 			<input id="<%="#{l.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
 		<% end %>
 		<%= l.item_data %>

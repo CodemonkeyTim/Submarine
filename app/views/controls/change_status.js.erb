@@ -17,5 +17,7 @@ if (<%= params[:status] %> == 1) {
 	var tab = $('.<%= @partner_id %>sub .inactive_tab')
 	tab.attr('class', tab.attr('class')+' selected');
 	sub.attr('id', 'inactive_sub')
+	sub.contents().find('input').each(function() { $(this).remove(); });
+	sub.contents().find('img').each(function() { $(this).attr('src', '/images/waiting.png'); });
 }	
 }, 10)
