@@ -1,7 +1,7 @@
 <div class="subs <%= j.id %>subb" id="<%= j.get_status %>">
 	<% unless show_subname == 0 %>
 		<h5 id="<%= j.get_status %>">
-			<%= image_tag get_image(j.get_state(job_id, parent_id))%>
+
 			<%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %>
 		</h5>
 	<% end %>
@@ -15,7 +15,7 @@
 		<h4>Suppliers</h4>
 		<% j.suppliers(job_id).each do |k| %>
 			<div class="sups">
-				<div class="sups_headers"><%= image_tag get_image(k.get_state(job_id, j.id)) %><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id, :subcontractor_id => j.id) %></div>
+				<div class="sups_headers"><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :parent_id => parent_id, :subcontractor_id => j.id) %></div>
 				<%= render :partial => "jobs/sup_checklist", :locals => {:k => k, :job_id => job_id, :parent_id => j.id} %>
 			</div>
 		<% end %>
