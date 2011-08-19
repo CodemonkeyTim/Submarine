@@ -1,0 +1,11 @@
+$('inactive_tab').attr('class', '');
+$('reg_tab').attr('class', '');
+$('final_tab').attr('class', '');
+
+if (<%=params[:status]%> == 1) {
+	$('final_tab').attr('class', 'selected');
+} else if (<%=params[:status]%> == 2) {
+	$('reg_tab').attr('class', 'selected');
+} else if (<%=params[:status]%> == 3) {
+	$('inactive_tab').attr('class', 'selected');
+}
