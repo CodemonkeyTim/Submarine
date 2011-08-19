@@ -311,3 +311,10 @@ body {
 .container_24 {
   background-image: url(../img/24_col.gif);
 }
+
+/* Some trixy styles for trixy functions */
+/* Inactive/Reg/Final tabs styling class*/
+
+.selected {
+	font-weight: bold;
+}
