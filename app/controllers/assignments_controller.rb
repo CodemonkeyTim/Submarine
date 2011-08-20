@@ -38,8 +38,8 @@ class AssignmentsController < ApplicationController
       end
     end
     if params[:partner_type] == "2"
-      @list_of_items.push(ListItemTemplate.find(5))
-      @list_of_items.push(ListItemTemplate.find(8))
+      @list_of_items.push(ListItemTemplate.find(6))
+      @list_of_items.push(ListItemTemplate.find(10))
     end
 
     @list_of_items.flatten!
@@ -76,14 +76,19 @@ class AssignmentsController < ApplicationController
       end
     end
     if @asg.partner_type == 2
-      @list_of_items.push(ListItemTemplate.find(5))
-      @list_of_items.push(ListItemTemplate.find(8))
+      @list_of_items.push(ListItemTemplate.find(6))
+      @list_of_items.push(ListItemTemplate.find(10))
     end
 
     @list_of_items.flatten!
     
     @list_of_items.each do |i|
-      @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
+      if i.rep_type == 1 || i.rep_type == 2
+        @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 2, :sleep_time => 10, :touched_at => Time.now.utc)
+      end
+      if i.rep_type == 3
+        @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
+      end
     end
     
   end

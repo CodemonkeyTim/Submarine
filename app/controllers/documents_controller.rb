@@ -40,6 +40,10 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.save
     
+    
+    @owner_id = RecentJobs.last.job_id
+    @owner_type2 = "jobs"
+    
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
     
   end

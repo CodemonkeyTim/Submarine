@@ -12,7 +12,7 @@ class ControlsController < ApplicationController
     @items = @job.active_checklist_items
     
     @items.each do |i|
-      if i.cli_type == 1
+      if i.cli_type == 2
         i.state = 2
         i.touched_at = Time.now.utc
         i.save
@@ -136,9 +136,18 @@ class ControlsController < ApplicationController
   end
    
   def change_status 
-     @asg = Assignment.find(params[:asg_id])
-     @asg.status = params[:status]
-     @asg.save
+    @asg = Assignment.find(params[:asg_id])
+    @asg.status = params[:status]
+    @asg.save
+     
+    if params[:status] == "1" 
+      @asg.checklist_items.each do |i|
+        if i.cli_type == 3
+          i.state = 2
+          i.save
+        end
+       end
+      end
      
      @partner_id = @asg.partner_id
   end

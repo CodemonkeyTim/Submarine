@@ -13,6 +13,8 @@ if (<%= params[:status] %> == 1) {
 	sub.find('.overdues input').each(function() { $(this).find('input').fadeIn(); });
 	sub.find('.opens').each(function() { $(this).find('img').fadeIn(); });
 	sub.find('.overdues').each(function() { $(this).find('img').fadeIn(); });
+	sub.find('.finals').each(function() { $(this).find('input').fadeIn(); });
+	sub.find('.finals').each(function() { $(this).find('img').attr('src', '/images/open.png'); $(this).find('img').fadeIn(); });	
 } else if (<%= params[:status] %> == 2) {
 	var tab= $('.<%= @partner_id %>sub .reg_tab')
 	tab.attr('class', tab.attr('class')+' selected');
@@ -27,5 +29,6 @@ if (<%= params[:status] %> == 1) {
 	sub.attr('id', 'inactive_sub')
 	sub.contents().find('input').each(function() { $(this).fadeOut(); });
 	sub.contents().find('img').each(function() { $(this).fadeOut(); });
+	sub.contents().find('a').each(function() { $(this).fadeOut(); });
 }	
 }, 10)

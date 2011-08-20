@@ -7,18 +7,18 @@ class CreateListItemTemplates < ActiveRecord::Migration
       t.timestamps
     end
     
-    ListItemTemplate.create(:item_data => "Certified Payrolls", :item_type => 1, :rep_type => 1 )
-    ListItemTemplate.create(:item_data => "Intent to Pay Prevailing Wage", :item_type => 1, :rep_type => 1)
-
-    ListItemTemplate.create(:item_data => "Verification of Payment to Lower Tier Subcontractors", :item_type => 3, :rep_type => 1)
-    ListItemTemplate.create(:item_data => "Receipt of Prior Payment's Conditional Release of Lien", :item_type => 3, :rep_type => 1)
-    ListItemTemplate.create(:item_data => "Receipt of signed Unconditional Lien Release", :item_type => 3, :rep_type => 2)
+    ListItemTemplate.create(:item_data => "Intent to Pay Prevailing Wage", :item_type => 1, :rep_type => 1 )
+    ListItemTemplate.create(:item_data => "Bond Verified", :item_type => 1, :rep_type => 1 )
+    ListItemTemplate.create(:item_data => "Certified Payroll Received", :item_type => 1, :rep_type => 2 )
+    ListItemTemplate.create(:item_data => "Affidavit of Wages Paid Filed", :item_type => 1, :rep_type => 3 )
     
-    ListItemTemplate.create(:item_data => "Affidavit of Wages Paid", :item_type => 1, :rep_type => 2)
-    ListItemTemplate.create(:item_data => "Punch List Completed", :item_type => 3, :rep_type => 2)
-
-    ListItemTemplate.create(:item_data => "Verification that supplier has been paid ", :item_type => 4, :rep_type => 1)
-    
+    ListItemTemplate.create(:item_data => "Insurance Verified", :item_type => 3, :rep_type => 1 )
+    ListItemTemplate.create(:item_data => "Prior Payments Conditional Release of Lien Sent", :item_type => 3, :rep_type => 2 )
+    ListItemTemplate.create(:item_data => "Payment to Lower-Tier Subs (if-present) Verified", :item_type => 3, :rep_type => 2 )
+    ListItemTemplate.create(:item_data => "Payment to Suppliers (if-present) Verified", :item_type => 3, :rep_type => 2 )
+    ListItemTemplate.create(:item_data => "Punch List Complete", :item_type => 3, :rep_type => 3 )
+    ListItemTemplate.create(:item_data => "Unconditional Release of Lien Sent", :item_type => 3, :rep_type => 3 )
+        
   end
 
   def self.down
