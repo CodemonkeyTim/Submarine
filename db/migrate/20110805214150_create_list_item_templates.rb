@@ -7,6 +7,18 @@ class CreateListItemTemplates < ActiveRecord::Migration
       t.timestamps
     end
     
+    /*
+     * :item_type is used for differentiating between public job items and private job items.
+     * :item_type => 1 is public jobs only
+     * :item_type => 2 is private jobs only
+     * :item_type => 3 is both public and private jobs
+     *
+     * :rep_type is used for differentiating between initial, repeating, and final items.
+     * :rep_type => 1 are initial items 
+     * :rep_type => 2 are repeating items
+     * :rep_type => 3 are final items
+     */
+    
     ListItemTemplate.create(:item_data => "Certified Payrolls", :item_type => 1, :rep_type => 1 )
     ListItemTemplate.create(:item_data => "Intent to Pay Prevailing Wage", :item_type => 1, :rep_type => 1)
 
