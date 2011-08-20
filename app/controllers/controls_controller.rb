@@ -11,7 +11,6 @@ class ControlsController < ApplicationController
     @job = Job.find(params[:id])
     @items = @job.active_checklist_items
     
-    
     @items.each do |i|
       if i.cli_type == 1
         i.state = 2
