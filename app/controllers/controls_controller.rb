@@ -105,10 +105,24 @@ class ControlsController < ApplicationController
     @cli.save
     @id = @cli.id
     
+    @state = ""
     if @cli.state == 1
-      @state = "overdue"
+      @state = "overdues" 
+    end
+    if @cli.state == 2 
+      @state = "opens" 
+    end
+    if @cli.state == 3
+      @state = "waitings"
+    end
+    if @cli.state == 4 
+      @state = "completeds" 
+    end
+    
+    if @cli.state == 1
+      @state_name = "overdue"
     else
-      @state = "open"
+      @state_name = "open"
     end
   
     @asg = Assignment.find(@cli.assignment_id)
