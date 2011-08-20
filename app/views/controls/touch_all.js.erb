@@ -6,6 +6,10 @@
 			$(this).fadeIn();
 		});
 		
+		<% @state; if i.state == 1 then @state = "overdues" end; if i.state == 2 then @state = "opens" end; if i.state == 3 then @state = "waitings" end; if i.state == 4 then @state == "completeds" end; %>
+		
+		$('#<%= i.id %>cli').attr('class', 'list_items <%= @state %>')
+		
 		$('#<%= i.id %>cli img').each( function() {
 			$('#<%="#{i.id}input"%>').remove()
 			$(this).after('<input type="checkbox" id="<%="#{i.id}input"%>" onclick="$.ajax(\'/mark_done/<%= i.id %>\')"/>');

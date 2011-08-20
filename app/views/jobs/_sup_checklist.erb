@@ -1,5 +1,6 @@
 <% unless k.checklist_items(job_id, parent_id).first.nil? then k.checklist_items(job_id, parent_id).each do |l|%>
-	<div class="list_items" id="<%= "#{l.id}cli" %>"> 
+	<% @state; if k.state == 1 then @state= "overdues" end; if k.state == 2 then @state = "opens" end; if k.state == 3 then @state = "waitings" end; if k.state == 4 then @state == "completeds" end; %>
+	<div class="list_items <%= @state %>" id="<%= "#{l.id}cli" %>"> 
 		<% if status < 3 %>
 			<%= image_tag(get_image(l.state), :style => "display: none;") %>
 		<% else %>

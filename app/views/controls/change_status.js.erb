@@ -9,14 +9,18 @@ if (<%= params[:status] %> == 1) {
 	var tab = $('.<%= @partner_id %>sub .final_tab')
 	tab.attr('class', tab.attr('class')+' selected');
 	sub.attr('id', 'active_sub')
-	sub.contents().find('input').each(function() { $(this).fadeIn(); });
-	sub.contents().find('img').each(function() { $(this).fadeIn(); });
+	sub.find('.opens').each(function() { $(this).find('input').fadeIn(); });
+	sub.find('.overdues input').each(function() { $(this).find('input').fadeIn(); });
+	sub.find('.opens').each(function() { $(this).find('img').fadeIn(); });
+	sub.find('.overdues').each(function() { $(this).find('img').fadeIn(); });
 } else if (<%= params[:status] %> == 2) {
 	var tab= $('.<%= @partner_id %>sub .reg_tab')
 	tab.attr('class', tab.attr('class')+' selected');
 	sub.attr('id', 'active_sub')
-	sub.contents().find('input').each(function() { $(this).fadeIn(); });
-	sub.contents().find('img').each(function() { $(this).fadeIn(); });
+	sub.find('.opens').each(function() { $(this).find('input').fadeIn(); });
+	sub.find('.overdues input').each(function() { $(this).find('input').fadeIn(); });
+	sub.find('.opens').each(function() { $(this).find('img').fadeIn(); });
+	sub.find('.overdues').each(function() { $(this).find('img').fadeIn(); });
 } else if (<%= params[:status] %> == 3) {
 	var tab = $('.<%= @partner_id %>sub .inactive_tab')
 	tab.attr('class', tab.attr('class')+' selected');
