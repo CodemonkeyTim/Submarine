@@ -53,7 +53,7 @@ class Partner < ActiveRecord::Base
     if @asg.nil?
       return []
     else
-      return @asg.checklist_items
+      return @asg.checklist_items.sort_by {|i| i.cli_type}
     end
     
   end

@@ -51,7 +51,7 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
-    @job.project_manager=ProjectManager.find(params[:PM_id])
+    @job.project_manager = ProjectManager.find(params[:PM_id])
     
     if params[:job_type] == "1"
       @job_type = "Public"
@@ -92,7 +92,7 @@ class JobsController < ApplicationController
     @job.job_number = params[:job_number]
     @job.location = params[:location]
     @job.value = params[:value]
-    @job.project_manager=ProjectManager.find(params[:PM_id])
+    @job.project_manager= ProjectManager.find(params[:PM_id])
     
     @job.tags.each {|i| i.delete }
     

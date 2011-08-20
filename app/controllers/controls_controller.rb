@@ -11,8 +11,20 @@ class ControlsController < ApplicationController
     @job = Job.find(params[:id])
     @items = @job.active_checklist_items
     
+    @asgs = Assignment.find_all_by_job_id(@job.id)
+    
+    @asgs.each do |i|
+      i.checklist_items.each do |j|
+        @items.each do |k|
+          if j.id == k.id 
+            k.status = i.status
+          end
+        end
+      end
+    end
+    
     @items.each do |i|
-      if i.cli_type == 2
+      if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1)
         i.state = 2
         i.touched_at = Time.now.utc
         i.save
