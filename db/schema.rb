@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110811191127) do
     t.integer  "parent_id"
     t.integer  "partner_id"
     t.integer  "partner_type"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

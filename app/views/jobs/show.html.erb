@@ -1,58 +1,95 @@
-<fieldset id="job_details_box">
-	<legend>Job Details</legend>
-	
-	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
-	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
-	<div id="documents_section">
-		<div id="section_header">Documents:</div>
-		<% unless @job.documents.length == 0 %>
-			<% @job.documents.each do |i| %>
-				<div class="document_links"><%= link_to i.name, i.document.url %></div>
-			<% end %>
-		<% end %>
-		<div id="add_doc_link"><%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :owner_id => @job.id} %></div>		
+	<div class="grid_12" id="pagedescription">
+		<h2><%= "#{@job.job_number} - #{@job.name}" %></h2>			
 	</div>
-</fieldset>
+	
+	
+<div id="contentmiddle" class="grid_9">
+	
+	<div id="contentcontrol">
+		<div class="grid_2"><h4>Subcontractors</h4></div>
+		<div class="controlbuttons">
+		<ul>
+			<li class="controls" id="receive_payments">
+				<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
+			</li>
+			<li class="controls" id="assign_sub">
+				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
+			</li>
+		</ul>
+		</div>
+	</div>
 
-<fieldset id="job_sub_and_item_details">
-	<legend><%= "#{@job.job_number} - #{@job.name}" %></legend>
-	
-	<div class="controls" id="receive_payments">
-		<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
-	</div>
-	
-	<div class="controls" id="edit_job">
-		<%= link_to "Edit job", {:controller => "jobs", :action => "edit", :id => @job.id} %>
-	</div>
-	
-	<div class="controls" id="assign_sub">
-		<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
-	</div>
-	
-	<div><h2>Subcontractors</h2></div>	
-	<div id="feedback"></div>
-	
 	<% unless @job.subcontractors.first.nil? %>
 		<% @job.subcontractors.each do |j| %>
-			<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %></h3>
-			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0} %>
+			<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, j.id, 0, 1) %>
+			<% if @asg.status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
+			
+			<div class="grid_9 <%= j.id %>sub" id="subactivation">
+				<ul>
+					<li>
+						<span class="vendorname">
+							<%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %>
+						</span>
+					</li>
+					<li class="inactive_tab <%= if @asg.status == 3 then "selected" end %> ">
+						<span class="firstbutton">
+							<%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
+					<li class="reg_tab <%= if @asg.status == 2 then "selected" end %>">
+						<span class="middlebutton">
+							<%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
+					<li class="final_tab <%= if @asg.status == 1 then "selected" end %>">
+						<span class="lastbutton">
+							<%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id}, :remote => true %>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="grid_8">
+
+			<%= render :partial => "index/sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0, :status => @asg.status} %>
+			
+			</div>
 		<% end %>
 	<% end %>
 
 	
-</fieldset>
+</div>
 
-<fieldset id="full_history">
+<div id="sidebar" class="grid_3">
+	<h2>Job Details <span><%= link_to "Edit", {:controller => "jobs", :action => "edit", :job_id => @job.id}%></span></h2>
+	
+	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
+	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
+	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
+	<div id="documents_section">
+		<h2>Job Docs:</h2>
+		<% unless @job.documents.length == 0 %>
+			<% @job.documents.each do |i| %>
+				<div class="document_links"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %></div>
+			<% end %>
+		<% end %>
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/>  <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
+	</div>
+</div>
+
+
+<div class="grid_12" id="contentbottom">
+	<div id="recent_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
 
 	<ul>
 		<% @log.each do |i| %>
 			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
+	</ul>
 	
-	</ul>	
+	</div>
+</div>
 
-</fieldset>
 
 <% recents_add(@job.id) %>
 <% $active_page = "job.show"%>

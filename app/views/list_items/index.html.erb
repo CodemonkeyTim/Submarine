@@ -1,9 +1,8 @@
-<fieldset>
-	<legend>All tasks</legend>
-	
+<div class="grid_12" id="pagedescription"><h2>All tasks</h2></div>
+	<div id="contentmiddle" class="grid_12">
 	<% if @overdue_items.length != 0 %>
 		<div id="overdue">
-			<div class="headers">Overdue</div>
+			<h2>Overdue</h2>
 			<% @overdue_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
@@ -14,9 +13,10 @@
 		</div>
 	<% end %>
 
+
 	<% if @open_items.length != 0 %>
 		<div id="open">
-			<div class="headers">Open</div>
+			<h2>Open</h2>
 			<% @open_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
@@ -27,9 +27,11 @@
 		</div>
 	<% end %>
 
+	
+
 	<% if @waiting_items.length != 0 %>
 		<div id="waiting">
-			<div class="headers">Waiting</div>
+			<h2>Waiting</h2>
 			<% @waiting_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= image_tag get_image(i.state)%> 
@@ -38,17 +40,19 @@
 			<% end %>
 		</div>
 	<% end %>
-		
+
 	<% if @completed_items.length != 0 %>
 		<div id="completed">
-			<div class="headers">Completed</div>
+			<h2>Completed</h2>
 			<% @completed_items.each do |i| %>
 				<div class="list_items" id="<%= i.id%>cli"> 
 					<%= "#{i.item_data} - #{get_vendor_name(i)} - #{get_job_details(i)}" %>
+				</div>
 			<% end %>
 		</div>
 	<% end %>
-</fieldset>
+	
+	</div>
 
 
 

@@ -1,0 +1,390 @@
+body {
+  background: #f1f1f1;
+  color: #333;
+  font-size: 11px;
+  height: auto;
+  padding-bottom: 20px;
+}
+/*Header styling*/
+
+#header	{
+	color: black;
+	height: 50px;
+	background: #d1d1d1;
+	-moz-border-radius: 8px 8px 0px 0px;
+	-webkit-border-radius: 8px 8px 0px 0px;
+	border-radius: 8px 8px 0px 0px;
+	margin-bottom: 0px;
+	margin-top: 3px;
+	padding-top: 8px;
+}
+
+/*Header buttons*/
+
+#headerbuttons {
+	float: right;
+	height: 15px;
+	margin-top: 5px;
+}
+
+#headerbuttons ul {
+	list-style: none;
+}
+
+#headerbuttons img {
+	border: 0px;
+	vertical-align: top;
+	margin-top: 1px;
+}
+
+#headerbuttons li a.button {
+	background: #EEEEEE url(/images/n1.gif);
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 4px 10px 4px;
+	color:	#666666;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+	float: right;
+}
+
+#headerbuttons li a:hover {
+	color: #000000;
+}
+
+/* Navigation */
+
+#nav {
+	background: #d1d1d1;
+	height: 25px;
+	color: #000000;
+	border-bottom: 5px solid #0a7e07;
+	margin-bottom: 10px;
+}
+
+#nav ul {
+	list-style: none;
+	padding: 4px;
+}
+
+#nav li {
+	display: block;
+	float: left;
+	margin-left: 10px;
+}
+
+#nav li a {
+	background: #EEEEEE;
+	border: 1px solid #999999;
+	border-bottom: none;
+	color: #666666;
+	font-size: 14px;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+}
+
+#nav li a:hover {
+	color: black;
+}
+
+#nav li a#active {
+	background: #EEEEEE url(/images/n3.png);
+}
+	
+
+
+/*Contents styling*/
+#contents {
+	background: #F1F1F1;
+	border: 1px solid #BABABA;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 0px;
+}
+
+#pagedescription {
+	background:#B5B5FF;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding-top: 5px;
+	/*In order to get the background color to fill all the way to the side,
+	 * had to replace the margin on left and right with padding on left
+	 * and right, below. this replaces the margin defined in 960.css.
+	 */
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+}
+#pagedescription h2 {
+	margin-bottom: 5px;
+}
+
+#contentmiddle {
+	background: #fff;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	padding-bottom: 10px;
+	min-height: 300px;
+}
+
+
+#inactive_sub {
+	opacity: 0.25;
+}
+
+#active_sub {
+
+}
+
+#contentmiddle ul {
+	list-style: none;
+	font-size: 15px;
+}
+#contentmiddle img {
+	height: 15px;
+	width: 15px;
+	vertical-align: top;
+	padding: 2px;
+}
+
+.list_items {
+	padding-bottom: 4px;
+}
+
+/*Subcontractor Payment Activation items*/
+#subactivation {
+	display: inline;
+	background: #E9E9E9;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+#subactivation ul {
+	margin-top: 10px;
+	list-style: none;
+	padding: 0px;
+}
+#subactivation li {
+	display: block;
+	float: left;
+	margin-left: 0px;
+}
+#subactivation li.selected span a {
+	background: #EEEEEE url(/images/n1.gif);
+	color: #666666;
+}
+
+#subactivation span a{
+	margin-right: 0px;
+	border: 1px solid #999999;
+	background: #EEEEEE url(/images/n4.gif);
+	border-right: none;
+	color: black;
+	padding: 2px 15px 2px;
+	text-decoration: none;
+
+}
+
+
+#subactivation span.vendorname a{
+	background: none;
+	border: none;
+	padding: 2px 15px 15px 2px;
+ 	color: #001a9c;
+ 	font-size: 20px;
+}
+#subactivation span.vendorname a:hover{
+	text-decoration: underline;
+}
+
+#subactivation span.firstbutton a{
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-top-left-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	
+}
+
+#subactivation span.firstbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+
+}
+
+#subactivation span.middlebutton a{
+
+}
+
+#subactivation span.middlebutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+}
+
+#subactivation span.lastbutton a{
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-right: 1px solid #999999;
+}
+
+#subactivation span.lastbutton a:hover {
+	background: #EEEEEE url(/images/n1.gif);
+	border-right: 1px solid #999999;
+}
+
+/*Item undo coloring*/
+
+.subs span a {
+	color: #FF4D4D;
+	text-decoration: underline;
+}
+
+.subs {
+	border-left: 1px solid #D7D7D7;
+	padding-left: 10px;
+	margin-left: 10px;
+}
+
+/*Content control styling*/
+
+#contentcontrol {
+	height: 35px;
+}
+
+#controlbuttons {
+	display: inline;
+	width: 460px;
+}
+
+
+#contentcontrol ul {
+	margin-top: 10px;
+	list-style: none;
+	padding: 0px;
+}
+
+#contentcontrol li {
+	display: block;
+	float: right;
+	margin-right: 5px;
+	margin-left: 0px;
+}
+
+#contentcontrol li a {
+	background: #EEEEEE url(/images/n1.gif);
+	border: 1px solid #999999;
+	color: #666666;
+	padding: 4px 15px 4px;
+	text-decoration: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#contentcontrol li a:hover {
+	color: black;
+}
+
+/*sidebar styling*/
+
+#sidebar {
+	margin-right: 0px;
+	padding-right: 10px;
+}
+
+#sidebar h2 {
+	padding: 0px;
+	font-weight: bold;
+	color: #939393;
+}
+#sidebar ul {
+	list-style: none;
+}
+#sidebar span {
+	font-weight: bold; 
+}
+.document_links {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*Bottom Content styling*/
+
+#contentbottom {
+	background: #fff;
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-right: 10px;
+	margin-right: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/*history styling*/
+
+#recent_history {
+	border-top: 1px solid #BABABA;
+	padding-top: 10px;
+	font-size: 14px;
+}
+#recent_history ul {
+	list-style: none;
+}
+
+#recent_history span {
+	color: #666666;
+	font-size: 10px;
+}
+
+/*footer styling*/
+#footer {
+	background: #f1f1f1;
+}
+
+#footertext {
+	float: right;
+}
+
+#footertext span {
+	color: #BABABA;
+}
+
+#footer img {
+	height: 15px;
+	width: 25px;
+}
+
+
+/*Container styling*/
+
+.container_12,
+.container_16,
+.container_24 {
+  background-color: #fff;
+  background-repeat: repeat-y;
+  margin-bottom: 20px;
+}
+
+.container_12 {
+  background-image: url(../img/12_col.gif);
+}
+
+.container_16 {
+  background-image: url(../img/16_col.gif);
+}
+
+.container_24 {
+  background-image: url(../img/24_col.gif);
+}

@@ -1,12 +1,14 @@
-<h2> Vendor Assigned!</h2>
-
-<script type="text/javascript">
+<div id="contentmiddle" class="grid_12">	
+	<h2> Vendor Assigned!</h2>
 	
-	window.onload = setTimeout('redirect()', 1000);
-	
-	function redirect () {
-	  window.location = "/jobs/<%= @job.id %>"
-	}
-</script>
+	<script type="text/javascript">
+		
+		window.onload = setTimeout('redirect()', 1000);
+		
+		function redirect () {
+		  window.location = "/jobs/<%= @job.id %>"
+		}
+	</script>
+</div>
 
 <%= @data %>

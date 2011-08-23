@@ -1,4 +1,10 @@
-<h1>Document uploaded successfully!</h1>
+<h1>Gotcha!</h1>
 
-<%= @owner_id %>
-<%= @owner_type %>
+<script>
+	window.onload = setTimeout('redirect()', 10);
+	
+	function redirect () {
+  		window.location = "/<%= @owner_type2 %>/<%= @owner.id %>"
+	}
+	
+</script>

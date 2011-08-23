@@ -1,12 +1,25 @@
 <% unless j.checklist_items(job_id, parent_id).first.nil? then j.checklist_items(job_id, parent_id).each do |k|%>
-	<div class="list_items" id="<%= "#{k.id}cli" %>"> 
-		<%= image_tag get_image(k.state)%>
-		<% if k.state < 3 %>
+	<% @state; if k.state == 1 then @state= "overdues" end; if k.state == 2 then @state = "opens" end; if k.state == 3 then @state = "waitings" end; if k.state == 4 then @state == "completeds" end; %>
+	<div class="list_items <%= if k.cli_type == 3 then "finals" else @state end%>" id="<%= "#{k.id}cli" %>"> 
+		<% if status < 3 %>
+			<%= image_tag(get_image(k.state)) %>
+		<% else %>
+			<%= image_tag(get_image(k.state), :style => "display: none;") %>
+		<% end %>
+		<% if k.state < 3 && status < 3 %>
 			<input id="<%="#{k.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= k.id %>')" />
+		<% else %>
+			<input style="display: none;" id="<%="#{k.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= k.id %>')" />
 		<% end %>
 		<%= k.item_data %>
 		<% if k.state < 3 %>
-			<span><%= link_to "undo", {:controller => "controls", :action => "undo", :id => k.id, :state => k.state}, :remote => true %></span>
+			<span>
+				<a style="display: none;" href=<%= "/undo/1?item_id=#{k.id}&state=#{k.state}" %> data-remote="true">undo</a>
+			</span>
+		<% else %>
+			<span>
+				<a style="display: none;" href=<%= "/undo/1?item_id=#{k.id}&state=#{k.state}" %> data-remote="true">undo</a>
+			</span>
 		<% end %>
 	</div>
 	<% end %>

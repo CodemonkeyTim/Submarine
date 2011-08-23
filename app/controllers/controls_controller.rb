@@ -9,10 +9,22 @@ class ControlsController < ApplicationController
   
   def touch_all
     @job = Job.find(params[:id])
-    @items = @job.checklist_items
+    @items = @job.active_checklist_items
+    
+    @asgs = Assignment.find_all_by_job_id(@job.id)
+    
+    @asgs.each do |i|
+      i.checklist_items.each do |j|
+        @items.each do |k|
+          if j.id == k.id 
+            k.status = i.status
+          end
+        end
+      end
+    end
     
     @items.each do |i|
-      if i.cli_type == 1
+      if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1)
         i.state = 2
         i.touched_at = Time.now.utc
         i.save
@@ -95,35 +107,61 @@ class ControlsController < ApplicationController
     if @log_data.include?('\'')
       @log_data = @log_data.gsub('\'', '\\')
     end
-    
-    $last_markings.push([@cli.id, @log.id])
+
   end
   
   def undo
-    @cli = ChecklistItem.find(params[:id])
+    @cli = ChecklistItem.find(params[:item_id])
     @cli.state = params[:state]
     @cli.touched_at = @cli.touched_at - 16000000000
     @cli.save
     @id = @cli.id
     
+    @state = ""
     if @cli.state == 1
-      @state = "overdue"
-    else
-      @state = "open"
+      @state = "overdues" 
+    end
+    if @cli.state == 2 
+      @state = "opens" 
+    end
+    if @cli.state == 3
+      @state = "waitings"
+    end
+    if @cli.state == 4 
+      @state = "completeds" 
     end
     
-    $last_markings.reverse.each do |i|
-      if i[0] == @id
-        Log.find(i[1]).delete
-        break
-      end
+    if @cli.state == 1
+      @state_name = "overdue"
+    else
+      @state_name = "open"
     end
+  
+    @asg = Assignment.find(@cli.assignment_id)
+    @asg.logs.create(:target_type => "Item", :target_name => @cli.item_data, :action => "corrected", :time => get_time, :date => get_date)
     
   end
   
   def show_fields
     
     
+  end
+   
+  def change_status 
+    @asg = Assignment.find(params[:asg_id])
+    @asg.status = params[:status]
+    @asg.save
+     
+    if params[:status] == "1" 
+      @asg.checklist_items.each do |i|
+        if i.cli_type == 3
+          i.state = 2
+          i.save
+        end
+       end
+      end
+     
+     @partner_id = @asg.partner_id
   end
     
 end

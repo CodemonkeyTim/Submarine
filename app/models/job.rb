@@ -24,6 +24,10 @@ class Job < ActiveRecord::Base
     return (Assignment.find_all_by_job_id(self.id).collect {|i| i.checklist_items}).flatten
   end
   
+  def active_checklist_items
+    return ((Assignment.find_all_by_job_id_and_status(self.id, 1).collect {|i| i.checklist_items}).flatten+(Assignment.find_all_by_job_id_and_status(self.id, 2).collect {|i| i.checklist_items}).flatten).flatten
+  end
+  
   def partners
     return Partner.find_all_by_id(Assignment.find_all_by_job_id(self.id).collect {|i| i.partner_id})
   end

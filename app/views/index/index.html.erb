@@ -1,26 +1,27 @@
-<fieldset>
-	<legend>Recent jobs</legend>	
+	<div class="grid_12" id="pagedescription"><h2>Recent jobs</h2></div>
 	
+	<div id="contentmiddle" class="grid_12">
 	<% @recent_jobs.each do |i| %>
-		<div class="jobs">
-		
-		<div class="headerisone"><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></div>
+
+		<h3><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></h3>
+
 		<% unless i.subcontractors.first.nil? %>
 			<% i.subcontractors.each do |j| %>
-				<h3><%= link_to j.name, {:controller => "subcontractors", :action => "show", :id => j.id} %></h3>
-				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 0} %>
+				<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(i.id, j.id, 0, 1) %>
+				<% if @asg.status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
+				<%= render :partial => "sub_details", :locals => {:j => j, :job_id => i.id, :parent_id => 0, :show_subname => 1, :status => @asg.status} %>
 			<% end %>
 		<% end %>
-		</div>
-	<% end %>		
-</fieldset>
 
-<fieldset>
-	<legend>Overdue items</legend>
+	<% end %>
+	</div>
+
+<div class="grid_12" id="contentbottom">
+	<h3>Overdue items</h3>
 	<% @overdue_items.each_with_index do |i, x| %>
 		<div class="overdue_list_items"> <%= image_tag get_image(1) %> <%= "#{i.item_data} is #{@overdue_amounts[x]} days overdue"%></div>
 	<% end %>
-</fieldset>
+</div>
 
 <% #Page's method calls and global variable modifiers %>
 

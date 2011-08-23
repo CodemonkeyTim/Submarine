@@ -1,38 +1,30 @@
-<fieldset id="vendor_details">
-	<legend>Vendor details</legend>
-	
-	
-</fieldset>
+<div class="grid_12" id="pagedescription"><h2><%= @vendor.name %></h2></div>
 
-<fieldset id="vendor_jobs_details">
-	<legend><%= @vendor.name %> - Jobs</legend>
+<div class="grid_9" id="contentmiddle">
+	<h4>Jobs</h4>
 	
-	<div class="controls" id="edit_job">
-		<%= link_to "Edit vendor", {:controller => "vendors", :action => "edit", :id => @vendor.id} %>
-	</div>
 	
 	<% if @jobs.length != 0 then %>
+		<ul>
 		<% @jobs.each do |i| %>
-			<div class="jobs">
-				<div class="job_sidebar">
-					<%= i.job_number%> <br />
-					<%= i.name %>
-				</div>
-				<div class="job_item_list">
-				<% get_roles(i, @vendor.id).each_with_index do |j, x| %>
-						<div class="sub_headers"><%= j %></div>
-						<div class="items_block">
-							<%= render :partial => "jobs/sup_checklist", :locals => {:k => @vendor, :job_id => i.id, :parent_id => $parent_ids[x]} %>
-						</div>
-				<% end %>
-				</div>
-				<div class="break"></div>
-			</div>
+				<li><%= link_to "#{i.job_number} - #{i.name}", job_path(i.id) %></li>
 		<% end %>
+		</ul>
+	<% else %>	
+		<h5>Not assigned to any job</h5>
 	<% end %>	
 	
-</fieldset>
+</div>
 
+<div id="sidebar" class="grid_3">
+	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @vendor.id} %></span></h2>
+
+	<ul>
+		<li>Contact Name: <span>23452345</span></li>
+		<li>Phone: <span>534543</span></li>
+	</ul>
+
+</div>
 
 
 

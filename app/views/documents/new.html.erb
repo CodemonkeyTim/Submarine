@@ -1,12 +1,12 @@
-<fieldset id="add_document_form">
-	<legend>Attach a document to <%= @owner_name %></legend>
+<div id="contentmiddle" class="grid_12">	
+	<h4>Attach a document to <%= @owner_name %></h4>
 	
-	<form action="/documents/" method="post" enctype="multipart/form-data">
-		<input type="text" name="name" value="Give document a name..."/>
+	<form action="/documents" method="post" enctype="multipart/form-data" >
+		<input type="text" name="name" value="document"/>
 		<input type="file" name="document"/>
 		<input type="hidden" name="owner_id" value="<%= @owner.id %>"/>
 		<input type="hidden" name="owner_type" value="<%= @owner_type %>"/>
-		<input type="submit" value="Upload" />
+		<input type="submit" value="Upload" onclick='window.location="/jobs/<%= @owner.id %>"'/>
 	</form>	
 	
-</fieldset>
+</div>

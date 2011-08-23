@@ -5,6 +5,11 @@ class Partner < ActiveRecord::Base
   has_many :tags, :as => :taggable
   
   attr_accessor :state
+  attr_accessor :status
+  
+  def get_status
+    @status
+  end
   
   def get_state(job_id, parent_id)
     @stat =[]
@@ -48,7 +53,7 @@ class Partner < ActiveRecord::Base
     if @asg.nil?
       return []
     else
-      return @asg.checklist_items
+      return @asg.checklist_items.sort_by {|i| i.cli_type}
     end
     
   end
