@@ -40,9 +40,9 @@ class ControlsController < ApplicationController
     end
     
     if @job.subcontractors.length == 0
-      @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
+      @job.logs.create(:target_type => "Payment (received: #{@month}/#{@day}/#{@year})", :target_name => "", :action => "marked received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
     else  
-      @job.logs.create(:target_type => "Payment", :target_name => "", :action => "received", :time => get_time, :date => get_date)  
+      @job.logs.create(:target_type => "Payment (received: #{@month}/#{@day}/#{@year})", :target_name => "", :action => " marked received", :time => get_time, :date => get_date)  
     end
     
     @log = @job.logs.last
