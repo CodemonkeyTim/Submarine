@@ -93,12 +93,9 @@ class AssignmentsController < ApplicationController
       end
     end
     
-    @where_to = ""
-    if params[:partner_type] == 1
-      @where_to = "subcontractors/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
-    else
-      @where_to = "suppliers/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
-    end    
+    @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
+  
+  
   end
   
   def create_and_assign
@@ -146,14 +143,8 @@ class AssignmentsController < ApplicationController
       @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
     end
     
-    @where_to = ""
-    if params[:partner_type] == 1
-      @where_to = "subcontractors/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
-    else
-      @where_to = "suppliers/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
-    end
+    @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}" 
 
-    
     
   end
 end

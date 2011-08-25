@@ -27,7 +27,7 @@
 	<% unless j.subcontractors(job_id).first.nil? %>
 		<% j.subcontractors(job_id).each do |k| %>
 			<div class="subs1">
-				<%= render :partial => "index/sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id, :show_subname => 1} %>
+				<%= render :partial => "index/sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id, :show_subname => 1, :status => status} %>
 			</div>
 		<% end %>
 	<% end %>
