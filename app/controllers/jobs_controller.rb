@@ -21,6 +21,23 @@ class JobsController < ApplicationController
     
     @log = @loggings[(0..3)]
     
+    #@date: used for submitting date for method which save the payments received to DB
+    # so that as default date in the input field is date today.
+    @date = ""
+    if Time.now.mon < 10
+      @mon  = '0'+Time.now.mon.to_s
+    else
+      @mon =  Time.now.mon.to_s
+    end
+    
+    if Time.now.day < 10
+      @day = '0'+Time.now.day.to_s
+    else
+      @day = Time.now.day.to_s
+    end
+    
+    @date =  "#{@mon}/#{@day}/#{Time.now.year}"
+    
   end
     
   def index

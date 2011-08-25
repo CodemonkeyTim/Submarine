@@ -295,6 +295,10 @@ body {
 	color: black;
 }
 
+#receive_payments input {
+	margin-left: 5px;
+}
+
 /*sidebar styling*/
 
 #sidebar {

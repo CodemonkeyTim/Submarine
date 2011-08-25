@@ -10,7 +10,8 @@
 		<div class="controlbuttons">
 		<ul>
 			<li class="controls" id="receive_payments">
-				<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
+				<%= link_to "Owner payment received on", {:controller => "controls", :action => "touch_all", :id => @job.id, :date => "#{@date}"}, :remote => true, :id => "oprbtn" %> 
+				<input onchange="var date = $('#receive_payments input').attr('value'); $('#oprbtn').attr('href', '/touch_all/<%= @job.id %>?date='+date);" type="text" size="7" value="<%= @date %>" /> 
 			</li>
 			<li class="controls" id="assign_sub">
 				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
