@@ -20,8 +20,8 @@
 	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @vendor.id} %></span></h2>
 
 	<ul>
-		<li>Contact Name: <span>23452345</span></li>
-		<li>Phone: <span>534543</span></li>
+		<li>Contact Name: <span><%= @contact_person.name %></span></li>
+		<li>Phone: <span><%= @contact_person.phone_number %></span></li>
 	</ul>
 
 </div>

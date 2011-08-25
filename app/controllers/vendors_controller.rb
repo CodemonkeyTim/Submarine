@@ -8,6 +8,12 @@ class VendorsController < ApplicationController
     @vendor = Partner.find(params[:id])
     @assignments = Assignment.find_all_by_partner_id(params[:id])
     
+    if @vendor.contact_person.nil?
+      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+    else
+      @contact_person = @vendor.contact_person
+    end
+    
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
   end
