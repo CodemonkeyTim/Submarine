@@ -2,8 +2,7 @@
 	<h4>Attach a document to <%= @owner_name %></h4>
 	
 	<form action="/documents" method="post" enctype="multipart/form-data" >
-		<input type="text" name="name" value="document"/>
-		<input type="file" name="document"/>
+		<input type="file" name="document" />
 		<input type="hidden" name="owner_id" value="<%= @owner.id %>"/>
 		<input type="hidden" name="owner_type" value="<%= @owner_type %>"/>
 		<input type="submit" value="Upload" onclick='window.location="/jobs/<%= @owner.id %>"'/>

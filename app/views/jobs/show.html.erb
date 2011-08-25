@@ -65,11 +65,12 @@
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
 	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
+	
 	<div id="documents_section">
 		<h2>Job Docs:</h2>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
-				<div class="document_links"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %></div>
+				<div class="document_links"><img src="/images/<%= @fn = i.document_file_name; @fn[@fn.length-3, 3] %>.png" />  <%= link_to @fn[0, @fn.length-4], i.document.url %></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/>  <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
