@@ -33,9 +33,15 @@ class ControlsController < ApplicationController
     
     @items.each do |i|
       if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1)
-        i.state = 2
+        if Time.now.utc - @date_to_save.utc > (i.sleep_time * 86400)
+          i.state = 1
+        else
+          i.state = 2
+        end
+        
         i.touched_at = @date_to_save.utc
         i.save
+
       end
     end
     

@@ -41,6 +41,7 @@ class JobsController < ApplicationController
   end
     
   def index
+    refresh_states
     @jobs = Job.find(:all, :order => "name")
     
     @open_jobs = []

@@ -157,16 +157,7 @@ module ApplicationHelper
     
     return @answer
   end
-  
-  def refresh_states
-    ChecklistItem.all.each do |i|
-      if (Time.now.utc - i.touched_at) > 864000
-        i.state = 1
-        i.save
-      end
-    end
-  end
-  
+    
   def get_time
     @time  = "#{Time.now.year}-#{Time.now.mon}-#{Time.now.day} #{Time.now.hour}:#{Time.now.min}"
   end

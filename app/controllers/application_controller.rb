@@ -29,6 +29,14 @@ class ApplicationController < ActionController::Base
     @date = "#{@abbs[Time.now.mon-1]} #{Time.now.day}, #{Time.now.year}"
   end
   
+  def refresh_states
+    ChecklistItem.all.each do |i|
+      if (Time.now.utc - i.touched_at) > 864000
+        i.state = 1
+        i.save
+      end
+    end
+  end
   
   
   
