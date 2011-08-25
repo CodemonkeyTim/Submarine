@@ -1,6 +1,8 @@
 class AssignmentsController < ApplicationController
-  def new
-    
+  
+  #Gathers all information to be shown on "Assign a Sub" or "Assign a Supplier" pages
+  
+  def new  
     @partners = Partner.find(:all, :order => "name")
     @partners.delete_if {|i| i.id == params[:parent_id]}
     

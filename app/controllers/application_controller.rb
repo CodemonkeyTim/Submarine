@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery 
+  protect_from_forgery   
   
-  $last_markings
   
+  #Returns current time as string in hh:mm am/pm format
   def get_time
     
     @hour = Time.now.hour
@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     @time  = "#{@hour}:#{@minute} #{@amorpm}"
   end
   
+  #Returns current date as string in format as in following example Jan 13, 2011
   def get_date
     @abbs = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         

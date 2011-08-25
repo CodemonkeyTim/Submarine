@@ -52,6 +52,7 @@ class JobsController < ApplicationController
     @TU_role = ""
     
     @job.project_manager = ProjectManager.find(params[:PM_id])
+    @job.save
     
     if params[:job_type] == "1"
       @job_type = "Public"
