@@ -35,8 +35,8 @@
 	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @subcontractor.id} %></span></h2>
 
 	<ul>
-		<li>Contact Name: <span>asdfasdfasdf</span></li>
-		<li>Phone: <span>2345342543</span></li>
+		<li>Contact Name: <span><%= @contact_person.name %></span></li>
+		<li>Phone: <span><%= @contact_person.phone_number %></span></li>
 	</ul>
 	<div id="documents_section">
 		<h2>Sub Docs:</h2>

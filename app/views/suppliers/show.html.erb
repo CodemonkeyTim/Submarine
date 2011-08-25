@@ -27,11 +27,10 @@
 <div id="sidebar" class="grid_3">
 	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @supplier.id} %></span></h2>
 	
-	<div id="contact_details">
-		<div class="job_detail_list_item"><%= "Contact name: #{@contact_person.name}" %></div>
-		<div class="job_detail_list_item"><%= "Phone: #{@contact_person.phone_number}" %></div>
-		<div class="job_detail_list_item"><%= "E-mail: #{@contact_person.email}" %></div>
-	</div>
+	<ul>
+		<li>Contact Name: <span><%= @contact_person.name %></span></li>
+		<li>Phone: <span><%= @contact_person.phone_number %></span></li>
+	</ul>
 	
 	<div id="documents_section">
 		<h2>Supplier Docs:</h2>
