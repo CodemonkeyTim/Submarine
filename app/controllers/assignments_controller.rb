@@ -30,7 +30,7 @@ class AssignmentsController < ApplicationController
     
     @list_of_items = []
     
-    if params[:partner_type] == "1"
+    if @partner_type == "1"
       @list_of_items.push(ListItemTemplate.find_all_by_item_type(3))
       if @tags.include?("Public") 
         @list_of_items.push(ListItemTemplate.find_all_by_item_type(1))
@@ -39,13 +39,13 @@ class AssignmentsController < ApplicationController
        @list_of_items.push(ListItemTemplate.find_all_by_item_type(2))
       end
     end
-    if params[:partner_type] == "2"
+    if @partner_type == "2"
       @list_of_items.push(ListItemTemplate.find(6))
       @list_of_items.push(ListItemTemplate.find(10))
     end
 
-    @list_of_items.flatten!
-        
+    @list_of_items.flatten!    
+    
   end
 
   def create
@@ -93,6 +93,12 @@ class AssignmentsController < ApplicationController
       end
     end
     
+    @where_to = ""
+    if params[:partner_type] == 1
+      @where_to = "subcontractors/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
+    else
+      @where_to = "suppliers/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
+    end    
   end
   
   def create_and_assign
@@ -139,7 +145,15 @@ class AssignmentsController < ApplicationController
     @list_of_items.each do |i|
       @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
     end
-  end
     
+    @where_to = ""
+    if params[:partner_type] == 1
+      @where_to = "subcontractors/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
+    else
+      @where_to = "suppliers/#{params[:partner_id]}?job_id=#{@job.id}&parent_id=#{params[:parent_id]}"
+    end
 
+    
+    
+  end
 end
