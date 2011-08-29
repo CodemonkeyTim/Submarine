@@ -182,8 +182,31 @@ select {
 	text-decoration: none;
 	font-family: Arial;
 	font-size: 14px;	
-	
 }
+/*temp stuff holler at MLK if it stays too long*/
+
+.headerisone a {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+/*History styles*/
+#full_history {
+}
+
+#full_history ul {
+	list-style-type: none;
+}
+#full_history li {
+	padding-bottom: 10px;
+}
+#full_history ul span {
+	color: #666666;
+	font-size: 12px;
+}
+
+
 
 .list_data {
 	float: left;
