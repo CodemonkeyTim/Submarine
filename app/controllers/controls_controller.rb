@@ -163,19 +163,30 @@ class ControlsController < ApplicationController
    
   def change_status 
     @asg = Assignment.find(params[:asg_id])
-    @asg.status = params[:status]
-    @asg.save
-     
-    if params[:status] == "1" 
-      @asg.checklist_items.each do |i|
-        if i.cli_type == 3
-          i.state = 2
-          i.save
+    @asgs = @asg.assignments
+    @asgs.push(@asg)
+    
+    @asgs.each do |i|
+      if i.status == params[:status]
+        render :nothing => true
+        return
+      else
+        @asg.status = params[:status]
+        @asg.save
+       
+        if params[:status] == "1" 
+          i.checklist_items.each do |j|
+            if j.cli_type == 3
+              if j.state != 1
+                j.state = 2
+                j.save
+              end
+            end
+          end
         end
-       end
+        @partner_id = @asg.partner_id
       end
-     
-     @partner_id = @asg.partner_id
+    end
   end
     
 end

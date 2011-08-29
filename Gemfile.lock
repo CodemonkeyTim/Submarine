@@ -100,7 +100,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-=======
   backup
   capistrano
   jquery-rails (>= 1.0.12)
