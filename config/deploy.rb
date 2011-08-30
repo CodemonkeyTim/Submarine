@@ -1,7 +1,11 @@
 default_run_options[:pty] = true
+<<<<<<< .merge_file_tokql7
 
 set :application, "192.168.15.5"
 
+=======
+set :application, "192.168.15.4"
+>>>>>>> .merge_file_s8N6YZ
 set :repository,  "git@github.com:michaelleland/Submarine.git"
 
 set :scm, "git"
