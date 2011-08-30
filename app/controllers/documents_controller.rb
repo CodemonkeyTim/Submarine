@@ -47,4 +47,9 @@ class DocumentsController < ApplicationController
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
     
   end
+  
+  def delete
+    @doc = Document.find(params[:id])
+    @doc.delete
+  end
 end

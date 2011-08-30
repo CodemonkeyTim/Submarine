@@ -13,6 +13,7 @@ Submarine::Application.routes.draw do
   #Document attaching paths
   match "/documents/new" => "documents#new"
   match "/documents/" => "documents#create"
+  match "/documents/delete/:id" => "documents#delete"
   
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"

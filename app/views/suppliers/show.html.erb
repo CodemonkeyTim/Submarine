@@ -37,7 +37,7 @@
 		<h2>Supplier Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
-				<div class="document_links"><%= link_to i.name, i.document.url %></div>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		

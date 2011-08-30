@@ -318,6 +318,10 @@ body {
 	margin-bottom: 10px;
 }
 
+#delete_document_link a {
+	color:red;
+}
+
 /*Bottom Content styling*/
 
 #contentbottom {
