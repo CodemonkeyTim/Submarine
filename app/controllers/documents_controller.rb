@@ -20,19 +20,19 @@ class DocumentsController < ApplicationController
     @owner_id = params[:owner_id]
     @owner_type = params[:owner_type]
     
-    @owner_type2 = ""
+    @page_to_return_to
     
     if @owner_type == "1"
       @owner = Job.find(@owner_id)
-      @owner_type2 = "jobs"
+      @page_to_return_url = "/jobs/#{@owner.id}"
     end
     
     if @owner_type == "2"
       @owner = Assignment.find(@owner_id)
       if @owner.partner_type == 1
-        @owner_type2 = "subcontractors"
+        @page_to_return_to = "/subcontractors/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       else
-        @owner_type2 = "suppliers"
+        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       end
     end
     
