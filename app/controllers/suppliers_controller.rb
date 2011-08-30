@@ -1,11 +1,11 @@
 class SuppliersController < ApplicationController
   def show
     @job_id = params[:job_id]
-    @parent_id = params[:subcontractor_id]
+    @parent_id = params[:parent_id]
     
     @supplier = Partner.find(params[:id])
     @job = Job.find(params[:job_id])
-    @subcontractor = Partner.find(params[:subcontractor_id])
+    @subcontractor = Partner.find(params[:parent_id])
     
     @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @supplier.id, 2)
     

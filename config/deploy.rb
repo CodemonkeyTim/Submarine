@@ -1,5 +1,5 @@
 default_run_options[:pty] = true
-set :application, "192.168.15.4"
+set :application, "192.168.15.5"
 set :repository,  "git@github.com:michaelleland/Submarine.git"
 
 set :scm, "git"

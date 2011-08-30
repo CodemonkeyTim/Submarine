@@ -42,7 +42,7 @@
 		<h2>Sub Docs:</h2>
 		<% unless @asg.nil? || @asg.documents.length == 0 %>
 			<% @asg.documents.each do |i| %>
-				<div class="document_links"><img src="/images/pdf.png" /> <%= link_to i.name, i.document.url %></div>
+				<div class="document_links"><img src="/images/<%= @fn = i.document_file_name; @fn[@fn.length-3, 3] %>.png" />  <%= link_to @fn[0, @fn.length-4], i.document.url %></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		

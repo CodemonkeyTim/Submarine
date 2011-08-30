@@ -20,31 +20,28 @@ class DocumentsController < ApplicationController
     @owner_id = params[:owner_id]
     @owner_type = params[:owner_type]
     
-    @owner_type2 = ""
+    @return_page_url = ""
     
     if @owner_type == "1"
       @owner = Job.find(@owner_id)
-      @owner_type2 = "jobs"
+      @return_page_url = "/jobs/#{@owner_id}"
     end
     
     if @owner_type == "2"
       @owner = Assignment.find(@owner_id)
       if @owner.partner_type == 1
-        @owner_type2 = "subcontractors"
+        @return_page_url = "/subcontractors/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       else
-        @owner_type2 = "suppliers"
+        @return_page_url = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       end
     end
     
-    @doc = @owner.documents.create(:name => params[:name])
+    @doc = Document.new(:name => params[:name])
     @doc.document = params[:document]
     @doc.save
-    
-    
-    @owner_id = RecentJobs.last.job_id
-    @owner_type2 = "jobs"
+    @owner.documents.push(@doc)
+    @owner.save    
     
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
-    
   end
 end
