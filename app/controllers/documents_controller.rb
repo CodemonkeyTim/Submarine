@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
     end
     if params[:owner_type] == "asg"
       @owner = Assignment.find(params[:owner_id])
-      @owner_name = Partner.find(params[:owner_id]).name
+      @owner_name = Partner.find(@owner.partner_id).name
       @owner_type = 2
     end
   end
