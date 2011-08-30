@@ -6,7 +6,7 @@ class CreateListItemTemplates < ActiveRecord::Migration
       t.integer :rep_type
       t.timestamps
     end
-
+    
      # :item_type is used for differentiating between public job items and private job items.
      # :item_type => 1 is public jobs only
      # :item_type => 2 is private jobs only
