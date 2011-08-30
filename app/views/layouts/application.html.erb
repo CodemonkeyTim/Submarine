@@ -22,10 +22,10 @@
 			<div id="headerbuttons" class="grid_2">
 				<ul>				
 					<li>
-						<a class="button" href='http://localhost/jobs/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
+						<a class="button" href='/jobs/new'><img src="/images/plus.png" height="13" width="13">  New Job</a>
 					</li>
 					<li>
-						<a class="button" href='http://localhost/vendors/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
+						<a class="button" href='/vendors/new'><img src="/images/plus.png" height="13" width="13">  New Vendor</a>
 					</li>
 				</ul>
 			</div>
@@ -35,7 +35,7 @@
 			<div class="grid_10">
 				<ul>
 					<li>
-						<%= link_to "Home", "http://localhost", :id => am_i_active_tab(1) %>
+						<%= link_to "Home", "http://submarine.tapani.net/", :id => am_i_active_tab(1) %>
 					</li>				
 					<li>
 						<%= link_to "Jobs", jobs_path, :id => am_i_active_tab(2) %>
