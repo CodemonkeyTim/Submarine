@@ -2,18 +2,25 @@
 	<% @state; if k.state == 1 then @state= "overdues" end; if k.state == 2 then @state = "opens" end; if k.state == 3 then @state = "waitings" end; if k.state == 4 then @state == "completeds" end; %>
 	<div class="list_items <%= if l.cli_type == 3 then "finals" else @state end%>" id="<%= "#{l.id}cli" %>"> 
 		<% if status < 3 %>
-			<%= image_tag(get_image(l.state), :style => "display: none;") %>
+			<%= image_tag(get_image(l.state)) %>
 		<% else %>
-			<%= image_tag(get_image(l.state)) %>	
+			<%= image_tag(get_image(l.state), :style => "display: none;") %>	
 		<% end %>
 		<% if l.state < 3 && status < 3 %>
 			<input id="<%="#{l.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
+		<% else %>
+			<input style="display: none;" id="<%="#{l.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
 		<% end %>
 		<%= l.item_data %>
 		<% if l.state < 3 %>
 			<span>
-				<a style="display: none;"  href=<%= "/undo/1?item_id=#{l.id}&state=#{l.state}" %> data-remote="true">undo</a>
+				<a style="display: none;" href=<%= "/undo/1?item_id=#{l.id}&state=#{l.state}" %> data-remote="true">undo</a>
+			</span>
+		<% else %>
+			<span>
+				<a style="display: none;" href=<%= "/undo/1?item_id=#{l.id}&state=#{l.state}" %> data-remote="true">undo</a>
 			</span>
 		<% end %>
 	</div> 
+	<% end %>
 <% end %>
