@@ -24,9 +24,9 @@ class SubcontractorsController < ApplicationController
     end
     
     if @subcontractor.contact_person.nil?
-      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+      @cp = ContactPerson.new(:name => "unassigned", :phone_number => "000-000-0000") 
     else
-      @contact_person = @subcontractor.contact_person
+      @cp = @subcontractor.contact_person
     end
     
   end

@@ -21,9 +21,9 @@ class SuppliersController < ApplicationController
     end
     
     if @supplier.contact_person.nil?
-      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+      @cp = ContactPerson.new(:name => "unassigned", :phone_number => "000-000-0000")
     else
-      @contact_person = @supplier.contact_person
+      @cp = @supplier.contact_person
     end
     
   end

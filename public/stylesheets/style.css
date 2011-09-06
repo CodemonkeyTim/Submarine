@@ -307,9 +307,15 @@ body {
 	font-weight: bold;
 	color: #939393;
 }
+
 #sidebar ul {
 	list-style: none;
 }
+
+#sidebar ul li {
+	margin-left: 0px;
+}
+
 #sidebar span {
 	font-weight: bold; 
 }

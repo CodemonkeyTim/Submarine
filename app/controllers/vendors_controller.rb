@@ -10,6 +10,12 @@ class VendorsController < ApplicationController
     
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
+    if @vendor.contact_person.nil?
+      @cp = ContactPerson.new(:name => "unassigned", :phone_number => "000-000-0000")
+    else
+      @cp = @vendor.contact_person
+    end
+    
   end
   
   def new
