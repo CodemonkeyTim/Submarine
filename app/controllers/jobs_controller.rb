@@ -84,7 +84,7 @@ class JobsController < ApplicationController
     @taggys = @job.tags.all
     @tags = @taggys.collect {|i| i.tag_name}.flatten
     
-    @pms=ProjectManager.all
+    @pms = ProjectManager.all
   end
   
   def update
