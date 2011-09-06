@@ -87,6 +87,15 @@ class VendorsController < ApplicationController
       @partner.contact_person = @cp
     end
     
+    if params[:partner_type] == "1"
+      @page_to_return_to = "subcontractors/#{@partner.id}?job_id=#{params[:job_id]}&parent_id=#{params[:parent_id]}"
+    end
+    
+    if params[:partner_type] == "2"
+      @page_to_return_to = "suppliers/#{@partner.id}?job_id=#{params[:job_id]}&subcontractor_id=#{params[:parent_id]}"
+    end
+    
+    
   end
 
 

@@ -5,6 +5,6 @@
 	window.onload = setTimeout('redirect()', 1000);
 	
 	function redirect () {
-	  window.location = <%= @page_to_return_to %>
+	  window.location = '/<%= @page_to_return_to %>'
 	}
 </script>
