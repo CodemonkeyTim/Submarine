@@ -6,7 +6,7 @@
 	window.onload = setTimeout('redirect()', 1000);
 	
 	function redirect () {
-	  window.location = "/jobs/<%= @job_id %>"
+	  window.location = "<%= @page_to_return_to %>"
 	}
 </script>
 
