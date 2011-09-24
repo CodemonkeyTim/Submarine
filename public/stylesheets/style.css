@@ -122,6 +122,17 @@ body {
 	margin-bottom: 5px;
 }
 
+#paytab {
+	margin: 0px;
+}
+
+#paytab li{
+	list-style: none;
+	margin: 0px;
+	margin-right: 2px;
+	border: 1px solid;	
+}
+
 #contentmiddle {
 	background: #fff;
 	padding-left: 10px;
