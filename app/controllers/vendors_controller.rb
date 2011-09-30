@@ -107,6 +107,9 @@ class VendorsController < ApplicationController
       @page_to_return_to = "suppliers/#{@partner.id}?job_id=#{params[:job_id]}&subcontractor_id=#{params[:parent_id]}"
     end
     
+    if params[:partner_type].nil? || params[:partner_type] == "" 
+      @page_to_return_to = "vendors/#{@partner.id}"
+    end
     
   end
 
