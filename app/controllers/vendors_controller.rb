@@ -14,6 +14,12 @@ class VendorsController < ApplicationController
       @contact_person = @vendor.contact_person
     end
     
+    if @vendor.address.nil?
+      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+    else
+      @address = @vendor.address
+    end
+    
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
   end
