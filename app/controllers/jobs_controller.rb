@@ -48,6 +48,7 @@ class JobsController < ApplicationController
   
   def new
     @pms = ProjectManager.all
+    @pes = ProjectEngineer.all
   end
   
   def create
@@ -57,7 +58,8 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
-    @job.project_manager = ProjectManager.find(params[:PM_id])
+    @job.project_manager_id = params[:PM_id]
+    @job.project_engineer_id = params[:PE_id]
 
     @job.save
     
