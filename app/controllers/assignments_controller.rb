@@ -147,8 +147,11 @@ class AssignmentsController < ApplicationController
       @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
     end
     
-    @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}" 
-
+    if params[:parent_id] == "0"
+      @where_to = "jobs/#{@job.id}"
+    else
+      @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
+    end
     
   end
 end

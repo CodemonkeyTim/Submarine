@@ -100,10 +100,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< .merge_file_xA7Ac1
-=======
   backup
->>>>>>> .merge_file_uwzx3Y
   capistrano
   jquery-rails (>= 1.0.12)
   mysql2 (~> 0.2.6)
