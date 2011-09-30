@@ -104,10 +104,7 @@ class JobsController < ApplicationController
     @tags = @taggys.collect {|i| i.tag_name}.flatten
     
     @pms = ProjectManager.all
-<<<<<<< .merge_file_lggzph
-=======
     @pes = ProjectEngineer.all
->>>>>>> .merge_file_Ul69Vf
   end
   
   def update
