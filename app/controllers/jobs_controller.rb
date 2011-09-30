@@ -23,20 +23,8 @@ class JobsController < ApplicationController
     
     #@date: used for submitting date for method which save the payments received to DB
     # so that as default date in the input field is date today.
-    @date = ""
-    if Time.now.mon < 10
-      @mon  = '0'+Time.now.mon.to_s
-    else
-      @mon =  Time.now.mon.to_s
-    end
     
-    if Time.now.day < 10
-      @day = '0'+Time.now.day.to_s
-    else
-      @day = Time.now.day.to_s
-    end
-    
-    @date =  "#{@mon}/#{@day}/#{Time.now.year}"
+    @date = Time.now.strftime("%m/%d/%Y")
     
   end
     
@@ -60,6 +48,7 @@ class JobsController < ApplicationController
   
   def new
     @pms = ProjectManager.all
+    @pes = ProjectEngineer.all
   end
   
   def create
@@ -69,7 +58,8 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
-    @job.project_manager = ProjectManager.find(params[:PM_id])
+    @job.project_manager_id = params[:PM_id]
+    @job.project_engineer_id = params[:PE_id]
 
     @job.save
     

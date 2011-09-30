@@ -32,15 +32,14 @@ class DocumentsController < ApplicationController
       if @owner.partner_type == 1
         @page_to_return_to = "/subcontractors/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       else
-        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&subcontractor_id=#{@owner.parent_id}"
+        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       end
     end
     
-    @owner.documents.push(Document.new(:name => params[:name]))
+    @owner.documents.push(Document.new(:name => params[:document_name]))
     @doc = @owner.documents.last
     @doc.document = params[:document]
     @doc.save
-    end
 
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
   end

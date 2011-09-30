@@ -37,6 +37,12 @@
 
 </div>
 
-<% #Method calls and global variable modifiers of the page %>
+<% "Method calls and global variable modifiers of the page" %>
+
+<% if params[:parent_id].nil? %>
+	<% $active_tab = 3 %>
+<% else %>
+	<% $active_tab = 2 %>
+<% end %>
 
 <% $active_page = "vendor.new"%>
