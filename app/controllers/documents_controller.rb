@@ -36,7 +36,7 @@ class DocumentsController < ApplicationController
       end
     end
     
-    @owner.documents.push(Document.new(:name => params[:name]))
+    @owner.documents.push(Document.new(:name => params[:document_name]))
     @doc = @owner.documents.last
     @doc.document = params[:document]
     @doc.save
