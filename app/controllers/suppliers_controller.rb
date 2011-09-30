@@ -26,6 +26,12 @@ class SuppliersController < ApplicationController
       @contact_person = @supplier.contact_person
     end
     
+    if @supplier.address.nil?
+      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+    else
+      @address = @supplier.address
+    end
+    
   end
 
   def index
