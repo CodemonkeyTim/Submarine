@@ -28,6 +28,12 @@ class SubcontractorsController < ApplicationController
       @contact_person = @subcontractor.contact_person
     end
     
+    if @subcontractor.address.nil?
+      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+    else
+      @address = @subcontractor.address
+    end
+    
   end
 
   def index

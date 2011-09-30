@@ -56,14 +56,14 @@ class VendorsController < ApplicationController
     unless @addrs.nil?
       @addrs.street = params[:addrs_street]
       @addrs.zip_code = params[:addrs_zip_code]
-      @addrs.city = params[:addrs_sity]
+      @addrs.city = params[:addrs_city]
       @addrs.state = params[:addrs_state]
       @addrs.save
     else
       @addrs = Address.new
       @addrs.street = params[:addrs_street]
       @addrs.zip_code = params[:addrs_zip_code]
-      @addrs.city = params[:addrs_sity]
+      @addrs.city = params[:addrs_city]
       @addrs.state = params[:addrs_state]
       @addrs.save
       @partner.address = @addrs
