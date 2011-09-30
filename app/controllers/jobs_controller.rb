@@ -102,7 +102,8 @@ class JobsController < ApplicationController
     @taggys = @job.tags.all
     @tags = @taggys.collect {|i| i.tag_name}.flatten
     
-    @pms=ProjectManager.all
+    @pms = ProjectManager.all
+    @pes = ProjectEngineer.all
   end
   
   def update
@@ -111,7 +112,8 @@ class JobsController < ApplicationController
     @job.job_number = params[:job_number]
     @job.location = params[:location]
     @job.value = params[:value]
-    @job.project_manager= ProjectManager.find(params[:PM_id])
+    @job.project_manager_id = params[:PM_id]
+    @job.project_engineer_id = params[:PE_id]
     
     @job.tags.each {|i| i.delete }
     
