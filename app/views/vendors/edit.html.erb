@@ -3,7 +3,7 @@
 <div id="contentmiddle" class="grid_12">
 	<h2>Vendor information</h2>
 	
-	<form action="/vendors/<%= @partner.id %>" method="post">
+	<form id="vendor_edit" action="/vendors/<%= @partner.id %>" method="post">
 		<div id="partner_details">
 			<div class="input_rows"> <div class="labels">Vendor Name</div> <div class="inputs"> <%= text_field_tag("partner_name", @partner.name) %> </div></div>
 		</div>
@@ -17,7 +17,7 @@
 			<div class="input_rows"> <div class="labels">E-mail </div> <div class="inputs"> <%= text_field_tag("cp_email", @cp.email) %> </div></div>
 		</div>
 		
-		<div class="sub_header">Address details details</div>
+		<div class="sub_header">Address details</div>
 		
 		<div id="addr_details">
 			<div class="input_rows"> <div class="labels">Street address</div> <div class="inputs"> <%= text_field_tag("addrs_street", @addrs.street) %> </div></div>
@@ -27,7 +27,7 @@
 		</div>
 		
 		<input type="hidden" name="_method" value="put">
-		<div class="input_rows"><input type="submit" value="Edit"/></div>
+		<div class="input_rows"><div class="labels">Action</div><div class="inputs"><input type="submit" value="Edit"/></div></div>
 	</form>
 
 </div>
