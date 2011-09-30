@@ -20,7 +20,7 @@ class DocumentsController < ApplicationController
     @owner_id = params[:owner_id]
     @owner_type = params[:owner_type]
     
-    @page_to_return_to
+    @page_to_return_to = ""
     
     if @owner_type == "1" || @owner_type == 1
       @owner = Job.find(@owner_id)
@@ -40,10 +40,9 @@ class DocumentsController < ApplicationController
     @doc = @owner.documents.last
     @doc.document = params[:document]
     @doc.save
-    
+    end
 
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
-    
   end
   
   def delete

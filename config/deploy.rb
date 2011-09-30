@@ -10,6 +10,7 @@ set :scm, "git"
 set deploy_via, :remote_cache
 
 set :branch, "master"
+
 set :user, "submarine"
 set :password, "Submarine"
 set :scm_passphrase, "Submarine"

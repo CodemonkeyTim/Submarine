@@ -21,9 +21,27 @@ class JobsController < ApplicationController
     
     @log = @loggings[(0..3)]
     
+    #@date: used for submitting date for method which save the payments received to DB
+    # so that as default date in the input field is date today.
+    @date = ""
+    if Time.now.mon < 10
+      @mon  = '0'+Time.now.mon.to_s
+    else
+      @mon =  Time.now.mon.to_s
+    end
+    
+    if Time.now.day < 10
+      @day = '0'+Time.now.day.to_s
+    else
+      @day = Time.now.day.to_s
+    end
+    
+    @date =  "#{@mon}/#{@day}/#{Time.now.year}"
+    
   end
     
   def index
+    refresh_states
     @jobs = Job.find(:all, :order => "name")
     
     @open_jobs = []
@@ -52,7 +70,8 @@ class JobsController < ApplicationController
     @TU_role = ""
     
     @job.project_manager = ProjectManager.find(params[:PM_id])
-@job.save
+
+    @job.save
     
     if params[:job_type] == "1"
       @job_type = "Public"
@@ -85,6 +104,10 @@ class JobsController < ApplicationController
     @tags = @taggys.collect {|i| i.tag_name}.flatten
     
     @pms = ProjectManager.all
+<<<<<<< .merge_file_lggzph
+=======
+    @pes = ProjectEngineer.all
+>>>>>>> .merge_file_Ul69Vf
   end
   
   def update
@@ -93,7 +116,8 @@ class JobsController < ApplicationController
     @job.job_number = params[:job_number]
     @job.location = params[:location]
     @job.value = params[:value]
-    @job.project_manager= ProjectManager.find(params[:PM_id])
+    @job.project_manager_id = params[:PM_id]
+    @job.project_engineer_id = params[:PE_id]
     
     @job.tags.each {|i| i.delete }
     

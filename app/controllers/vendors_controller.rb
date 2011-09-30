@@ -8,6 +8,18 @@ class VendorsController < ApplicationController
     @vendor = Partner.find(params[:id])
     @assignments = Assignment.find_all_by_partner_id(params[:id])
     
+    if @vendor.contact_person.nil?
+      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+    else
+      @contact_person = @vendor.contact_person
+    end
+    
+    if @vendor.address.nil?
+      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+    else
+      @address = @vendor.address
+    end
+    
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
     if @vendor.contact_person.nil?
@@ -56,14 +68,14 @@ class VendorsController < ApplicationController
     unless @addrs.nil?
       @addrs.street = params[:addrs_street]
       @addrs.zip_code = params[:addrs_zip_code]
-      @addrs.city = params[:addrs_sity]
+      @addrs.city = params[:addrs_city]
       @addrs.state = params[:addrs_state]
       @addrs.save
     else
       @addrs = Address.new
       @addrs.street = params[:addrs_street]
       @addrs.zip_code = params[:addrs_zip_code]
-      @addrs.city = params[:addrs_sity]
+      @addrs.city = params[:addrs_city]
       @addrs.state = params[:addrs_state]
       @addrs.save
       @partner.address = @addrs

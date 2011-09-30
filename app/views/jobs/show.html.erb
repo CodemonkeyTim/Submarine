@@ -10,7 +10,8 @@
 		<div class="controlbuttons">
 		<ul>
 			<li class="controls" id="receive_payments">
-				<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id}, :remote => true %>
+				<%= link_to "Owner payment received on", {:controller => "controls", :action => "touch_all", :id => @job.id, :date => "#{@date}"}, :remote => true, :id => "oprbtn" %> 
+				<input onchange="var date = $('#receive_payments input').attr('value'); $('#oprbtn').attr('href', '/touch_all/<%= @job.id %>?date='+date);" type="text" size="7" value="<%= @date %>" /> 
 			</li>
 			<li class="controls" id="assign_sub">
 				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
@@ -65,6 +66,8 @@
 	<div class="detail_row"><%= "Value: $#{@job.value}"  %></div>
 	<div class="detail_row"><%= "Location: #{@job.location}"  %></div>
 	<div class="detail_row"><%= "Project Manager: #{@job.project_manager.name}"  %></div>
+	<div class="detail_row"><%= "Project Engineer: #{@job.project_engineer.name}"  %></div>
+	
 	<div id="documents_section">
 		<h2>Job Docs:</h2>
 		<% unless @job.documents.length == 0 %>
@@ -76,7 +79,6 @@
 	</div>
 </div>
 
-
 <div class="grid_12" id="contentbottom">
 	<div id="recent_history">
 	<legend>Job history - <%= link_to "See full history", {:action => "show", :controller => "histories", :job_id => @job.id, :partner_type => 0}%></legend>	
@@ -86,10 +88,8 @@
 			<li><%= i.target_type %> <%= i.target_name %> <span><%= i.action %> on</span> <%= i.date %> <span>at</span> <%= i.time %> <span>by Main User</span></li>
 		<% end %>
 	</ul>
-	
 	</div>
 </div>
-
 
 <% recents_add(@job.id) %>
 <% $active_page = "job.show"%>

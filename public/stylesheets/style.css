@@ -46,6 +46,7 @@ body {
 	text-decoration: none;
 	display: block;
 	margin-bottom: 10px;
+	width: 100px:
 	float: right;
 }
 
@@ -295,6 +296,10 @@ body {
 	color: black;
 }
 
+#receive_payments input {
+	margin-left: 5px;
+}
+
 /*sidebar styling*/
 
 #sidebar {
@@ -326,6 +331,10 @@ body {
 
 #delete_document_link a {
 	color:red;
+
+.list_headers {
+	text-decoration: underline;
+
 }
 
 /*Bottom Content styling*/
@@ -337,6 +346,7 @@ body {
 	padding-left: 10px;
 	margin-left: 0px;
 	padding-right: 10px;
+	padding-bottom: 6px;
 	margin-right: 0px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -397,4 +407,18 @@ body {
 
 .container_24 {
   background-image: url(../img/24_col.gif);
+}
+
+/* Job edit style */
+
+#job_edit input {
+	width: 195px;
+}
+
+#job_edit select {
+	width: 202px;
+}
+
+#vendor_edit input {
+	width: 195px;
 }

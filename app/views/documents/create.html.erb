@@ -1,10 +1,5 @@
-<h1>Gotcha!</h1>
+<h1>Document attached</h1>
 
 <script>
-	window.onload = setTimeout('redirect()', 10);
-	
-	function redirect () {
-  		window.location = '<%= @page_to_return_to %>'
-	}
-	
+	window.onload = setTimeout(function() { window.location = '<%= @page_to_return_to %>'; }, 10);
 </script>

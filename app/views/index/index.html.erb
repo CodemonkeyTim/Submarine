@@ -19,12 +19,11 @@
 <div class="grid_12" id="contentbottom">
 	<h3>Overdue items</h3>
 	<% @overdue_items.each_with_index do |i, x| %>
-		<div class="overdue_list_items"> <%= image_tag get_image(1) %> <%= "#{i.item_data} is #{@overdue_amounts[x]} days overdue"%></div>
+		<div class="overdue_list_items"> <%= image_tag get_image(1) %> <%= "#{Job.find(i.assignment.job_id).job_number} - #{Job.find(i.assignment.job_id).name} #{Partner.find(i.assignment.partner_id).name}: #{i.item_data} is #{@overdue_amounts[x]} days overdue"%></div>
 	<% end %>
 </div>
 
 <% #Page's method calls and global variable modifiers %>
 
-<% refresh_states %>
 <% $active_tab = 1 %>
 <% $active_page = "index.index" %>

@@ -1,6 +1,7 @@
 class IndexController < ApplicationController
   
   def index   
+    refresh_states
     @recent_jobs_rows = RecentJobs.find(:all, :order => "created_at").reverse!
     
     @recent_jobs = []

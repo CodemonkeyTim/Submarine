@@ -2,7 +2,11 @@
 	<% if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1) %>
 		$('#<%= i.id %>cli img ').each( function() {
 			$(this).fadeOut();
-			$(this).attr('src', '/images/open.png');
+			<% if i.state == 1 %>
+				$(this).attr('src', '/images/overdue.png');
+			<% else %>
+				$(this).attr('src', '/images/open.png');
+			<% end %>
 			$(this).fadeIn();
 		});
 		

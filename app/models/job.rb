@@ -4,6 +4,7 @@ class Job < ActiveRecord::Base
   has_many :tags, :as => :taggable
   
   belongs_to :project_manager
+  belongs_to :project_engineer
   attr_accessor :state
   
   def state
