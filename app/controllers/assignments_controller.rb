@@ -93,8 +93,12 @@ class AssignmentsController < ApplicationController
       end
     end
     
-    @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
-  
+    if params[:parent_id] == "0"
+      @where_to = "jobs/#{@job.id}"
+    else
+      @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
+    end
+    
   
   end
   
