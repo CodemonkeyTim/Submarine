@@ -322,6 +322,10 @@ body {
 	margin-bottom: 10px;
 }
 
+.list_headers {
+	text-decoration: underline;
+}
+
 /*Bottom Content styling*/
 
 #contentbottom {

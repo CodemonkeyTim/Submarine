@@ -35,11 +35,11 @@
 	<h2>Vendor Details <span><%= link_to "Edit", {:controller => "vendors", :action => "edit", :id => @subcontractor.id} %></span></h2>
 
 	<ul>
-		<li>Contact person:</li>
+		<li class="list_headers">Contact person:</li>
 		<li>Name: <span><%= @contact_person.name %></span></li>
 		<li>Phone: <span><%= @contact_person.phone_number %></span></li>
 		<li>E-mail: <span><%= @contact_person.email %></span></li>
-		<li>Company address:</li>
+		<li class="list_headers">Company address:</li>
 		<li>Street: <span><%= @address.street %></span></li>
 		<li>City: <span><%= @address.city %></span></li>
 		<li>Zip: <span><%= @address.zip_code %></span></span></li>
