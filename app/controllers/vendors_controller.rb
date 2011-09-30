@@ -9,13 +9,13 @@ class VendorsController < ApplicationController
     @assignments = Assignment.find_all_by_partner_id(params[:id])
     
     if @vendor.contact_person.nil?
-      @contact_person = ContactPerson.new(:name => "", :phone_number => "", :email => "") 
+      @contact_person = ContactPerson.new() 
     else
       @contact_person = @vendor.contact_person
     end
     
     if @vendor.address.nil?
-      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+      @address = Address.new() 
     else
       @address = @vendor.address
     end
@@ -23,7 +23,7 @@ class VendorsController < ApplicationController
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
     
     if @vendor.contact_person.nil?
-      @cp = ContactPerson.new(:name => "unassigned", :phone_number => "000-000-0000")
+      @cp = ContactPerson.new()
     else
       @cp = @vendor.contact_person
     end

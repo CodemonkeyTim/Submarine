@@ -21,13 +21,13 @@ class SuppliersController < ApplicationController
     end
     
     if @supplier.contact_person.nil?
-      @cp = ContactPerson.new(:name => "unassigned", :phone_number => "000-000-0000")
+      @contact_person = ContactPerson.new()
     else
-      @cp = @supplier.contact_person
+      @contact_person = @supplier.contact_person
     end
     
     if @supplier.address.nil?
-      @address = Address.new(:street => "", :city => "", :zip_code => "", :state => "") 
+      @address = Address.new() 
     else
       @address = @supplier.address
     end
