@@ -397,3 +397,13 @@ body {
 .container_24 {
   background-image: url(../img/24_col.gif);
 }
+
+/* Job edit style */
+
+#job_edit input {
+	width: 195px;
+}
+
+#job_edit select {
+	width: 202px;
+}

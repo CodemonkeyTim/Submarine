@@ -4,7 +4,7 @@
 	
 <div id="contentmiddle" class="grid_12">
 	
-	<form action="/jobs/<%= @job.id%>" method="post" data-remote="true">
+	<form id="job_edit" action="/jobs/<%= @job.id%>" method="post" data-remote="true">
 		<div class="input_rows"> 
 			<div class="labels"> Name </div> 
 			<div class="inputs"> <%= text_field_tag("name", @job.name) %> </div>
@@ -51,7 +51,7 @@
 			</div> 
 		</div>
 		<input type="hidden" name="_method" value="put" />
-		<div class="input_rows"><input type="submit" value="Update"/></div>
+		<div class="input_rows"><div class="labels"> Action </div><div class="inputs"><input id="submit" type="submit" value="Update"/></div></div>
 	</form>
 
 </div>
