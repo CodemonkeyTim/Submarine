@@ -40,7 +40,6 @@ class DocumentsController < ApplicationController
     @doc = @owner.documents.last
     @doc.document = params[:document]
     @doc.save
-    end
 
     @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
   end
