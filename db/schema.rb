@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110930163126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
-    t.integer  "project_engineer"
+    t.integer  "project_engineer_id"
   end
 
   create_table "list_item_templates", :force => true do |t|
