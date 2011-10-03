@@ -44,7 +44,7 @@
 		
 		<div class="grid_8">
 
-		<%= render :partial => "sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0, :status => @asg.status} %>
+		<%= render :partial => "sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0, :status => @asg.status, :payment_id => @payment.id} %>
 		
 		</div>
 	<% end %>

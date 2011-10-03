@@ -9,39 +9,23 @@ class ControlsController < ApplicationController
   
   def touch_all
     @job = Job.find(params[:id])
-    @items = @job.active_checklist_items
+    @payment = Payment.find(params[:payment_id])
     
-    @asgs = Assignment.find_all_by_job_id(@job.id)
+    @asgs = Assignment.find_all_by_job_id_and_payment_id(@job.id, @payment.id)
     
+    @items = []
     @asgs.each do |i|
       i.checklist_items.each do |j|
-        @items.each do |k|
-          if j.id == k.id 
-            k.status = i.status
-          end
-        end
+        j.status = i.status
+        @items.push(j)
       end
     end
     
-    @date = params[:date]
-    
-    @month = @date[0,2]
-    @day = @date[3,2]
-    @year = @date[6,4]
-    
-    @date_to_save = Time.new(@year.to_i, @month.to_i, @day.to_i, 12, 0, 0, "-08:00")
-    
     @items.each do |i|
       if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1)
-        if Time.now.utc - @date_to_save.utc > (i.sleep_time * 86400)
-          i.state = 1
-        else
-          i.state = 2
-        end
-        
-        i.touched_at = @date_to_save.utc
+        i.state = 2
+        i.touched_at = Time.now.utc
         i.save
-
       end
     end
     

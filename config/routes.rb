@@ -28,6 +28,11 @@ Submarine::Application.routes.draw do
   #Auxiliary assignment creation action
   match "/create_and_assign" => "assignments#create_and_assign", :via => "POST"
   
+  #Show pages content calls
+  match "/get_job_details/:id" => "jobs#job_details"
+  match "/get_sub_in_payment/:id" => "subcontractors#sub_in_payment"
+  match "/new_payment/:id" => "jobs#new_payment"
+ 
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

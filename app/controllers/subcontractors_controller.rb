@@ -6,11 +6,12 @@ class SubcontractorsController < ApplicationController
     @job = Job.find(@job_id)
     @subcontractor = Partner.find(params[:id])
     
+    @documents = Assignment.find_all_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, @subcontractor.id, @parent_id, 1).collect {|i| i.documents }.flatten
+    
     unless @parent_id == "0"
       @sub_to = " subcontractor to #{Partner.find(@parent_id).name}"
     end
     
-    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(@job_id, @parent_id, @subcontractor.id, 1)
     unless @asg.nil?
       @log = @asg.logs
       @log.reverse!
@@ -34,6 +35,15 @@ class SubcontractorsController < ApplicationController
       @address = @subcontractor.address
     end
     
+  end
+  
+  def sub_in_payment
+    @payment = Payment.find(params[:payment_id])
+    @subcontractor = Partner.find(params[:id])
+    @job = @payment.job
+    @asg = @payment.assignments.find_by_partner_id(@subcontractor.id)
+    
+    render :layout => nil
   end
 
   def index

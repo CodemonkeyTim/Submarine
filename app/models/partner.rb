@@ -47,14 +47,18 @@ class Partner < ActiveRecord::Base
     return Partner.find_all_by_id(@sub_ids)
   end
   
-  def checklist_items(job_id, parent_id)
-    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id(job_id, parent_id, self.id)
+  def checklist_items(job_id, parent_id, payment_id)
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_payment_id(job_id, parent_id, self.id, payment_id)
     
     if @asg.nil?
       return []
     else
       return @asg.checklist_items.sort_by {|i| i.cli_type}
-    end
-    
+    end    
+  end
+  
+  def payments(job_id, parent_id)
+    @ids = Assignment.find_all_by_job_id_and_partner_id_and_parent_id_and_partner_type(job_id, self.id, parent_id, 1).collect {|i| i.payment_id}.flatten
+    return Payment.find(@ids, :order => "number")
   end
 end

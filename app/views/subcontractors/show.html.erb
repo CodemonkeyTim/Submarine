@@ -4,31 +4,19 @@
 	<h5><%= "#{@subcontractor.name}#{@sub_to}" %></h5>			
 </div>
 
-<div id="contentmiddle" class="grid_9">	
+<div class="grid_1" id="paytab">
+	<h6>Pay Period</h6>
+	<ul id="payment_tab_ul">
+		<% @subcontractor.payments(@job.id, @parent_id).reverse.each do |i| %>
+			<li id="<%= i.id %>tab" onclick="change_content(<%= i.id %>);"><%= i.number %></li>
+		<% end %>
+	</ul>
+</div>
 
-<!--control buttons-->	
-	<div id="contentcontrol">
-		
-		<div class="grid_2"><h4>All Items</h4></div>
-		
-		<div class="controlbuttons">
-			<ul>
-				<li class="controls" id="receive_payments">
-					<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name}%>
-				</li>
-				<li class="controls" id="assign_sub">
-					<%= link_to "Assign a subcontractor", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 1, :super_parent_id => @parent_id}%>
-				</li>
-				<li class="controls" id="assign_sub">
-					<%= link_to "Assign a supplier", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 2, :super_parent_id => @parent_id}%>
-				</li>
-			</ul>
-		</div>
-	</div>
+<div id="contentmiddle" class="grid_8">	
+
+
 	
-	<!--All the list items-->
-	<%= render :partial => "jobs/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0, :status => @asg.status} %>
-		
 </div>
 
 <div id="sidebar" class="grid_3">
@@ -47,12 +35,12 @@
 	</ul>
 	<div id="documents_section">
 		<h2>Sub Docs:</h2>
-		<% unless @asg.nil? || @asg.documents.length == 0 %>
-			<% @asg.documents.each do |i| %>
+		<% unless @documents.length == 0 %>
+			<% @documents.each do |i| %>
 				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/></div>		
 	</div>
 </div>
 
@@ -68,6 +56,25 @@
 	</ul>
 	</div>
 </div>
+
+<script>
+	function change_content(id) {
+		$.ajax({
+			url: '/get_sub_in_payment/<%= @subcontractor.id %>?payment_id='+id,
+			cache: false,
+			success: function(html) {
+				$('#payment_tab_ul').contents().each(function() { $(this).removeAttr('class'); });
+				$('#'+id+'tab').attr('class', 'active');
+				$('#contentmiddle').html(html);
+			}
+		});
+	}
+	
+	change_content(<%= @subcontractor.payments(@job.id, @parent_id).last.id %>)
+	
+</script>
+
+
 
 <% #Page's method calls and global variable modifiers %>
 

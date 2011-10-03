@@ -4,7 +4,7 @@ class JobsController < ApplicationController
     
     @assignments = Assignment.find_all_by_job_id(params[:id])
     @asg_loggings = @assignments.collect {|i| i.logs}.flatten
-        
+    
     @loggings = @job.logs + @asg_loggings 
     @loggings.sort_by! {|i| i.created_at }
     @loggings.reverse!
@@ -26,6 +26,60 @@ class JobsController < ApplicationController
     
     @date = Time.now.strftime("%m/%d/%Y")
     
+  end
+  
+  def job_details
+    @job = Job.find(params[:id])
+    @payment = Payment.find(params[:payment_id])
+    
+    render :layout => nil
+  end
+  
+  def new_payment
+    @job = Job.find(params[:id])
+    @last_payment = Payment.find_all_by_job_id(@job.id, :order => "number").last
+    
+    @payment = Payment.create(:number => @last_payment.number+1)
+    @job.payments.push(@payment)
+    
+    @tags = @job.tags.collect {|i| i.tag_name } 
+    
+    @public_and_private = ListItemTemplate.find_all_by_item_type(3)
+    @public = ListItemTemplate.find_all_by_item_type(1)
+    @private = ListItemTemplate.find_all_by_item_type(2)
+    @supplier_items = ListItemTemplate.find([6, 10])
+    
+    @last_payment.assignments.each do |i|
+      @new_asg = Assignment.create(:job_id => i.job_id, :partner_id => i.partner_id, :parent_id => i.parent_id, :payment_id => @payment.id, :status => i.status, :partner_type => i.partner_type)
+      
+      @list_of_items = []
+      
+      if @new_asg.partner_type == 1
+        @list_of_items.push(@public_and_private)
+        if @tags.include?("Public") 
+          @list_of_items.push(@public)
+        end
+        if @tags.include?("Private") 
+         @list_of_items.push(@private)
+        end
+      end
+      if @new_asg.partner_type == 2
+        @list_of_items.push(ListItemTemplate.find(@supplier_items))
+      end
+  
+      @list_of_items.flatten!
+      
+      @list_of_items.each do |i|
+        if i.rep_type == 1 || i.rep_type == 2
+          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 2, :sleep_time => 10, :touched_at => Time.now.utc)
+        end
+        if i.rep_type == 3
+          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
+        end
+      end
+    end
+    
+    render :text => @payment.id
   end
     
   def index
@@ -58,6 +112,7 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
+    @job.payments.push(Payment.create(:number => 1))
     @job.project_manager_id = params[:PM_id]
     @job.project_engineer_id = params[:PE_id]
 

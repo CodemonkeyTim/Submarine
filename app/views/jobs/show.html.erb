@@ -3,19 +3,11 @@
 	</div>
 <div class="grid_1" id="paytab">
 	<h6>Pay Period</h6>
-	<% @job.payments.each do |i| %>
-	<ul>
-		<li class="litop">11</li>
-		<li>10</li>
-		<li>9</li>
-		<li>8</li>
-		<li>7</li>
-		<li>6</li>
-		<li>5</li>
-		<li>4</li>
-		<li>3</li>
-		<li class="active">2</li>
-		<li>1</li>
+	<ul id="payment_tab_ul">
+		<li id="new_payment_tab" onclick="add_payment();"><img src="/images/plus.png" height="13" width="13"></li>
+		<% @job.payments.reverse.each do |i| %>
+			<li id="<%= i.id %>tab" onclick="change_content(<%= i.id %>);"><%= i.number %></li>
+		<% end %>
 	</ul>
 </div>
 	
@@ -53,6 +45,35 @@
 	</ul>
 	</div>
 </div>
+
+<script>
+	function change_content(id) {
+		$.ajax({
+			url: '/get_job_details/<%= @job.id %>?payment_id='+id,
+			cache: false,
+			success: function(html) {
+				$('#payment_tab_ul').contents().each(function() { $(this).removeAttr('class'); });
+				$('#'+id+'tab').attr('class', 'active');
+				$('#contentmiddle').html(html);
+			}
+		});
+	}
+	
+	function add_payment() {
+		$.ajax({
+			url: '/new_payment/<%= @job.id %>',
+			cache: false,
+			success: function(id) {
+				var number = parseInt($('#payment_tab_ul li').first().next().html());
+				$('#new_payment_tab').after('<li id="'+id+'tab" onclick="change_content('+id+');">'+(number+1)+'</li>');
+				change_content(id);
+			}
+		});
+	} 
+	
+	change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>)
+	
+</script>
 
 <% recents_add(@job.id) %>
 <% $active_page = "job.show"%>
