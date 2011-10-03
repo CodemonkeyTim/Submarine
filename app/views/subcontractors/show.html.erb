@@ -27,7 +27,7 @@
 	</div>
 	
 	<!--All the list items-->
-	<%= render :partial => "index/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0, :status => @asg.status} %>
+	<%= render :partial => "jobs/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0, :status => @asg.status} %>
 		
 </div>
 
