@@ -6,6 +6,7 @@ class AssignmentsController < ApplicationController
     @partners = Partner.find(:all, :order => "name")
     @partners.delete_if {|i| i.id == params[:parent_id]}
     
+    @payment_id = params[:payment_id]
     @super_parent_id = params[:super_parent_id]
     @parent_id = params[:parent_id]
     @job = Job.find(params[:job_id])
@@ -51,7 +52,7 @@ class AssignmentsController < ApplicationController
   def create
     @super_parent_id = params[:super_parent_id]
     
-    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => 3)
+    @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => 3, :payment_id => params[:payment_id])
     if params[:partner_type] == 1
       @target_type = "Subcontractor"
     end

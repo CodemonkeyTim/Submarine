@@ -17,6 +17,7 @@
 			</div>
 			<div class="labels"> Or <%= link_to "create a new vendor:", {:controller => "controls", :action => "show_fields"}, :remote => true %> </div>
 		</div>
+		<input type="hidden" class="hiddens" name="payment_id" value="<%= @payment_id %>" />
 		<input type="hidden" class="hiddens" name="super_parent_id" value="<%= @super_parent_id %>" />
 		<input type="hidden" class="hiddens" name="job_id" value="<%= @job.id %>" />	
 		<input type="hidden" class="hiddens" name="parent_id" value="<%= @parent_id %>" />

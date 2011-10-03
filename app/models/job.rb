@@ -16,8 +16,8 @@ class Job < ActiveRecord::Base
     end
   end
   
-  def subcontractors
-    @ids = Assignment.find_all_by_job_id_and_parent_id(self.id, 0).collect {|i| i.partner_id}.flatten
+  def subcontractors(payment_id)
+    @ids = Assignment.find_all_by_job_id_and_parent_id_and_payment_id(self.id, 0, payment_id).collect {|i| i.partner_id}.flatten
     return Partner.find(@ids)
   end
   

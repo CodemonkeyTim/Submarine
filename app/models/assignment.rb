@@ -3,6 +3,8 @@ class Assignment < ActiveRecord::Base
   has_many :logs, :as => :loggable
   has_many :documents, :as => :owner
   
+  belongs_to :payment
+  
   def assignments
     @asgs = Assignment.find_all_by_job_id_and_parent_id_and_partner_type(self.job_id, self.partner_id, 2) 
     @asgs2 = Assignment.find_all_by_job_id_and_parent_id_and_partner_type(self.job_id, self.partner_id, 1)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930163126) do
+ActiveRecord::Schema.define(:version => 20111003161627) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110930163126) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "payment_id"
   end
 
   create_table "checklist_items", :force => true do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20110930163126) do
     t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "global"
   end
 
   create_table "jobs", :force => true do |t|
@@ -97,10 +99,20 @@ ActiveRecord::Schema.define(:version => 20110930163126) do
     t.string   "loggable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "global"
   end
 
   create_table "partners", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "number"
+    t.date     "overdue_on"
+    t.date     "received_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

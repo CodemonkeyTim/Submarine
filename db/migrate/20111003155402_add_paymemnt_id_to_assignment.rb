@@ -3,6 +3,8 @@ class AddPaymemntIdToAssignment < ActiveRecord::Migration
     change_table :assignments do |t|    
       t.integer :payment_id     
     end
+    
+    Assignment.update_all ["payment_id = ?", 1]
   end
 
   def self.down
