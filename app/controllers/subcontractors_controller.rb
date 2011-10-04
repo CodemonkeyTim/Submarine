@@ -68,6 +68,26 @@ class SubcontractorsController < ApplicationController
     
   end
   
+  def all_subs
+    @job = Job.find(params[:id])
+    @payments = Payment.find_all_by_job_id(@job.id)
+    
+    @asgs = @payments.collect {|i| i.assignments }.flatten
+    @asgs2 = []
+    @asgs.each do |i|
+      if i.partner_type == 1 && i.parent_id == 0
+        @asgs2.push(i)
+      end
+    end
+    
+    @ids = @asgs2.collect {|i| i.partner_id }.flatten
+    @ids = @ids.uniq.sort
+    
+    @subs = Partner.find(@ids)
+    
+    render :layout => nil
+  end
+  
   def sort
     
   end

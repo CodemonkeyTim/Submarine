@@ -27,7 +27,7 @@ class ControlsController < ApplicationController
     end
     
     @items.each do |i|
-      if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
+      if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
         i.state = 2
         i.save
       end
@@ -155,7 +155,7 @@ class ControlsController < ApplicationController
     @asg = Assignment.find(params[:asg_id])
     @partner_id = @asg.partner_id
     
-    @former_payments = Assignment.find_all_by_job_id_and_partner_id_and_partner_type_and_parent_id(@asg.job_id, @asg.partner_id, 1, @asg.parent_id).collect {|i| i.payment }.flatten
+    @former_payments = Assignment.find_all_by_job_id_and_partner_id_and_partner_type_and_parent_id_and_status(@asg.job_id, @asg.partner_id, 1, @asg.parent_id, 2).collect {|i| i.payment }.flatten 
     
     @asgs = @asg.assignments(@payment.id)
     @asgs.push(@asg)
@@ -192,7 +192,7 @@ class ControlsController < ApplicationController
         if i.checklist_items.length == 0
           
           @list_of_items.each do |j|
-            if @former_payments.length == 1 && j.rep_type == 1
+            if @former_payments.length == 0 && j.rep_type == 1
               i.checklist_items.create(:cli_type => j.rep_type, :item_data => j.item_data, :state => 3, :sleep_time => 10)
             else
               if j.rep_type == 2
@@ -222,34 +222,39 @@ class ControlsController < ApplicationController
       
       if @payment.received?
         @asgs.each do |i|
+          i.status = params[:status]
           i.checklist_items.each do |j|
             unless j.state == 4
-              j.status == params[:status]
-                if params[:status] == "2" && j.cli_type == 1
-                  if (Time.now.utc - @payment.received_on) > 86400
-                    j.state = 1
-                  else
-                    j.state = 2
-                  end
-                end
-                if params[:status] == "2" && j.cli_type == 2
-                  if (Time.now.utc - @payment.received_on) > 86400
-                    j.state = 1
-                  else
-                    j.state = 2
-                  end
+              if params[:status] == "2" && j.cli_type == 1
+                if (Time.now.utc - @payment.received_on) > 86400
+                  j.state = 1
                 else
-                  if params[:status] == "1" && j.cli_type > 1
-                    if Time.now.utc - @payment.received_on > 86400
-                      j.state = 1
-                    else
-                      j.state = 2
-                    end
+                  j.state = 2
+                end
+              end
+              if params[:status] == "2" && j.cli_type == 2
+                if (Time.now.utc - @payment.received_on) > 86400
+                  j.state = 1
+                else
+                  j.state = 2
+                end
+              else
+                if params[:status] == "1" && j.cli_type > 1
+                  if Time.now.utc - @payment.received_on > 86400
+                    j.state = 1
+                  else
+                    j.state = 2
                   end
                 end
-                j.save
               end
+              j.save
             end
+            i.save
+          end
+        end
+      else
+        @asgs.each do |i|
+          i.status = params[:status]
           i.save
         end
       end

@@ -33,7 +33,7 @@ Submarine::Application.routes.draw do
   match "/get_job_details/:id" => "jobs#job_details"
   match "/get_sub_in_payment/:id" => "subcontractors#sub_in_payment"
   match "/new_payment/:id" => "jobs#new_payment"
- 
+  match "/all_subs_of_job/:id" => "subcontractors#all_subs"
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

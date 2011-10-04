@@ -8,6 +8,7 @@
 		<% @job.payments.reverse.each do |i| %>
 			<li id="<%= i.id %>tab" onclick="change_content(<%= i.id %>);"><%= i.number %></li>
 		<% end %>
+		<li id="0tab" onclick="change_content(0);">All</li>
 	</ul>
 </div>
 	
@@ -48,8 +49,11 @@
 
 <script>
 	function change_content(id) {
+		var url = '';
+		if (id == 0) { url = '/all_subs_of_job/<%= @job.id %>' } else { url = '/get_job_details/<%= @job.id %>?payment_id='+id} 
+		
 		$.ajax({
-			url: '/get_job_details/<%= @job.id %>?payment_id='+id,
+			url: url,
 			cache: false,
 			success: function(html) {
 				$('#payment_tab_ul').contents().each(function() { $(this).removeAttr('class'); });
