@@ -153,6 +153,7 @@ class ControlsController < ApplicationController
     @payment = Payment.find(params[:payment_id])
     
     @asg = Assignment.find(params[:asg_id])
+    @partner_id = @asg.partner_id
     
     @former_payments = Assignment.find_all_by_job_id_and_partner_id_and_partner_type_and_parent_id(@asg.job_id, @asg.partner_id, 1, @asg.parent_id).collect {|i| i.payment }.flatten
     
