@@ -33,7 +33,7 @@ class DocumentsController < ApplicationController
       if @owner.partner_type == 1
         @page_to_return_to = "/subcontractors/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       else
-        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
+        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}&payment_id=#{params[:payment_id]}"
       end
     end
     

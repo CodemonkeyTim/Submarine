@@ -18,7 +18,7 @@ class ListItemsController < ApplicationController
     if @asg.partner_type == 1
       @page_to_return_to = "/subcontractors/#{@asg.partner_id}?job_id=#{@asg.job_id}&parent_id=#{@asg.parent_id}"
     else
-      @page_to_return_to = "/suppliers/#{@asg.partner_id}?job_id=#{@asg.job_id}&subcontractor_id=#{@asg.parent_id}"
+      @page_to_return_to = "/suppliers/#{@asg.partner_id}?job_id=#{@asg.job_id}&parent_id=#{@asg.parent_id}&payment_id=#{params[:payment_id]}"
     end  
   end
 
