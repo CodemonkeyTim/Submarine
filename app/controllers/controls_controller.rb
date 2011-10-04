@@ -99,7 +99,7 @@ class ControlsController < ApplicationController
   def mark_done
     @id = params[:id]
     @cli = ChecklistItem.find(@id)
-    @cli.state = 3
+    @cli.state = 4
     @cli.save
     
     @asg = Assignment.find(@cli.assignment_id)
@@ -223,50 +223,36 @@ class ControlsController < ApplicationController
       if @payment.received?
         @asgs.each do |i|
           i.checklist_items.each do |j|
-            j.status == params[:status]
-            if params[:status] == "2" && j.cli_type == 1
-              if (Time.now.utc - @payment.received_on) > 86400
-                j.state = 1
-              else
-                j.state = 2
-              end
-            end
-            if params[:status] == "2" && j.cli_type == 2
-              if (Time.now.utc - @payment.received_on) > 86400
-                j.state = 1
-              else
-                j.state = 2
-              end
-            else
-              if params[:status] == "1" && j.cli_type > 1
-                if Time.now.utc - @payment.received_on > 86400
-                  j.state = 1
-                else
-                  j.state = 2
+            unless j.state == 4
+              j.status == params[:status]
+                if params[:status] == "2" && j.cli_type == 1
+                  if (Time.now.utc - @payment.received_on) > 86400
+                    j.state = 1
+                  else
+                    j.state = 2
+                  end
                 end
+                if params[:status] == "2" && j.cli_type == 2
+                  if (Time.now.utc - @payment.received_on) > 86400
+                    j.state = 1
+                  else
+                    j.state = 2
+                  end
+                else
+                  if params[:status] == "1" && j.cli_type > 1
+                    if Time.now.utc - @payment.received_on > 86400
+                      j.state = 1
+                    else
+                      j.state = 2
+                    end
+                  end
+                end
+                j.save
               end
             end
-            j.save
-          end
-          i.save
-        end
-      else
-        @asgs.each do |i|
-          i.status == params[:status]
-          i.checklist_items.each do |j|
-            
-          end
           i.save
         end
       end
-    end
-  else
-    @asgs.each do |i|
-      i.status = params[:status]
-      i.checklist_items.each do |j|
-        j.status = params[:status]
-      end
-      i.save
     end
   end
   

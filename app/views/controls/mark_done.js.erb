@@ -3,7 +3,7 @@ $('#<%= params[:id] %>cli img').fadeOut();
 
 setTimeout(function () {
 	$('#<%= params[:id] %>cli input').remove();
-	$('#<%= params[:id] %>cli img').remove();
+	$('#<%= params[:id] %>cli img').attr('src', '/images/complete.png');
 }, 620);
 
 $('#<%= params[:id] %>cli img').fadeIn();
