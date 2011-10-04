@@ -25,27 +25,7 @@ class AssignmentsController < ApplicationController
         @target_name = Partner.find(params[:parent_id]).name
         @title_text = "Assign #{@what_to_assign} to #{@target_name}"
       end
-    end
-    
-    @tags = @job.tags.collect {|i| i.tag_name } 
-    
-    @list_of_items = []
-    
-    if @partner_type == "1"
-      @list_of_items.push(ListItemTemplate.find_all_by_item_type(3))
-      if @tags.include?("Public") 
-        @list_of_items.push(ListItemTemplate.find_all_by_item_type(1))
-      end
-      if @tags.include?("Private") 
-       @list_of_items.push(ListItemTemplate.find_all_by_item_type(2))
-      end
-    end
-    if @partner_type == "2"
-      @list_of_items.push(ListItemTemplate.find(6))
-      @list_of_items.push(ListItemTemplate.find(10))
-    end
-
-    @list_of_items.flatten!    
+    end 
     
   end
 
@@ -64,35 +44,6 @@ class AssignmentsController < ApplicationController
     
     @job = Job.find(params[:job_id])
     @job.logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
-    
-    @tags = @job.tags.collect {|i| i.tag_name } 
-    
-    @list_of_items = []
-    
-    if @asg.partner_type == 1
-      @list_of_items.push(ListItemTemplate.find_all_by_item_type(3))
-      if @tags.include?("Public") 
-        @list_of_items.push(ListItemTemplate.find_all_by_item_type(1))
-      end
-      if @tags.include?("Private") 
-       @list_of_items.push(ListItemTemplate.find_all_by_item_type(2))
-      end
-    end
-    if @asg.partner_type == 2
-      @list_of_items.push(ListItemTemplate.find(6))
-      @list_of_items.push(ListItemTemplate.find(10))
-    end
-
-    @list_of_items.flatten!
-    
-    @list_of_items.each do |i|
-      if i.rep_type == 1 || i.rep_type == 2
-        @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 2, :sleep_time => 10, :touched_at => Time.now.utc)
-      end
-      if i.rep_type == 3
-        @asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
-      end
-    end
     
     if params[:parent_id] == "0"
       @where_to = "jobs/#{@job.id}"

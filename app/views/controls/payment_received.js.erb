@@ -1,6 +1,6 @@
 <% @items.each do |i| %>
 	<% if (i.cli_type == 2 && i.status == 2) || (i.cli_type == 3 && i.status == 1) %>
-		$('#<%= i.id %>cli img ').each(function() {
+		$('#<%= i.id %>cli img').each(function() {
 			$(this).fadeOut();
 			setTimeout(function() { $(this).attr('src', '/images/open.png'); }, 620);
 			$(this).fadeIn();
@@ -10,9 +10,9 @@
 		
 		$('#<%= i.id %>cli').attr('class', 'list_items <%= @state %>')
 		
-		$('#<%= i.id %>cli img').each( function() {
-			$('#<%="#{i.id}input"%>').remove()
-			$(this).after('<input type="checkbox" id="<%="#{i.id}input"%>" onclick="$.ajax(\'/mark_done/<%= i.id %>\')"/>');
+		$('#<%= i.id %>cli img').each(function() {
+			$('#<%="#{i.id}input"%>').remove();
+			$(this).after('<input type="checkbox" id="<%= i.id %>input" onclick="$.ajax('/mark_done/<%= i.id %>');" />');
 			$('#<%= i.id %>cli span').html('<span><%= link_to "undo", {:controller => "controls", :action => "undo", :item_id => i.id, :state => i.state}, :style => "display: none;", :remote => true %></span>');
 		});
 	<% end %>

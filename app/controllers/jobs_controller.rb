@@ -50,9 +50,11 @@ class JobsController < ApplicationController
     @supplier_items = ListItemTemplate.find([6, 10])
     
     @last_payment.assignments.each do |i|
-      next if i.status == 1 
+      next if i.status == 1
         
       @new_asg = Assignment.create(:job_id => i.job_id, :partner_id => i.partner_id, :parent_id => i.parent_id, :payment_id => @payment.id, :status => i.status, :partner_type => i.partner_type)
+      
+      next if i.status == 3
       
       @list_of_items = []
       
@@ -66,17 +68,14 @@ class JobsController < ApplicationController
         end
       end
       if @new_asg.partner_type == 2
-        @list_of_items.push(ListItemTemplate.find(@supplier_items))
+        @list_of_items.push(@supplier_items)
       end
   
       @list_of_items.flatten!
       
       @list_of_items.each do |i|
-        if i.rep_type == 1 || i.rep_type == 2
-          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 2, :sleep_time => 10, :touched_at => Time.now.utc)
-        end
-        if i.rep_type == 3
-          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10, :touched_at => (Time.now + 16000000000))
+        if i.rep_type == 2 
+          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10)
         end
       end
     end
@@ -85,7 +84,6 @@ class JobsController < ApplicationController
   end
     
   def index
-    refresh_states
     @jobs = Job.find(:all, :order => "name")
     
     @open_jobs = []

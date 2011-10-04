@@ -3,7 +3,11 @@
 	<div class="controlbuttons">
 	<ul>
 		<li class="controls" id="receive_payments">
-			<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>  
+			<% if @payment.received? %>
+				<a style="color: grey;">Payment received</a>
+			<% else %>
+				<%= link_to "Mark payment as received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
+			<% end %>			  
 		</li>
 		<li class="controls" id="assign_sub">
 			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
@@ -12,7 +16,7 @@
 	</div>
 </div>
 
-<% unless @job.subcontractors(@payment.id).first.nil? %>
+<%unless @job.subcontractors(@payment.id).first.nil? %>
 	<% @job.subcontractors(@payment.id).each do |j| %>
 		<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type_and_payment_id(@job.id, j.id, 0, 1, @payment.id) %>
 		<% if @asg.status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
@@ -21,22 +25,22 @@
 			<ul>
 				<li>
 					<span class="vendorname">
-						<%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %>
+						<%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id, :payment_id => @payment.id} %>
 					</span>
 				</li>
 				<li class="inactive_tab <%= if @asg.status == 3 then "selected" end %> ">
 					<span class="firstbutton">
-						<%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id}, :remote => true %>
+						<%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id, :payment_id => @payment.id}, :remote => true %>
 					</span>
 				</li>
 				<li class="reg_tab <%= if @asg.status == 2 then "selected" end %>">
 					<span class="middlebutton">
-						<%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id}, :remote => true %>
+						<%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id, :payment_id => @payment.id}, :remote => true %>
 					</span>
 				</li>
 				<li class="final_tab <%= if @asg.status == 1 then "selected" end %>">
 					<span class="lastbutton">
-						<%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id}, :remote => true %>
+						<%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id, :payment_id => @payment.id}, :remote => true %>
 					</span>
 				</li>
 			</ul>

@@ -19,7 +19,7 @@ class Job < ActiveRecord::Base
   
   def subcontractors(payment_id)
     @ids = Assignment.find_all_by_job_id_and_parent_id_and_payment_id(self.id, 0, payment_id).collect {|i| i.partner_id}.flatten
-    return Partner.find(@ids)
+    return Partner.find(@ids, :order => "name")
   end
   
   def checklist_items

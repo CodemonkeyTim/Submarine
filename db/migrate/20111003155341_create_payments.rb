@@ -3,9 +3,9 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.integer :job_id
       t.integer :number
-      t.date :overdue_on
+      t.datetime :overdue_on
       t.boolean :received
-      t.date :received_on
+      t.datetime :received_on
 
       t.timestamps
     end
