@@ -13,7 +13,8 @@
 							<option value="<%= i.id%>"><%= i.name %></option>
 						<% end %>		
 					<% end %>
-				</select>					
+				</select>
+				<input type="submit" value="Assign"/></div>					
 			</div>
 			<div class="labels"> Or <%= link_to "create a new vendor:", {:controller => "controls", :action => "show_fields"}, :remote => true %> </div>
 		</div>
@@ -22,7 +23,6 @@
 		<input type="hidden" class="hiddens" name="job_id" value="<%= @job.id %>" />	
 		<input type="hidden" class="hiddens" name="parent_id" value="<%= @parent_id %>" />
 		<input type="hidden" class="hiddens" name="partner_type" value="<%= @partner_type %>" />	
-		<div class="input_rows"><input type="submit" value="Assign"/></div>
 	</form>
 </div>
 

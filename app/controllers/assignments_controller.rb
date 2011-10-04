@@ -50,6 +50,9 @@ class AssignmentsController < ApplicationController
     else
       @where_to = "subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
     end
+    
+    @where_to
+    
   end
   
   def create_and_assign
