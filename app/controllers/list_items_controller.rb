@@ -2,14 +2,15 @@ class ListItemsController < ApplicationController
   def new
     @name = params[:name]          
     @job_id = params[:job_id]
+    @payment_id = params[:payment_id]
     @partner_id = params[:partner_id]
     @parent_id = params[:parent_id]
     @partner_type = params[:partner_type]
   end
 
   def create
-    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type(params[:job_id], params[:parent_id], params[:partner_id], params[:partner_type])
-    @asg.checklist_items.create(:item_data => params[:item_data], :state => 3, :touched_at => Time.now+16000000000, :sleep_time => 10, :cli_type => params[:repeatable_type])    
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type_and_payment_id(params[:job_id], params[:parent_id], params[:partner_id], params[:partner_type], params[:payment_id])
+    @asg.checklist_items.create(:item_data => params[:item_data], :state => 3, :sleep_time => 10, :cli_type => params[:repeatable_type])    
     @asg.logs.create(:target_type => "Item", :target_name => "#{params[:item_data]}", :action => "added", :time => get_time, :date => get_date)
     
     @page_to_return_to = ""
