@@ -7,7 +7,8 @@
 				<a style="color: grey;">Payment received</a>
 			<% else %>
 				<%= link_to "Mark payment as received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
-			<% end %>			  
+			<% end %>
+			<input type="text" name="payment_date" />			  
 		</li>
 		<li class="controls" id="assign_sub">
 			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>

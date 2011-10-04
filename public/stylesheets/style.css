@@ -321,6 +321,7 @@ body {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	float: left;
 }
 
 #contentcontrol li a:hover {
@@ -329,6 +330,7 @@ body {
 
 #receive_payments input {
 	margin-left: 5px;
+	width: 75px;
 }
 
 /*sidebar styling*/
