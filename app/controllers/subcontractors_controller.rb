@@ -42,6 +42,7 @@ class SubcontractorsController < ApplicationController
     @subcontractor = Partner.find(params[:id])
     @job = @payment.job
     @asg = @payment.assignments.find_by_partner_id(@subcontractor.id)
+    @parent_id = @asg.parent_id
     
     render :layout => nil
   end

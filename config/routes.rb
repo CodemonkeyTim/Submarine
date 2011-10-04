@@ -12,6 +12,7 @@ Submarine::Application.routes.draw do
   
   #Document attaching paths
   match "/documents/new" => "documents#new"
+  match "/documents/new/:id" => "documents#new"
   match "/documents/" => "documents#create"
   match "/documents/delete/:id" => "documents#delete"
   

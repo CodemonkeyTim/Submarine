@@ -39,7 +39,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @last_payment = Payment.find_all_by_job_id(@job.id, :order => "number").last
     
-    @payment = Payment.create(:number => @last_payment.number+1)
+    @payment = Payment.create(:number => @last_payment.number+1, :received => false)
     @job.payments.push(@payment)
     
     @tags = @job.tags.collect {|i| i.tag_name } 
@@ -50,6 +50,8 @@ class JobsController < ApplicationController
     @supplier_items = ListItemTemplate.find([6, 10])
     
     @last_payment.assignments.each do |i|
+      next if i.status == 1 
+        
       @new_asg = Assignment.create(:job_id => i.job_id, :partner_id => i.partner_id, :parent_id => i.parent_id, :payment_id => @payment.id, :status => i.status, :partner_type => i.partner_type)
       
       @list_of_items = []
@@ -112,7 +114,7 @@ class JobsController < ApplicationController
     @job_type = ""
     @TU_role = ""
     
-    @job.payments.push(Payment.create(:number => 1))
+    @job.payments.push(Payment.create(:number => 1, :received => false))
     @job.project_manager_id = params[:PM_id]
     @job.project_engineer_id = params[:PE_id]
 

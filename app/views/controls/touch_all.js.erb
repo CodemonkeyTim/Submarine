@@ -1,12 +1,8 @@
 <% @items.each do |i| %>
-	<% if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1) %>
-		$('#<%= i.id %>cli img ').each( function() {
+	<% if (i.cli_type == 2 && i.status == 2) || (i.cli_type == 3 && i.status == 1) %>
+		$('#<%= i.id %>cli img ').each(function() {
 			$(this).fadeOut();
-			<% if i.state == 1 %>
-				$(this).attr('src', '/images/overdue.png');
-			<% else %>
-				$(this).attr('src', '/images/open.png');
-			<% end %>
+			setTimeout(function() { $(this).attr('src', '/images/open.png'); }, 620);
 			$(this).fadeIn();
 		});
 		
@@ -21,24 +17,3 @@
 		});
 	<% end %>
 <% end %>
-
-/*
-$('#feedback').html("Payment marked received");
-
-if ($('#job_history_box div').length > 3) {
-	$('#job_history_box div').last().fadeOut("slow");
-	
-	setTimeout(function () {
-		$('#job_history_box div').last().remove();
-	}, 600);
-	
-	$('#job_history_box').prepend('<div id="history_logging"><%= @log.log_data %></div>');
-} else {
-	$('#job_history_box').prepend('<div id="history_logging"><%= @log.log_data %></div>');
-}
-
-setTimeout(function () {
-	$('#feedback').fadeOut("slow");
-}, 5000);
-
-*/

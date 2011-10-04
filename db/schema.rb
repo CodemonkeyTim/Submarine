@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20111003161627) do
     t.integer  "job_id"
     t.integer  "number"
     t.date     "overdue_on"
+    t.boolean  "received"
     t.date     "received_on"
     t.datetime "created_at"
     t.datetime "updated_at"

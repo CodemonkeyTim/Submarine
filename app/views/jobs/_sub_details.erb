@@ -1,7 +1,6 @@
 <div class="subs <%= j.id %>subb" id="<%= j.get_status %>">
 	<% unless show_subname == 0 %>
 		<h5 id="<%= j.get_status %>">
-
 			<%= link_to j.name, subcontractor_path(j.id, :job_id => job_id, :parent_id => parent_id) %>
 		</h5>
 	<% end %>
@@ -11,9 +10,9 @@
 		<%= render :partial => "jobs/sub_checklist", :locals => {:j => j, :job_id => job_id, :parent_id => parent_id, :status => status, :payment_id => payment_id} %>
 	<% end %>
 
-	<% unless j.suppliers(job_id).first.nil? %>
+	<% unless j.suppliers(job_id, payment_id).first.nil? %>
 		<h4>Suppliers</h4>
-		<% j.suppliers(job_id).each do |k| %>
+		<% j.suppliers(job_id, payment_id).each do |k| %>
 			<div class="sups">
 				<div class="sups_headers"><%= link_to k.name, supplier_path(k.id, :job_id => job_id, :super_parent_id => parent_id, :parent_id => j.id) %></div>
 				<%= render :partial => "jobs/sup_checklist", :locals => {:k => k, :job_id => job_id, :parent_id => j.id, :status => status, :payment_id => payment_id} %>
@@ -21,8 +20,8 @@
 		<% end %>
 	<% end %>
 
-	<% unless j.subcontractors(job_id).first.nil? %>
-		<% j.subcontractors(job_id).each do |k| %>
+	<% unless j.subcontractors(job_id, payment_id).first.nil? %>
+		<% j.subcontractors(job_id, payment_id).each do |k| %>
 			<div class="subs1">
 				<%= render :partial => "jobs/sub_details", :locals => {:job_id => job_id, :j => k, :parent_id => j.id, :show_subname => 1, :status => status, :payment_id => payment_id} %>
 			</div>

@@ -22,22 +22,25 @@ class ControlsController < ApplicationController
     end
     
     @items.each do |i|
-      if i.cli_type == 2 || (i.cli_type == 3 && i.status == 1)
+      if (i.cli_type == 2 && i.status == 2) || (i.cli_type == 3 && i.status == 1)
         i.state = 2
-        i.touched_at = Time.now.utc
+        @time = Time.now
+        i.touched_at = @time.utc
         i.save
       end
     end
     
-    if @job.subcontractors.length == 0
-      @job.logs.create(:target_type => "Payment (received: #{@month}/#{@day}/#{@year})", :target_name => "", :action => "marked received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
+    if @job.subcontractors(@payment.id).length == 0
+      @job.logs.create(:target_type => "Payment (received: #{@time.strftime("%m/%d/%Y")})", :target_name => "", :action => "marked received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
     else  
-      @job.logs.create(:target_type => "Payment (received: #{@month}/#{@day}/#{@year})", :target_name => "", :action => " marked received", :time => get_time, :date => get_date)  
+      @job.logs.create(:target_type => "Payment (received: #{@time.strftime("%m/%d/%Y")})", :target_name => "", :action => " marked received", :time => get_time, :date => get_date)  
     end
     
     @log = @job.logs.last
     @log.log_data = "Job: #{@log.target_type} #{@log.target_name} #{@log.action}#{unless @log.notes.nil? then ", #{@log.notes}" end} on #{@log.date} at #{@log.time}"
     
+    @payment.received = true
+    @payment.save
   end
   
   def modify

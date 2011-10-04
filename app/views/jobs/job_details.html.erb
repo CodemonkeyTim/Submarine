@@ -3,7 +3,7 @@
 	<div class="controlbuttons">
 	<ul>
 		<li class="controls" id="receive_payments">
-			<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id, :date => "#{@date}"}, :remote => true, :id => "oprbtn", :payment_id => @payment.id %>  
+			<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>  
 		</li>
 		<li class="controls" id="assign_sub">
 			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
@@ -17,7 +17,7 @@
 		<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type_and_payment_id(@job.id, j.id, 0, 1, @payment.id) %>
 		<% if @asg.status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
 		
-		<div class="grid_9 <%= j.id %>sub" id="subactivation">
+		<div class="grid_8 <%= j.id %>sub" id="subactivation">
 			<ul>
 				<li>
 					<span class="vendorname">

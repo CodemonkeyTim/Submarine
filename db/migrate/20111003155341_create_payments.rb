@@ -4,6 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :job_id
       t.integer :number
       t.date :overdue_on
+      t.boolean :received
       t.date :received_on
 
       t.timestamps

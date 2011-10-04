@@ -2,7 +2,9 @@
 	<% @state; if k.state == 1 then @state= "overdues" end; if k.state == 2 then @state = "opens" end; if k.state == 3 then @state = "waitings" end; if k.state == 4 then @state == "completeds" end; %>
 	<div class="list_items <%= if k.cli_type == 3 then "finals" else @state end%>" id="<%= "#{k.id}cli" %>"> 
 		<% if status < 3 %>
-			<%= image_tag(get_image(k.state)) %>
+			<% if k.state != 3 %>
+				<%= image_tag(get_image(k.state)) %>
+			<% end %>
 		<% else %>
 			<%= image_tag(get_image(k.state), :style => "display: none;") %>
 		<% end %>
