@@ -2,7 +2,7 @@ module ApplicationHelper
   
   #Some global variables, which are hoped to turn down the amount of database-calls
   
-  $active_tab = 2
+  $active_tab = 1
   @active_page = "no.no"
   $recent_jobs_ids
   
