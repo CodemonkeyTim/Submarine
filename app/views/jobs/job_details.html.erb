@@ -45,12 +45,29 @@
 					</span>
 				</li>
 			</ul>
+			
+			<div class="remove_sub_link" onclick="remove_sub(<%= j.id %>, <%= @asg.id %>)">Remove</div>
 		</div>
 		
-		<div class="grid_8">
+		<div class="grid_8 <%= j.id %>items">
 
 		<%= render :partial => "sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0, :status => @asg.status, :payment_id => @payment.id} %>
 		
 		</div>
 	<% end %>
 <% end %>
+
+<script>
+	function remove_sub(id, asg_id) {
+		if (confirm('Are you sure you want to remove this sub?')) {
+			$.ajax({
+				url: '/delete_assignment/'+asg_id,
+				cache: false,
+				success: function () {
+					$('.'+id+'sub').fadeOut();
+					$('.'+id+'items').fadeOut();
+				}
+			});
+		}
+	}
+</script>
