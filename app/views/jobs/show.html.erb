@@ -75,6 +75,32 @@
 		});
 	} 
 	
+	function validate_date () {
+		var day = $('#payment_date').attr('value').substring(3,5);
+		var month = $('#payment_date').attr('value').substring(0,2);
+		var year = $('#payment_date').attr('value').substring(6,10);
+		
+		if (isNaN(parseInt(month))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		if (isNaN(parseInt(day))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		if (isNaN(parseInt(year))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		
+		$('#oprbtn').attr('href', $('#oprbtn').attr('href')+'&date='+year+month+day)
+	}
 	change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>)
 	
 </script>

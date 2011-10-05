@@ -4,11 +4,18 @@
 	<ul>
 		<li class="controls" id="receive_payments">
 			<% if @payment.received? %>
-				<a style="color: grey;">Payment received</a>
+				<% if @payment.overdue_on < Time.now %>
+					<a style="color: red;"><%= @payment.received_on.strftime("%m/%d/%Y") %> - <%= @payment.overdue_on.strftime("%m/%d/%Y") %></a>
+				<% else %>
+					<a style="color: green;"><%= @payment.received_on.strftime("%m/%d/%Y") %> - <%= @payment.overdue_on.strftime("%m/%d/%Y") %></a>
+				<% end %>
 			<% else %>
 				<%= link_to "Mark payment as received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
+				<input id="payment_date" onchange="validate_date();" type="text" name="payment_date" value="<%= Time.now.strftime("%m/%d/%Y") %>" />
+				<script>
+					validate_date();
+				</script>
 			<% end %>
-			<input type="text" name="payment_date" />			  
 		</li>
 		<li class="controls" id="assign_sub">
 			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
@@ -16,6 +23,8 @@
 	</ul>
 	</div>
 </div>
+
+
 
 <%unless @job.subcontractors(@payment.id).first.nil? %>
 	<% @job.subcontractors(@payment.id).each do |j| %>
