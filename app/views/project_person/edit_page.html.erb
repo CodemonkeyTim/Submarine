@@ -1,0 +1,142 @@
+<div id="pagedescription" class="grid_12">
+	<h2>Edit Project Managers/Engineers</h2>
+</div>
+
+<div id="PM_edit_column" class="grid_6 edit_columns">
+	<h5>Select Project Manager</h5>
+	<select onchange="update_name(1)" id="PM_select" class="selects">
+		<% @pms.each do |i| %>
+			<option value="<%= i.id %>"><%= i.name %></option>
+		<% end %>
+	</select>
+	
+	<br/>
+	
+	<input type="text" id="edit_pm_name_field" class="inputs" /> <br/>
+	<input type="button" value="Save" onclick="update_pp(1)" class="buttons" /> <br/>
+	<input type="button" value="Delete" onclick="delete_pp(1)" class="buttons" />
+	
+	<h5>Or add new one</h5>
+	<input type="text" value="PM name" id="pm_name_field" class="inputs" /> <br/>
+	<input type="button" value="Create PM" id="pm_create_button" onclick="create_pp(1);" class="buttons" />
+</div>
+
+<div id="PE_edit_column" class="grid_6 edit_columns">
+	<h5>Select Project Engineer</h5>
+	<select onchange="update_name(2)" id="PE_select" class="selects">
+		<% @pes.each do |i| %>
+			<option value="<%= i.id %>"><%= i.name %></option>
+		<% end %>
+	</select>
+	
+	<br/>
+	
+	<input type="text" id="edit_pe_name_field" class="inputs" /> <br/>
+	<input type="button" value="Save" onclick="update_pp(2)" class="buttons" /> <br/>
+	<input type="button" value="Delete" onclick="delete_pp(2)" class="buttons" />
+	
+	<h5>Or add new one</h5>
+	<input type="text" value="PE name" id="pe_name_field" class="inputs" /> <br/>
+	<input type="button" value="Create PM" id="pe_create_button" onclick="create_pp(2);" class="buttons" />
+</div>
+
+<script>
+	function update_name (type) {
+		if (type == 1) {
+			$('#edit_pm_name_field').attr('value', $('#PM_select :selected').text()); 
+		} else if (type == 2) {
+			$('#edit_pe_name_field').attr('value', $('#PE_select :selected').text()); 
+		}
+	}
+
+	function create_pp(type) { 
+		var name = ''
+		if (type == 1) {
+			name = $('#pm_name_field').attr('value');
+		} else if (type == 2) {
+			name = $('#pe_name_field').attr('value');
+		}
+		 
+		$.ajax({
+			url: '/project_person/create/?type='+type+'&name='+name,
+			cache: false,
+			success: function(id) {
+				if (type == 1) {
+					$("#PM_select").append('<option value="'+id+'" >'+name+'</option>');
+					$("#PM_select").val(id);
+					update_name(1);
+				} else if (type == 2 ){
+					$("#PE_select").append('<option value="'+id+'" >'+name+'</option>');
+					$("#PE_select").val(id);
+					update_name(2);
+				}
+			}
+		});
+	}
+	
+	function update_pp(type) { 
+		var name = ''
+		var id = ''
+		if (type == 1) {
+			name = $('#edit_pm_name_field').attr('value');
+			id = $('#PM_select').val();
+		} else if (type == 2) {
+			name = $('#edit_pe_name_field').attr('value');
+			id = $('#PE_select').val();
+		}
+		 
+		$.ajax({
+			url: '/project_person/update/'+id+'?type='+type+'&name='+name,
+			cache: false,
+			success: function() {
+				if (type == 1) {
+					$("#PM_select").contents().each(function() {
+						if ($(this).attr('value') == id) {
+							$(this).html(name);
+						}
+					});
+				} else if (type == 2 ){
+					$("#PE_select").contents().each(function() {
+						if ($(this).attr('value') == id) {
+							$(this).html(name);
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	function delete_pp(type) {
+		if (!confirm('Are you sure you want to delete this PM/PE?')) {
+			return;
+		}
+		
+		var id = ''
+		
+		if (type == 1) {
+			id = $('#PM_select').val();
+		} else if (type == 2) {
+			id = $('#PE_select').val();
+		}
+		
+		$.ajax({
+			url: '/project_person/delete/'+id+'?type='+type,
+			cache: false,
+			success: function() {
+				if (type == 1) {
+					$("#PM_select").contents().each(function() {
+						if ($(this).attr('value') == id) {
+							$(this).remove();
+						}
+					});
+				} else if (type == 2) {
+					$("#PE_select").contents().each(function() {
+						if ($(this).attr('value') == id) {
+							$(this).remove();
+						}
+					});
+				}
+			}
+		})
+	}
+</script>

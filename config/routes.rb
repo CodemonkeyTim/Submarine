@@ -1,5 +1,5 @@
 Submarine::Application.routes.draw do
-  
+
   resources :list_items
   resources :jobs
   resources :subcontractors
@@ -9,6 +9,12 @@ Submarine::Application.routes.draw do
   
   #Show logs history path
   match "/histories/:id" => "histories#show"
+  
+  #PE/PM edit page's calls
+  match "/project_person/edit" => "project_person#edit_page"
+  match "/project_person/create" => "project_person#create"
+  match "/project_person/delete/:id" => "project_person#delete"
+  match "/project_person/update/:id" => "project_person#update"
   
   #Document attaching paths
   match "/documents/new" => "documents#new"

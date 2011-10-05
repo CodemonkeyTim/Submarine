@@ -23,7 +23,6 @@ body {
 
 #headerbuttons {
 	float: right;
-	height: 15px;
 	margin-top: 5px;
 }
 
@@ -37,7 +36,7 @@ body {
 	margin-top: 1px;
 }
 
-#headerbuttons li a.button {
+#headerbuttons a.button {
 	background: #EEEEEE url(/images/n1.gif);
 	border-radius: 3px;
 	border: 1px solid;
@@ -46,7 +45,8 @@ body {
 	text-decoration: none;
 	display: block;
 	margin-bottom: 10px;
-	width: 100px:
+	margin-right: 10px;
+	width: 100px;
 	float: right;
 }
 
@@ -463,4 +463,26 @@ body {
 
 #vendor_edit input {
 	width: 195px;
+}
+
+/* PM/PE edit page styling */
+
+#pp_edit_header {
+	background-color: #5555FF;
+}
+
+.edit_columns {
+	margin-bottom: 15px;
+}
+
+.inputs {
+	width: 190px;
+}
+
+.buttons {
+	width: 197px;
+}
+
+.selects {
+	width: 197px;
 }
