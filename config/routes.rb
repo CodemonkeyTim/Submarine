@@ -22,6 +22,7 @@ Submarine::Application.routes.draw do
   match "/mark_done/:id" => "controls#mark_done", :via => "GET"
   match "/undo/:id" => "controls#undo"
   match "/show_fields" => "controls#show_fields"
+  match "/delete_item/:id" => "controls#delete_item"
   
   #Partner status control
   match "/change_status" => "controls#change_status" 

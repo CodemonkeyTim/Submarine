@@ -47,6 +47,12 @@ class ControlsController < ApplicationController
     @payment.save
   end
   
+  def delete_item
+    @cli = ChecklistItem.find(params[:id])
+    @cli.delete
+    render :nothing => true    
+  end
+  
   def modify
     @t = params[:id]
     @i = params[:action_id]

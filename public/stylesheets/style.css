@@ -145,6 +145,10 @@ body {
 	box-shadow: -2px 2px 5px #888888;
 }
 
+#paytab li:hover {
+	cursor: pointer;
+}
+
 #paytab li.litop{
 	border-top: 1px solid #BABABA;
 }
@@ -186,6 +190,18 @@ body {
 
 .list_items {
 	padding-bottom: 4px;
+}
+
+.del_item_link {
+	float: right;
+	margin-right: 10px;
+	color: red; 
+	font-weight: bold;
+}
+
+.del_item_link:hover {
+	cursor: pointer;
+	color:pink;
 }
 
 /*Subcontractor Payment Activation items*/
