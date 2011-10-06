@@ -290,7 +290,8 @@ body {
 /*Content control styling*/
 
 #contentcontrol {
-	height: 35px;
+	height: 100px;
+	width: 100%;
 }
 
 #controlbuttons {
@@ -305,14 +306,14 @@ body {
 	padding: 0px;
 }
 
-#contentcontrol li {
+#contentcontrol .controls {
 	display: block;
 	float: right;
 	margin-right: 5px;
 	margin-left: 0px;
 }
 
-#contentcontrol li a {
+#contentcontrol .controls {
 	background: #EEEEEE url(/images/n1.gif);
 	border: 1px solid #999999;
 	color: #666666;
@@ -321,16 +322,10 @@ body {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	float: left;
 }
 
-#contentcontrol li a:hover {
+#contentcontrol .controls:hover {
 	color: black;
-}
-
-#receive_payments input {
-	margin-left: 5px;
-	width: 75px;
 }
 
 /*sidebar styling*/
@@ -463,4 +458,47 @@ body {
 
 #vendor_edit input {
 	width: 195px;
+}
+
+/* contentcontrol extra styling */
+
+#oprbtn { 
+	float: right;
+	clear: right;
+}
+
+#assign_sub {
+	width: 70px;
+	float: none;
+	margin: auto;
+}
+
+
+#payment_date {
+	width: 75px;
+	
+	float:right;
+	clear: right;
+}
+
+#sub_assing_wrapper {
+	width: 200px;
+	height: 100px;
+	float: left;
+}
+
+#date_range_wrapper {
+	width: 150px;
+	height: 100px;
+	float: left;
+}
+
+#payment_actions_wrapper {
+	width: 300px;
+	height: 100px;
+	float: left;
+}
+
+.date_range_fields {
+	width: 40px;
 }

@@ -1,30 +1,36 @@
 <div id="contentcontrol">
-	<div class="grid_2"><h4>Subcontractors</h4></div>
 	<div class="controlbuttons">
-	<ul>
-		<li class="controls" id="receive_payments">
-			<% if @payment.received? %>
-				<% if @payment.overdue_on < Time.now %>
-					<a style="color: red;"><%= @payment.received_on.strftime("%m/%d/%Y") %> - <%= @payment.overdue_on.strftime("%m/%d/%Y") %></a>
-				<% else %>
-					<a style="color: green;"><%= @payment.received_on.strftime("%m/%d/%Y") %> - <%= @payment.overdue_on.strftime("%m/%d/%Y") %></a>
-				<% end %>
-			<% else %>
-				<%= link_to "Mark payment as received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
+		<div id="date_range_wrapper"> 
+			<h4>Payment date range</h4>
+			<input type="text" class="date_range_fields" id="pp_range_bottom" /> -
+			<input type="text" class="date_range_fields" id="pp_range_ceiling" />
+		</div>
+		<div id="sub_assing_wrapper">
+			<div class="controls" id="assign_sub">
+				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
+			</div>
+		</div>
+			
+		<div id="payment_actions_wrapper">
+			<div id="payment_date_wrapper" >
 				<input id="payment_date" onchange="validate_date();" type="text" name="payment_date" value="<%= Time.now.strftime("%m/%d/%Y") %>" />
-				<script>
-					validate_date();
-				</script>
-			<% end %>
-		</li>
-		<li class="controls" id="assign_sub">
-			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
-		</li>
-	</ul>
+			</div>
+			<div class="controls" id="receive_payments">
+				<% if @payment.received? %>
+	
+				<% else %>
+					
+					<%= link_to "Payment received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
+					<script>
+						validate_date();
+					</script>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
 
-
+<div class="grid_2"><h4>Subcontractors</h4></div>
 
 <%unless @job.subcontractors(@payment.id).first.nil? %>
 	<% @job.subcontractors(@payment.id).each do |j| %>
