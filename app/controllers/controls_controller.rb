@@ -8,9 +8,9 @@ class ControlsController < ApplicationController
   end
   
   def payment_received
-    @day = params[:date][6..7]
-    @month = params[:date][4..5]
-    @year = params[:date][0..3]
+    @day = params[:date][2..3]
+    @month = params[:date][0..1]
+    @year = params[:date][4..7]
     @date = Time.new(@year.to_i, @month.to_i, @day.to_i, 12, 0, 0)
     
     @time = @date.utc

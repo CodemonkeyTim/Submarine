@@ -1,32 +1,38 @@
 <div id="contentcontrol">
-	<div class="controlbuttons">
-		<div id="date_range_wrapper"> 
-			<h4>Payment date range</h4>
-			<input type="text" class="date_range_fields" id="pp_range_bottom" /> -
-			<input type="text" class="date_range_fields" id="pp_range_ceiling" />
-		</div>
-		<div id="sub_assing_wrapper">
-			<div class="controls" id="assign_sub">
-				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
+	<div id="date_range_wrapper">
+		<h4 id="range_header">Payment date range</h4> 
+		<% unless @payment.range_start.nil? && @payment.range_end.nil? %>
+			<span id="payment_range_start"><%= @payment.range_start.strftime("%m/%d") %> - </span><span id="payment_range_end"><%= @payment.range_end.strftime("%m/%d") %></span> 
+			<div class="action_links" id="edit_date_range_link" onclick="show_edits();">edit</div>
+		<% else %>
+			<div id="range_inputs_wrapper">
+				<input type="text" class="date_range_fields" id="payment_range_start_field" /> -
+				<input type="text" class="date_range_fields" id="payment_range_end_field" />
 			</div>
+			<div class="action_links" id="set_date_range_link" onclick="save_dates();">save</div>
+		<% end %>
+	</div>
+	<div id="sub_assing_wrapper">
+		<div class="controls" id="assign_sub">
+			<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0, :payment_id => @payment.id }%>
 		</div>
-			
-		<div id="payment_actions_wrapper">
+	</div>
+		
+	<div id="payment_actions_wrapper">
+			<% if @payment.received? %>
+				<div id="payment_received_on_row">Payment <span class="small_grey">received on: </span><%= @payment.received_on.strftime("%m/%d") %></div>
+				<div id="payment_overdue_on_row">Items <span class="small_grey">overdue on: </span><%= @payment.overdue_on.strftime("%m/%d") %></div>
+			<% else %>
 			<div id="payment_date_wrapper" >
 				<input id="payment_date" onchange="validate_date();" type="text" name="payment_date" value="<%= Time.now.strftime("%m/%d/%Y") %>" />
 			</div>
 			<div class="controls" id="receive_payments">
-				<% if @payment.received? %>
-	
-				<% else %>
-					
-					<%= link_to "Payment received", {:controller => "controls", :action => "payment_received", :id => @job.id, :payment_id => @payment.id}, :remote => true, :id => "oprbtn" %>
-					<script>
-						validate_date();
-					</script>
-				<% end %>
+				<div class="action_links" id="oprbtn" onclick="receive_payment();">Payment received</div>
 			</div>
-		</div>
+			<script>
+				validate_date();
+			</script>
+		<% end %>
 	</div>
 </div>
 
@@ -69,3 +75,68 @@
 		</div>
 	<% end %>
 <% end %>
+
+<script>
+	function save_dates() {
+		var start_date = $('#payment_range_start_field').attr('value')
+		var end_date = $('#payment_range_end_field').attr('value')
+		
+		$.ajax({
+			url: '/save_dates/<%= @job.id %>?payment_id=<%= @payment.id %>&start='+start_date+'&end='+end_date,
+			cache: false,
+			success: function() {
+				$('#range_inputs_wrapper').fadeOut();
+				$('#set_date_range_link').fadeOut();
+				setTimeout(function() {
+					$('#range_inputs_wrapper').remove();
+					$('#set_date_range_link').remove();
+					$('#range_header').after('<span id="payment_range_start">'+start_date.substring(0, 5)+' - </span><span id="payment_range_end">'+end_date.substring(0, 5)+'</span>\
+					<div class="action_links" id="edit_date_range_link" onclick="show_edits();">edit</div>');
+				}, 620);
+			},
+			statusCode: {
+				306: function() { 
+					$('#set_date_range_link').after('<div id="feedback" style="color:red; font-weight:bold; margin-top:5px; margin-left: 5px; float: left;">Check dates(end>start)</div>');
+					setTimeout(function() {
+						$('#feedback').fadeOut();
+					}, 3000); 
+				}
+			}
+		});
+	}
+	
+	function show_edits() {
+		$('#edit_date_range_link').fadeOut();
+		$('#payment_range_start').fadeOut();
+		$('#payment_range_end').fadeOut();
+		
+		setTimeout(function(){
+			$('#edit_date_range_link').remove();
+			$('#payment_range_start').remove();
+			$('#payment_range_end').remove();
+			$('#range_header').after('<div id="range_inputs_wrapper">\
+				<input type="text" class="date_range_fields" id="payment_range_start_field" /> -\
+				<input type="text" class="date_range_fields" id="payment_range_end_field" />\
+			</div>\
+			<div class="action_links" id="set_date_range_link" onclick="save_dates();">save</div>')
+			$('#payment_range_start_field').datepicker();
+			$('#payment_range_end_field').datepicker();
+		}, 620)
+	}
+	
+	$('#payment_range_start_field').datepicker();
+	$('#payment_range_end_field').datepicker();
+	$('#payment_date').datepicker();
+	
+	function receive_payment() {
+		var date = $('#payment_date').attr('value')
+		date = date.replace('/', '')
+		date = date.replace('/', '')
+		$.ajax({
+			url: "/payment_received/<%= @job.id %>?payment_id=<%= @payment.id %>&date="+date,
+			cache: false
+		});
+	}
+	
+	
+</script>

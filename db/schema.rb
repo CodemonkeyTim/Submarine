@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(:version => 20111004031027) do
     t.datetime "overdue_on"
     t.boolean  "received"
     t.datetime "received_on"
+    t.datetime "range_start"
+    t.datetime "range_end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
