@@ -3,14 +3,19 @@ class AssignmentsController < ApplicationController
   #Gathers all information to be shown on "Assign a Sub" or "Assign a Supplier" pages
   
   def new  
-    @partners = Partner.find(:all, :order => "name")
-    @partners.delete_if {|i| i.id == params[:parent_id]}
-    
     @payment_id = params[:payment_id]
     @super_parent_id = params[:super_parent_id]
     @parent_id = params[:parent_id]
     @job = Job.find(params[:job_id])
     @partner_type = params[:partner_type]
+    
+    @partners = Partner.find(:all, :order => "name")
+    @assigned_ids = Assignment.find_all_by_job_id_and_parent_id_and_payment_id(@job.id, @parent_id, @payment_id).collect {|i| i.partner_id}.uniq
+    @assigned_ids.each do |i|
+      @partners.delete_if {|j| j.id == i}
+    end
+    @partners.delete_if {|i| i.id == params[:parent_id].to_i}
+    
     
     if params[:parent_id] == "0"
       @title_text = "Assign subcontractor to #{@job.job_number} / #{@job.name}"
