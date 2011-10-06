@@ -85,6 +85,30 @@ class JobsController < ApplicationController
     render :text => @payment.id
   end
     
+  def save_dates
+    @job = Job.find(params[:id])
+    @payment = Payment.find(params[:payment_id])
+    @start_year = params[:start][6..9]
+    @start_month = params[:start][0..1]
+    @start_day = params[:start][3..4]
+    
+    @end_year = params[:end][6..9]
+    @end_month = params[:end][0..1]
+    @end_day = params[:end][3..4]
+    
+    @start_date = Time.new(@start_year, @start_month, @start_day, 12, 0, 0)
+    @end_date = Time.new(@end_year, @end_month, @end_day, 12, 0, 0)
+    
+    if @end_date < @start_date
+      render :status => 306, :nothing => true
+    else
+      @payment.range_start = @start_date
+      @payment.range_end = @end_date
+      @payment.save
+      render :nothing => true
+    end
+  end
+    
   def index
     @jobs = Job.find(:all, :order => "name")
     

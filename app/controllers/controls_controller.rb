@@ -8,12 +8,18 @@ class ControlsController < ApplicationController
   end
   
   def payment_received
-    @time = Time.now.utc
+    @day = params[:date][2..3]
+    @month = params[:date][0..1]
+    @year = params[:date][4..7]
+    @date = Time.new(@year.to_i, @month.to_i, @day.to_i, 12, 0, 0)
+    
+    @time = @date.utc
     @job = Job.find(params[:id])
     @payment = Payment.find(params[:payment_id])
     
     @payment.received = true
     @payment.received_on = @time
+    @payment.overdue_on = @time + 864000
     @payment.save
     
     @asgs = Assignment.find_all_by_job_id_and_payment_id(@job.id, @payment.id)
@@ -243,21 +249,21 @@ class ControlsController < ApplicationController
           i.checklist_items.each do |j|
             unless j.state == 4
               if params[:status] == "2" && j.cli_type == 1
-                if (Time.now.utc - @payment.received_on) > 86400
+                if (Time.now.utc - @payment.received_on) > 864000
                   j.state = 1
                 else
                   j.state = 2
                 end
               end
               if params[:status] == "2" && j.cli_type == 2
-                if (Time.now.utc - @payment.received_on) > 86400
+                if (Time.now.utc - @payment.received_on) > 864000
                   j.state = 1
                 else
                   j.state = 2
                 end
               else
                 if params[:status] == "1" && j.cli_type > 1
-                  if Time.now.utc - @payment.received_on > 86400
+                  if Time.now.utc - @payment.received_on > 864000
                     j.state = 1
                   else
                     j.state = 2

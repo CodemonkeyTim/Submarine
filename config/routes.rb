@@ -44,6 +44,9 @@ Submarine::Application.routes.draw do
   
   #Assignment deletion
   match "/delete_assignment/:id" => "controls#delete_assignment"
+
+  #Payment date range setting route
+  match "/save_dates/:id" => "jobs#save_dates"
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

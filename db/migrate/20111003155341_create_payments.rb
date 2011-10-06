@@ -6,6 +6,8 @@ class CreatePayments < ActiveRecord::Migration
       t.datetime :overdue_on
       t.boolean :received
       t.datetime :received_on
+      t.datetime :range_start
+      t.datetime :range_end
 
       t.timestamps
     end

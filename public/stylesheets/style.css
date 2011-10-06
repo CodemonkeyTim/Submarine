@@ -5,6 +5,31 @@ body {
   height: auto;
   padding-bottom: 20px;
 }
+
+/*------------------------------------------------
+|               Global classes                   |
+-----------------------------------------------*/
+
+.action_links {
+	font-weight: bold;
+}
+
+.action_links:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.small_grey {
+	font-size: 10px;
+	color: #666666;
+	font-weight: normal;
+}
+
+
+/*------------------------------------------------
+|               Other stylings                   |
+-----------------------------------------------*/
+
 /*Header styling*/
 
 #header	{
@@ -319,10 +344,6 @@ body {
 
 /*Content control styling*/
 
-#contentcontrol {
-	height: 35px;
-}
-
 #controlbuttons {
 	display: inline;
 	width: 460px;
@@ -335,14 +356,14 @@ body {
 	padding: 0px;
 }
 
-#contentcontrol li {
+#contentcontrol .controls {
 	display: block;
 	float: right;
 	margin-right: 5px;
 	margin-left: 0px;
 }
 
-#contentcontrol li a {
+#contentcontrol .controls {
 	background: #EEEEEE url(/images/n1.gif);
 	border: 1px solid #999999;
 	color: #666666;
@@ -351,16 +372,10 @@ body {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	float: left;
 }
 
-#contentcontrol li a:hover {
+#contentcontrol .controls:hover {
 	color: black;
-}
-
-#receive_payments input {
-	margin-left: 5px;
-	width: 75px;
 }
 
 /*sidebar styling*/
@@ -521,4 +536,108 @@ body {
 
 .selects {
 	width: 197px;
+
+/* contentcontrol extra styling */
+
+#contentcontrol {
+	margin-top: 5px;
+	height: 70px;
+	
+	padding-bottom: 5px;
+	border-bottom: 1px solid #333333;
+}
+
+#date_range_wrapper {
+	width: 200px;
+	height: 70px;
+	float: left;
+}
+
+#payment_range_start {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#payment_range_end {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#range_inputs_wrapper {
+	float: left;
+}
+
+#set_date_range_link {
+	margin-left: 5px;
+	margin-top: 5px;
+	float: left;
+}
+
+
+
+
+#oprbtn { 
+	float: right;
+	clear: right;
+}
+
+#sub_assing_wrapper {
+	border-left: solid 1px #333333;
+	border-right: solid 1px #333333;
+	
+	width: 198px;
+	height: 70px;
+	float: left;
+}
+
+#assign_sub {
+	
+	width: 70px;
+	float: none !important;
+	margin: auto !important;
+	
+	margin-top: 5px !important;
+	
+}
+
+
+#receive_payments {
+	float: right;
+	clear: right;
+}
+
+#payment_date {
+	width: 120px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	
+	float:right;
+	clear: right;
+}
+
+#payment_actions_wrapper {
+	width: 200px;
+	height: 70px;
+	float: left;
+}
+
+#payment_received_on_row {
+	margin-left: 10px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333333;
+}
+
+#payment_overdue_on_row {
+	margin-left: 10px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333333;
+}
+
+.date_range_fields {
+	width: 75px;
 }
