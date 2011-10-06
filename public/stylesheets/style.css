@@ -362,8 +362,14 @@ body {
 	margin-bottom: 10px;
 }
 
-#delete_document_link a {
+#delete_document_link {
 	color:red;
+	font-weight: bold;
+}
+
+#delete_document_link:hover {
+	cursor: pointer;
+	color: #BB0000;
 }
 
 .list_headers {

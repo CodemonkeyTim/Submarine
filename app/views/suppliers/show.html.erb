@@ -43,7 +43,7 @@
 		<h2>Supplier Docs:</h2>
 		<% unless @documents.length == 0 %>
 			<% @documents.each do |i| %>
-				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link" onclick="delete_document(<%= i.id %>)">delete</span></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :parent_id => @parent_id, :partner_type => 2, :id => @supplier.id, :payment_id => @payment.id} %></div>		
@@ -59,6 +59,22 @@
 		<% end %>
 	</div>
 </div>
+
+<script>
+	function delete_document(id) {
+		if (!confirm('Are you sure you want delete this document?')) {
+			return;
+		}
+		$.ajax({
+			url: '/documents/delete/'+id,
+			method: 'post',
+			cache: false,
+			success: function() {
+				$('#'+id+'doclink').fadeOut();
+			}
+		});
+	}
+</script>
 
 <% #Page's method calls and global variable modifiers %>
 

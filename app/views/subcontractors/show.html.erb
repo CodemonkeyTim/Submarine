@@ -37,7 +37,7 @@
 		<h2>Sub Docs:</h2>
 		<% unless @documents.length == 0 %>
 			<% @documents.each do |i| %>
-				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link" onclick="delete_document(<%= i.id %>)">delete</span></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/><a id="the_add_doc_link" href="/documents/new/#{@subcontractor.id}?parent_id=#{@parent_id}&partner_type=1&payment_id=#{@subcontractor.payments(@job.id, @parent_id).last.id}">Add a document</a></div>		
@@ -67,6 +67,20 @@
 				$('#payment_tab_ul').contents().each(function() { $(this).removeAttr('class'); });
 				$('#'+id+'tab').attr('class', 'active');
 				$('#contentmiddle').html(html);
+			}
+		});
+	}
+	
+	function delete_document(id) {
+		if (!confirm('Are you sure you want delete this document?')) {
+			return;
+		}
+		$.ajax({
+			url: '/documents/delete/'+id,
+			method: 'post',
+			cache: false,
+			success: function() {
+				$('#'+id+'doclink').fadeOut();
 			}
 		});
 	}

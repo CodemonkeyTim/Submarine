@@ -28,7 +28,7 @@
 		<h2>Job Docs:</h2>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
-				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link" onclick="delete_document(<%= i.id %>)">delete</span></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/>  <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
@@ -74,6 +74,20 @@
 			}
 		});
 	} 
+	
+	function delete_document(id) {
+		if (!confirm('Are you sure you want delete this document?')) {
+			return;
+		}
+		$.ajax({
+			url: '/documents/delete/'+id,
+			method: 'post',
+			cache: false,
+			success: function() {
+				$('#'+id+'doclink').fadeOut();
+			}
+		});
+	}
 	
 	change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>)
 	
