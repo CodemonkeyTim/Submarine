@@ -11,7 +11,9 @@
 		<% else %>
 			<input style="display: none;" id="<%="#{l.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= l.id %>')" />
 		<% end %>
+		
 		<%= l.item_data %>
+		
 		<% if l.state < 3 %>
 			<span>
 				<a style="display: none;" href=<%= "/undo/1?item_id=#{l.id}&state=#{l.state}" %> data-remote="true">undo</a>
@@ -21,6 +23,23 @@
 				<a style="display: none;" href=<%= "/undo/1?item_id=#{l.id}&state=#{l.state}" %> data-remote="true">undo</a>
 			</span>
 		<% end %>
+		
+		<div class="del_item_link" onclick="delete_item(<%= l.id %>)" data-remote="true">del</div>
 	</div> 
 	<% end %>
 <% end %>
+
+<script>
+	function delete_item(id) {
+		if (confirm('Are you sure you want to delete this item?')) {
+			$.ajax({
+				url: '/delete_item/'+id,
+				cache: false,
+				success: function() {
+					$('#'+id+'cli').fadeOut();
+				}
+			});
+		}
+		
+	}
+</script>
