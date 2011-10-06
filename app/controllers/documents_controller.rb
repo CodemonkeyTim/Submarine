@@ -42,11 +42,18 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.save
 
-    @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
+    @owner.logs.create(:target_type => "Document", :target_name => params[:document_name], :action => "added", :time => get_time, :date => get_date)
   end
   
   def delete
     @doc = Document.find(params[:id])
+    if @doc.owner_type == "Job"
+      @owner = Job.find(@doc.owner_id)
+    end
+    if @doc.owner_type == "Assignment"
+      @owner = Assignment.find(@doc.owner_id)
+    end
+    @owner.logs.create(:target_type => "Document", :target_name => @doc.name, :action => "deleted", :time => get_time, :date => get_date)
     @doc.delete
   end
 end

@@ -160,7 +160,19 @@ class ControlsController < ApplicationController
     @asgs = @asg.assignments(@payment.id)
     @asgs.push(@asg)
     
-    if params[:status] != "3"
+    if params[:status] != "3" || (@asg.status != 3 && params[:status] == "3")
+      @status_with_words = ""
+      if params[:status] == "1"
+        @status_with_words = "final"
+      end
+      if params[:status] == "2"
+        @status_with_words = "reg"
+      end
+      if params[:status] == "3"
+        @status_with_words = "inactive"
+      end
+      @asg.logs.create(:target_name => Partner.find(@asg.partner_id).name, :action => "status changed to #{@status_with_words}", :time => get_time, :date => get_date)
+      
       @job = Job.find(@payment.job_id)
       @tags = @job.tags.collect {|i| i.tag_name }
       

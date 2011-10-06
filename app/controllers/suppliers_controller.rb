@@ -41,25 +41,4 @@ class SuppliersController < ApplicationController
 
   end
   
-  def new
-    @job = Job.find_by_job_number(params[:job_number])
-    @subcontractor = Subcontractor.find(params[:id])
-  end
-
-  def assign
-    @asg = Assignment.new
-    @asg.job_id = params[:job_id]
-    @asg.parent_id = params[:parent_id]
-    @asg.partner_id  = params[:partner_id]
-    @asg.partner_type = 2
-    
-    @asg.logs.create(:log_data =>"Added as supplier to #{Partner.find(params[:parent_id]).name}")
-    
-    @asg.save
-  end
-  
-  def create
-    
-  end
-  
 end

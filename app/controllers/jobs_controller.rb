@@ -80,6 +80,8 @@ class JobsController < ApplicationController
       end
     end
     
+    @job.logs.create(:target_type => "Payment", :target_name => "##{@payment.number}", :action => "added", :date=> get_date, :time => get_time)
+    
     render :text => @payment.id
   end
     
