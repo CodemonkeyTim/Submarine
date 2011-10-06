@@ -290,6 +290,20 @@ body {
 	border-right: 1px solid #999999;
 }
 
+.remove_sub_link {
+	color: #333333;
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+.remove_sub_link:hover {
+	cursor: pointer;
+	color: #777777;
+}
+
+
 /*Item undo coloring*/
 
 .subs span a {

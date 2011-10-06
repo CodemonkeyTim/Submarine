@@ -278,4 +278,20 @@ class ControlsController < ApplicationController
     end
   end
   
+  def delete_assignment
+    @asg = Assignment.find(params[:id])
+    @asgs = Assignment.find_all_by_job_id_and_partner_id_and_partner_type_and_parent_id(@asg.job_id, @asg.partner_id, @asg.partner_type, @asg.parent_id)
+    
+    @job = Job.find(@asg.job_id)
+    @partner = Partner.find(@asg.partner_id)
+    
+    @asgs.each do |i|
+      i.delete
+    end
+    
+    @job.logs.create(:target_type => "Subcontractor", :target_name => @partner.name, :action => "removed", :time => get_time, :date => get_date)
+    
+    render :nothing => true
+  end
+  
 end

@@ -42,6 +42,9 @@ Submarine::Application.routes.draw do
   match "/new_payment/:id" => "jobs#new_payment"
   match "/all_subs_of_job/:id" => "subcontractors#all_subs"
   
+  #Assignment deletion
+  match "/delete_assignment/:id" => "controls#delete_assignment"
+  
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "jobs#index"
