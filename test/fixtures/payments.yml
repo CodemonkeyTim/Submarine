@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  job_id: 1
+  number: 1
+  overdue_on: 2011-10-03
+  received_on: 2011-10-03
+
+two:
+  job_id: 1
+  number: 1
+  overdue_on: 2011-10-03
+  received_on: 2011-10-03

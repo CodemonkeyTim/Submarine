@@ -3,75 +3,16 @@
 	</div>
 <div class="grid_1" id="paytab">
 	<h6>Pay Period</h6>
-	<ul>
-		<li class="litop">11</li>
-		<li>10</li>
-		<li>9</li>
-		<li>8</li>
-		<li>7</li>
-		<li>6</li>
-		<li>5</li>
-		<li>4</li>
-		<li>3</li>
-		<li class="active">2</li>
-		<li>1</li>
+	<ul id="payment_tab_ul">
+		<li id="new_payment_tab" onclick="add_payment();"><img src="/images/plus.png" height="13" width="13"></li>
+		<% @job.payments.reverse.each do |i| %>
+			<li id="<%= i.id %>tab" onclick="change_content(<%= i.id %>);"><%= i.number %></li>
+		<% end %>
+		<li id="0tab" onclick="change_content(0);">All</li>
 	</ul>
 </div>
 	
 <div id="contentmiddle" class="grid_8">
-	
-	<div id="contentcontrol">
-		<div class="grid_2"><h4>Subcontractors</h4></div>
-		<div class="controlbuttons">
-		<ul>
-			<li class="controls" id="receive_payments">
-				<%= link_to "Owner payment received", {:controller => "controls", :action => "touch_all", :id => @job.id, :date => "#{@date}"}, :remote => true, :id => "oprbtn" %>  
-			</li>
-			<li class="controls" id="assign_sub">
-				<%= link_to "Assign a sub", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => 0, :partner_type => 1, :super_parent_id => 0}%>
-			</li>
-		</ul>
-		</div>
-	</div>
-
-	<% unless @job.subcontractors.first.nil? %>
-		<% @job.subcontractors.each do |j| %>
-			<% @asg = Assignment.find_by_job_id_and_partner_id_and_parent_id_and_partner_type(@job.id, j.id, 0, 1) %>
-			<% if @asg.status < 3 then j.status = "active_sub" else j.status = "inactive_sub" end%>
-			
-			<div class="grid_9 <%= j.id %>sub" id="subactivation">
-				<ul>
-					<li>
-						<span class="vendorname">
-							<%= link_to j.name, {:controller => "subcontractors", :action => "show", :job_id => @job.id, :parent_id => 0, :id => j.id} %>
-						</span>
-					</li>
-					<li class="inactive_tab <%= if @asg.status == 3 then "selected" end %> ">
-						<span class="firstbutton">
-							<%= link_to "Inactive", {:controller => "controls", :action => "change_status", :status => 3, :asg_id => @asg.id}, :remote => true %>
-						</span>
-					</li>
-					<li class="reg_tab <%= if @asg.status == 2 then "selected" end %>">
-						<span class="middlebutton">
-							<%= link_to "Reg", {:controller => "controls", :action => "change_status", :status => 2, :asg_id => @asg.id}, :remote => true %>
-						</span>
-					</li>
-					<li class="final_tab <%= if @asg.status == 1 then "selected" end %>">
-						<span class="lastbutton">
-							<%= link_to "Final", {:controller => "controls", :action => "change_status", :status => 1, :asg_id => @asg.id}, :remote => true %>
-						</span>
-					</li>
-				</ul>
-			</div>
-			
-			<div class="grid_8">
-
-			<%= render :partial => "sub_details", :locals => {:j => j, :job_id => @job.id, :parent_id => 0, :show_subname => 0, :status => @asg.status} %>
-			
-			</div>
-		<% end %>
-	<% end %>
-
 	
 </div>
 
@@ -87,7 +28,7 @@
 		<h2>Job Docs:</h2>
 		<% unless @job.documents.length == 0 %>
 			<% @job.documents.each do |i| %>
-				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link" onclick="delete_document(<%= i.id %>)">delete</span></div>
 			<% end %>
 		<% end %>
 		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/>  <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "job", :id => @job.id} %></div>		
@@ -106,7 +47,80 @@
 	</div>
 </div>
 
-<% recents_add(@job.id) %>
+<script>
+	function change_content(id) {
+		var url = '';
+		if (id == 0) { url = '/all_subs_of_job/<%= @job.id %>' } else { url = '/get_job_details/<%= @job.id %>?payment_id='+id} 
+		
+		$.ajax({
+			url: url,
+			cache: false,
+			success: function(html) {
+				$('#payment_tab_ul').contents().each(function() { $(this).removeAttr('class'); });
+				$('#'+id+'tab').attr('class', 'active');
+				$('#contentmiddle').html(html);
+			}
+		});
+	}
+	
+	function add_payment() {
+		$.ajax({
+			url: '/new_payment/<%= @job.id %>',
+			cache: false,
+			success: function(id) {
+				var number = parseInt($('#payment_tab_ul li').first().next().html());
+				$('#new_payment_tab').after('<li id="'+id+'tab" onclick="change_content('+id+');">'+(number+1)+'</li>');
+				change_content(id);
+			}
+		});
+	} 
+	
+	function delete_document(id) {
+		if (!confirm('Are you sure you want delete this document?')) {
+			return;
+		}
+		$.ajax({
+			url: '/documents/delete/'+id,
+			method: 'post',
+			cache: false,
+			success: function() {
+				$('#'+id+'doclink').fadeOut();
+			}
+		});
+	}
+
+	function validate_date () {
+		var day = $('#payment_date').attr('value').substring(3,5);
+		var month = $('#payment_date').attr('value').substring(0,2);
+		var year = $('#payment_date').attr('value').substring(6,10);
+		
+		if (isNaN(parseInt(month))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		if (isNaN(parseInt(day))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		if (isNaN(parseInt(year))) {
+			$('#payment_date').attr('style', 'color:red;');
+			return;
+		} else {
+			$('#payment_date').attr('style', 'color:black;');
+		}
+		
+		$('#oprbtn').attr('href', $('#oprbtn').attr('href')+'&date='+year+month+day)
+	}
+
+	change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>)
+	
+</script>
+
+<% $active_tab = 1 %>
 <% $active_page = "job.show"%>
 
 

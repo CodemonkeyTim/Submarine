@@ -1,5 +1,5 @@
 Submarine::Application.routes.draw do
-  
+
   resources :list_items
   resources :jobs
   resources :subcontractors
@@ -10,17 +10,25 @@ Submarine::Application.routes.draw do
   #Show logs history path
   match "/histories/:id" => "histories#show"
   
+  #PE/PM edit page's calls
+  match "/project_person/edit" => "project_person#edit_page"
+  match "/project_person/create" => "project_person#create"
+  match "/project_person/delete/:id" => "project_person#delete"
+  match "/project_person/update/:id" => "project_person#update"
+  
   #Document attaching paths
   match "/documents/new" => "documents#new"
+  match "/documents/new/:id" => "documents#new"
   match "/documents/" => "documents#create"
   match "/documents/delete/:id" => "documents#delete"
   
   #List item control's routing matches
   match "/modify/:id/:action_id" => "controls#modify"
-  match "/touch_all/:id" => "controls#touch_all"
+  match "/payment_received/:id" => "controls#payment_received"
   match "/mark_done/:id" => "controls#mark_done", :via => "GET"
   match "/undo/:id" => "controls#undo"
   match "/show_fields" => "controls#show_fields"
+  match "/delete_item/:id" => "controls#delete_item"
   
   #Partner status control
   match "/change_status" => "controls#change_status" 
@@ -28,6 +36,17 @@ Submarine::Application.routes.draw do
   #Auxiliary assignment creation action
   match "/create_and_assign" => "assignments#create_and_assign", :via => "POST"
   
+  #Show pages content calls
+  match "/get_job_details/:id" => "jobs#job_details"
+  match "/get_sub_in_payment/:id" => "subcontractors#sub_in_payment"
+  match "/new_payment/:id" => "jobs#new_payment"
+  match "/all_subs_of_job/:id" => "subcontractors#all_subs"
+  
+  #Assignment deletion
+  match "/delete_assignment/:id" => "controls#delete_assignment"
+
+  #Payment date range setting route
+  match "/save_dates/:id" => "jobs#save_dates"
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

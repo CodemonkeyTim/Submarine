@@ -5,8 +5,9 @@ class DocumentsController < ApplicationController
       @owner_name = @owner.name
       @owner_type = 1
     end
-    if params[:owner_type] == "asg"
-      @owner = Assignment.find(params[:owner_id])
+    if params[:owner_type] == "" || params[:owner_type].nil?
+      @payment = Payment.find(params[:payment_id])
+      @owner = Assignment.find_by_job_id_and_partner_id_and_partner_type_and_parent_id_and_payment_id(@payment.job_id, params[:id], params[:partner_type], params[:parent_id], @payment.id)
       @owner_name = Partner.find(@owner.partner_id).name
       @owner_type = 2
     end
@@ -32,7 +33,7 @@ class DocumentsController < ApplicationController
       if @owner.partner_type == 1
         @page_to_return_to = "/subcontractors/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
       else
-        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}"
+        @page_to_return_to = "/suppliers/#{@owner.partner_id}?job_id=#{@owner.job_id}&parent_id=#{@owner.parent_id}&payment_id=#{params[:payment_id]}"
       end
     end
     
@@ -41,11 +42,18 @@ class DocumentsController < ApplicationController
     @doc.document = params[:document]
     @doc.save
 
-    @owner.logs.create(:target_type => "Document", :target_name => params[:name], :action => "added", :time => get_time, :date => get_date)
+    @owner.logs.create(:target_type => "Document", :target_name => params[:document_name], :action => "added", :time => get_time, :date => get_date)
   end
   
   def delete
     @doc = Document.find(params[:id])
+    if @doc.owner_type == "Job"
+      @owner = Job.find(@doc.owner_id)
+    end
+    if @doc.owner_type == "Assignment"
+      @owner = Assignment.find(@doc.owner_id)
+    end
+    @owner.logs.create(:target_type => "Document", :target_name => @doc.name, :action => "deleted", :time => get_time, :date => get_date)
     @doc.delete
   end
 end

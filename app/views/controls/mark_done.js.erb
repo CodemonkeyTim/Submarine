@@ -1,14 +1,11 @@
 $('#<%= params[:id] %>cli input').fadeOut();
-
-setTimeout(function () {
-	$('#<%= params[:id] %>cli input').remove();
-}, 600);
-
 $('#<%= params[:id] %>cli img').fadeOut();
 
 setTimeout(function () {
-		$('#<%= params[:id] %>cli img').attr('src', '/images/waiting.png');
-	}, 600);
+	$('#<%= params[:id] %>cli input').remove();
+	$('#<%= params[:id] %>cli img').attr('src', '/images/complete.png');
+}, 620);
+
 $('#<%= params[:id] %>cli img').fadeIn();
 
 $('#<%= params[:id] %>cli a').fadeIn();

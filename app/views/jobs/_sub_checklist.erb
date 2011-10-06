@@ -1,8 +1,10 @@
-<% unless j.checklist_items(job_id, parent_id).first.nil? then j.checklist_items(job_id, parent_id).each do |k|%>
+<% unless j.checklist_items(job_id, parent_id, payment_id).first.nil? then j.checklist_items(job_id, parent_id, payment_id).each do |k|%>
 	<% @state; if k.state == 1 then @state= "overdues" end; if k.state == 2 then @state = "opens" end; if k.state == 3 then @state = "waitings" end; if k.state == 4 then @state == "completeds" end; %>
 	<div class="list_items <%= if k.cli_type == 3 then "finals" else @state end%>" id="<%= "#{k.id}cli" %>"> 
 		<% if status < 3 %>
-			<%= image_tag(get_image(k.state)) %>
+			<% if k.state != 3 %>
+				<%= image_tag(get_image(k.state)) %>
+			<% end %>
 		<% else %>
 			<%= image_tag(get_image(k.state), :style => "display: none;") %>
 		<% end %>
@@ -11,7 +13,9 @@
 		<% else %>
 			<input style="display: none;" id="<%="#{k.id}input"%>" type="checkbox" onclick="$.ajax('/mark_done/<%= k.id %>')" />
 		<% end %>
+		
 		<%= k.item_data %>
+		
 		<% if k.state < 3 %>
 			<span>
 				<a style="display: none;" href=<%= "/undo/1?item_id=#{k.id}&state=#{k.state}" %> data-remote="true">undo</a>
@@ -21,6 +25,23 @@
 				<a style="display: none;" href=<%= "/undo/1?item_id=#{k.id}&state=#{k.state}" %> data-remote="true">undo</a>
 			</span>
 		<% end %>
+		
+		<div class="del_item_link" onclick="delete_item(<%= k.id %>)" data-remote="true">del</div>
 	</div>
 	<% end %>
 <% end %>
+
+<script>
+	function delete_item(id) {
+		if (confirm('Are you sure you want to delete this item?')) {
+			$.ajax({
+				url: '/delete_item/'+id,
+				cache: false,
+				success: function() {
+					$('#'+id+'cli').fadeOut();
+				}
+			});
+		}
+		
+	}
+</script>

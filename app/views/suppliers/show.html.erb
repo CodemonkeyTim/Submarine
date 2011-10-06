@@ -14,13 +14,13 @@
 		<div class="controlbuttons">
 			<ul>
 				<li class="controls" id="receive_payments">
-					<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @supplier.id, :parent_id => @subcontractor.id, :job_id => @job.id, :partner_type => 2, :name => @supplier.name}%>
+					<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @supplier.id, :parent_id => @subcontractor.id, :job_id => @job.id, :partner_type => 2, :name => @supplier.name, :payment_id => @payment.id}%>
 				</li>
 			</ul>
 		</div>
 	</div>
 	
-	 <%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id, :status => @asg.status} %>
+	 <%= render :partial => "jobs/sup_checklist", :locals => {:k => @supplier, :job_id => @job_id, :parent_id => @parent_id, :status => @asg.status, :payment_id => @payment.id} %>
 	
 </div>
 
@@ -41,12 +41,12 @@
 	
 	<div id="documents_section">
 		<h2>Supplier Docs:</h2>
-		<% unless @asg.nil? || @asg.documents.length == 0 %>
-			<% @asg.documents.each do |i| %>
-				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link"><%= link_to "delete", {:controller => "documents", :action => "delete", :id => i.id}, :remote => true %></span></div>
+		<% unless @documents.length == 0 %>
+			<% @documents.each do |i| %>
+				<div class="document_links" id="<%= i.id %>doclink"><img src="/images/pdf.png" />  <%= link_to i.name, i.document.url %> <span id="delete_document_link" onclick="delete_document(<%= i.id %>)">delete</span></div>
 			<% end %>
 		<% end %>
-		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :owner_type => "asg", :owner_id => @asg.id} %></div>		
+		<div id="add_doc_link"><img src="/images/plus.png" height="16px" width="16px"/> <%= link_to "Add a document", {:controller => "documents", :action => "new", :parent_id => @parent_id, :partner_type => 2, :id => @supplier.id, :payment_id => @payment.id} %></div>		
 	</div>
 </div>
   	
@@ -59,6 +59,22 @@
 		<% end %>
 	</div>
 </div>
+
+<script>
+	function delete_document(id) {
+		if (!confirm('Are you sure you want delete this document?')) {
+			return;
+		}
+		$.ajax({
+			url: '/documents/delete/'+id,
+			method: 'post',
+			cache: false,
+			success: function() {
+				$('#'+id+'doclink').fadeOut();
+			}
+		});
+	}
+</script>
 
 <% #Page's method calls and global variable modifiers %>
 

@@ -1,0 +1,22 @@
+<!--control buttons-->	
+<div id="contentcontrol">
+	
+	<div class="grid_2"><h4>All Items</h4></div>
+	
+	<div class="controlbuttons">
+		<ul>
+			<li class="controls" id="receive_payments">
+				<%= link_to "Add item", {:controller => "list_items", :action => "new", :partner_id => @subcontractor.id, :parent_id => @parent_id, :job_id => @job.id, :partner_type => 1, :name => @subcontractor.name, :payment_id => @payment.id}%>
+			</li>
+			<li class="controls" id="assign_sub">
+				<%= link_to "Assign a subcontractor", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 1, :super_parent_id => @parent_id, :payment_id => @payment.id}%>
+			</li>
+			<li class="controls" id="assign_sub">
+				<%= link_to "Assign a supplier", {:controller => "assignments", :action => "new", :job_id => @job.id, :parent_id => @subcontractor.id, :partner_type => 2, :super_parent_id => @parent_id, :payment_id => @payment.id}%>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!--All the list items-->
+<%= render :partial => "jobs/sub_details", :locals => {:j => @subcontractor, :job_id => @job.id, :parent_id => @parent_id, :show_subname => 0, :status => @asg.status, :payment_id => @payment.id} %>

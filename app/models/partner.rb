@@ -37,24 +37,28 @@ class Partner < ActiveRecord::Base
     end
   end
   
-  def suppliers(job_id)
-    @sup_ids = Assignment.find_all_by_job_id_and_parent_id_and_partner_type(job_id, self.id, 2).collect {|i| i.partner_id}
+  def suppliers(job_id, payment_id)
+    @sup_ids = Assignment.find_all_by_job_id_and_parent_id_and_partner_type_and_payment_id(job_id, self.id, 2, payment_id).collect {|i| i.partner_id}
     return Partner.find_all_by_id(@sup_ids)
   end
   
-  def subcontractors(job_id)
-    @sub_ids = Assignment.find_all_by_job_id_and_parent_id_and_partner_type(job_id, self.id, 1).collect {|i| i.partner_id}
+  def subcontractors(job_id, payment_id)
+    @sub_ids = Assignment.find_all_by_job_id_and_parent_id_and_partner_type_and_payment_id(job_id, self.id, 1, payment_id).collect {|i| i.partner_id}
     return Partner.find_all_by_id(@sub_ids)
   end
   
-  def checklist_items(job_id, parent_id)
-    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id(job_id, parent_id, self.id)
+  def checklist_items(job_id, parent_id, payment_id)
+    @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_payment_id(job_id, parent_id, self.id, payment_id)
     
     if @asg.nil?
       return []
     else
       return @asg.checklist_items.sort_by {|i| i.cli_type}
-    end
-    
+    end    
+  end
+  
+  def payments(job_id, parent_id)
+    @ids = Assignment.find_all_by_job_id_and_partner_id_and_parent_id_and_partner_type(job_id, self.id, parent_id, 1).collect {|i| i.payment_id}.flatten
+    return Payment.find(@ids, :order => "number")
   end
 end
