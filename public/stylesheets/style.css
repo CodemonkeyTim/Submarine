@@ -12,6 +12,7 @@ body {
 
 .action_links {
 	font-weight: bold;
+	color: #001A9C;
 }
 
 .action_links:hover {
