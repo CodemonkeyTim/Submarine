@@ -162,6 +162,23 @@ module ApplicationHelper
     @time  = "#{Time.now.year}-#{Time.now.mon}-#{Time.now.day} #{Time.now.hour}:#{Time.now.min}"
   end
   
+  def refresh_states
+    @payments = Payment.all
+    @payments.each do |i|
+      if i.received?
+        if Time.now > i.overdue_on
+          i.checklist_items.each do |j|
+            if j.state == 2
+              j.state = 1
+              j.save
+            end
+          end
+        end
+      end
+    end
+  end
+  
+  
   def set_states(job)
     job.state = (job.checklist_items.collect {|i| i.state}).flatten.sort!.first
     if job.state.nil?

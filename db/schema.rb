@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004031027) do
+ActiveRecord::Schema.define(:version => 20111006014352) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20111004031027) do
     t.integer  "sleep_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "can_have_document"
   end
 
   create_table "contact_people", :force => true do |t|
