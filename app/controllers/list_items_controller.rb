@@ -10,7 +10,18 @@ class ListItemsController < ApplicationController
 
   def create
     @asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type_and_payment_id(params[:job_id], params[:parent_id], params[:partner_id], params[:partner_type], params[:payment_id])
-    @asg.checklist_items.create(:item_data => params[:item_data], :state => 3, :sleep_time => 10, :cli_type => params[:repeatable_type])    
+    @payment = Payment.find(params[:payment_id])
+    
+    if @payment.received?
+      if Time.now > @payment.overdue_on
+        @asg.checklist_items.create(:item_data => params[:item_data], :state => 1, :sleep_time => 10, :cli_type => params[:repeat_type])
+      else
+        @asg.checklist_items.create(:item_data => params[:item_data], :state => 2, :sleep_time => 10, :cli_type => params[:repeat_type])
+      end
+    else
+      @asg.checklist_items.create(:item_data => params[:item_data], :state => 3, :sleep_time => 10, :cli_type => params[:repeat_type])
+    end
+    
     @asg.logs.create(:target_type => "Item", :target_name => "#{params[:item_data]}", :action => "added", :time => get_time, :date => get_date)
     
     @page_to_return_to = ""

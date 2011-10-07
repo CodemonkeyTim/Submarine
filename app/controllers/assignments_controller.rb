@@ -83,7 +83,7 @@ class AssignmentsController < ApplicationController
       end
       
       if @payment.received?
-        if (Time.now - @payment.received_on) > 864000
+        if Time.now > @payment.overdue_on
           @asg.checklist_items.each do |i|
             i.state = 1
             i.save

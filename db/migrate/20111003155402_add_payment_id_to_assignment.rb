@@ -9,6 +9,7 @@ class AddPaymentIdToAssignment < ActiveRecord::Migration
       @asgs = Assignment.find_all_by_job_id(i.id)
       @asgs.each do |j|
         j.payment_id = @payment.id
+        j.save
       end
     end
   end

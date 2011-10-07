@@ -595,7 +595,9 @@ body {
 
 #assign_sub {
 	
-	width: 70px;
+	text-align: center;
+	
+	width: 80px;
 	float: none !important;
 	margin: auto !important;
 	
