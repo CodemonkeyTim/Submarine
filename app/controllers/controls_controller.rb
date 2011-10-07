@@ -211,7 +211,7 @@ class ControlsController < ApplicationController
 
         @list_of_items.flatten!
 
-        if i.checklist_items.length == 0
+        if i.template_checklist_items_length == 0
 
           @list_of_items.each do |j|
             if @former_payments.length == 0 && j.rep_type == 1
@@ -225,7 +225,7 @@ class ControlsController < ApplicationController
         else
           if params[:status] == "1"
             @add_finals = true
-
+            
             i.checklist_items.each do |j|
               if j.cli_type == 3
               @add_finals = false
