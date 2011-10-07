@@ -12,7 +12,7 @@ class Assignment < ActiveRecord::Base
     @asgs.push(@asgs2)
     
     @asgs2.each do |i|
-      @asgs.push(i.assignments)
+      @asgs.push(i.assignments(payment_id))
     end
         
     return @asgs.flatten
