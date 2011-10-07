@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006014352) do
+ActiveRecord::Schema.define(:version => 20111004031027) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "partner_id"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20111006014352) do
     t.integer  "sleep_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "can_have_document"
   end
 
   create_table "contact_people", :force => true do |t|
@@ -65,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20111006014352) do
     t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "global"
   end
 
   create_table "jobs", :force => true do |t|
@@ -99,7 +97,6 @@ ActiveRecord::Schema.define(:version => 20111006014352) do
     t.string   "loggable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "global"
   end
 
   create_table "partners", :force => true do |t|

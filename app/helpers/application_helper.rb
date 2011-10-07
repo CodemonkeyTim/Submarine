@@ -144,7 +144,6 @@ module ApplicationHelper
     
     @states.sort
     
-    
     @answer = get_image @states[0]
     
     return @answer
