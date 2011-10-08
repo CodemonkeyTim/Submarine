@@ -142,9 +142,9 @@ class AssignmentsController < ApplicationController
     @job.logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
     
     if params[:parent_id] == "0"
-      @where_to = "/jobs/#{@job.id}"
+      @where_to = "/jobs/#{@job.id}?payment_id=#{@payment.id}"
     else
-      @where_to = "/subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
+      @where_to = "/subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}&payment_id=#{@payment.id}"
     end
     
     render "create_and_assign.js.erb"
