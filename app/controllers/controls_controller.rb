@@ -32,20 +32,11 @@ class ControlsController < ApplicationController
       end
     end
     
-    if @payment.received?
-      if Time.now < @payment.overdue_on
-        @items.each do |i|
-          if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
-            i.state = 1
-            i.save
-          end
-        end
-      else
-        @items.each do |i|
-          if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
-            i.state = 2
-            i.save
-          end
+    if Time.now > @payment.overdue_on
+      @items.each do |i|
+        if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
+          i.state = 1
+          i.save
         end
       end
     else
