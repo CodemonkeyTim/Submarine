@@ -85,8 +85,11 @@
 		});
 	}
 	
-	change_content(<%= @subcontractor.payments(@job.id, @parent_id).last.id %>)
-	
+	<% if params[:payment_id].nil? %>
+		change_content(<%= @subcontractor.payments(@job.id, @parent_id).last.id %>);
+	<% else %>
+		change_content(<%= params[:payment_id] %>);
+	<% end %>
 </script>
 
 

@@ -16,14 +16,14 @@ class ControlsController < ApplicationController
     @time = @date.utc
     @job = Job.find(params[:id])
     @payment = Payment.find(params[:payment_id])
-
+    
     @payment.received = true
     @payment.received_on = @time
     @payment.overdue_on = @time + 864000
     @payment.save
-
+    
     @asgs = Assignment.find_all_by_job_id_and_payment_id(@job.id, @payment.id)
-
+    
     @items = []
     @asgs.each do |i|
       i.checklist_items.each do |j|
@@ -31,14 +31,32 @@ class ControlsController < ApplicationController
         @items.push(j)
       end
     end
-
-    @items.each do |i|
-      if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
-      i.state = 2
-      i.save
+    
+    if @payment.received?
+      if Time.now < @payment.overdue_on
+        @items.each do |i|
+          if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
+            i.state = 1
+            i.save
+          end
+        end
+      else
+        @items.each do |i|
+          if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
+            i.state = 2
+            i.save
+          end
+        end
+      end
+    else
+      @items.each do |i|
+        if (i.cli_type == 2 && (i.status == 2 || i.status == 1)) || (i.cli_type == 1 && (i.status == 2 || i.status == 1)) || (i.cli_type == 3 && i.status == 1)
+          i.state = 2
+          i.save
+        end
       end
     end
-
+    
     if @job.subcontractors(@payment.id).length == 0
       @job.logs.create(:target_type => "Payment ##{@payment.number}", :target_name => "", :action => "marked received", :notes => "no subcontractors present", :time => get_time, :date => get_date)
     else

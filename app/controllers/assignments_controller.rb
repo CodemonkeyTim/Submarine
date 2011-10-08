@@ -41,7 +41,6 @@ class AssignmentsController < ApplicationController
     unless params[:parent_id] == "0"
       @parent_asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type_and_payment_id(params[:job_id], params[:super_parent_id], params[:parent_id], 1, params[:payment_id])
       @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => @parent_asg.status, :payment_id => params[:payment_id])
-      
 
       @tags = @job.tags.collect {|i| i.tag_name }
       
@@ -113,9 +112,9 @@ class AssignmentsController < ApplicationController
     @job.logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
     
     if params[:parent_id] == "0"
-      @where_to = "/jobs/#{@job.id}"
+      @where_to = "/jobs/#{@job.id}?payment_id=#{@payment.id}"
     else
-      @where_to = "/subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}"
+      @where_to = "/subcontractors/#{params[:parent_id]}?job_id=#{@job.id}&parent_id=#{params[:super_parent_id]}&payment_id=#{@payment.id}"
     end
     
     render "create.js.erb"
