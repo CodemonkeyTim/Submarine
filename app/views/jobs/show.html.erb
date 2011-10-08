@@ -115,8 +115,13 @@
 		
 		$('#oprbtn').attr('href', $('#oprbtn').attr('href')+'&date='+year+month+day)
 	}
-
-	change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>)
+	
+	<% if params[:payment_id].nil? %>
+		change_content(<%= Payment.find_all_by_job_id(@job.id).last.id %>);
+	<% else %>
+		change_content(<%= params[:payment_id] %>);
+	<% end %>
+	
 	
 </script>
 

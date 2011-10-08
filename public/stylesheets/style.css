@@ -12,6 +12,7 @@ body {
 
 .action_links {
 	font-weight: bold;
+	color: #001A9C;
 }
 
 .action_links:hover {
@@ -546,7 +547,7 @@ body {
 	height: 70px;
 	
 	padding-bottom: 5px;
-	border-bottom: 1px solid #333333;
+	border-bottom: 1px solid #BABABA;
 }
 
 #date_range_wrapper {
@@ -584,8 +585,8 @@ body {
 }
 
 #sub_assing_wrapper {
-	border-left: solid 1px #333333;
-	border-right: solid 1px #333333;
+	border-left: solid 1px #BABABA;
+	border-right: solid 1px #BABABA;
 	
 	width: 198px;
 	height: 70px;
@@ -594,7 +595,9 @@ body {
 
 #assign_sub {
 	
-	width: 70px;
+	text-align: center;
+	
+	width: 80px;
 	float: none !important;
 	margin: auto !important;
 	
@@ -642,4 +645,9 @@ body {
 
 .date_range_fields {
 	width: 75px;
+}
+
+.sub_controlbuttons {
+	height: 50px; !important
+	border-bottom: none; !important
 }

@@ -56,27 +56,18 @@ class JobsController < ApplicationController
       
       next if i.status == 3
       
+      @all_items = i.checklist_items
+      
       @list_of_items = []
       
-      if @new_asg.partner_type == 1
-        @list_of_items.push(@public_and_private)
-        if @tags.include?("Public") 
-          @list_of_items.push(@public)
+      @all_items.each do |j|
+        if j.cli_type == 2
+          @list_of_items.push(j)
         end
-        if @tags.include?("Private") 
-         @list_of_items.push(@private)
-        end
-      end
-      if @new_asg.partner_type == 2
-        @list_of_items.push(@supplier_items)
-      end
-  
-      @list_of_items.flatten!
+      end 
       
       @list_of_items.each do |i|
-        if i.rep_type == 2 
-          @new_asg.checklist_items.create(:cli_type => i.rep_type, :item_data => i.item_data, :state => 3, :sleep_time => 10)
-        end
+        @new_asg.checklist_items.create(:cli_type => 2, :item_data => i.item_data, :state => 3, :sleep_time => 10)
       end
     end
     

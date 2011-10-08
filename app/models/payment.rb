@@ -3,4 +3,7 @@ class Payment < ActiveRecord::Base
   
   belongs_to :job
   
+  def checklist_items
+    self.assignments.collect {|i| i.checklist_items}.flatten
+  end
 end
