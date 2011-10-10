@@ -300,7 +300,9 @@ class ControlsController < ApplicationController
     @partner = Partner.find(@asg.partner_id)
 
     @job.payments.each do |i|
-      @asgs.push(@asg.assignments(i.id))
+      @asgs.each do |j|
+        @asgs.push(j.assignments(i.id))
+      end
     end
 
     @asgs.each do |i|
