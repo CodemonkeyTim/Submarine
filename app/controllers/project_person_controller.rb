@@ -1,7 +1,10 @@
 class ProjectPersonController < ApplicationController
   def edit_page
-    @pms = ProjectManager.all
-    @pes = ProjectEngineer.all
+    @pm_length = ProjectManager.all.count
+    @pms = ProjectManager.all[1..@pm_length]
+    
+    @pe_length = ProjectManager.all.count
+    @pes = ProjectEngineer.all[1..@pe_length]
   end
 
   def create
