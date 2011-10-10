@@ -298,7 +298,16 @@ class ControlsController < ApplicationController
 
     @job = Job.find(@asg.job_id)
     @partner = Partner.find(@asg.partner_id)
-
+    
+    @asgs.each do |i|
+      @job.payments.each do |j|
+        i.assignments(j.id).each do |k|
+          @asgs.push(k)
+        end
+      end
+    end
+    
+    
     @asgs.each do |i|
       i.delete
     end
