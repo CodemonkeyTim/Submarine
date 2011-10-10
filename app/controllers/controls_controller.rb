@@ -295,9 +295,13 @@ class ControlsController < ApplicationController
   def delete_assignment
     @asg = Assignment.find(params[:id])
     @asgs = Assignment.find_all_by_job_id_and_partner_id_and_partner_type_and_parent_id(@asg.job_id, @asg.partner_id, @asg.partner_type, @asg.parent_id)
-
+    
     @job = Job.find(@asg.job_id)
     @partner = Partner.find(@asg.partner_id)
+
+    @job.payments.each do |i|
+      @asgs.push(@asg.assignments(i.id))
+    end
 
     @asgs.each do |i|
       i.delete
