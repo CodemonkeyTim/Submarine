@@ -1,4 +1,13 @@
 class JobsController < ApplicationController
+  def confirm
+    render :layout => nil
+  end
+  
+  def destroy
+    Job.find(params[:id]).delete
+    render :nothing => true
+  end
+  
   def show    
     @job = Job.find(params[:id])
     

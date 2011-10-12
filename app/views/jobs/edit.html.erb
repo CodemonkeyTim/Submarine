@@ -1,10 +1,11 @@
 <div class="grid_12" id="pagedescription">
-	<h2>Edit Job Information</h2>
+	<h2 style="width: 400px; float: left;">Edit Job Information</h2>
+	<div id="delete_job_link" class="action_links" onclick="delete_job(<%= @job.id %>)">delete job</div>
 </div>
 	
 <div id="contentmiddle" class="grid_12">
 	
-	<form id="job_edit" action="/jobs/<%= @job.id%>" method="post" data-remote="true">
+	<form id="job_edit" action="/jobs/<%= @job.id %>" method="post" data-remote="true">
 		<div class="input_rows"> 
 			<div class="labels"> Name </div> 
 			<div class="inputs"> <%= text_field_tag("name", @job.name) %> </div>
@@ -55,6 +56,13 @@
 	</form>
 
 </div>
+
+<script>
+	function delete_job (id) {
+		window.location = '/confirm_deletion/'+id
+	}
+	
+</script>
 
 <% #Method calls and global variable modifiers of the page %>
 

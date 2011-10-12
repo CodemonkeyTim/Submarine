@@ -517,6 +517,13 @@ body {
 	width: 195px;
 }
 
+#delete_job_link {
+	margin-top: 9px;
+	color: red;
+	
+	float: right;
+}
+
 /* PM/PE edit page styling */
 
 #pp_edit_header {
