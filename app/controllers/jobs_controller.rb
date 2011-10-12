@@ -4,7 +4,26 @@ class JobsController < ApplicationController
   end
   
   def destroy
-    Job.find(params[:id]).delete
+    @job = Job.find(params[:id])
+    
+    @job.payment.each do |i|
+      i.delete
+    end
+    
+    @job.assignments.each do |i|
+      i.documents.each do |j| 
+        j.delete
+      end
+      i.checklist_items.each do |j|
+        j.delete
+      end
+      i.delete
+    end
+    
+    @job.documents.each do |i|
+      i.delete
+    end
+   
     render :nothing => true
   end
   
