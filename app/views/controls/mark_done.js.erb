@@ -1,15 +1,30 @@
+//By default, every rails action wants do render something (something to be send to the browser)
+//Usually this means an html file with embedded ruby (.html.erb). But, when the call which fires the action
+// was made using ajax, rails can render a piece of javascript with embedded ruby, like here.
+//Rails can be told to not render anything at all as well.
+
+//Fades out the checkbox in the view of the corresponding checklist item
 $('#<%= params[:id] %>cli input').fadeOut();
+
+//Fades out the status image
 $('#<%= params[:id] %>cli img').fadeOut();
 
+//After the default fadeout time of 600ms has passed with a 20ms marginal, the input is removed from the page
+// and the image is to represent the state of the item as complete
 setTimeout(function () {
 	$('#<%= params[:id] %>cli input').remove();
 	$('#<%= params[:id] %>cli img').attr('src', '/images/complete.png');
 }, 620);
 
+//The img is faded back in
 $('#<%= params[:id] %>cli img').fadeIn();
 
+//The only link in each checklist item element is the undo link and here it is faded in
 $('#<%= params[:id] %>cli a').fadeIn();
 
+//This part of JS was meant to append the recent markings into the logs box.
+//This though was complicated thing to the mind of the author by that time, and
+// was left out.
 /*
 if ($('#recent_history div').length > 3) {
 	$('#recent_history div').last().fadeOut("slow");
