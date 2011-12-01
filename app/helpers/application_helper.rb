@@ -1,6 +1,6 @@
 module ApplicationHelper
   
-  #Some global variables, which are hoped to turn down the amount of database-calls
+  #Some global variables, which are hoped to lower the amount of database-calls
   
   $active_tab = 1
   @active_page = "no.no"
@@ -16,9 +16,8 @@ module ApplicationHelper
     
   end
           
-  #Returns value for html class attribute according to given value
-  
-  #Descr: Compares given value with global variable active_tab and answers accordingly
+  #Most of the views set value to the active_tab global var to indicate in which tab (job/vendor/to-do list) user is in
+  #This method is called from layout to set the CSS class of the tab.
   
   def am_i_active_tab (t)
     if t == $active_tab
@@ -28,11 +27,7 @@ module ApplicationHelper
     end      
   end
   
-  #Returns stylesheets for a page
-  
-  #Descr: Layouts_style.css is always applied and therefore it's always added as first item of the array
-  # Second stylesheet is added according to value of active_page global variable.
-  
+  #Not in use anymore
   def get_stylesheets
     @sheets = ["layout_style.css"]
     
@@ -84,8 +79,7 @@ module ApplicationHelper
   end
     
    #Returns status icon filename of given status
-   
-   #Descr: For each state, there is a certain icon and its file. The given value is compared
+   #For each state, there is a certain icon. The given value is compared
    # to find the right filename.
     
   def get_image (t)
@@ -107,10 +101,10 @@ module ApplicationHelper
   end
   
   #Returns correct status image/icon filename for a job
-  
-  #Descr: Gets all items of a job from database in ascending order (overdue first, open second etc)
+  #Gets all items of a job from database in ascending order (overdue first, open second etc)
   #Calls get_image method to get correct status icon for the item, which also is the status icon of the job
-  
+  #NOTE: In current payments tab setup, does not work properly. The logic how jobs, subs and suppliers 
+  # state is defined would need to be revised.
   def get_image_by_job (t)
       
     @items = ListItem.find_all_by_job_number(t, :order => "TRIM(LOWER(state))")
@@ -125,6 +119,8 @@ module ApplicationHelper
     return @answer
   end
   
+  #This method is operational as well, but as said above, the logic how states are defined for jobs, subs and suppliers
+  # needs to be redone.
   def get_image_by_job_and_sub (t, i)
     @suppliers_data = JobPartnerPartner.find_all_by_job_number_and_partner_id(t, i)
     @supplier_ids = [];
@@ -149,6 +145,7 @@ module ApplicationHelper
     return @answer
   end
   
+  #Sma as above
   def get_image_by_job_and_sup (t, i)
     @items = ListItem.find_all_by_job_number_and_partner_id(t, i, :order => "state")
     
@@ -156,11 +153,16 @@ module ApplicationHelper
     
     return @answer
   end
-    
+  
+  #Returns the current date in formatted string
   def get_time
     @time  = "#{Time.now.year}-#{Time.now.mon}-#{Time.now.day} #{Time.now.hour}:#{Time.now.min}"
   end
   
+  #Refreshes the states of all the checklist items
+  #This method is called in some views so that checklist items get refreshed from time to times
+  #If the payment the checlist items belong to has been received and its overdue date has been passed
+  # and the state of the item is now open, it is turned to overdue
   def refresh_states
     @payments = Payment.all
     @payments.each do |i|
@@ -177,9 +179,10 @@ module ApplicationHelper
     end
   end
   
-  
+  #Sets a state for a job according to the state of the checklist items
+  #Kinda bleongs to same category as the get_image methods above.
   def set_states(job)
-    job.state = (job.checklist_items.collect {|i| i.state}).flatten.sort!.first
+    job.state = (job.checklist_items.collect {|i| i.state }).flatten.sort!.first
     if job.state.nil?
       job.state = 4
     end
@@ -189,6 +192,9 @@ module ApplicationHelper
     end    
   end
   
+  #Same as above but for a sub
+  #Goes recursively down to the last sub.
+  #Has not been adapted to payment tab change and might be redundant anyways
   def set_subs_state(sub, job_id)    
     sub.state =  sub.checklist_items(job_id, 0).collect {|i| i.state}.flatten.sort!.first
     if sub.state.nil?
