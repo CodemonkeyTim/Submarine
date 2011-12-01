@@ -1,29 +1,42 @@
 class AssignmentsController < ApplicationController
   
-  #Gathers all information to be shown on "Assign a Sub" or "Assign a Supplier" pages
-  
+  #Gathers all information for the assigning view (Assigning subs/suppliers to sub/job)
   def new  
+    #Following code block would usually be needless, but I tended to do it anyways
+    #The values gotten as params are stored into variables for handier handling
     @payment_id = params[:payment_id]
     @super_parent_id = params[:super_parent_id]
     @parent_id = params[:parent_id]
     @job = Job.find(params[:job_id])
     @partner_type = params[:partner_type]
     
+    #Retrieves from DB all of the Partner records for the dropdown list in the view
     @partners = Partner.find(:all, :order => "name")
+    
+    #Gathers all the ids of such partners who are already assigned to this sub/job in this payment
     @assigned_ids = Assignment.find_all_by_job_id_and_parent_id_and_payment_id(@job.id, @parent_id, @payment_id).collect {|i| i.partner_id}.uniq
+    
+    #All such partners are deleted (and thus won't be shown) from the collection of Partner records 
+    # because we don't want a sub/supplier to be assigned twice
     @assigned_ids.each do |i|
       @partners.delete_if {|j| j.id == i}
     end
     @partners.delete_if {|i| i.id == params[:parent_id].to_i}
     
+    #Parent id 0 means that we are assigning a sub to a job
     if params[:parent_id] == "0"
       @title_text = "Assign subcontractor to #{@job.job_number} / #{@job.name}"
     else
+      #In other cases the user is assgning sub/supplier to a sub
       if params[:partner_type] == "1"
+        #User is assigning a sub
         @what_to_assign = "subcontractor"
+        #Into this sub
         @target_name = Partner.find(params[:parent_id]).name
+        #And this combines the indormation and is used in the view
         @title_text = "Assign #{@what_to_assign} to #{@target_name}"
       end
+      #Same things for supplier
       if params[:partner_type] == "2"
         @what_to_assign = "supplier"
         @target_name = Partner.find(params[:parent_id]).name
@@ -32,16 +45,22 @@ class AssignmentsController < ApplicationController
     end 
     
   end
-
+  
+  #Background action which creates an assignment record which links a sub/supplier with sub/job according to the data 
+  # from the previous view (Assigning subs/suppliers to sub/job)
   def create
+    #Super parent id is the "parent of the parent" 's id
     @super_parent_id = params[:super_parent_id]
     @payment = Payment.find(params[:payment_id])
     @job = Job.find(params[:job_id])
-          
+    
+    #If parent id is 0, it means user is assgining a sub to a job but in other cases a sub/supplier to a sub
     unless params[:parent_id] == "0"
+      #Parent assignment record links the parent sub into it's parent sub or job
       @parent_asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type_and_payment_id(params[:job_id], params[:super_parent_id], params[:parent_id], 1, params[:payment_id])
       @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => @parent_asg.status, :payment_id => params[:payment_id])
-
+      
+      #Following code blocks create and attach the basic ChecklistItem records into the new assignment 
       @tags = @job.tags.collect {|i| i.tag_name }
       
       @public_and_private = ListItemTemplate.find_all_by_item_type(3)
@@ -54,10 +73,10 @@ class AssignmentsController < ApplicationController
       if @asg.partner_type == 1
         @list_of_items.push(@public_and_private)
         if @tags.include?("Public")
-        @list_of_items.push(@public)
+          @list_of_items.push(@public)
         end
         if @tags.include?("Private")
-        @list_of_items.push(@private)
+          @list_of_items.push(@private)
         end
       end
       if @asg.partner_type == 2
@@ -65,6 +84,7 @@ class AssignmentsController < ApplicationController
       end
       
       @list_of_items.flatten!
+      
       
       if @parent_asg.status == 2 || @parent_asg.status == 1
         @list_of_items.each do |j|
@@ -120,15 +140,20 @@ class AssignmentsController < ApplicationController
     render "create.js.erb"
   end
   
+  #Creates a new partner record and then does the same as previous action 
   def create_and_assign
     @partner = Partner.create(:name => params[:partner_name])
-     
+    
+    #Creates a new ContactPerson and Address records and links it with the new Partner record 
     @partner.contact_person = ContactPerson.create(:name =>params[:cp_name], :title => params[:cp_title], :phone_number => params[:cp_phone_number], :email => params[:cp_email])
     @partner.address = Address.create(:street => params[:addrs_street], :zip_code => params[:addrs_zip_code], :city => params[:addrs_city], :state => params[:addrs_state])  
     
+    #Super parent means the "parent of the parent".
     @super_parent_id = params[:super_parent_id]
     
     @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => @partner.id, :partner_type => params[:partner_type], :status => 3, :payment_id => params[:payment_id])
+    
+    #The type is "converted" into string for the Log record
     if params[:partner_type] == 1
       @target_type = "Subcontractor"
     end
@@ -136,11 +161,11 @@ class AssignmentsController < ApplicationController
       @target_type = "Supplier"
     end
     
-    @target_name = @partner.name
-    
+    #Log marking of sub/sup assignment is created and linked to job
     @job = Job.find(params[:job_id])
-    @job.logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
+    @job.logs.create(:target_type => @target_type, :target_name => @partner_name, :action => "assigned", :time => get_time, :date => get_date) 
     
+    #Forms the url where page is redirected by script in the rendered .js.erb
     if params[:parent_id] == "0"
       @where_to = "/jobs/#{@job.id}?payment_id=#{@payment.id}"
     else
