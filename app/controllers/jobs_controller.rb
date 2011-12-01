@@ -1,9 +1,11 @@
 class JobsController < ApplicationController
   
+  #Uhm.... How about a bottle of Coke? On me.
   def confirm
     render :layout => nil
   end
   
+  #A Background Action
   #Deletes a job with all it's "dependencies"
   def destroy
     @job = Job.find(params[:id])
@@ -29,6 +31,7 @@ class JobsController < ApplicationController
     render :nothing => true
   end
   
+  #A View Action
   #Pulls the data for the view to show the main page for a job.
   def show    
     @job = Job.find(params[:id])
@@ -65,6 +68,7 @@ class JobsController < ApplicationController
     render :layout => nil
   end
   
+  #An Ajax Action
   #Copies the current payments data and creates a new payment with incremented payment number
   #Subs which are with final status in current payment, don't get copied to the new payment
   def new_payment

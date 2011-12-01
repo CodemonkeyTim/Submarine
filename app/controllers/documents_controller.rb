@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   
+  #A View Action
   #Pulls the information needed in the upload view
   def new
     #Varible values if the file to be uploaded will be attached to a job
@@ -17,11 +18,7 @@ class DocumentsController < ApplicationController
     end
   end
   
-  #Redundant?
-  def edit
-    
-  end
-  
+  #A Background Action
   #Creates a Document record with the data from the views and links it to a Job record or Assignment record
   def create
     @owner
@@ -58,6 +55,7 @@ class DocumentsController < ApplicationController
     @owner.logs.create(:target_type => "Document", :target_name => params[:document_name], :action => "added", :time => get_time, :date => get_date)
   end
   
+  #A Background Action
   #Deletes a document in given id and creates a log mark
   def delete
     @doc = Document.find(params[:id])

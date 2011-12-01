@@ -1,5 +1,6 @@
 class HistoriesController < ApplicationController
   
+  #A View Action
   #Pulls all the log data of a job or an assignment, depending on the given partner_type, for the view 
   def show
     #The job version includes also the logs of the assignments in the job 

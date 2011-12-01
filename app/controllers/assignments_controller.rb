@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
   
+  #A View Action
   #Gathers all information for the assigning view (Assigning subs/suppliers to sub/job)
   def new  
     #Following code block would usually be needless, but I tended to do it anyways
@@ -46,7 +47,8 @@ class AssignmentsController < ApplicationController
     
   end
   
-  #Background action which creates an assignment record which links a sub/supplier with sub/job according to the data 
+  #A Background Action
+  #Creates an assignment record which links a sub/supplier with sub/job according to the data 
   # from the previous view (Assigning subs/suppliers to sub/job)
   def create
     #Super parent id is the "parent of the parent" 's id
@@ -54,7 +56,7 @@ class AssignmentsController < ApplicationController
     @payment = Payment.find(params[:payment_id])
     @job = Job.find(params[:job_id])
     
-    #If parent id is 0, it means user is assgining a sub to a job but in other cases a sub/supplier to a sub
+    #If parent id is 0, it means user is assigning a sub to a job but in other cases a sub/supplier to a sub
     unless params[:parent_id] == "0"
       #Parent assignment record links the parent sub into it's parent sub or job
       @parent_asg = Assignment.find_by_job_id_and_parent_id_and_partner_id_and_partner_type_and_payment_id(params[:job_id], params[:super_parent_id], params[:parent_id], 1, params[:payment_id])
@@ -149,6 +151,7 @@ class AssignmentsController < ApplicationController
     render "create.js.erb"
   end
   
+  #A Background Action
   #Creates a new partner record and then does the same as previous action 
   def create_and_assign
     @partner = Partner.create(:name => params[:partner_name])

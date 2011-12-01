@@ -1,14 +1,6 @@
 class ControlsController < ApplicationController
   
-  #Redundant, could be removed
-  def touch_this
-    @t = params[:id]
-    @item = ListItem.find(@t)
-    @item.state = 2
-
-    @item.save
-  end
-
+  #An Ajax Action
   #Marks the payment received, changes the statuses of all of the ChecklistItems in the subs/suppliers in the given payment
   def payment_received
     #Date comes in as a formatted string which is then broken down into parts and then supplied for Ruby Time object
@@ -75,6 +67,7 @@ class ControlsController < ApplicationController
     @log.log_data = "Job: #{@log.target_type} #{@log.target_name} #{@log.action}#{unless @log.notes.nil? then ", #{@log.notes}" end} on #{@log.date} at #{@log.time}"
   end
 
+  #An Ajax Action
   #Finds ChecklistItem record with given id and deletes it
   def delete_item
     @cli = ChecklistItem.find(params[:id])
@@ -101,7 +94,8 @@ class ControlsController < ApplicationController
       @log_data = @log_data.gsub('\'', '\\')
     end
   end
-
+  
+  #An Ajax Action
   #Marks a ChecklistItem record into it's former state which is provided in the params
   def undo
     @cli = ChecklistItem.find(params[:item_id])
@@ -133,12 +127,14 @@ class ControlsController < ApplicationController
     @asg.logs.create(:target_type => "Item", :target_name => @cli.item_data, :action => "corrected", :time => get_time, :date => get_date)
 
   end
-
+  
+  #Uhh... Can't remember...
   def show_fields
 
   end
-  
-  #Changes the status of an Assignment record (IOW sub's/supplier's status)
+    
+  #An Ajax Action
+  #Changes the status of an Assignment record (in other words sub's/supplier's status)
   def change_status
     @payment = Payment.find(params[:payment_id])
 
@@ -286,7 +282,8 @@ class ControlsController < ApplicationController
       end
     end
   end
-
+  
+  #An Ajax Action
   #Does what it says, deletes the assignment and it's with given id
   def delete_assignment
     @asg = Assignment.find(params[:id])

@@ -9,6 +9,8 @@ gem 'mysql2', '~> 0.2.6'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'paperclip', '~> 2.3'
 
+gem 'rake', '0.9.2.2'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
