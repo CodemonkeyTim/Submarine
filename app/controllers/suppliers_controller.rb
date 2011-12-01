@@ -1,4 +1,5 @@
 class SuppliersController < ApplicationController
+  #A View Action
   def show
     @job_id = params[:job_id]
     @parent_id = params[:parent_id]
@@ -35,10 +36,5 @@ class SuppliersController < ApplicationController
       @address = @supplier.address
     end
     
-  end
-
-  def index
-
-  end
-  
+  end  
 end

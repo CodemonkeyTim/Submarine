@@ -1,39 +1,41 @@
 class VendorsController < ApplicationController
+  
+  #A View Action
+  #Lists all the vendors/partners in alphabetical order
   def index
     @vendors  = Partner.find(:all, :order => "name")
     
   end
 
+  #A View Action
+  #Show a single vendor/partner
   def show
     @vendor = Partner.find(params[:id])
     @assignments = Assignment.find_all_by_partner_id(params[:id])
     
+    #If not contact person exists, then "empty" contact person is created
     if @vendor.contact_person.nil?
       @contact_person = ContactPerson.new() 
     else
       @contact_person = @vendor.contact_person
     end
     
+    #Same as above for address
     if @vendor.address.nil?
       @address = Address.new() 
     else
       @address = @vendor.address
     end
     
+    #All the jobs where vendor is present
     @jobs = Job.find_all_by_id(@assignments.collect {|i| i.job_id}.flatten)
-    
-    if @vendor.contact_person.nil?
-      @cp = ContactPerson.new()
-    else
-      @cp = @vendor.contact_person
-    end
-    
   end
   
   def new
     
   end
   
+  #A Background Action
   def create
      @partner = Partner.create(:name => params[:partner_name])
      
@@ -41,6 +43,8 @@ class VendorsController < ApplicationController
      @partner.address = Address.create(:street => params[:addrs_street], :zip_code => params[:addrs_zip_code], :city => params[:addrs_city], :state => params[:addrs_state])   
   end
   
+  #A View Action
+  #Show the vendor edit page
   def edit
     @partner = Partner.find(params[:id])
     
@@ -57,6 +61,8 @@ class VendorsController < ApplicationController
     end
   end
   
+  #A Background Action
+  #Edits a vendor according to params given and saves it
   def update
     @partner = Partner.find(params[:id])
     
