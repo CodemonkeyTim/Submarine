@@ -1,8 +1,10 @@
 class JobsController < ApplicationController
+  
   def confirm
     render :layout => nil
   end
   
+  #Deletes a job with all it's "dependencies"
   def destroy
     @job = Job.find(params[:id])
     
@@ -27,6 +29,7 @@ class JobsController < ApplicationController
     render :nothing => true
   end
   
+  #Pulls the data for the view to show the main page for a job.
   def show    
     @job = Job.find(params[:id])
     
@@ -37,6 +40,7 @@ class JobsController < ApplicationController
     @loggings.sort_by! {|i| i.created_at }
     @loggings.reverse!
     
+    #The log_data of each log is stuffed here with formatted log data
     @loggings.each do |i|
       if i.loggable_type == "Assignment"
         @id = Assignment.find(i.loggable_id).partner_id
@@ -49,9 +53,7 @@ class JobsController < ApplicationController
     
     @log = @loggings[(0..3)]
     
-    #@date: used for submitting date for method which save the payments received to DB
-    # so that as default date in the input field is date today.
-    
+    #The date input's default date, as a formatted string
     @date = Time.now.strftime("%m/%d/%Y")
     
   end
@@ -63,27 +65,27 @@ class JobsController < ApplicationController
     render :layout => nil
   end
   
+  #Copies the current payments data and creates a new payment with incremented payment number
+  #Subs which are with final status in current payment, don't get copied to the new payment
   def new_payment
     @job = Job.find(params[:id])
     @last_payment = Payment.find_all_by_job_id(@job.id, :order => "number").last
     
+    #Creating new payment with incremented payment number
     @payment = Payment.create(:number => @last_payment.number+1, :received => false)
     @job.payments.push(@payment)
     
-    @tags = @job.tags.collect {|i| i.tag_name } 
-    
-    @public_and_private = ListItemTemplate.find_all_by_item_type(3)
-    @public = ListItemTemplate.find_all_by_item_type(1)
-    @private = ListItemTemplate.find_all_by_item_type(2)
-    @supplier_items = ListItemTemplate.find([6, 10])
-    
     @last_payment.assignments.each do |i|
+      #Passes the assignment (sub/supplier) and does not copy it if it's on final status
       next if i.status == 1
-        
+      
+      #Copying the assignment, but with new payment id  
       @new_asg = Assignment.create(:job_id => i.job_id, :partner_id => i.partner_id, :parent_id => i.parent_id, :payment_id => @payment.id, :status => i.status, :partner_type => i.partner_type)
       
+      #If the assignment was with inactive status, it won't get any checklist items into the new payment
       next if i.status == 3
       
+      #But if it regular, all of the checklist items will be copied to next payment 
       @all_items = i.checklist_items
       
       @list_of_items = []
@@ -99,14 +101,19 @@ class JobsController < ApplicationController
       end
     end
     
+    #And log mark from new payment will be added to the job
     @job.logs.create(:target_type => "Payment", :target_name => "##{@payment.number}", :action => "added", :date=> get_date, :time => get_time)
     
     render :text => @payment.id
   end
-    
+  
+  #An Ajax Action
+  #Saves the dates from the payment's payment range fields
   def save_dates
     @job = Job.find(params[:id])
     @payment = Payment.find(params[:payment_id])
+    
+    #Start and end come in as formatted strings
     @start_year = params[:start][6..9]
     @start_month = params[:start][0..1]
     @start_day = params[:start][3..4]
@@ -118,16 +125,20 @@ class JobsController < ApplicationController
     @start_date = Time.new(@start_year, @start_month, @start_day, 12, 0, 0)
     @end_date = Time.new(@end_year, @end_month, @end_day, 12, 0, 0)
     
+    #If dates are not valid, server returns an error (Kind of, 306 is an unused status code, 500 would be correct... but the effect is the same here)
     if @end_date < @start_date
       render :status => 306, :nothing => true
     else
+      #If dates are ok, they are saved into the payment record
       @payment.range_start = @start_date
       @payment.range_end = @end_date
       @payment.save
       render :nothing => true
     end
   end
-    
+  
+  #A View Action
+  #The landing page of Submarine. Fetches all jobs, sorts them into two arrays according to their state 
   def index
     @jobs = Job.find(:all, :order => "name")
     
@@ -143,15 +154,17 @@ class JobsController < ApplicationController
     end  
               
   end
-    
   
+  #A View Action  
+  #Project Managers and Project Engineers are pulled to be shown in the dropdown lists
   def new
     @pms = ProjectManager.all
     @pes = ProjectEngineer.all
   end
   
+  #A Background action
+  #Creates a new job with given params
   def create
-
     @job = Job.create(:name => params[:name], :job_number => params[:job_number], :location => params[:location], :value => params[:value])
     
     @job_type = ""
@@ -163,6 +176,7 @@ class JobsController < ApplicationController
 
     @job.save
     
+    #"Translates" the numeric info of job type and TU role into words
     if params[:job_type] == "1"
       @job_type = "Public"
     end
@@ -179,6 +193,7 @@ class JobsController < ApplicationController
     @job.tags.create(:tag_name => @job_type)
     @job.tags.create(:tag_name => @TU_role)
     
+    #And a log marking!
     @job.logs.create(:target_type => "Job", :target_name => "#{@job.job_number} / #{@job.name}", :action => "created", :date=> get_date, :time => get_time)
   end
   
@@ -187,6 +202,7 @@ class JobsController < ApplicationController
     
   end
   
+  #A View Action
   def edit
     @job = Job.find(params[:id])
     
@@ -197,6 +213,8 @@ class JobsController < ApplicationController
     @pes = ProjectEngineer.all
   end
   
+  #A Background Action
+  #Updates the job with given data
   def update
     @job = Job.find(params[:id])
     @job.name = params[:name]
@@ -212,7 +230,6 @@ class JobsController < ApplicationController
     @job.tags.create(:tag_name => params[:TU_role])
     
     @job.save
-    
   end
   
 end
