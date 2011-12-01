@@ -1,12 +1,15 @@
 class ProjectPersonController < ApplicationController
+  
+  #A View Action
   def edit_page
-    @pm_length = ProjectManager.all.count
-    @pms = ProjectManager.all[1..@pm_length]
+    @pms = ProjectManager.all
+    @pms.delete(@pms.first)
     
-    @pe_length = ProjectManager.all.count
-    @pes = ProjectEngineer.all[1..@pe_length]
+    @pes = ProjectEngineer.all
+    @pes.delete(@pes.first)
   end
-
+  
+  #A Background Action
   def create
     if params[:type] == "1"
       @pp = ProjectManager.create(:name => params[:name])
@@ -17,6 +20,7 @@ class ProjectPersonController < ApplicationController
     render :text => @pp.id
   end
   
+  #An Ajax Action
   def delete
     if params[:type] == "1"
       @pp = ProjectManager.find(params[:id])
@@ -30,6 +34,7 @@ class ProjectPersonController < ApplicationController
     
   end
   
+  #An Ajax Action
   def update
     if params[:type] == "1"
       @pp = ProjectManager.find(params[:id])
@@ -43,5 +48,4 @@ class ProjectPersonController < ApplicationController
     end
     render :nothing => true
   end
-  
 end
