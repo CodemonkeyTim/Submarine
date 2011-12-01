@@ -63,13 +63,15 @@ class AssignmentsController < ApplicationController
       #Following code blocks create and attach the basic ChecklistItem records into the new assignment 
       @tags = @job.tags.collect {|i| i.tag_name }
       
+      #Gathers from DB certaing types of ListItemTemplate records
       @public_and_private = ListItemTemplate.find_all_by_item_type(3)
       @public = ListItemTemplate.find_all_by_item_type(1)
       @private = ListItemTemplate.find_all_by_item_type(2)
       @supplier_items = ListItemTemplate.find([6, 10])
       
+      #The array where to the correct ListItemTemplate records are collected
       @list_of_items = []
-        
+      
       if @asg.partner_type == 1
         @list_of_items.push(@public_and_private)
         if @tags.include?("Public")
@@ -85,14 +87,18 @@ class AssignmentsController < ApplicationController
       
       @list_of_items.flatten!
       
-      
+      #If the parent sub is inactive, no ChecklistItem records are created
+      #If the parent sub is "open", which mean that it is on regular or final status, all the regular items are attached the new assignment
       if @parent_asg.status == 2 || @parent_asg.status == 1
         @list_of_items.each do |j|
           if j.rep_type == 2
+            #Creates ChecklistItems according to the template
             @asg.checklist_items.create(:cli_type => j.rep_type, :item_data => j.item_data, :state => 3, :sleep_time => 10)
           end
         end
       end
+      
+      #If the parent sub has final status, the new assignment is also attached the final ChecklistItems
       if @parent_asg.status == 1
         @list_of_items.each do |j|
           if j.rep_type == 3
@@ -101,6 +107,8 @@ class AssignmentsController < ApplicationController
         end
       end
       
+      #If the payment has already been received by the time sub is assigned, the state of the checklist items is set open
+      # unless the overdue date has been passed, which means the state is set to overdue
       if @payment.received?
         if Time.now > @payment.overdue_on
           @asg.checklist_items.each do |i|
@@ -115,11 +123,11 @@ class AssignmentsController < ApplicationController
         end
       end
     else
+      #Creates an Assignment record which links a sub into a job in a payment
       @asg = Assignment.create(:job_id => params[:job_id], :parent_id => params[:parent_id], :partner_id => params[:partner_id], :partner_type => params[:partner_type], :status => 3, :payment_id => params[:payment_id])
     end
     
-    
-    
+    #Partner type "converted" into words for the Log record
     if params[:partner_type] == 1
       @target_type = "Subcontractor"
     end
@@ -131,6 +139,7 @@ class AssignmentsController < ApplicationController
     
     @job.logs.create(:target_type => @target_type, :target_name => @target_name, :action => "assigned", :time => get_time, :date => get_date) 
     
+    #Forms the url where browser is redirected
     if params[:parent_id] == "0"
       @where_to = "/jobs/#{@job.id}?payment_id=#{@payment.id}"
     else
